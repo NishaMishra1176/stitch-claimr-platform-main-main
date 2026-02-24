@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Visual Nodal Escalation Console</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    navy: {
+                        50: "#f0f4f8",
+                        100: "#d9e2ec",
+                        800: "#162a40",
+                        900: "#0B1C2D", // Core Navy
+                    },
+                    claimr: {
+                        green: "#10b981",
+                        light: "#F3F6F9",
+                    }
+                },
+                fontFamily: {
+                    "sans": ["Inter", "sans-serif"],
+                    "mono": ["JetBrains Mono", "monospace"],
+                },
+                boxShadow: {
+                    'card': '0 4px 6px -1px rgba(11, 28, 45, 0.05), 0 10px 15px -3px rgba(11, 28, 45, 0.05)',
+                    'card-hover': '0 20px 25px -5px rgba(11, 28, 45, 0.1), 0 10px 10px -5px rgba(11, 28, 45, 0.04)',
+                    'glow-green': '0 0 15px rgba(16, 185, 129, 0.3)',
+                    '3d': '4px 4px 8px #e2e8f0, -4px -4px 8px #ffffff',
+                },
+                backgroundImage: {
+                    'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                }
+            },
+        },
+    }
+</script>
+<style>.icon-box-3d {
+        background: linear-gradient(145deg, #ffffff, #f0f4f8);
+        box-shadow: 5px 5px 10px #d9e2ec, -5px -5px 10px #ffffff;
+        border: 1px solid rgba(255,255,255,0.6);
+    }
+    .progress-bar-striped {
+        background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+        background-size: 1rem 1rem;
+    }.badge-shine {
+        position: relative;
+        overflow: hidden;
+    }
+    .badge-shine::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        animation: shine 3s infinite;
+    }
+    @keyframes shine {
+        0% { left: -100%; }
+        20% { left: 100%; }
+        100% { left: 100%; }
+    }
+</style>
+</head>
+<body class="bg-[#F8FAFC] text-navy-900 font-sans antialiased min-h-screen flex flex-col">
+<header data-shared="true"></header>
+<main class="flex-grow w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+<div class="bg-white rounded-2xl shadow-card border border-slate-200 p-8 mb-10 overflow-hidden relative">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500"></div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
+<div>
+<h1 class="text-3xl font-black text-navy-900 tracking-tight mb-2">Nodal Officer Escalation</h1>
+<p class="text-slate-500 text-sm max-w-2xl">
+                    Directly access appointed Grievance Officers for Indian couriers as mandated by the <span class="font-semibold text-navy-900">Consumer Protection (E-Commerce) Rules, 2020</span>. Use strictly for fraud and unresolved RTO disputes.
+                </p>
+</div>
+<div class="hidden lg:flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-lg border border-blue-100 text-blue-800 text-sm font-bold">
+<span class="material-symbols-outlined text-blue-600">gavel</span>
+                Legal Framework Active
+            </div>
+</div>
+<div class="relative px-4 md:px-12 py-6">
+<div class="absolute top-1/2 left-0 w-full h-1 bg-slate-100 -translate-y-1/2 hidden md:block"></div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+<div class="flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full bg-slate-50 border-2 border-slate-200 flex items-center justify-center mb-4 relative z-10 transition-all duration-300 group-hover:border-slate-400 group-hover:scale-110 shadow-sm">
+<span class="material-symbols-outlined text-slate-400 text-3xl">support_agent</span>
+</div>
+<div class="bg-slate-50 px-4 py-2 rounded-lg border border-slate-100">
+<h3 class="font-bold text-slate-500 text-sm">Level 1: Support</h3>
+<p class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold mt-1">Ticket Raised</p>
+</div>
+</div>
+<div class="flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full bg-slate-50 border-2 border-slate-200 flex items-center justify-center mb-4 relative z-10 transition-all duration-300 group-hover:border-slate-400 group-hover:scale-110 shadow-sm">
+<span class="material-symbols-outlined text-slate-400 text-3xl">supervisor_account</span>
+</div>
+<div class="bg-slate-50 px-4 py-2 rounded-lg border border-slate-100">
+<h3 class="font-bold text-slate-500 text-sm">Level 2: Manager</h3>
+<p class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold mt-1">&gt; 24hrs Unresolved</p>
+</div>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="absolute top-1/2 left-0 md:left-1/2 w-full md:w-[50%] h-1 bg-gradient-to-r from-transparent to-navy-900 -translate-y-1/2 -z-10 hidden md:block opacity-20"></div>
+<div class="w-20 h-20 rounded-full bg-navy-900 border-4 border-blue-100 flex items-center justify-center mb-4 relative z-10 shadow-xl shadow-navy-900/20 transform scale-110 ring-4 ring-white">
+<span class="material-symbols-outlined text-white text-4xl">admin_panel_settings</span>
+<div class="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[14px] font-bold">priority_high</span>
+</div>
+</div>
+<div class="bg-navy-900 text-white px-6 py-3 rounded-lg shadow-lg shadow-navy-900/10 -mt-2 relative z-20">
+<h3 class="font-bold text-base">Level 3: Nodal Officer</h3>
+<p class="text-[10px] text-blue-200 uppercase tracking-wider font-semibold mt-1">Highest Escalation</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-4 mb-8 items-center justify-between">
+<div class="relative w-full md:w-1/2 lg:w-1/3">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400">search</span>
+</div>
+<input class="block w-full pl-12 pr-4 py-3.5 bg-white border border-slate-200 rounded-xl leading-5 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-900 focus:border-transparent sm:text-sm shadow-sm transition-shadow hover:shadow-md" placeholder="Search courier partner by name (e.g. Delhivery)..." type="text"/>
+</div>
+<div class="flex gap-3 w-full md:w-auto">
+<button class="px-4 py-2 bg-white border border-slate-200 text-slate-600 rounded-lg text-sm font-semibold hover:bg-slate-50 transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">filter_list</span> Filters
+            </button>
+<button class="px-4 py-2 bg-white border border-slate-200 text-slate-600 rounded-lg text-sm font-semibold hover:bg-slate-50 transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">sort</span> Relevance
+            </button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-card hover:shadow-card-hover transition-all duration-300 group flex flex-col h-full relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide bg-emerald-50 text-emerald-700 border border-emerald-200 badge-shine">
+<span class="material-symbols-outlined text-sm">verified</span> Verified
+                </span>
+</div>
+<div class="p-6 pb-2">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-14 h-14 rounded-xl bg-slate-900 text-white flex items-center justify-center text-xl font-bold shadow-lg">D</div>
+<div>
+<h2 class="text-xl font-bold text-navy-900">Delhivery</h2>
+<p class="text-xs text-slate-500 font-medium mt-0.5">Logistics &amp; Supply Chain</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+<p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Appointed Nodal Officer</p>
+<p class="text-sm font-bold text-navy-900 flex items-center gap-2">
+                            Mr. Amitabh Singh
+                            <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" title="Online"></span>
+</p>
+</div>
+<div class="space-y-3">
+<a class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors group/link cursor-pointer border border-transparent hover:border-slate-100" href="mailto:nodal@delhivery.com">
+<div class="w-10 h-10 rounded-full icon-box-3d flex items-center justify-center text-navy-900 group-hover/link:text-blue-600 transition-colors">
+<span class="material-symbols-outlined text-xl">mail</span>
+</div>
+<div class="flex-1">
+<p class="text-xs text-slate-400 font-medium">Escalation Email</p>
+<p class="text-sm font-bold text-navy-900 group-hover/link:text-blue-700">nodal@delhivery.com</p>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover/link:text-blue-500 group-hover/link:translate-x-1 transition-all">arrow_forward</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors group/link cursor-pointer border border-transparent hover:border-slate-100" href="tel:+911244718900">
+<div class="w-10 h-10 rounded-full icon-box-3d flex items-center justify-center text-navy-900 group-hover/link:text-blue-600 transition-colors">
+<span class="material-symbols-outlined text-xl">phone_in_talk</span>
+</div>
+<div class="flex-1">
+<p class="text-xs text-slate-400 font-medium">Direct Line</p>
+<p class="text-sm font-bold text-navy-900 group-hover/link:text-blue-700">+91 124 4718900</p>
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="mt-auto p-6 pt-2">
+<div class="border-t border-slate-100 pt-4">
+<div class="flex justify-between items-end mb-2">
+<span class="text-[11px] font-bold text-slate-400 uppercase">Response Time</span>
+<span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">~4 Hours</span>
+</div>
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 w-[85%] rounded-full progress-bar-striped shadow-glow-green"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-2xl border border-slate-200 shadow-card hover:shadow-card-hover transition-all duration-300 group flex flex-col h-full relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide bg-emerald-50 text-emerald-700 border border-emerald-200 badge-shine">
+<span class="material-symbols-outlined text-sm">verified</span> Verified
+                </span>
+</div>
+<div class="p-6 pb-2">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-14 h-14 rounded-xl bg-purple-900 text-white flex items-center justify-center text-xl font-bold shadow-lg">S</div>
+<div>
+<h2 class="text-xl font-bold text-navy-900">Shiprocket</h2>
+<p class="text-xs text-slate-500 font-medium mt-0.5">Aggregator Platform</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+<p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Appointed Nodal Officer</p>
+<p class="text-sm font-bold text-navy-900">Ms. Saumya Khati</p>
+</div>
+<div class="space-y-3">
+<a class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors group/link cursor-pointer border border-transparent hover:border-slate-100" href="mailto:grievance@shiprocket.com">
+<div class="w-10 h-10 rounded-full icon-box-3d flex items-center justify-center text-navy-900 group-hover/link:text-purple-600 transition-colors">
+<span class="material-symbols-outlined text-xl">mail</span>
+</div>
+<div class="flex-1">
+<p class="text-xs text-slate-400 font-medium">Escalation Email</p>
+<p class="text-sm font-bold text-navy-900 group-hover/link:text-purple-700">grievance@shiprocket.com</p>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover/link:text-purple-500 group-hover/link:translate-x-1 transition-all">arrow_forward</span>
+</a>
+<div class="flex items-center gap-4 p-3 rounded-xl opacity-60">
+<div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-xl">phone_disabled</span>
+</div>
+<div class="flex-1">
+<p class="text-xs text-slate-400 font-medium">Direct Line</p>
+<p class="text-sm font-bold text-slate-500">Not Available</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto p-6 pt-2">
+<div class="border-t border-slate-100 pt-4">
+<div class="flex justify-between items-end mb-2">
+<span class="text-[11px] font-bold text-slate-400 uppercase">Response Time</span>
+<span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded">~24 Hours</span>
+</div>
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-amber-400 w-[50%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-2xl border border-slate-200 shadow-card hover:shadow-card-hover transition-all duration-300 group flex flex-col h-full relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide bg-emerald-50 text-emerald-700 border border-emerald-200 badge-shine">
+<span class="material-symbols-outlined text-sm">verified</span> Verified
+                </span>
+</div>
+<div class="p-6 pb-2">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-14 h-14 rounded-xl bg-orange-600 text-white flex items-center justify-center text-xl font-bold shadow-lg">E</div>
+<div>
+<h2 class="text-xl font-bold text-navy-900">Ecom Express</h2>
+<p class="text-xs text-slate-500 font-medium mt-0.5">Logistics Solutions</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+<p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Appointed Nodal Officer</p>
+<p class="text-sm font-bold text-navy-900">Mr. Rajiv Nayan</p>
+</div>
+<div class="space-y-3">
+<a class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors group/link cursor-pointer border border-transparent hover:border-slate-100" href="mailto:grievance-officer@ecomexpress.in">
+<div class="w-10 h-10 rounded-full icon-box-3d flex items-center justify-center text-navy-900 group-hover/link:text-orange-600 transition-colors">
+<span class="material-symbols-outlined text-xl">mail</span>
+</div>
+<div class="flex-1">
+<p class="text-xs text-slate-400 font-medium">Escalation Email</p>
+<p class="text-sm font-bold text-navy-900 group-hover/link:text-orange-700 truncate max-w-[160px]">grievance-officer@ecomexpress.in</p>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover/link:text-orange-500 group-hover/link:translate-x-1 transition-all">arrow_forward</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors group/link cursor-pointer border border-transparent hover:border-slate-100" href="tel:+911244718900">
+<div class="w-10 h-10 rounded-full icon-box-3d flex items-center justify-center text-navy-900 group-hover/link:text-orange-600 transition-colors">
+<span class="material-symbols-outlined text-xl">phone_in_talk</span>
+</div>
+<div class="flex-1">
+<p class="text-xs text-slate-400 font-medium">Direct Line</p>
+<p class="text-sm font-bold text-navy-900 group-hover/link:text-orange-700">011-30212000</p>
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="mt-auto p-6 pt-2">
+<div class="border-t border-slate-100 pt-4">
+<div class="flex justify-between items-end mb-2">
+<span class="text-[11px] font-bold text-slate-400 uppercase">Response Time</span>
+<span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">~6 Hours</span>
+</div>
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-400 w-[75%] rounded-full progress-bar-striped"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm opacity-80 hover:opacity-100 hover:shadow-card hover:border-blue-200 transition-all duration-300 group flex flex-col h-full relative overflow-hidden">
+<div class="p-6 pb-2">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-14 h-14 rounded-xl bg-yellow-500 text-white flex items-center justify-center text-xl font-bold shadow-md">S</div>
+<div>
+<h2 class="text-xl font-bold text-navy-900">Shadowfax</h2>
+<p class="text-xs text-slate-500 font-medium mt-0.5">Last Mile Delivery</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+<p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Appointed Nodal Officer</p>
+<p class="text-sm font-bold text-slate-700 italic">Pending Update...</p>
+</div>
+<div class="space-y-3">
+<a class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors group/link cursor-pointer border border-transparent hover:border-slate-100" href="mailto:grievance@shadowfax.in">
+<div class="w-10 h-10 rounded-full icon-box-3d flex items-center justify-center text-navy-900 group-hover/link:text-yellow-600 transition-colors">
+<span class="material-symbols-outlined text-xl">mail</span>
+</div>
+<div class="flex-1">
+<p class="text-xs text-slate-400 font-medium">Escalation Email</p>
+<p class="text-sm font-bold text-navy-900 group-hover/link:text-yellow-700">grievance@shadowfax.in</p>
+</div>
+<span class="material-symbols-outlined text-slate-300 group-hover/link:text-yellow-500 group-hover/link:translate-x-1 transition-all">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<div class="mt-auto p-6 pt-2">
+<div class="border-t border-slate-100 pt-4">
+<div class="flex justify-between items-end mb-2">
+<span class="text-[11px] font-bold text-slate-400 uppercase">Response Time</span>
+<span class="text-xs font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Unknown</span>
+</div>
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-slate-300 w-[10%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-10 p-4 bg-blue-50 border border-blue-100 rounded-xl flex items-start gap-4">
+<span class="material-symbols-outlined text-blue-600 mt-0.5">info</span>
+<div>
+<h4 class="text-sm font-bold text-navy-900">Legal Disclaimer</h4>
+<p class="text-xs text-blue-800/70 mt-1 leading-relaxed">
+                Contact information for Nodal Officers is sourced from public declarations under the IT Act 2000. Claimr verifies this data weekly. Misuse of escalation channels for non-grievance issues may lead to blacklisting by courier partners.
+            </p>
+</div>
+</div>
+</main>
+<footer data-shared="true"></footer>
+
+<script src="../shared-nav-loader.js"></script>
+</body></html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr Home - Financial Triage Variant 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d81818",
+                        "navy": "#0B1C2D",
+                        "alert-red": "#C62828",
+                        "background-light": "#ffffff",
+                        "background-dark": "#071c31",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "tactile": "0 10px 40px -10px rgba(11, 28, 45, 0.08), 0 4px 10px -5px rgba(0,0,0,0.05)",
+                        "tactile-hover": "0 20px 50px -10px rgba(11, 28, 45, 0.15), 0 10px 20px -5px rgba(198, 40, 40, 0.1)"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Ensuring full height usage without scrolling for desktop */
+        body {
+            height: 100vh;
+            overflow: hidden;
+        }
+        @media (max-height: 700px) {
+            body {
+                height: auto;
+                overflow-y: auto;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light font-display antialiased text-navy selection:bg-alert-red/10 selection:text-alert-red">
+<div class="flex h-full w-full flex-col">
+<!-- Progress Indicator -->
+<div class="px-8 py-3 bg-[#f0f4f8] border-b border-[#e5e7eb]">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="text-sm font-bold text-[#0b1b2d]">2</div>
+<div class="text-sm text-gray-500">/</div>
+<div class="text-sm text-gray-500">5</div>
+</div>
+<div class="flex-1 mx-4">
+<div class="h-1 bg-gray-200 rounded-full overflow-hidden">
+<div class="h-full bg-[#C62828] rounded-full w-2/5"></div>
+</div>
+</div>
+<div class="flex items-center gap-2 text-sm font-medium">
+<span class="text-[#0b1b2d] font-bold">My Risk</span>
+<span class="text-gray-400">→</span>
+<span class="text-gray-400">Evidence</span>
+<span class="text-gray-400">→</span>
+<span class="text-gray-400">Legal Action</span>
+<span class="text-gray-400">→</span>
+<span class="text-gray-400">Recovery</span>
+</div>
+</div>
+</div>
+
+<header data-shared="true"></header>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../sla_evidence_engine_variant_2/code.html">SLA Evidence Engine</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../claimr_home_-_forensic_engine_variant_2/code.html">Forensic Engine</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../fake_rto_forensic_checker_1/code.html">Forensic Checker</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../forensic_rto_diagnostic_ui_1/code.html">RTO Diagnostic</a>
+</div>
+</div>
+<!-- Legal Dropdown -->
+<div class="relative group">
+<a class="text-sm font-medium text-text-body hover:text-primary transition-colors flex items-center gap-1" href="../claimr_home_-_escalation_engine_variant_1/code.html">
+<span class="material-symbols-outlined text-xs">gavel</span> Legal <span class="material-symbols-outlined text-xs">expand_more</span></a>
+<!-- Dropdown Menu -->
+<div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+<div class="px-4 py-2 border-b border-gray-100">
+<h4 class="font-bold text-primary text-sm">Legal Tools</h4>
+</div>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../claimr_home_-_escalation_engine_variant_1/code.html">Escalation Engine</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../legal_notice_generator_1/code.html">Legal Notice Generator</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../nodal_officer_email_directory/code.html">Nodal Directory</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../consumer_court_filing_guide/code.html">Court Filing Guide</a>
+</div>
+</div>
+<!-- Recovery Dropdown -->
+<div class="relative group">
+<a class="text-sm font-medium text-text-body hover:text-primary transition-colors flex items-center gap-1" href="../payment_recovery_action_hub/code.html">
+<span class="material-symbols-outlined text-xs">account_balance_wallet</span> Recovery <span class="material-symbols-outlined text-xs">expand_more</span></a>
+<!-- Dropdown Menu -->
+<div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+<div class="px-4 py-2 border-b border-gray-100">
+<h4 class="font-bold text-primary text-sm">Recovery Tools</h4>
+</div>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../payment_recovery_action_hub/code.html">Payment Recovery Hub</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../seller_recovery_management_dashboard/code.html">Recovery Dashboard</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../asset_recovery_hub_variant_3/code.html">Asset Recovery Hub</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../claimr_recovery_dashboard_ui/code.html">Recovery Dashboard</a>
+</div>
+</div>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-3">
+<a class="hidden md:block text-sm font-medium text-primary hover:text-primary-light transition-colors" href="#">Login</a>
+<a href="../claimr_home_-_financial_triage_variant_1_1/code.html" class="bg-[#C62828] hover:bg-red-800 text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors shadow-sm">
+                        Escalate Now
+                    </a>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Layout Container -->
+<main class="flex-1 flex flex-col px-6 md:px-12 lg:px-20 pb-8 pt-6 w-full max-w-[1600px] mx-auto h-full">
+<!-- Hero Section (Compact) -->
+<div class="flex-none mb-8">
+<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-navy leading-[1.1] tracking-tight max-w-4xl">
+                    Something went wrong with your shipment.
+                </h1>
+<p class="text-alert-red text-lg md:text-xl font-medium mt-2 flex items-center gap-2">
+<span class="material-symbols-outlined filled text-2xl">warning</span>
+                    Let’s stop the damage.
+                </p>
+</div>
+<!-- Triage Grid -->
+<div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 min-h-0">
+<!-- Card 1: Fake Delivery -->
+<a href="../fake_delivery_evidence_page_variant_2/code.html" class="block group">
+<div class="group relative flex flex-col items-center justify-between overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-tactile hover:shadow-tactile-hover hover:border-alert-red/30 hover:-translate-y-1 transition-all duration-300 p-8 h-full">
+<div class="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-alert-red text-3xl">arrow_outward</span>
+</div>
+<div class="w-full text-left">
+<h3 class="text-2xl font-bold text-navy group-hover:text-alert-red transition-colors">Fake Delivery</h3>
+<p class="text-gray-500 text-sm mt-1">Package marked delivered but not received</p>
+</div>
+<div class="flex-1 flex items-center justify-center w-full py-4">
+<!-- Placeholder for 3D Icon -->
+<div class="relative w-40 h-40 bg-navy/5 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+<img alt="Fake delivery warning icon" class="w-32 h-32 object-contain drop-shadow-xl" data-alt="3D render of a cardboard box with a red warning exclamation mark hovering over it" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6CNJk1Do_I-J7X-L6rO4LTIRQLFYZFhp7UB_3_6jrltXFzSvXB7cEqpMZUKE9KzH6gwpvfhWeYi83YxJ2Pcn6dDcsmltknXyt601vHNd2Lw-QvlggEanbGJZ6YWNT5njDeW1B9gyW8NztIMyin1b3xyqPKs3Y8JqFW4Ywkgy1llW2vFA_RIP-k3zu9kxPsHBkFMxcHdaDQw4oWd9wGNGcuqYupC2qeGHP0Cq-DFPHk8pSwhU_rITuYp-yYF8wwCPcRL9RX96-NSM"/>
+</div>
+</div>
+<div class="w-full border-t border-gray-100 pt-6 mt-2 group-hover:border-alert-red/20 transition-colors">
+<div class="flex items-center justify-between text-alert-red font-bold">
+<span class="text-sm uppercase tracking-wider">High Priority</span>
+<span class="flex items-center gap-2 group-hover:translate-x-2 transition-transform">
+                                This is happening to me <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+</a>
+<!-- Card 2: Claim Reversed -->
+<a href="../claim_reversal_visualizer_variant_3/code.html" class="block group">
+<div class="group relative flex flex-col items-center justify-between overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-tactile hover:shadow-tactile-hover hover:border-alert-red/30 hover:-translate-y-1 transition-all duration-300 p-8 h-full">
+<div class="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-alert-red text-3xl">arrow_outward</span>
+</div>
+<div class="w-full text-left">
+<h3 class="text-2xl font-bold text-navy group-hover:text-alert-red transition-colors">Claim Reversed</h3>
+<p class="text-gray-500 text-sm mt-1">Refund granted then withdrawn</p>
+</div>
+<div class="flex-1 flex items-center justify-center w-full py-4">
+<div class="relative w-40 h-40 bg-navy/5 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+<img alt="Claim reversed icon" class="w-32 h-32 object-contain drop-shadow-xl" data-alt="3D render of a document with a red undo arrow curling backward" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcu7f8_33brDWtkKqrAi2GjT2mYR6mOAM4lTt9zIFRsBP_z-yJ9l2EeNuadg5GWUIqTCHZKtoAOFunJerW8wP8bhDioJnlutSz40jOzFYyT6iG_QjrO5vltHLPxpTZEwCV5Zv0lTAvMiTwRz6lb8bQ3MsdRrOEjQitJb9Tjl9xb_EBFcIc4NMVZxEhr6TaIlpqLSvdK-IcF957NZy2iDvY9Ykm6raMroBcyDuRaZlCz96bT9gsuRUaIu8S0mW8LsZSJALFcf1LDdA"/>
+</div>
+</div>
+<div class="w-full border-t border-gray-100 pt-6 mt-2 group-hover:border-alert-red/20 transition-colors">
+<div class="flex items-center justify-between text-alert-red font-bold">
+<span class="text-sm uppercase tracking-wider">Action Required</span>
+<span class="flex items-center gap-2 group-hover:translate-x-2 transition-transform">
+                                This is happening to me <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+</a>
+<!-- Card 3: Wallet Blocked -->
+<a href="../wallet_blocked_legal_fix/code.html" class="block group">
+<div class="group relative flex flex-col items-center justify-between overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-tactile hover:shadow-tactile-hover hover:border-alert-red/30 hover:-translate-y-1 transition-all duration-300 p-8 h-full">
+<div class="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-alert-red text-3xl">arrow_outward</span>
+</div>
+<div class="w-full text-left">
+<h3 class="text-2xl font-bold text-navy group-hover:text-alert-red transition-colors">Wallet Blocked</h3>
+<p class="text-gray-500 text-sm mt-1">Funds frozen or account restricted</p>
+</div>
+<div class="flex-1 flex items-center justify-center w-full py-4">
+<div class="relative w-40 h-40 bg-navy/5 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+<img alt="Wallet blocked icon" class="w-32 h-32 object-contain drop-shadow-xl" data-alt="3D render of a heavy metallic padlock with a red warning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU0_5J1q2_HPz_JVaXv-qF5v3OYN1Rc0PTV8dhN0TF4UijCIGYYT6QAWvBI2SsI6Bggr8XUFagUHLtBCe5b5oTAN98xQTGobVbzMyq214OhiF4oZxpAA9tl9fuO8W8DH0YJal9854ozsxG66OsmioQfq2Pu4t-0nOwozX22qhn9dd0-RHFtLDrPqXVTcvobwOECaMhEfsIR4vn08QGZehbftO7HJrz97UHyuQ7ZapuqRpYnkEKvW5sDVpD4OWee7yAwZKUJ_7mCI8"/>
+</div>
+</div>
+<div class="w-full border-t border-gray-100 pt-6 mt-2 group-hover:border-alert-red/20 transition-colors">
+<div class="flex items-center justify-between text-alert-red font-bold">
+<span class="text-sm uppercase tracking-wider">Urgent</span>
+<span class="flex items-center gap-2 group-hover:translate-x-2 transition-transform">
+                                This is happening to me <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+</a>
+<!-- Card 4: Fraud Allegation -->
+<a href="../self-buy_allegation_rebuttal_ui_1/code.html" class="block group">
+<div class="group relative flex flex-col items-center justify-between overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-tactile hover:shadow-tactile-hover hover:border-alert-red/30 hover:-translate-y-1 transition-all duration-300 p-8 h-full">
+<div class="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-alert-red text-3xl">arrow_outward</span>
+</div>
+<div class="w-full text-left">
+<h3 class="text-2xl font-bold text-navy group-hover:text-alert-red transition-colors">Fraud Allegation</h3>
+<p class="text-gray-500 text-sm mt-1">Buyer claims item is counterfeit</p>
+</div>
+<div class="flex-1 flex items-center justify-center w-full py-4">
+<div class="relative w-40 h-40 bg-navy/5 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+<img alt="Fraud allegation icon" class="w-32 h-32 object-contain drop-shadow-xl" data-alt="3D render of a judge gavel striking a sound block with red sparks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB83mtXFva6O4bXBFhYFlGVHl5u72vd6jtj4w5FmFUG9F4v9ABMFYuyeisACb9ecADGPDEDxi26_szZML8n7vaYWQfHw1r7jD9NUHcZgFCgIEd9ctAha3BA-odyTXUVgctK08VTxAjt0DYDedwkZakr4aFarFA6z4EG939N4q2EN18azJVWbvrzf5DAwQmdfAWlz0L-tz4Ye34LIv5JBsNwFFxCz7UeI44KVjEtBaH3krnp54achKEAOBO4UI1Gg5JkL0z8-VrUarU"/>
+</div>
+</div>
+<div class="w-full border-t border-gray-100 pt-6 mt-2 group-hover:border-alert-red/20 transition-colors">
+<div class="flex items-center justify-between text-alert-red font-bold">
+<span class="text-sm uppercase tracking-wider">Critical</span>
+<span class="flex items-center gap-2 group-hover:translate-x-2 transition-transform">
+                                This is happening to me <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+</a>
+</div>
+</main>
+
+<!-- Stage-Based Navigation Section -->
+<section class="py-16 bg-background-light border-t border-gray-200">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h3 class="text-2xl font-bold text-navy mb-8 text-center">Your Recovery Journey Continues</h3>
+<p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Every page advances your recovery from panic to closure</p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Stage 1: Situation Classification -->
+<div class="bg-white rounded-xl p-6 border border-gray-200">
+<h4 class="font-bold text-lg text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-500">category</span> Situation Classification
+</h4>
+<ul class="space-y-3">
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../crisis_lifecycle_master_index/code.html">
+<span class="material-symbols-outlined text-blue-500 text-sm mt-0.5">lifecycle</span>
+<span class="text-sm">Crisis Lifecycle</span>
+</a></li>
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../audience_segmentation_entry_ui_variant_1/code.html">
+<span class="material-symbols-outlined text-blue-500 text-sm mt-0.5">groups</span>
+<span class="text-sm">Audience Segmentation</span>
+</a></li>
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../who_this_is_for_-_client_filtering_page/code.html">
+<span class="material-symbols-outlined text-blue-500 text-sm mt-0.5">people</span>
+<span class="text-sm">Client Filtering</span>
+</a></li>
+</ul>
+</div>
+
+<!-- Stage 2: Forensic Proof -->
+<div class="bg-white rounded-xl p-6 border border-gray-200">
+<h4 class="font-bold text-lg text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-purple-500">fact_check</span> Forensic Proof
+</h4>
+<ul class="space-y-3">
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../claimr_home_-_forensic_engine_variant_2/code.html">
+<span class="material-symbols-outlined text-purple-500 text-sm mt-0.5">search</span>
+<span class="text-sm">Forensic Engine</span>
+</a></li>
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../fake_rto_forensic_checker_1/code.html">
+<span class="material-symbols-outlined text-purple-500 text-sm mt-0.5">fact_check</span>
+<span class="text-sm">Fake RTO Checker</span>
+</a></li>
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../forensic_rto_diagnostic_ui_1/code.html">
+<span class="material-symbols-outlined text-purple-500 text-sm mt-0.5">inspect</span>
+<span class="text-sm">RTO Diagnostic</span>
+</a></li>
+</ul>
+</div>
+
+<!-- Stage 3: Evidence & Risk -->
+<div class="bg-white rounded-xl p-6 border border-gray-200">
+<h4 class="font-bold text-lg text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-500">lock</span> Evidence & Risk
+</h4>
+<ul class="space-y-3">
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../sla_evidence_engine_variant_2/code.html">
+<span class="material-symbols-outlined text-yellow-500 text-sm mt-0.5">receipt_long</span>
+<span class="text-sm">SLA Evidence Engine</span>
+</a></li>
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../deadline_lockout_timer_variant_4/code.html">
+<span class="material-symbols-outlined text-yellow-500 text-sm mt-0.5">timer</span>
+<span class="text-sm">Deadline Timer</span>
+</a></li>
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../loss_mirror_calculator_variant_2/code.html">
+<span class="material-symbols-outlined text-yellow-500 text-sm mt-0.5">calculate</span>
+<span class="text-sm">Loss Calculator</span>
+</a></li>
+</ul>
+</div>
+
+<!-- Stage 4: Legal Action -->
+<div class="bg-white rounded-xl p-6 border border-gray-200">
+<h4 class="font-bold text-lg text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-red-500">gavel</span> Legal Action
+</h4>
+<ul class="space-y-3">
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../claimr_home_-_escalation_engine_variant_1/code.html">
+<span class="material-symbols-outlined text-red-500 text-sm mt-0.5">trending_up</span>
+<span class="text-sm">Escalation Engine</span>
+</a></li>
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../legal_notice_generator_1/code.html">
+<span class="material-symbols-outlined text-red-500 text-sm mt-0.5">description</span>
+<span class="text-sm">Legal Notice Generator</span>
+</a></li>
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../nodal_officer_email_directory/code.html">
+<span class="material-symbols-outlined text-red-500 text-sm mt-0.5">contacts</span>
+<span class="text-sm">Nodal Directory</span>
+</a></li>
+</ul>
+</div>
+
+<!-- Stage 5: Recovery Center -->
+<div class="bg-white rounded-xl p-6 border border-gray-200">
+<h4 class="font-bold text-lg text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-green-500">account_balance_wallet</span> Recovery Center
+</h4>
+<ul class="space-y-3">
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../seller_recovery_management_dashboard/code.html">
+<span class="material-symbols-outlined text-green-500 text-sm mt-0.5">analytics</span>
+<span class="text-sm">Recovery Dashboard</span>
+</a></li>
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../payment_recovery_action_hub/code.html">
+<span class="material-symbols-outlined text-green-500 text-sm mt-0.5">payments</span>
+<span class="text-sm">Payment Recovery Hub</span>
+</a></li>
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../asset_recovery_hub_variant_3/code.html">
+<span class="material-symbols-outlined text-green-500 text-sm mt-0.5">inventory_2</span>
+<span class="text-sm">Asset Recovery Hub</span>
+</a></li>
+</ul>
+</div>
+
+<!-- Stage 6: Pattern Intelligence -->
+<div class="bg-white rounded-xl p-6 border border-gray-200">
+<h4 class="font-bold text-lg text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-indigo-500">bar_chart</span> Pattern Intelligence
+</h4>
+<ul class="space-y-3">
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../case_patterns_-_pattern_recognition_page/code.html">
+<span class="material-symbols-outlined text-indigo-500 text-sm mt-0.5">pattern</span>
+<span class="text-sm">Pattern Recognition</span>
+</a></li>
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../logistics_psychology_exposure_variant_3/code.html">
+<span class="material-symbols-outlined text-indigo-500 text-sm mt-0.5">psychology</span>
+<span class="text-sm">Logistics Psychology</span>
+</a></li>
+<li><a class="flex items-start gap-3 hover:bg-gray-50 p-2 rounded transition-colors" href="../aggregator_vs_reality_mirror_variant_4/code.html">
+<span class="material-symbols-outlined text-indigo-500 text-sm mt-0.5">compare</span>
+<span class="text-sm">Reality Mirror</span>
+</a></li>
+</ul>
+</div>
+</div>
+
+<div class="text-center mt-12">
+<a href="../SITEMAP.md" class="inline-block bg-[#C62828] hover:bg-red-800 text-white font-bold py-3 px-8 rounded-lg transition-colors">
+View Complete Journey Map
+</a>
+</div>
+</div>
+</section>
+
+<!-- Additional Navigation Section for New Screens -->
+<section class="py-12 bg-background-light">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h3 class="text-2xl font-bold text-navy mb-8 text-center">Additional Claimr Features</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Feature Card 1 -->
+<a href="../claimr_end-to-end_prototype_flow/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-alert-red hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">design_services</span>
+</div>
+<h4 class="text-lg font-bold text-navy mb-2">End-to-End Prototype</h4>
+<p class="text-sm text-gray-500">Complete end-to-end prototype flow for the Claimr platform</p>
+</div>
+</a>
+<!-- Feature Card 2 -->
+<a href="../risk_control_dashboard_variant_1/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-alert-red hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">dashboard</span>
+</div>
+<h4 class="text-lg font-bold text-navy mb-2">Risk Control Dashboard</h4>
+<p class="text-sm text-gray-500">Dashboard for controlling and managing risks</p>
+</div>
+</a>
+<!-- Feature Card 3 -->
+<a href="../seller_escalation_&_recovery_dashboard/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-alert-red hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-red-100 text-red-600 flex items-center justify-center mb-4 group-hover:bg-red-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<h4 class="text-lg font-bold text-navy mb-2">Seller Escalation</h4>
+<p class="text-sm text-gray-500">Dashboard for seller escalation and recovery processes</p>
+</div>
+</a>
+<!-- Feature Card 4 -->
+<a href="../sla_evidence_engine_variant_2/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-alert-red hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<h4 class="text-lg font-bold text-navy mb-2">SLA Evidence Engine</h4>
+<p class="text-sm text-gray-500">Engine for managing SLA evidence and compliance</p>
+</div>
+</a>
+</div>
+</section>
+
+<!-- Universal Footer Navigation -->
+<footer class="bg-background-dark text-gray-400 py-12 border-t border-gray-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-white">shield_lock</span>
+<span class="text-lg font-bold text-white">Claimr</span>
+</div>
+<p class="text-sm text-gray-300 leading-relaxed">
+                            Fighting courier fraud with legal precision. Based in Bengaluru, India.
+                        </p>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-4">Stage 0: Entry Points</h4>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-white transition-colors" href="../index.html">Merged Homepage</a></li>
+<li><a class="hover:text-white transition-colors" href="../claimr_homepage_-_panic_interceptor_1/code.html">Panic Interceptor</a></li>
+<li><a class="hover:text-white transition-colors" href="../claimr_home_-_panic-to-proof_variant_1/code.html">Panic-to-Proof</a></li>
+<li><a class="hover:text-white transition-colors" href="../claimr_home_-_financial_triage_variant_1_1/code.html">Financial Triage</a></li>
+<li><a class="hover:text-white transition-colors" href="../who_this_is_for_-_client_filtering_page/code.html">Client Filtering</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-4">Stage 1-2: Diagnosis</h4>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-white transition-colors" href="../crisis_lifecycle_master_index/code.html">Crisis Lifecycle</a></li>
+<li><a class="hover:text-white transition-colors" href="../claimr_home_-_forensic_engine_variant_2/code.html">Forensic Engine</a></li>
+<li><a class="hover:text-white transition-colors" href="../fake_rto_forensic_checker_1/code.html">Forensic Checker</a></li>
+<li><a class="hover:text-white transition-colors" href="../pending_case_danger_visualizer_variant_1/code.html">Case Visualizer</a></li>
+<li><a class="hover:text-white transition-colors" href="../process_experience_map_variant_3/code.html">Process Experience</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-4">Stage 3-5: Recovery</h4>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-white transition-colors" href="../sla_evidence_engine_variant_2/code.html">Evidence Engine</a></li>
+<li><a class="hover:text-white transition-colors" href="../claimr_home_-_escalation_engine_variant_1/code.html">Escalation Engine</a></li>
+<li><a class="hover:text-white transition-colors" href="../payment_recovery_action_hub/code.html">Payment Recovery</a></li>
+<li><a class="hover:text-white transition-colors" href="../seller_recovery_management_dashboard/code.html">Recovery Dashboard</a></li>
+<li><a class="hover:text-white transition-colors" href="../legal_notice_generator_1/code.html">Legal Generator</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-4">Stage 6-8: Closure</h4>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-white transition-colors" href="../claimr_recovery_dashboard_ui/code.html">Recovery Dashboard</a></li>
+<li><a class="hover:text-white transition-colors" href="../asset_recovery_hub_variant_3/code.html">Asset Recovery Hub</a></li>
+<li><a class="hover:text-white transition-colors" href="../wallet_blocked_legal_fix/code.html">Wallet Legal Fix</a></li>
+<li><a class="hover:text-white transition-colors" href="../case_patterns_-_pattern_recognition_page/code.html">Pattern Recognition</a></li>
+<li><a class="hover:text-white transition-colors" href="../nodal_officer_email_directory/code.html">Nodal Directory</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+<p>© 2024 Claimr Legal Technologies Pvt Ltd. All rights reserved.</p>
+<div class="flex gap-4">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+<footer data-shared="true"></footer>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

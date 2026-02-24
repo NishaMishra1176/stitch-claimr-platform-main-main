@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Fake RTO Forensic Checker</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b1c2d",
+                        "primary-hover": "#162a40",
+                        "background-light": "#f8fafb",
+                        "background-dark": "#101418",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1a2027",
+                        "alert-red": "#dc2626",
+                        "alert-bg": "#fef2f2",
+                        "alert-bg-dark": "#450a0a",
+                        "success-green": "#059669",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    boxShadow: {
+                        'forensic': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(0,0,0,0.02)',
+                        'result': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>/* Custom scrollbar for cleaner look */
+::-webkit-scrollbar {
+    width: 8px
+    }
+::-webkit-scrollbar-track {
+    background: transparent
+    }
+::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 4px
+    }
+.light .material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+/* Custom select arrow */
+select {
+    appearance: none;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCws8pv-JRhfUkc6xOD0jpGyn4vRae4aQuHneQe60AocYkNLae7aJkU1TauNxDbwwc0oAKS1Zyp7l_FNCD_HN4Hox-F0J3Re-HDqqRHurDjlDRmlsL3SxKGXGNiLqmJVlQsuRvQsOKecZ00_ZJQEXYfxawG0LPMg7imw1BnulNisjZcw5JdGoPoj8JVgOIP5Kq_jQVTFo6zu4QVuw9lONwlPo6oXUEoPmOCRq2tbbSedW5R8d9-6O_bRVZHJ4fC9KxxTlCkK1iNVvQ);
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#121417] dark:text-[#e0e0e0] font-display antialiased min-h-screen flex flex-col transition-colors duration-200">
+<!-- Top Navigation -->
+<header data-shared="true"></header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-start px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+<!-- Hero Section -->
+<div class="w-full max-w-3xl text-center mb-12">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800 mb-6">
+<span class="material-symbols-outlined text-primary dark:text-blue-300 text-sm">science</span>
+<span class="text-xs font-semibold uppercase tracking-wide text-primary dark:text-blue-300">Forensic Analysis Tool v2.1</span>
+</div>
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-[#121417] dark:text-white tracking-tight leading-[1.1] mb-6">
+                Is Your RTO <br class="hidden sm:block"/>Real or Fake?
+            </h1>
+<p class="text-lg md:text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                Instantly analyze courier tracking logs to detect fraud patterns with forensic precision. Turn suspicion into actionable legal proof.
+            </p>
+</div>
+<!-- Tool Container -->
+<div class="w-full max-w-4xl flex flex-col gap-8">
+<!-- Input Card -->
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-forensic border border-gray-100 dark:border-gray-800 overflow-hidden relative group/form">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-blue-500 to-primary opacity-0 group-hover/form:opacity-100 transition-opacity duration-500"></div>
+<div class="p-6 md:p-8">
+<form class="grid grid-cols-1 md:grid-cols-12 gap-6 items-end" onsubmit="event.preventDefault();">
+<!-- Courier Select -->
+<div class="md:col-span-4 space-y-2">
+<label class="block text-sm font-semibold text-[#121417] dark:text-gray-200">
+                                Courier Partner
+                            </label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none material-symbols-outlined">local_shipping</span>
+<select class="w-full h-12 pl-10 pr-10 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-base text-[#121417] dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary transition-shadow cursor-pointer">
+<option disabled="" selected="" value="">Select Courier</option>
+<option value="delhivery">Delhivery</option>
+<option value="xpressbees">Xpressbees</option>
+<option value="ecom">Ecom Express</option>
+<option value="shadowfax">Shadowfax</option>
+<option value="dtcp">DTDC</option>
+</select>
+</div>
+</div>
+<!-- AWB Input -->
+<div class="md:col-span-5 space-y-2">
+<label class="block text-sm font-semibold text-[#121417] dark:text-gray-200">
+                                Tracking ID / AWB
+                            </label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none material-symbols-outlined">qr_code_2</span>
+<input class="w-full h-12 pl-10 pr-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-base font-mono text-[#121417] dark:text-white placeholder:text-gray-400 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-shadow" placeholder="e.g. 17329012844" type="text"/>
+</div>
+</div>
+<!-- Submit Button -->
+<div class="md:col-span-3">
+<button class="w-full h-12 bg-primary hover:bg-primary-hover text-white font-bold rounded-lg shadow-sm hover:shadow-md active:scale-[0.98] transition-all flex items-center justify-center gap-2 group" type="button">
+<span class="material-symbols-outlined group-hover:animate-pulse">search_check</span>
+                                Analyze
+                            </button>
+</div>
+</form>
+</div>
+<!-- Trust Footer inside card -->
+<div class="bg-gray-50 dark:bg-gray-900/50 px-6 py-3 border-t border-gray-100 dark:border-gray-800 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-gray-500 dark:text-gray-400">
+<span class="font-medium">Compatible with logs from:</span>
+<div class="flex items-center gap-4 opacity-70 grayscale transition-all hover:grayscale-0 hover:opacity-100">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">check_circle</span> Delhivery</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">check_circle</span> Xpressbees</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">check_circle</span> Ecom Express</span>
+<span>+ 12 others</span>
+</div>
+</div>
+</div>
+<!-- RESULT STATE (Simulated as Visible) -->
+<!-- Animation wrapper to simulate result appearance -->
+<div class="animate-[fadeIn_0.6s_ease-out_forwards] opacity-0 translate-y-4" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
+<!-- Result Card -->
+<div class="bg-white dark:bg-card-dark rounded-xl shadow-result border-l-4 border-alert-red overflow-hidden">
+<!-- Result Header -->
+<div class="p-6 border-b border-gray-100 dark:border-gray-800 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-alert-bg/30 dark:bg-alert-bg-dark/20">
+<div class="flex items-start gap-4">
+<div class="p-3 bg-red-100 dark:bg-red-900/30 rounded-full text-alert-red shrink-0">
+<span class="material-symbols-outlined text-3xl">warning</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-[#121417] dark:text-white leading-tight">
+                                    High Probability of Fake Attempt
+                                </h3>
+<p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                                    Forensic analysis detected <span class="font-bold text-alert-red">3 anomalies</span> in the delivery logs.
+                                </p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-xs font-mono text-gray-400 uppercase tracking-widest mb-1">Risk Score</span>
+<div class="text-3xl font-black text-alert-red tracking-tight">92<span class="text-lg text-gray-400 font-medium">/100</span></div>
+</div>
+</div>
+<!-- Evidence Body -->
+<div class="p-6 md:p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Evidence List -->
+<div class="lg:col-span-2 space-y-6">
+<h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Detected Anomalies</h4>
+<!-- Evidence Item 1 -->
+<div class="flex gap-4 items-start group">
+<div class="mt-1 w-5 h-5 rounded-full border border-red-200 bg-red-50 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px] text-alert-red">close</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-gray-900 dark:text-white">Timestamp Impossible (Non-Operating Hours)</p>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5 leading-relaxed">
+                                        Delivery marked "Customer Unreachable" at <span class="font-mono bg-gray-100 dark:bg-gray-800 px-1 rounded text-gray-800 dark:text-gray-200">23:42:15</span>. This falls outside standard operational windows for residential delivery.
+                                    </p>
+</div>
+</div>
+<!-- Evidence Item 2 -->
+<div class="flex gap-4 items-start group">
+<div class="mt-1 w-5 h-5 rounded-full border border-red-200 bg-red-50 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px] text-alert-red">close</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-gray-900 dark:text-white">Rapid Re-attempt Failure</p>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5 leading-relaxed">
+                                        Two failed attempts recorded within <span class="font-mono bg-gray-100 dark:bg-gray-800 px-1 rounded text-gray-800 dark:text-gray-200">8 minutes</span>. Physically impossible for the courier to re-route in this timeframe.
+                                    </p>
+</div>
+</div>
+<!-- Divider -->
+<div class="h-px w-full bg-gray-100 dark:bg-gray-800 my-2"></div>
+<p class="text-xs text-gray-400 italic">
+                                * This report is generated based on heuristic analysis of available tracking data.
+                            </p>
+</div>
+<!-- Action Column -->
+<div class="bg-primary/5 dark:bg-white/5 rounded-xl p-6 flex flex-col justify-between border border-primary/10 dark:border-white/10">
+<div>
+<h4 class="text-sm font-bold text-primary dark:text-blue-200 mb-2">Recommended Action</h4>
+<p class="text-sm text-gray-600 dark:text-gray-300 mb-6">
+                                    This shipment shows clear signs of RTO fraud. Don't accept the deduction. Use this report to file a claim.
+                                </p>
+</div>
+<button class="w-full py-3 px-4 bg-primary hover:bg-primary-hover text-white text-sm font-bold rounded-lg shadow-lg shadow-primary/20 flex items-center justify-center gap-2 transition-all hover:-translate-y-0.5">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+                                Generate Legal Notice
+                            </button>
+<div class="mt-4 text-center">
+<a class="text-xs font-medium text-gray-500 hover:text-primary dark:hover:text-blue-300 underline underline-offset-2" href="#">Download PDF Report</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Additional Navigation Section -->
+<section class="py-12 bg-gray-50 dark:bg-slate-900">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h3 class="text-2xl font-bold text-primary dark:text-white mb-8 text-center">Explore More Claimr Features</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Feature Card 1 -->
+<a href="../claimr_homepage_-_panic_interceptor_1/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">home</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Homepage</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Main landing page with live panic interceptor functionality</p>
+</div>
+</a>
+<!-- Feature Card 2 -->
+<a href="../claimr_home_-_command_center_variant_1/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">dashboard</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Command Center</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Live fraud intelligence dashboard with national fraud pulse</p>
+</div>
+</a>
+<!-- Feature Card 3 -->
+<a href="../how_it_works_&_about_claimr/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">info</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">How It Works</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Explanation of Claimr's mission and 4-step process</p>
+</div>
+</a>
+<!-- Feature Card 4 -->
+<a href="../claimr_home_-_escalation_engine_variant_1/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-red-100 text-red-600 flex items-center justify-center mb-4 group-hover:bg-red-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Escalation Engine</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Automated escalation workflow for dispute resolution</p>
+</div>
+</a>
+</div>
+</section>
+
+<!-- Additional Navigation Section for New Screens -->
+<section class="py-12 bg-gray-50 dark:bg-slate-900">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h3 class="text-2xl font-bold text-primary dark:text-white mb-8 text-center">Additional Claimr Features</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Feature Card 1 -->
+<a href="../claimr_end-to-end_prototype_flow/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">design_services</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">End-to-End Prototype</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Complete end-to-end prototype flow for the Claimr platform</p>
+</div>
+</a>
+<!-- Feature Card 2 -->
+<a href="../risk_control_dashboard_variant_1/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">dashboard</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Risk Control Dashboard</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Dashboard for controlling and managing risks</p>
+</div>
+</a>
+<!-- Feature Card 3 -->
+<a href="../seller_escalation_&_recovery_dashboard/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-red-100 text-red-600 flex items-center justify-center mb-4 group-hover:bg-red-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Seller Escalation</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Dashboard for seller escalation and recovery processes</p>
+</div>
+</a>
+<!-- Feature Card 4 -->
+<a href="../sla_evidence_engine_variant_2/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">SLA Evidence Engine</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Engine for managing SLA evidence and compliance</p>
+</div>
+</a>
+</div>
+</section>
+
+<!-- Simple Footer -->
+<footer data-shared="true"></footer>
+<!-- Keyframe Animations -->
+<style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

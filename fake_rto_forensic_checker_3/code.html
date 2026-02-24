@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Forensic Shipment Analysis UI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "forensic-bg": "#0f172a",
+                    "forensic-card": "#1e293b",
+                    "forensic-accent": "#38bdf8",
+                    "forensic-red": "#ef4444",
+                },
+                fontFamily: {
+                    "display": ["Inter", "sans-serif"],
+                    "mono": ["JetBrains Mono", "monospace"],
+                },
+                boxShadow: {
+                    'glow-blue': '0 0 20px -5px rgba(56, 189, 248, 0.5)',
+                    'glow-red': '0 0 20px -5px rgba(239, 68, 68, 0.5)',
+                },
+                animation: {
+                    'spin-slow': 'spin 3s linear infinite',
+                }
+            },
+        },
+    }
+</script>
+<style>::-webkit-scrollbar {
+    width: 6px
+    }
+::-webkit-scrollbar-track {
+    background: #0f172a
+    }
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 3px
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }@keyframes dash {
+    from {
+        stroke-dashoffset: 283;
+        } to {
+        stroke-dashoffset: 28;
+        }}
+.gauge-circle {
+    animation: dash 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards
+    }@keyframes pulse-red {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+        border-color: rgba(239, 68, 68, 0.8);
+        } 50% {
+        box-shadow: 0 0 20px 0 rgba(239, 68, 68, 0.2);
+        border-color: rgba(239, 68, 68, 0.4);
+        }
+    }
+.alert-pulse {
+    animation: pulse-red 2s infinite
+    }
+select {
+    appearance: none;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBZzqF0DrJ81tkF-UocRFy4kTiHiLaCNxUF8eR7Y1qdPPC30mq-YVK4baLNy_MD7dzfWuBs4ArqUtPHyZVfOQ0Z0syd9JoJ8pzYr0Yyqe4zXHGxMyNgvweivKR80VY1n-bVK06myxVsWONxuDOcxdEH37Gr9VgXpFIPFiuDgOWg5OQdDg_YKIEl6OweSHruOC_3w6jNSF5nSHlv0PpSLcY9oj4Ke8fOWXREQBeX0Wg3AoJr5hvQKOZQF2xv6BD7e93EqKK_ZvK7FvQ);
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em
+    }</style>
+</head>
+<body class="bg-forensic-bg text-gray-300 font-display antialiased min-h-screen flex flex-col selection:bg-forensic-accent selection:text-black">
+<header data-shared="true"></header>
+<main class="flex-grow flex flex-col items-center justify-start px-4 sm:px-6 lg:px-8 py-8 md:py-12 w-full max-w-[1400px] mx-auto">
+<div class="w-full mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-800 pb-8">
+<div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded border border-forensic-accent/20 bg-forensic-accent/5 mb-4">
+<span class="material-symbols-outlined text-forensic-accent text-sm">science</span>
+<span class="text-xs font-bold uppercase tracking-widest text-forensic-accent">Forensic Analysis Module</span>
+</div>
+<h1 class="text-3xl md:text-4xl font-black text-white tracking-tight">RTO Anomaly Detection</h1>
+<p class="text-slate-400 mt-2 max-w-2xl text-sm md:text-base">
+                Advanced diagnostic engine analyzing courier logs for temporal inconsistencies and geolocation fraud signatures.
+            </p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg text-sm text-white transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">history</span> History
+             </button>
+<button class="px-4 py-2 bg-forensic-accent hover:bg-sky-400 text-slate-900 font-bold rounded-lg shadow-glow-blue transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span> New Scan
+             </button>
+</div>
+</div>
+<div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-4 space-y-6">
+<div class="bg-forensic-card rounded-2xl border border-slate-700/50 overflow-hidden shadow-xl">
+<div class="p-5 border-b border-slate-700/50 bg-[#162032] flex items-center justify-between">
+<h2 class="font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-forensic-accent">radar</span>
+                        Scan Parameters
+                    </h2>
+<span class="text-[10px] font-mono text-slate-500 uppercase">Input Active</span>
+</div>
+<div class="p-6 space-y-5">
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex justify-between">
+                            Courier Provider
+                        </label>
+<div class="relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 material-symbols-outlined text-[20px] transition-colors group-focus-within:text-forensic-accent">local_shipping</span>
+<select class="w-full h-12 pl-10 pr-4 bg-[#0f172a] border border-slate-700 rounded-lg text-sm text-white focus:ring-2 focus:ring-forensic-accent focus:border-forensic-accent focus:shadow-glow-blue transition-all outline-none cursor-pointer">
+<option>Delhivery Surface</option>
+<option>Xpressbees Air</option>
+<option>Shadowfax Connect</option>
+</select>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex justify-between">
+                            Tracking ID (AWB)
+                        </label>
+<div class="relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 material-symbols-outlined text-[20px] transition-colors group-focus-within:text-forensic-accent">qr_code_scanner</span>
+<input class="w-full h-12 pl-10 pr-4 bg-[#0f172a] border border-slate-700 rounded-lg text-sm font-mono text-white focus:ring-2 focus:ring-forensic-accent focus:border-forensic-accent focus:shadow-glow-blue transition-all outline-none tracking-wider placeholder-slate-600" type="text" value="78219033411"/>
+</div>
+</div>
+<button class="w-full h-12 mt-2 bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-500 hover:to-blue-600 text-white font-bold rounded-lg shadow-lg border border-sky-500/30 relative overflow-hidden group">
+<span class="relative z-10 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined animate-spin-slow">data_check</span> 
+                            RUN DIAGNOSTIC
+                        </span>
+<div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+</button>
+</div>
+</div>
+<div class="bg-forensic-card rounded-2xl border border-slate-700/50 overflow-hidden shadow-xl">
+<div class="p-5 border-b border-slate-700/50 bg-[#162032]">
+<h2 class="font-bold text-white flex items-center gap-2 text-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-purple-400">genetics</span>
+                        Shipment DNA
+                    </h2>
+</div>
+<div class="p-6 space-y-6">
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="text-slate-400">Address Reliability</span>
+<span class="text-white font-mono font-bold">82%</span>
+</div>
+<div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 w-[82%] shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="text-slate-400">Route Deviation</span>
+<span class="text-forensic-red font-mono font-bold">High (92/100)</span>
+</div>
+<div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-forensic-red w-[92%] shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="text-slate-400">Courier Performance (Zone)</span>
+<span class="text-sky-400 font-mono font-bold">45%</span>
+</div>
+<div class="flex gap-1 h-6 items-end mt-1">
+<div class="flex-1 bg-slate-800 rounded-sm h-[40%]"></div>
+<div class="flex-1 bg-slate-800 rounded-sm h-[60%]"></div>
+<div class="flex-1 bg-slate-800 rounded-sm h-[30%]"></div>
+<div class="flex-1 bg-sky-500 shadow-[0_0_8px_rgba(56,189,248,0.6)] rounded-sm h-[45%]"></div>
+<div class="flex-1 bg-slate-800 rounded-sm h-[50%]"></div>
+<div class="flex-1 bg-slate-800 rounded-sm h-[70%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-8 flex flex-col gap-6">
+<div class="bg-forensic-card rounded-2xl border border-forensic-red/30 shadow-[0_0_30px_-10px_rgba(239,68,68,0.2)] overflow-hidden relative">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-[120px] text-forensic-red">warning</span>
+</div>
+<div class="p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 md:gap-12 relative z-10">
+<div class="relative w-40 h-40 shrink-0">
+<svg class="w-full h-full -rotate-90 transform" viewBox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="#334155" stroke-width="8"></circle>
+<circle class="gauge-circle drop-shadow-[0_0_10px_rgba(239,68,68,0.6)]" cx="50" cy="50" fill="none" r="45" stroke="#ef4444" stroke-dasharray="283" stroke-dashoffset="28" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-4xl font-black text-white">94</span>
+<span class="text-[10px] font-bold text-forensic-red uppercase tracking-wider mt-1">Fraud Score</span>
+</div>
+</div>
+<div class="flex-1 text-center md:text-left">
+<div class="flex items-center justify-center md:justify-start gap-3 mb-3">
+<span class="px-2 py-0.5 rounded bg-forensic-red/20 border border-forensic-red/40 text-forensic-red text-xs font-bold uppercase tracking-wider animate-pulse">Critical Alert</span>
+<span class="text-slate-400 text-sm">Scan ID: #F-9921-X</span>
+</div>
+<h2 class="text-2xl md:text-3xl font-bold text-white mb-2">High Probability of RTO Fraud</h2>
+<p class="text-slate-400 text-sm leading-relaxed max-w-xl">
+                            Our algorithms detected <strong class="text-white">3 anomalies</strong> consistent with fake delivery attempts. The gap between 'Out for Delivery' and 'Failed' suggests automated marking without physical attempt.
+                        </p>
+<div class="flex flex-wrap gap-3 mt-6">
+<button class="px-5 py-2.5 bg-white hover:bg-gray-100 text-slate-900 font-bold rounded-lg shadow-lg flex items-center gap-2 transition-transform active:scale-95 text-sm">
+<span class="material-symbols-outlined text-forensic-red">gavel</span>
+                                Generate Legal Notice
+                            </button>
+<button class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-medium rounded-lg flex items-center gap-2 transition-colors text-sm">
+<span class="material-symbols-outlined">download</span>
+                                Full Report
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-forensic-card rounded-2xl border border-slate-700/50 shadow-xl flex-grow flex flex-col">
+<div class="p-5 border-b border-slate-700/50 bg-[#162032] flex items-center justify-between">
+<h3 class="font-bold text-white text-sm uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400">history_toggle_off</span>
+                        Forensic Timeline
+                    </h3>
+<div class="flex gap-2 text-[10px] font-mono text-slate-500">
+<span>LIVE LOG</span>
+<span>•</span>
+<span>UTC+05:30</span>
+</div>
+</div>
+<div class="p-6 md:p-8 relative overflow-hidden">
+<div class="absolute left-6 md:left-8 top-8 bottom-8 w-0.5 bg-slate-700/50"></div>
+<div class="space-y-8 relative">
+<div class="relative pl-8 md:pl-10 group">
+<div class="absolute left-0 top-1 w-4 md:w-5 h-4 md:h-5 rounded-full bg-slate-800 border-2 border-slate-600 z-10 group-hover:border-sky-500 transition-colors"></div>
+<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
+<span class="text-xs font-mono text-slate-400">Nov 14, 08:30 AM</span>
+<span class="text-[10px] bg-slate-800 px-1.5 py-0.5 rounded text-slate-500 border border-slate-700">New Delhi Hub</span>
+</div>
+<div class="text-sm text-slate-300">Package Arrived at Delivery Facility</div>
+</div>
+<div class="relative pl-8 md:pl-10 group">
+<div class="absolute left-0 top-1 w-4 md:w-5 h-4 md:h-5 rounded-full bg-slate-800 border-2 border-slate-600 z-10 group-hover:border-sky-500 transition-colors"></div>
+<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
+<span class="text-xs font-mono text-slate-400">Nov 14, 09:15 AM</span>
+<span class="text-[10px] bg-sky-900/30 px-1.5 py-0.5 rounded text-sky-400 border border-sky-800/50">Tracking Update</span>
+</div>
+<div class="text-sm font-semibold text-sky-300">Out for Delivery</div>
+<div class="text-xs text-slate-500 mt-1">Agent: 2991-Kumar (Bike)</div>
+</div>
+<div class="absolute left-[20px] top-[108px] h-[70px] w-0.5 bg-gradient-to-b from-transparent via-forensic-red to-transparent z-0 opacity-50"></div>
+<div class="absolute left-[40px] md:left-[50px] top-[125px] flex items-center animate-pulse">
+<div class="h-px w-8 bg-forensic-red/50"></div>
+<span class="text-[10px] font-bold text-forensic-red px-2 py-0.5 bg-red-900/20 rounded border border-red-900/50">
+                                2m 14s GAP
+                             </span>
+</div>
+<div class="relative pl-8 md:pl-10">
+<div class="absolute left-0 top-1 w-4 md:w-5 h-4 md:h-5 rounded-full bg-forensic-red shadow-[0_0_15px_rgba(239,68,68,0.6)] z-20 border-2 border-white alert-pulse"></div>
+<div class="bg-gradient-to-r from-red-900/20 to-transparent p-4 rounded-lg border border-red-900/30 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-forensic-red"></div>
+<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-2">
+<span class="text-xs font-mono text-red-300 font-bold">Nov 14, 09:17 AM</span>
+<span class="text-[10px] bg-red-500 text-white px-1.5 py-0.5 rounded font-bold uppercase tracking-wide shadow-sm">Suspicious</span>
+</div>
+<div class="text-sm font-bold text-white mb-1">Attempt Failed: Customer Not Available</div>
+<p class="text-xs text-red-200/70 leading-relaxed">
+<strong class="text-red-400">Forensic Note:</strong> Status marked as failed only 2 minutes after 'Out for Delivery'. Geolocation mismatch: Agent location (Warehouse) vs Delivery Address distance is &gt;10km.
+                                </p>
+</div>
+</div>
+<div class="relative pl-8 md:pl-10 opacity-50">
+<div class="absolute left-0 top-1 w-4 md:w-5 h-4 md:h-5 rounded-full bg-slate-800 border-2 border-slate-600 z-10"></div>
+<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
+<span class="text-xs font-mono text-slate-500">Nov 14, 01:30 PM</span>
+</div>
+<div class="text-sm text-slate-500">Returned to Facility</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer data-shared="true"></footer>
+
+<script src="../shared-nav-loader.js"></script>
+</body></html>

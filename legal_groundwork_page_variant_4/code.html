@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Legal Groundwork</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#006c75",
+                        "primary-dark": "#005a61",
+                        "background-light": "#ffffff",
+                        "background-dark": "#1d1f20",
+                        "surface-gray": "#F4F6F7",
+                        "text-main": "#30363D",
+                        "text-secondary": "#5e6e76",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "md": "0.5rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'float': '0 8px 30px -4px rgba(0, 0, 0, 0.08)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Hide scrollbar for cleaner look in demo */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(0,0,0,0.1);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="relative flex h-full min-h-screen w-full flex-col bg-background-light dark:bg-background-dark font-display overflow-x-hidden pb-24">
+<!-- Sticky Utility Header -->
+<header data-shared="true"></header>
+<main class="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<!-- Hero Section -->
+<section class="mb-16 text-center max-w-3xl mx-auto">
+<h2 class="text-3xl sm:text-4xl md:text-[40px] font-bold text-text-main leading-[1.2] tracking-tight mb-4">
+                Legal action works only when the groundwork is done.
+            </h2>
+<p class="text-lg text-text-secondary leading-relaxed max-w-2xl mx-auto">
+                Don't file a claim. Build a case. Claimr structures your evidence to meet the burden of proof required by international logistics law.
+            </p>
+</section>
+<!-- Reality Check Module -->
+<section class="mb-16">
+<div class="flex items-center gap-2 mb-6 px-1">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<h3 class="text-lg font-bold text-text-main">Reality Check: The preparation gap</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-0 overflow-hidden rounded-xl border border-gray-200 shadow-soft">
+<!-- Left: Problem -->
+<div class="relative bg-surface-gray p-8 border-b md:border-b-0 md:border-r border-gray-200 group">
+<div class="flex flex-col h-full justify-between">
+<div>
+<div class="mb-4 inline-flex items-center justify-center h-12 w-12 rounded-full bg-gray-200 text-gray-400">
+<span class="material-symbols-outlined text-2xl">file_present</span>
+</div>
+<h4 class="text-xl font-bold text-gray-500 mb-2">Notice without Evidence</h4>
+<p class="text-text-secondary text-sm leading-relaxed">
+                                Standard carriers automatically deny claims lacking specific chains of custody. Without structured proof, your notice is just noise.
+                            </p>
+</div>
+<div class="mt-8 flex items-center gap-2 text-gray-400">
+<span class="material-symbols-outlined text-xl">block</span>
+<span class="font-bold text-sm uppercase tracking-wide">Status: Ignored</span>
+</div>
+</div>
+<!-- Diagonal pattern overlay for abstract feel -->
+<div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-gray-200/20 to-transparent pointer-events-none"></div>
+</div>
+<!-- Right: Solution -->
+<div class="relative bg-white p-8">
+<div class="flex flex-col h-full justify-between">
+<div>
+<div class="mb-4 inline-flex items-center justify-center h-12 w-12 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-2xl icon-filled">verified_user</span>
+</div>
+<h4 class="text-xl font-bold text-text-main mb-2">Claimr Prepared Case</h4>
+<p class="text-text-secondary text-sm leading-relaxed">
+                                We structure your data into a legally defensible "Case Pack" that directly addresses the burden of proof, forcing a response.
+                            </p>
+</div>
+<div class="mt-8 flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-xl icon-filled">check_circle</span>
+<span class="font-bold text-sm uppercase tracking-wide">Outcome: Resolution Likely</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Case Pack Grid -->
+<section>
+<div class="flex items-center justify-between mb-6 px-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+<h3 class="text-lg font-bold text-text-main">Your Case Pack Deliverables</h3>
+</div>
+<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">Automated</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Card 1: Evidence -->
+<div class="group relative flex flex-col rounded-xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300">
+<div class="mb-4 text-primary">
+<span class="material-symbols-outlined text-3xl">photo_library</span>
+</div>
+<h5 class="text-base font-bold text-text-main mb-2">Visual Evidence</h5>
+<p class="text-xs text-text-secondary leading-normal mb-4">High-res damage documentation matched against shipping manifests.</p>
+<div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
+<span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">32 Files</span>
+<div class="h-1.5 w-12 bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-full"></div>
+</div>
+</div>
+</div>
+<!-- Card 2: Timeline -->
+<div class="group relative flex flex-col rounded-xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300">
+<div class="mb-4 text-primary">
+<span class="material-symbols-outlined text-3xl">timeline</span>
+</div>
+<h5 class="text-base font-bold text-text-main mb-2">Custody Timeline</h5>
+<p class="text-xs text-text-secondary leading-normal mb-4">Timestamped reconstruction of every handover event.</p>
+<div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
+<span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Complete</span>
+<span class="material-symbols-outlined text-sm text-primary">check</span>
+</div>
+</div>
+<!-- Card 3: Contradictions -->
+<div class="group relative flex flex-col rounded-xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300">
+<div class="mb-4 text-orange-500">
+<span class="material-symbols-outlined text-3xl icon-filled">warning</span>
+</div>
+<h5 class="text-base font-bold text-text-main mb-2">Contradictions</h5>
+<p class="text-xs text-text-secondary leading-normal mb-4">Automated flagging of inconsistencies in carrier statements.</p>
+<div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
+<span class="text-[10px] font-bold text-orange-500 uppercase tracking-wider">2 Flags Found</span>
+<span class="flex h-2 w-2 rounded-full bg-orange-500"></span>
+</div>
+</div>
+<!-- Card 4: Final Positions -->
+<div class="group relative flex flex-col rounded-xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300">
+<div class="mb-4 text-primary">
+<span class="material-symbols-outlined text-3xl">gavel</span>
+</div>
+<h5 class="text-base font-bold text-text-main mb-2">Legal Demand</h5>
+<p class="text-xs text-text-secondary leading-normal mb-4">Auto-generated demand letter referencing specific liability clauses.</p>
+<div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
+<span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Draft Ready</span>
+<span class="material-symbols-outlined text-sm text-primary">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Panel -->
+<div class="fixed bottom-0 left-0 w-full z-50 bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] px-6 py-4">
+<div class="mx-auto max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-baseline gap-2">
+<span class="text-sm font-medium text-text-secondary">Estimated Claim Value:</span>
+<span class="text-lg font-bold text-text-main">$12,450.00</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-primary">security</span>
+<span class="text-[11px] font-medium text-text-secondary uppercase tracking-wide">compliant with CMR/Carmack Amendment standards</span>
+</div>
+</div>
+<button class="w-full sm:w-auto bg-primary hover:bg-primary-dark text-white text-base font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 group">
+<span>Prepare my case correctly</span>
+<span class="material-symbols-outlined text-lg group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

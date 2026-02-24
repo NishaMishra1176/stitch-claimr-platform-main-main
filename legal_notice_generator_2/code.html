@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Interactive Legal Notice Builder</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b1c2d",
+                        "background-light": "#f8fafb",
+                        "background-dark": "#101418",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>input[type="radio"]:checked + div {
+            border-color: #0b1c2d;
+            background-color: #f0f4f8;
+            color: #0b1c2d;
+        }
+        input[type="radio"]:checked + div .radio-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        .dark input[type="radio"]:checked + div {
+            border-color: #ffffff;
+            background-color: #1e293b;
+            color: #ffffff;
+        }.legal-paper {
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-200">
+<header data-shared="true"></header>
+<main class="flex-grow py-8 px-4 sm:px-6 lg:px-8 relative">
+<div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 opacity-40 dark:opacity-10 pointer-events-none">
+<div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-blue-100 blur-3xl"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-slate-200 blur-3xl"></div>
+</div>
+<div class="max-w-[1400px] mx-auto space-y-8">
+<div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-gray-200 dark:border-gray-800">
+<div>
+<h1 class="text-3xl font-black text-primary dark:text-white tracking-tight leading-tight">
+                    Legal Notice Generator
+                </h1>
+<p class="text-slate-600 dark:text-slate-400 mt-1">Draft a court-admissible notice in 2 minutes.</p>
+</div>
+<div class="flex items-center">
+<div class="flex flex-col items-center relative z-10">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shadow-lg shadow-blue-900/20">1</div>
+<span class="text-xs font-bold mt-2 text-primary dark:text-white">Details</span>
+</div>
+<div class="w-16 h-1 bg-gray-200 dark:bg-gray-700 -mx-2 mb-6">
+<div class="h-full bg-primary w-full"></div>
+</div>
+<div class="flex flex-col items-center relative z-10">
+<div class="w-8 h-8 rounded-full bg-white border-2 border-primary text-primary flex items-center justify-center font-bold text-sm">2</div>
+<span class="text-xs font-medium mt-2 text-slate-500 dark:text-slate-400">Issues</span>
+</div>
+<div class="w-16 h-1 bg-gray-200 dark:bg-gray-700 -mx-2 mb-6"></div>
+<div class="flex flex-col items-center relative z-10">
+<div class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 text-gray-400 flex items-center justify-center font-bold text-sm">3</div>
+<span class="text-xs font-medium mt-2 text-slate-500 dark:text-slate-400">Final Draft</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="lg:col-span-5 space-y-6">
+<div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-100 dark:border-gray-800 p-6 md:p-8">
+<h3 class="text-lg font-bold text-primary dark:text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-600">edit_document</span>
+                        Enter Notice Details
+                    </h3>
+<div class="space-y-6">
+<div class="space-y-3">
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                                1. Select Courier Partner
+                            </label>
+<div class="relative">
+<select class="w-full h-12 pl-4 pr-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-slate-50 dark:bg-gray-800 text-slate-900 dark:text-white font-medium focus:border-primary focus:ring-primary transition-colors appearance-none cursor-pointer">
+<option value="delhivery">Delhivery</option>
+<option value="ecom">Ecom Express</option>
+<option value="shadowfax">Shadowfax</option>
+<option value="xpressbees">Xpressbees</option>
+<option value="dtdc">DTDC</option>
+<option value="bluedart">Blue Dart</option>
+</select>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                                2. What went wrong?
+                            </label>
+<div class="space-y-3">
+<label class="cursor-pointer group relative block">
+<input checked="" class="peer sr-only" name="issue_type" type="radio" value="fake_rto"/>
+<div class="flex items-center gap-4 p-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 hover:border-blue-400 transition-all">
+<div class="w-10 h-10 rounded-full bg-blue-50 dark:bg-gray-800 flex items-center justify-center text-blue-600 peer-checked:bg-primary peer-checked:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">local_shipping</span>
+</div>
+<div>
+<span class="text-sm font-bold block text-slate-800 dark:text-slate-200">Fake RTO</span>
+<span class="text-xs text-slate-500">Marked undelivered falsely</span>
+</div>
+<div class="ml-auto opacity-0 peer-checked:opacity-100 text-primary dark:text-white">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+</div>
+</label>
+<label class="cursor-pointer group relative block">
+<input class="peer sr-only" name="issue_type" type="radio" value="lost"/>
+<div class="flex items-center gap-4 p-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 hover:border-blue-400 transition-all">
+<div class="w-10 h-10 rounded-full bg-blue-50 dark:bg-gray-800 flex items-center justify-center text-blue-600 peer-checked:bg-primary peer-checked:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">package_2</span>
+</div>
+<div>
+<span class="text-sm font-bold block text-slate-800 dark:text-slate-200">Lost Shipment</span>
+<span class="text-xs text-slate-500">Package missing in transit</span>
+</div>
+<div class="ml-auto opacity-0 peer-checked:opacity-100 text-primary dark:text-white">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+</div>
+</label>
+<label class="cursor-pointer group relative block">
+<input class="peer sr-only" name="issue_type" type="radio" value="wallet"/>
+<div class="flex items-center gap-4 p-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 hover:border-blue-400 transition-all">
+<div class="w-10 h-10 rounded-full bg-blue-50 dark:bg-gray-800 flex items-center justify-center text-blue-600 peer-checked:bg-primary peer-checked:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+</div>
+<div>
+<span class="text-sm font-bold block text-slate-800 dark:text-slate-200">Wallet Blocked</span>
+<span class="text-xs text-slate-500">COD remittance held back</span>
+</div>
+<div class="ml-auto opacity-0 peer-checked:opacity-100 text-primary dark:text-white">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+</div>
+</label>
+</div>
+</div>
+<div class="space-y-3">
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                                3. Total Claim Value
+                            </label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium text-lg">₹</span>
+<input class="w-full h-12 pl-10 pr-4 rounded-lg border border-gray-300 dark:border-gray-700 bg-slate-50 dark:bg-gray-800 text-slate-900 dark:text-white font-medium focus:border-primary focus:ring-primary transition-colors text-lg placeholder:text-slate-300" placeholder="0.00" type="number" value="12500"/>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800">
+<button class="w-full h-12 bg-primary hover:bg-[#0f253a] text-white rounded-lg font-bold shadow-lg shadow-blue-900/10 flex items-center justify-center gap-2 transition-transform active:scale-[0.99]">
+                            Review &amp; Generate Notice
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl border border-blue-100 dark:border-blue-800/50 flex items-start gap-3">
+<span class="material-symbols-outlined text-blue-600 text-xl mt-0.5">info</span>
+<div>
+<p class="text-sm text-blue-800 dark:text-blue-200 font-medium">Why do I need this?</p>
+<p class="text-xs text-blue-600 dark:text-blue-300 mt-1 leading-relaxed">
+                            Sending a formal legal notice under the CPA 2019 is the mandatory first step before filing a consumer court complaint.
+                        </p>
+</div>
+</div>
+</div>
+<div class="lg:col-span-7 sticky top-24">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        Live Preview
+                    </h3>
+<div class="flex gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide bg-emerald-100 text-emerald-800 border border-emerald-200">
+<span class="material-symbols-outlined text-[14px]">gavel</span>
+                            CPA 2019 Compliant
+                        </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide bg-amber-100 text-amber-800 border border-amber-200">
+<span class="material-symbols-outlined text-[14px]">verified_user</span>
+                            Ready for Court
+                        </span>
+</div>
+</div>
+<div class="relative bg-white text-slate-900 shadow-2xl rounded-sm border border-gray-200 w-full aspect-[210/297] p-8 md:p-12 overflow-hidden flex flex-col">
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+<span class="text-[8rem] font-black text-slate-900 opacity-[0.03] -rotate-45 select-none tracking-widest">CLAIMR</span>
+</div>
+<div class="relative z-10 font-serif border-b-2 border-slate-900 pb-4 mb-8 text-center">
+<h2 class="text-2xl font-bold uppercase tracking-widest mb-1">Legal Notice</h2>
+<p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Under Consumer Protection Act, 2019</p>
+</div>
+<div class="relative z-10 font-serif text-[11px] md:text-sm leading-relaxed space-y-6 text-justify">
+<div class="flex justify-between font-bold">
+<div>
+                                Date: <span class="font-normal border-b border-dashed border-slate-400 px-2">October 24, 2023</span>
+</div>
+<div>
+                                Regd Post AD / Speed Post
+                            </div>
+</div>
+<div>
+<p class="font-bold mb-1">To,</p>
+<p class="font-bold">The Managing Director / Legal Officer,</p>
+<div class="bg-blue-50 border-b border-blue-200 px-2 py-1 inline-block text-blue-900 font-bold transition-all">
+                                Delhivery Limited
+                            </div>
+<p>Corporate Office, Gurgaon, Haryana.</p>
+</div>
+<div class="pl-8">
+<p class="font-bold">Subject: <span class="font-normal underline decoration-1 underline-offset-4">NOTICE FOR DEFICIENCY IN SERVICE AND UNFAIR TRADE PRACTICE REGARDING <span class="bg-blue-50 border-b border-blue-200 px-1 text-blue-900 font-bold">FAKE RTO</span> OF ORDER.</span></p>
+</div>
+<div>
+<p>Dear Sir/Madam,</p>
+<p class="mt-2 indent-8">
+                                I, the undersigned, am a seller operating on e-commerce marketplaces. I am writing to you to formally raise a dispute regarding the shipment handled by your company with <span class="font-bold">Order Value ₹<span class="bg-blue-50 border-b border-blue-200 px-1 text-blue-900">12,500</span></span>.
+                            </p>
+<p class="mt-2 indent-8">
+                                That despite the goods being available and the customer being reachable, your delivery personnel falsely marked the status as <strong>"Customer Not Available" / "RTO Initiated"</strong> without attempting valid delivery. This constitutes a clear "Deficiency of Service" under Section 2(11) of the Consumer Protection Act, 2019.
+                            </p>
+<p class="mt-2 indent-8">
+                                I hereby call upon you to compensate the loss of <strong>₹12,500</strong> along with interest @ 18% p.a. within 15 days of receipt of this notice, failing which I shall be constrained to initiate legal proceedings in the appropriate Consumer Dispute Redressal Commission.
+                            </p>
+</div>
+<div class="mt-8 flex justify-end">
+<div class="text-center w-40">
+<div class="h-12 border-b border-slate-900 mb-2"></div>
+<p class="font-bold">Authorized Signatory</p>
+<p class="text-xs text-slate-500">(Digital Signature)</p>
+</div>
+</div>
+</div>
+<div class="absolute bottom-4 left-0 w-full text-center">
+<p class="text-[10px] text-slate-400 font-sans">Generated via Claimr Legal Engine • Verifiable Document ID: CLM-8829-XJ</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+<script src="../shared-nav-loader.js"></script>
+</body></html>

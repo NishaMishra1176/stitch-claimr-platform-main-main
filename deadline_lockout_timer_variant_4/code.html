@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Deadline Lockout Timer - Claimr</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+            extend: {
+                colors: {
+                "primary": "#cc2424",
+                "background-light": "#f8f6f6",
+                "background-dark": "#201212",
+                },
+                fontFamily: {
+                "display": ["Space Grotesk", "sans-serif"],
+                "body": ["Noto Sans", "sans-serif"],
+                },
+                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                boxShadow: {
+                    'hard': '0 2px 0 0 #e5e7eb',
+                    'hard-dark': '0 2px 0 0 #374151',
+                    'button': '0 4px 0 0 rgba(0,0,0,0.1)',
+                }
+            },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col antialiased selection:bg-primary/30 selection:text-primary">
+<!-- Header: Minimalist, Centered -->
+<header data-shared="true"></header>
+<!-- Main "Tunnel" Container -->
+<main class="flex-1 flex flex-col items-center justify-start pt-8 pb-16 px-4 sm:px-6 w-full max-w-2xl mx-auto gap-12">
+<!-- Deadline Checker Module -->
+<section class="w-full bg-white dark:bg-[#2a1a1a] rounded-xl border border-gray-200 dark:border-red-900/30 shadow-sm p-6 sm:p-8 transition-all hover:shadow-md">
+<h1 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">timer</span>
+                Check your claim deadline
+            </h1>
+<div class="flex flex-col sm:flex-row gap-4">
+<label class="flex-1 flex flex-col gap-1.5 group">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400 group-focus-within:text-primary transition-colors">Select Carrier</span>
+<div class="relative">
+<select class="w-full h-12 rounded-lg border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-slate-900 dark:text-white pl-4 pr-10 focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer text-base">
+<option disabled="" selected="" value="">Choose provider...</option>
+<option>UPS Ground</option>
+<option>FedEx Express</option>
+<option>USPS Priority</option>
+<option>DHL eCommerce</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-xl">expand_more</span>
+</div>
+</label>
+<label class="flex-1 flex flex-col gap-1.5 group">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400 group-focus-within:text-primary transition-colors">Order Date</span>
+<div class="relative">
+<input class="w-full h-12 rounded-lg border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-slate-900 dark:text-white px-4 focus:border-primary focus:ring-1 focus:ring-primary transition-all text-base placeholder:text-slate-400" type="date"/>
+</div>
+</label>
+</div>
+</section>
+<!-- Hero Countdown Display -->
+<section class="w-full text-center flex flex-col items-center animate-[fadeIn_0.5s_ease-out]">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-100 dark:bg-red-900/30 text-primary text-xs font-bold uppercase tracking-wider mb-6 border border-red-200 dark:border-red-900/50">
+<span class="material-symbols-outlined text-[16px] animate-pulse">error</span>
+                Time Critical
+            </div>
+<div class="relative mb-4">
+<h2 class="text-7xl sm:text-8xl md:text-9xl font-bold text-primary tracking-[-0.05em] leading-[0.85]">
+                    4 DAYS
+                </h2>
+<h3 class="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white tracking-[-0.03em] mt-2">
+                    REMAINING
+                </h3>
+</div>
+<p class="text-lg text-slate-600 dark:text-slate-300 font-medium max-w-md mx-auto">
+                Your claim window is rapidly closing.
+            </p>
+</section>
+<!-- Visual Claim Window (Progress Bar) -->
+<section class="w-full max-w-lg flex flex-col gap-4">
+<div class="flex justify-between items-end px-1">
+<span class="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Claim Window Expired</span>
+<span class="text-sm font-bold text-primary uppercase tracking-wide">Closing Soon</span>
+</div>
+<!-- Progress Bar Container -->
+<div class="relative h-6 w-full bg-gray-200 dark:bg-zinc-800 rounded-md overflow-hidden flex shadow-inner">
+<!-- Locked Out Portion (80%) -->
+<div class="h-full w-[80%] bg-zinc-400 dark:bg-zinc-600 relative overflow-hidden group">
+<!-- Striped Pattern Overlay -->
+<div class="absolute inset-0 opacity-20 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,#000_10px,#000_20px)]"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-[10px] font-bold text-white/90 uppercase tracking-widest">Locked</span>
+</div>
+</div>
+<!-- Remaining Portion (20%) -->
+<div class="h-full flex-1 bg-primary relative animate-[pulse_3s_infinite]">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 translate-x-[-100%] animate-[shimmer_2s_infinite]"></div>
+</div>
+</div>
+<div class="flex justify-between items-start text-xs font-medium text-slate-500 dark:text-slate-400 px-1">
+<span>80% of window lost</span>
+<span class="text-primary font-bold">20% remaining</span>
+</div>
+</section>
+<!-- Warning & CTA -->
+<section class="w-full flex flex-col items-center gap-8 mt-4 text-center">
+<div class="bg-orange-50 dark:bg-orange-900/10 border-l-4 border-orange-400 dark:border-orange-500 px-4 py-3 max-w-md text-left w-full">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-orange-500 dark:text-orange-400 shrink-0">warning_amber</span>
+<p class="text-sm text-orange-900 dark:text-orange-100">
+<span class="font-bold">Warning:</span> One delay email can cost the entire amount of your claim refund.
+                    </p>
+</div>
+</div>
+<button class="group relative w-full sm:w-auto min-w-[320px] bg-primary hover:bg-red-700 text-white text-xl font-bold py-5 px-10 rounded-lg shadow-button hover:shadow-none hover:translate-y-[4px] transition-all duration-150 ease-out flex items-center justify-center gap-3 overflow-hidden">
+<span class="relative z-10">SAVE THIS CLAIM NOW</span>
+<span class="material-symbols-outlined relative z-10 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+<!-- Button shine effect -->
+<div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 z-0"></div>
+</button>
+<p class="text-xs text-slate-400 dark:text-slate-600 mt-[-10px]">
+                No credit card required for deadline check.
+            </p>
+</section>
+</main>
+<style>
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

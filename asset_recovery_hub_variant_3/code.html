@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Asset Recovery Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0a2e2a",
+              "primary-light": "#154a44",
+              "background-light": "#f6f8f8",
+              "background-dark": "#12201e",
+              "alert-red": "#C62828",
+              "tech-blue": "#3498DB",
+              "border-gray": "#CED4DA",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"],
+              "body": ["Noto Sans", "sans-serif"],
+            },
+            borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .radar-sweep {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg at 50% 50%, rgba(52, 152, 219, 0) 0deg, rgba(52, 152, 219, 0.2) 60deg, rgba(52, 152, 219, 0.4) 360deg);
+            animation: radar-spin 4s linear infinite;
+            transform-origin: top left; /* Adjusted for centering via translate */
+            transform: translate(-50%, -50%) rotate(0deg);
+            clip-path: circle(50% at 50% 50%);
+        }
+        
+        @keyframes radar-spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(10, 46, 42, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(10, 46, 42, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .stripe-bg {
+             background: repeating-linear-gradient(
+                45deg,
+                rgba(0, 0, 0, 0.02),
+                rgba(0, 0, 0, 0.02) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-primary min-h-screen flex flex-col font-body antialiased selection:bg-primary selection:text-white">
+<!-- Shared Header Placeholder -->
+<header data-shared="true"></header>
+<!-- Breadcrumbs -->
+<div class="border-b border-border-gray bg-white/50 backdrop-blur-sm">
+<div class="max-w-[1400px] mx-auto px-6 py-2 flex items-center gap-2 text-xs font-medium text-primary/60 uppercase tracking-wider">
+<a class="hover:text-primary" href="#">Home</a>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<a class="hover:text-primary" href="#">Claims</a>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-alert-red font-bold">Lost Asset Recovery (Op-L7)</span>
+</div>
+</div>
+<main class="flex-grow p-6 grid-bg">
+<div class="max-w-[1400px] mx-auto grid grid-cols-12 gap-6">
+<!-- Hero / Title Section -->
+<div class="col-span-12 flex flex-col md:flex-row md:items-end justify-between gap-6 mb-4">
+<div class="max-w-2xl">
+<h2 class="font-display font-bold text-4xl md:text-5xl text-primary dark:text-white leading-tight tracking-tight">
+                        A Lost Status is a <span class="text-alert-red relative inline-block">
+                            Ticking Clock
+                            <svg class="absolute -bottom-2 w-full h-2 text-alert-red/20" preserveaspectratio="none" viewbox="0 0 100 10"><path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+</span>
+</h2>
+<p class="mt-3 text-lg text-primary/70 font-display">Standard Operating Procedure requires immediate documentation for high-value risk mitigation.</p>
+</div>
+<!-- Timer Module -->
+<div class="flex gap-2 p-1 bg-white border border-border-gray rounded shadow-sm self-start md:self-auto">
+<div class="px-4 py-2 bg-background-light rounded border border-border-gray text-center min-w-[70px]">
+<div class="text-alert-red font-display font-bold text-2xl">47</div>
+<div class="text-[10px] font-bold uppercase tracking-wider text-primary/60">Hours</div>
+</div>
+<div class="px-4 py-2 bg-background-light rounded border border-border-gray text-center min-w-[70px]">
+<div class="text-alert-red font-display font-bold text-2xl">59</div>
+<div class="text-[10px] font-bold uppercase tracking-wider text-primary/60">Mins</div>
+</div>
+<div class="px-4 py-2 bg-background-light rounded border border-border-gray text-center min-w-[70px]">
+<div class="text-primary font-display font-bold text-2xl">30</div>
+<div class="text-[10px] font-bold uppercase tracking-wider text-primary/60">Secs</div>
+</div>
+</div>
+</div>
+<!-- Left Column: Metrics & Actions -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<!-- Probability Card -->
+<div class="bg-white dark:bg-gray-800 border border-border-gray rounded-lg p-5 shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">analytics</span>
+</div>
+<div class="flex justify-between items-end mb-2">
+<h3 class="font-display font-bold text-lg text-primary">Refund Probability</h3>
+<span class="font-display font-bold text-3xl text-primary">65%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-3 mb-4 overflow-hidden relative">
+<div class="bg-tech-blue h-3 rounded-full" style="width: 65%"></div>
+<!-- Goal marker -->
+<div class="absolute top-0 bottom-0 w-0.5 bg-primary z-10" style="left: 75%"></div>
+</div>
+<div class="flex items-start gap-3 p-3 bg-green-50 border border-green-100 rounded text-sm">
+<span class="material-symbols-outlined text-green-700 text-lg mt-0.5">add_circle</span>
+<div>
+<p class="font-bold text-green-800">Boost Probability +10%</p>
+<p class="text-green-700/80 text-xs">Upload original commercial invoice to validate chain of custody.</p>
+<button class="mt-2 text-xs font-bold text-primary underline decoration-dotted hover:text-tech-blue">Upload Document</button>
+</div>
+</div>
+</div>
+<!-- Action Checklist -->
+<div class="bg-white dark:bg-gray-800 border border-border-gray rounded-lg p-0 shadow-sm flex-grow flex flex-col">
+<div class="p-4 border-b border-border-gray bg-background-light">
+<h3 class="font-display font-bold text-sm uppercase tracking-wider text-primary">Recovery Protocol Steps</h3>
+</div>
+<div class="divide-y divide-border-gray">
+<div class="p-4 flex gap-3 items-start opacity-50 bg-gray-50">
+<span class="material-symbols-outlined text-green-600">check_circle</span>
+<div>
+<p class="text-sm font-bold text-primary line-through">Incident Verification</p>
+<p class="text-xs text-primary/60">Completed 47h ago</p>
+</div>
+</div>
+<div class="p-4 flex gap-3 items-start opacity-50 bg-gray-50">
+<span class="material-symbols-outlined text-green-600">check_circle</span>
+<div>
+<p class="text-sm font-bold text-primary line-through">Carrier Notification</p>
+<p class="text-xs text-primary/60">Auto-sent via API</p>
+</div>
+</div>
+<div class="p-4 flex gap-3 items-start bg-blue-50/50 border-l-4 border-l-tech-blue">
+<span class="material-symbols-outlined text-tech-blue animate-pulse">radio_button_checked</span>
+<div>
+<p class="text-sm font-bold text-primary">Evidence Collection</p>
+<p class="text-xs text-primary/70">Awaiting Invoice Upload</p>
+</div>
+</div>
+<div class="p-4 flex gap-3 items-start opacity-60">
+<span class="material-symbols-outlined text-gray-400">radio_button_unchecked</span>
+<div>
+<p class="text-sm font-bold text-primary">Legal Filing</p>
+<p class="text-xs text-primary/60">Pending completion of prior steps</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Center/Right Column: Search Grid & Legal -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-6">
+<!-- Radar Search Grid -->
+<div class="bg-background-dark text-white rounded-lg overflow-hidden border border-border-gray shadow-lg flex flex-col h-[400px] relative group">
+<!-- Map Background -->
+<div class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-luminosity" data-alt="Dark stylized map of India showing logistics nodes" data-location="India" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBxnZmbeb3ZPPAzIZSCWfPhVrHnFRh3_cLxy8iwihjCop2oByf_6gNR1dHReIVL6XEzOTtAFtTn3zz3eWYAJBQhU1tzvHKhBo4zvX0Dxtz2F-gJwn5z47LHmDSVDnZr8s7e81NkjyopXN1oVpYc5rRbaiqIuQIm6fHedX6KEVLov095hDVoNhDTVBIOdJQB9P0qx7smNgy0YC6iu80z9uzS0LF2szMTlOZrLeYqszJEq7bJJSOtB8ypxAwogTfePmo2gArRKfDroLM');"></div>
+<!-- Grid Overlay -->
+<div class="absolute inset-0" style="background-image: radial-gradient(circle, rgba(52, 152, 219, 0.1) 1px, transparent 1px); background-size: 20px 20px;"></div>
+<!-- Radar Sweep -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-[300px] h-[300px] rounded-full border border-tech-blue/30 relative">
+<div class="w-[200px] h-[200px] rounded-full border border-tech-blue/20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+<div class="w-[100px] h-[100px] rounded-full border border-tech-blue/10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+<div class="radar-sweep"></div>
+</div>
+</div>
+<!-- UI Overlay -->
+<div class="relative z-10 flex flex-col justify-between h-full p-6">
+<div class="flex justify-between items-start">
+<div class="bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded text-xs font-mono text-tech-blue">
+<span class="animate-blink mr-2">●</span>SCANNING LOGISTICS NODES
+                            </div>
+<div class="flex gap-2">
+<div class="bg-black/60 backdrop-blur-md border border-white/10 p-2 rounded">
+<span class="material-symbols-outlined text-white/70 text-sm">zoom_in</span>
+</div>
+<div class="bg-black/60 backdrop-blur-md border border-white/10 p-2 rounded">
+<span class="material-symbols-outlined text-white/70 text-sm">filter_center_focus</span>
+</div>
+</div>
+</div>
+<div class="flex gap-4 items-end">
+<div class="bg-black/80 backdrop-blur-md border border-white/10 p-4 rounded max-w-sm">
+<p class="text-xs text-gray-400 font-mono mb-1">LAST KNOWN PING</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-alert-red text-base">location_on</span>
+<p class="font-bold text-sm">Hub 74, Bhiwandi, MH</p>
+</div>
+<p class="text-xs text-gray-500 mt-2 border-t border-white/10 pt-2">Latitude: 19.2968° N | Longitude: 73.0649° E</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Legal Block & CTA -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+<!-- Legal Disclaimer -->
+<div class="bg-white border-l-4 border-l-primary border-t border-r border-b border-gray-200 p-5 rounded-r shadow-sm stripe-bg">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary">gavel</span>
+<h4 class="font-display font-bold text-primary text-sm uppercase">Legal Liability Assessment</h4>
+</div>
+<p class="text-xs text-primary/80 leading-relaxed font-body text-justify">
+<strong>Pursuant to CPA 2019:</strong> Consumer liability is strictly capped at ₹0 pending investigation outcome. Commercial entities must reference <a class="underline decoration-dotted" href="#">Section 4B of the Service Agreement</a>. False claims under the IT Act (2000) may result in account termination.
+                        </p>
+</div>
+<!-- Primary CTA -->
+<div class="flex flex-col justify-end">
+<button class="w-full bg-alert-red hover:bg-red-800 text-white h-full min-h-[100px] rounded shadow-lg transition-all transform hover:scale-[1.01] active:scale-[0.99] flex flex-col items-center justify-center gap-2 group p-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-3xl group-hover:animate-ping">warning</span>
+<span class="font-display font-bold text-xl tracking-wide uppercase">Initiate Recovery Protocol</span>
+</div>
+<span class="text-xs text-white/80 font-mono bg-black/20 px-2 py-0.5 rounded">Action is irreversible once started</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Status Bar Footer -->
+<div class="max-w-[1400px] mx-auto mt-8 border-t border-border-gray pt-4 flex flex-wrap justify-between items-center text-xs text-primary/50 font-mono">
+<div class="flex gap-6">
+<span>SESSION ID: #8849-AKX-99</span>
+<span>ENCRYPTION: AES-256</span>
+<span>SERVER: MUM-AWS-04</span>
+</div>
+<div class="flex gap-4 mt-2 md:mt-0">
+<a class="hover:text-primary" href="#">Privacy Policy</a>
+<a class="hover:text-primary" href="#">Terms of Service</a>
+<a class="hover:text-primary" href="#">Contact Support</a>
+</div>
+</div>
+</main>
+<!-- Shared Footer Placeholder -->
+<footer data-shared="true"></footer>
+<!-- Load Shared Header & Footer -->
+<script src="../shared-nav-loader.js"></script>
+</body></html>

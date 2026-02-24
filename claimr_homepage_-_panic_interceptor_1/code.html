@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Panic Interceptor</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b1c2d",
+                        "primary-light": "#1a3a5a",
+                        "background-light": "#f7f9fb",
+                        "background-dark": "#101418",
+                        "text-main": "#0b1c2d",
+                        "text-body": "#3A4654",
+                        "success": "#10b981",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "md": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-text-body font-display selection:bg-primary/20 selection:text-primary">
+<div class="relative flex flex-col min-h-screen overflow-x-hidden">
+<!-- Include Header -->
+<!-- HEADER_INCLUDE -->
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative pt-16 pb-20 lg:pt-24 lg:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+<div class="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+<div class="flex-1 w-full max-w-2xl lg:max-w-none text-center lg:text-left">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-100 text-red-700 text-xs font-semibold mb-6 animate-pulse">
+<span class="w-2 h-2 rounded-full bg-red-600"></span>
+                            Live Panic Interceptor
+                        </div>
+<h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-primary tracking-tight leading-[1.1] mb-6">
+                            Stop losing revenue to <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#475569]">fake delivery</span> attempts.
+                        </h1>
+<p class="text-lg sm:text-xl text-text-body mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                            Claimr is the legal recovery platform designed for Indian sellers to automatically fight courier fraud, escalate disputes to nodal officers, and reclaim lost profits.
+                        </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+<div class="relative flex-grow max-w-md">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-gray-400">search</span>
+</div>
+<input class="block w-full pl-10 pr-32 py-4 border-2 border-[#e2e8f0] rounded-lg leading-5 bg-white placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-0 transition-colors sm:text-sm shadow-sm" placeholder="Enter Tracking ID (AWB)" type="text"/>
+<button class="absolute inset-y-1.5 right-1.5 px-4 bg-primary text-white text-sm font-bold rounded-md hover:bg-primary-light transition-colors" type="button">
+                                    Analyze
+                                </button>
+</div>
+<button class="flex items-center justify-center h-[58px] px-6 rounded-lg bg-white border-2 border-[#e2e8f0] text-primary text-sm font-bold hover:bg-gray-50 transition-colors shadow-sm gap-2">
+<span class="material-symbols-outlined">contact_mail</span>
+                                Get Nodal Email
+                            </button>
+</div>
+<!-- SLA Countdown Indicator -->
+<div class="mt-6 p-4 bg-red-50 border border-red-100 rounded-lg max-w-md mx-auto lg:mx-0">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></span>
+<div>
+<h4 class="font-bold text-red-700">SLA Expiration Risk</h4>
+<p class="text-sm text-red-600">Track pending shipments to prevent time-barred claims</p>
+</div>
+</div>
+</div>
+
+<!-- Financial Risk Dashboard Preview -->
+<div class="mt-4 p-4 bg-yellow-50 border border-yellow-100 rounded-lg max-w-md mx-auto lg:mx-0">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+<div>
+<h4 class="font-bold text-yellow-700">Financial Risk Exposure</h4>
+<p class="text-sm text-yellow-600">₹42,500 at risk in pending shipments</p>
+</div>
+</div>
+</div>
+</div>
+<p class="mt-4 text-xs text-gray-500 flex items-center justify-center lg:justify-start gap-1">
+<span class="material-symbols-outlined text-[16px] text-green-600">check_circle</span>
+                            Instant analysis • No credit card required for check
+                        </p>
+</div>
+<!-- Hero Visual / Dashboard Preview -->
+<div class="flex-1 w-full max-w-xl lg:max-w-none relative">
+<!-- Abstract Representation of Safety/Recovery -->
+<div class="relative bg-white rounded-xl border border-gray-200 shadow-2xl overflow-hidden aspect-[4/3] group">
+<div class="absolute top-0 left-0 w-full h-10 bg-gray-50 border-b border-gray-100 flex items-center px-4 gap-2">
+<div class="w-3 h-3 rounded-full bg-red-400"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+<div class="w-3 h-3 rounded-full bg-green-400"></div>
+</div>
+<div class="p-6 mt-6 space-y-6">
+<!-- Mock Data Row 1 -->
+<div class="flex items-center justify-between p-4 bg-red-50 rounded-lg border border-red-100">
+<div class="flex items-center gap-3">
+<div class="bg-white p-2 rounded border border-red-100">
+<span class="material-symbols-outlined text-red-600">warning</span>
+</div>
+<div>
+<div class="text-sm font-bold text-gray-900">AWB #74829103</div>
+<div class="text-xs text-red-600 font-medium">Fake Attempt Detected</div>
+</div>
+</div>
+<button class="text-xs bg-white border border-red-200 text-red-700 px-3 py-1.5 rounded font-medium shadow-sm">Auto-Draft Notice</button>
+</div>
+<!-- Mock Data Row 2 -->
+<div class="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-100 opacity-90">
+<div class="flex items-center gap-3">
+<div class="bg-white p-2 rounded border border-green-100">
+<span class="material-symbols-outlined text-green-600">gavel</span>
+</div>
+<div>
+<div class="text-sm font-bold text-gray-900">Legal Notice Sent</div>
+<div class="text-xs text-green-700 font-medium">Delivered to Nodal Officer</div>
+</div>
+</div>
+<div class="text-xs text-green-800 font-bold">Success</div>
+</div>
+<!-- Mock Graph -->
+<div class="h-24 w-full bg-gray-50 rounded-lg border border-gray-100 flex items-end justify-between px-4 pb-2 pt-6 gap-2">
+<div class="w-full bg-primary/10 rounded-t h-[40%]"></div>
+<div class="w-full bg-primary/20 rounded-t h-[60%]"></div>
+<div class="w-full bg-primary/40 rounded-t h-[30%]"></div>
+<div class="w-full bg-primary/60 rounded-t h-[80%]"></div>
+<div class="w-full bg-primary rounded-t h-[95%] relative group-hover:scale-105 transition-transform origin-bottom">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold bg-primary text-white px-1.5 py-0.5 rounded">₹14k</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Badge -->
+<div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-xl border border-gray-100 flex items-center gap-4 max-w-[200px] z-10 animate-[bounce_3s_infinite]">
+<div class="bg-green-100 p-2 rounded-full">
+<span class="material-symbols-outlined text-green-600">currency_rupee</span>
+</div>
+<div>
+<div class="text-xs text-gray-500 font-medium">Recovered Today</div>
+<div class="text-lg font-bold text-primary">₹45,200</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Social Proof Strip -->
+<section class="border-y border-gray-200 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="flex flex-col gap-1 text-center md:text-left">
+<div class="text-sm font-medium text-gray-500 uppercase tracking-wider">Total Amount Recovered</div>
+<div class="text-3xl font-bold text-primary flex items-center gap-2 justify-center md:justify-start">
+                                ₹14,50,000+
+                                <span class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-bold">+12% this week</span>
+</div>
+</div>
+<div class="h-8 w-px bg-gray-200 hidden md:block"></div>
+<div class="flex items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500 flex-wrap justify-center">
+<!-- Placeholder Logos for Couriers -->
+<div class="text-xl font-bold text-gray-400 font-serif">Delhivery</div>
+<div class="text-xl font-bold text-gray-400 font-sans italic">BlueDart</div>
+<div class="text-xl font-bold text-gray-400 font-mono">XpressBees</div>
+<div class="text-xl font-bold text-gray-400 font-sans tracking-widest">Ecom</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Grid -->
+<section class="py-20 bg-background-light">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="mb-12 max-w-2xl">
+<h2 class="text-3xl font-bold text-primary mb-4">Solve Your RTO Problems</h2>
+<p class="text-text-body text-lg">We provide legal-grade tools to intercept and resolve courier disputes before they become permanent losses.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="bg-white rounded-lg p-8 border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all group">
+<div class="w-12 h-12 rounded-lg bg-primary/5 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[28px]">warning</span>
+</div>
+<h3 class="text-xl font-bold text-primary mb-3">Fake Delivery Attempts</h3>
+<p class="text-text-body leading-relaxed text-sm">
+                                Our AI flags suspicious delivery patterns instantly. We cross-reference GPS data and delivery timestamps to prove falsification.
+                            </p>
+</div>
+<!-- Card 2 -->
+<div class="bg-white rounded-lg p-8 border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all group">
+<div class="w-12 h-12 rounded-lg bg-primary/5 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[28px]">description</span>
+</div>
+<h3 class="text-xl font-bold text-primary mb-3">Unresponsive Couriers</h3>
+<p class="text-text-body leading-relaxed text-sm">
+                                Auto-generated legal notices are sent directly to Nodal officers. We bypass Level 1 support and go straight to decision makers.
+                            </p>
+</div>
+<!-- Card 3 -->
+<div class="bg-white rounded-lg p-8 border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all group">
+<div class="w-12 h-12 rounded-lg bg-primary/5 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[28px]">autorenew</span>
+</div>
+<h3 class="text-xl font-bold text-primary mb-3">Stuck Refunds</h3>
+<p class="text-text-body leading-relaxed text-sm">
+                                Automated escalation workflows that ensure you get your COD remittances and lost shipment refunds back on time.
+                            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works Process -->
+<section class="py-20 bg-white border-t border-gray-100">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold text-primary">How Claimr Works</h2>
+</div>
+<div class="relative">
+<!-- Connecting Line (Desktop) -->
+<div class="absolute top-1/2 left-0 w-full h-0.5 bg-gray-100 -translate-y-1/2 hidden md:block z-0"></div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+<!-- Step 1 -->
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-white border-4 border-gray-100 text-primary flex items-center justify-center text-xl font-bold mb-6 shadow-sm">1</div>
+<h3 class="text-lg font-bold text-primary mb-2">Upload Tracking Data</h3>
+<p class="text-sm text-gray-500 max-w-xs">Simply paste your tracking numbers or sync your Shopify/Woocommerce store.</p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-white border-4 border-gray-100 text-primary flex items-center justify-center text-xl font-bold mb-6 shadow-sm">2</div>
+<h3 class="text-lg font-bold text-primary mb-2">AI Fraud Detection</h3>
+<p class="text-sm text-gray-500 max-w-xs">We analyze 50+ signals to identify fake remarks and courier anomalies.</p>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-primary border-4 border-primary-light text-white flex items-center justify-center text-xl font-bold mb-6 shadow-lg">3</div>
+<h3 class="text-lg font-bold text-primary mb-2">Legal Action</h3>
+<p class="text-sm text-gray-500 max-w-xs">Notices are drafted and dispatched instantly to recover your funds.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 bg-primary text-white relative overflow-hidden">
+<!-- Abstract Background Pattern -->
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 32px 32px;"></div>
+<div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+<h2 class="text-3xl md:text-4xl font-bold mb-6 tracking-tight">Ready to stop the bleeding?</h2>
+<p class="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">Join 500+ sellers who have secured their revenue pipelines with Claimr's legal infrastructure.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="px-8 h-12 bg-white text-primary font-bold rounded-lg hover:bg-gray-100 transition-colors shadow-lg shadow-primary/50">
+                            Check Your RTO Risk Free
+                        </button>
+<button class="px-8 h-12 bg-transparent border border-white/30 text-white font-bold rounded-lg hover:bg-white/10 transition-colors">
+                            Talk to Sales
+                        </button>
+</div>
+</div>
+</section>
+
+<!-- Additional Navigation Section -->
+<section class="py-20 bg-background-light">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-3xl font-bold text-primary mb-12 text-center">Explore All Claimr Features</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Feature Card 1 -->
+<a href="../claimr_home_-_command_center_variant_1/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">dashboard</span>
+</div>
+<h3 class="text-xl font-bold text-primary mb-2">Command Center</h3>
+<p class="text-gray-600">Live fraud intelligence dashboard with national fraud pulse</p>
+</div>
+</a>
+<!-- Feature Card 2 -->
+<a href="../claimr_home_-_escalation_engine_variant_1/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<h3 class="text-xl font-bold text-primary mb-2">Escalation Engine</h3>
+<p class="text-gray-600">Automated escalation workflow for dispute resolution</p>
+</div>
+</a>
+<!-- Feature Card 3 -->
+<a href="../claimr_home_-_forensic_engine_variant_2/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-red-100 text-red-600 flex items-center justify-center mb-4 group-hover:bg-red-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<h3 class="text-xl font-bold text-primary mb-2">Forensic Engine</h3>
+<p class="text-gray-600">Advanced forensic analysis for fraud detection</p>
+</div>
+</a>
+<!-- Feature Card 4 -->
+<a href="../fake_rto_forensic_checker_1/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">fact_check</span>
+</div>
+<h3 class="text-xl font-bold text-primary mb-2">Forensic Checker</h3>
+<p class="text-gray-600">Verification tool for fake return-to-origin attempts</p>
+</div>
+</a>
+<!-- Feature Card 5 -->
+<a href="../payment_recovery_action_hub/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center mb-4 group-hover:bg-green-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<h3 class="text-xl font-bold text-primary mb-2">Payment Recovery Hub</h3>
+<p class="text-gray-600">Central hub for payment recovery actions</p>
+</div>
+</a>
+<!-- Feature Card 6 -->
+<a href="../seller_recovery_management_dashboard/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-yellow-100 text-yellow-600 flex items-center justify-center mb-4 group-hover:bg-yellow-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<h3 class="text-xl font-bold text-primary mb-2">Recovery Dashboard</h3>
+<p class="text-gray-600">Comprehensive dashboard for seller recovery management</p>
+</div>
+</a>
+</div>
+</div>
+</section>
+
+<!-- Comprehensive Navigation Section -->
+<section class="py-12 bg-background-light border-t border-gray-200">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h3 class="text-2xl font-bold text-primary mb-8 text-center">Complete Claimr Platform Navigation</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+<!-- Column 1: Core Features -->
+<div>
+<h4 class="font-bold text-primary mb-4">Core Features</h4>
+<ul class="space-y-2">
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="./code.html">Panic Interceptor (Current)</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../claimr_home_-_command_center_variant_1/code.html">Command Center</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../claimr_home_-_escalation_engine_variant_1/code.html">Escalation Engine</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../claimr_home_-_forensic_engine_variant_2/code.html">Forensic Engine</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../how_it_works_&_about_claimr/code.html">How It Works</a></li>
+</ul>
+</div>
+<!-- Column 2: Recovery Tools -->
+<div>
+<h4 class="font-bold text-primary mb-4">Recovery Tools</h4>
+<ul class="space-y-2">
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../seller_recovery_management_dashboard/code.html">Recovery Dashboard</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../payment_recovery_action_hub/code.html">Payment Recovery</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../fake_rto_forensic_checker_1/code.html">Forensic Checker</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../claim_reversal_visualizer_variant_3/code.html">Claim Visualizer</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../nodal_officer_email_directory/code.html">Nodal Directory</a></li>
+</ul>
+</div>
+<!-- Column 3: Legal Tools -->
+<div>
+<h4 class="font-bold text-primary mb-4">Legal Tools</h4>
+<ul class="space-y-2">
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../legal_notice_generator_1/code.html">Legal Notice Generator</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../legal_shield_notice_generator_variant_2/code.html">Legal Shield</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../interactive_notice_constructor_ui/code.html">Notice Constructor</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../consumer_court_filing_guide/code.html">Court Filing Guide</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../wallet_blocked_legal_fix/code.html">Wallet Legal Fix</a></li>
+</ul>
+</div>
+<!-- Column 4: Analytics & Diagnostics -->
+<div>
+<h4 class="font-bold text-primary mb-4">Analytics & Diagnostics</h4>
+<ul class="space-y-2">
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../master_risk_dashboard_variant_1_1/code.html">Risk Dashboard</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../forensic_rto_diagnostic_ui_1/code.html">RTO Diagnostic</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../visual_case_patterns_variant_4/code.html">Case Patterns</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../pending_case_danger_visualizer_variant_1/code.html">Danger Visualizer</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../deadline_lockout_timer_variant_4/code.html">Timer</a></li>
+</ul>
+</div>
+<!-- Column 5: Specialized Tools -->
+<div>
+<h4 class="font-bold text-primary mb-4">Specialized Tools</h4>
+<ul class="space-y-2">
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../aggregator_vs_reality_mirror_variant_4/code.html">Aggregator Mirror</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../annual_rto_bleed_hub_variant_1/code.html">RTO Bleed Hub</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../audience_segmentation_entry_ui_variant_1/code.html">Audience Segmentation</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../capital-at-risk_global_report_variant_4/code.html">Capital Risk Report</a></li>
+<li><a class="text-sm text-gray-600 hover:text-primary block" href="../crisis_lifecycle_master_index/code.html">Crisis Lifecycle</a></li>
+</ul>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer data-shared="true"></footer>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

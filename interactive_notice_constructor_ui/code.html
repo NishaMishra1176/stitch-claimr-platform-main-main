@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Interactive Notice Constructor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1c4f82",
+                        "primary-hover": "#163c63",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#1a1d21",
+                        "paper": "#ffffff",
+                        "paper-dark": "#2c3036",
+                        "border-light": "#e2e8f0",
+                        "border-dark": "#374151",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                        "serif": ["Merriweather", "serif"] 
+                    },
+                    boxShadow: {
+                        'paper': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 4px rgba(0,0,0,0.05)',
+                        'paper-dark': '0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .stamp-effect {
+            mask-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxmaWx0ZXIgaWQ9Im5vaXNlIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZSkiIG9wYWNpdHk9IjAuNSIvPjwvc3ZnPg==');
+            mask-mode: alpha;
+        }
+        
+        /* Custom scrollbar for legal document */
+        .legal-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .legal-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .legal-scroll::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 h-screen flex flex-col overflow-hidden transition-colors duration-200">
+<!-- Top Navigation -->
+<header data-shared="true"></header>
+<!-- Main Content Area -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Panel: Configuration Command Center -->
+<aside class="w-full md:w-[480px] lg:w-[520px] bg-white dark:bg-paper-dark border-r border-border-light dark:border-border-dark flex flex-col z-10 overflow-y-auto shadow-[4px_0_24px_-12px_rgba(0,0,0,0.1)]">
+<div class="p-6 md:p-8 space-y-8 pb-24">
+<!-- Section 1: Incident Type -->
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">warning</span>
+                            Incident Configuration
+                        </h2>
+<span class="text-xs font-semibold px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-primary rounded border border-blue-100 dark:border-blue-800/50">STEP 1</span>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<label class="cursor-pointer group relative">
+<input checked="" class="peer sr-only" name="incident" type="radio" value="fake_rto"/>
+<div class="h-32 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-3 flex flex-col items-center justify-center gap-3 transition-all duration-200 peer-checked:border-primary peer-checked:bg-blue-50 dark:peer-checked:bg-primary/10 peer-checked:shadow-sm hover:border-primary/50">
+<span class="material-symbols-outlined text-3xl text-slate-400 peer-checked:text-primary group-hover:text-primary transition-colors">local_shipping</span>
+<span class="text-xs font-bold text-center text-slate-600 dark:text-slate-300 peer-checked:text-primary">Fake RTO</span>
+</div>
+<div class="absolute -top-1 -right-1 size-5 bg-primary rounded-full text-white items-center justify-center hidden peer-checked:flex shadow-sm scale-0 peer-checked:scale-100 transition-transform">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+</label>
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" name="incident" type="radio" value="wallet"/>
+<div class="h-32 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-3 flex flex-col items-center justify-center gap-3 transition-all duration-200 peer-checked:border-primary peer-checked:bg-blue-50 dark:peer-checked:bg-primary/10 peer-checked:shadow-sm hover:border-primary/50">
+<span class="material-symbols-outlined text-3xl text-slate-400 peer-checked:text-primary group-hover:text-primary transition-colors">account_balance_wallet</span>
+<span class="text-xs font-bold text-center text-slate-600 dark:text-slate-300 peer-checked:text-primary">Wallet Blocked</span>
+</div>
+<div class="absolute -top-1 -right-1 size-5 bg-primary rounded-full text-white items-center justify-center hidden peer-checked:flex shadow-sm">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+</label>
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" name="incident" type="radio" value="lost"/>
+<div class="h-32 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-3 flex flex-col items-center justify-center gap-3 transition-all duration-200 peer-checked:border-primary peer-checked:bg-blue-50 dark:peer-checked:bg-primary/10 peer-checked:shadow-sm hover:border-primary/50">
+<span class="material-symbols-outlined text-3xl text-slate-400 peer-checked:text-primary group-hover:text-primary transition-colors">package_2</span>
+<span class="text-xs font-bold text-center text-slate-600 dark:text-slate-300 peer-checked:text-primary">Lost / Damaged</span>
+</div>
+<div class="absolute -top-1 -right-1 size-5 bg-primary rounded-full text-white items-center justify-center hidden peer-checked:flex shadow-sm">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Section 2: Logistics & Order -->
+<div class="space-y-4">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+                        Logistics Details
+                    </h2>
+<div class="space-y-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Courier Partner</label>
+<div class="relative">
+<select class="w-full h-11 pl-4 pr-10 rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:border-primary focus:ring-primary shadow-sm appearance-none cursor-pointer">
+<option>Select Partner</option>
+<option>Delhivery Express</option>
+<option>Ecom Express</option>
+<option>Shadowfax</option>
+<option>XpressBees</option>
+<option>BlueDart</option>
+</select>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Order ID</label>
+<input class="w-full h-11 rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:border-primary focus:ring-primary shadow-sm placeholder-slate-400" placeholder="#OD-29384..." type="text"/>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Tracking No.</label>
+<input class="w-full h-11 rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:border-primary focus:ring-primary shadow-sm placeholder-slate-400" placeholder="AWB-9921..." type="text"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Claim Value (INR)</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">₹</span>
+<input class="w-full h-11 pl-8 rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:border-primary focus:ring-primary shadow-sm placeholder-slate-400 font-mono" placeholder="0.00" type="number"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: Evidence -->
+<div class="space-y-4">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">attach_file</span>
+                        Attach Evidence
+                    </h2>
+<div class="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-xl p-6 text-center hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer group">
+<div class="size-12 rounded-full bg-blue-50 dark:bg-blue-900/20 text-primary mx-auto flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">cloud_upload</span>
+</div>
+<p class="text-sm font-medium text-slate-700 dark:text-slate-300">Click to upload unboxing video or photos</p>
+<p class="text-xs text-slate-400 mt-1">Supports MP4, JPG, PNG (Max 50MB)</p>
+</div>
+</div>
+</div>
+<!-- Sticky Footer Action -->
+<div class="sticky bottom-0 bg-white/80 dark:bg-paper-dark/80 backdrop-blur-md border-t border-border-light dark:border-border-dark p-4 md:px-8 md:py-6">
+<button class="w-full bg-primary hover:bg-primary-hover text-white h-14 rounded-lg font-bold text-lg shadow-lg shadow-primary/30 flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">gavel</span>
+                    Generate Legal Notice
+                </button>
+</div>
+</aside>
+<!-- Right Panel: Live Document Preview -->
+<section class="flex-1 bg-slate-100 dark:bg-[#121212] relative overflow-hidden flex flex-col">
+<!-- Toolbar -->
+<div class="absolute top-6 right-6 z-10 flex gap-2">
+<button class="size-10 bg-white dark:bg-slate-800 rounded-full shadow-sm border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-primary flex items-center justify-center transition-colors" title="Print">
+<span class="material-symbols-outlined">print</span>
+</button>
+<button class="size-10 bg-white dark:bg-slate-800 rounded-full shadow-sm border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-primary flex items-center justify-center transition-colors" title="Download PDF">
+<span class="material-symbols-outlined">download</span>
+</button>
+<button class="size-10 bg-white dark:bg-slate-800 rounded-full shadow-sm border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-primary flex items-center justify-center transition-colors" title="Expand">
+<span class="material-symbols-outlined">fullscreen</span>
+</button>
+</div>
+<!-- Document Stage -->
+<div class="flex-1 overflow-y-auto p-8 md:p-12 flex justify-center items-start legal-scroll">
+<div class="relative w-full max-w-[800px] min-h-[1000px] bg-white text-slate-900 shadow-paper rounded-sm p-12 md:p-16 mb-20 transition-all origin-top">
+<!-- Texture Overlay -->
+<div class="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-multiply" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDlUEQcYkpvDD03nSzI4ScvrVfyyk0zAtA1SzdZ3iDapaLXbCBBw2Di-7q2o4LB5lD7rg9te5Lg9qmWQ1D39ubAAKtYRk3VpCJTioK3kYC8pmo3jrdP-zruVHa0uNxAzJOjsmm7qI5cIzPpyRn2zpArYgx4_aQ4T7Os7mcbtPxaXKWATBzkBzXYr7GNOE9vdY3zHPKq52q5984KKeZuizEBeVpdi8m-DKcUR-QK1R5bgN6Wu3JEeVTkNFABxFvyaMbVAwWiQH2baFU');"></div>
+<!-- Stamps -->
+<div class="absolute top-10 right-10 rotate-[-15deg] border-4 border-primary/30 text-primary/30 font-black text-2xl px-4 py-2 rounded-lg uppercase tracking-widest pointer-events-none mix-blend-multiply opacity-50 select-none">
+                        Draft Copy
+                    </div>
+<div class="absolute bottom-32 right-20 rotate-[-5deg] z-10 animate-pulse">
+<div class="border-[6px] border-primary text-primary font-black text-4xl px-8 py-4 rounded uppercase tracking-widest mix-blend-multiply shadow-xl bg-primary/5 stamp-effect transform scale-100 transition-transform duration-300">
+                             Legal Notice<br/><span class="text-sm font-bold block text-center tracking-normal mt-1">Pending Signature</span>
+</div>
+</div>
+<!-- Document Content -->
+<div class="relative z-0 font-serif leading-relaxed">
+<div class="text-center mb-12">
+<h2 class="text-2xl font-bold uppercase tracking-widest border-b-2 border-black pb-2 inline-block mb-2">Legal Notice</h2>
+<p class="text-sm font-bold mt-2">Under Section 35 of The Consumer Protection Act, 2019</p>
+</div>
+<div class="flex justify-between text-sm mb-12 font-medium">
+<div class="space-y-1">
+<p><strong>Ref No:</strong> CLM-2023-X92-001</p>
+<p><strong>Date:</strong> October 24, 2023</p>
+<p><strong>Urgency:</strong> <span class="text-red-700 font-bold uppercase">Immediate</span></p>
+</div>
+<div class="text-right space-y-1">
+<p><strong>Mode:</strong> Registered Post with A/D</p>
+<p><strong>Jurisdiction:</strong> Bangalore, Karnataka</p>
+</div>
+</div>
+<div class="mb-8 space-y-1">
+<p class="font-bold">TO,</p>
+<p class="uppercase font-bold text-lg">The Grievance Officer,</p>
+<p class="uppercase font-bold text-slate-700">[Courier Partner Name]</p>
+<p>Head Office, Legal Department,</p>
+<p>Gurugram, Haryana - 122002</p>
+</div>
+<div class="mb-8">
+<p class="font-bold underline mb-4">SUBJECT: NOTICE FOR DEFICIENCY IN SERVICE AND UNFAIR TRADE PRACTICE REGARDING ORDER #[ORDER-ID]</p>
+<p class="mb-4 text-justify">
+                                Sir/Madam,
+                            </p>
+<p class="mb-4 text-justify indent-8">
+                                Under instructions from my client, <strong>[Seller Name]</strong>, carrying on business at [Seller Address], I hereby serve you with the following legal notice:
+                            </p>
+<p class="mb-4 text-justify indent-8">
+                                1. That my client entrusted a shipment vide <strong>AWB No. [TRACKING-NO]</strong> on <strong>[Date]</strong> through your logistics network. The said shipment contained goods valued at <strong>INR [VALUE]</strong>.
+                            </p>
+<p class="mb-4 text-justify indent-8 bg-blue-50/50 -mx-4 px-4 py-2 border-l-4 border-primary">
+                                2. That despite proper packaging and handover, the status of the shipment was falsely marked as <strong>"Customer Refused Delivery" (Fake RTO)</strong> without any genuine attempt to deliver the said consignment to the consignee.
+                            </p>
+<p class="mb-4 text-justify indent-8">
+                                3. That such an act of marking a false status amounts to "Deficiency in Service" as defined under Section 2(11) of the Consumer Protection Act, 2019, causing severe financial loss and mental agony to my client.
+                            </p>
+<p class="mb-4 text-justify indent-8">
+                                4. That you are hereby called upon to compensate my client with the sum of <strong>INR [VALUE]</strong> along with interest @ 18% p.a. within 7 (seven) days from the receipt of this notice, failing which my client shall be constrained to initiate appropriate legal proceedings against you in the Consumer Disputes Redressal Commission.
+                            </p>
+</div>
+<div class="mt-16 flex justify-end">
+<div class="text-center w-48">
+<div class="h-16 mb-2 flex items-end justify-center">
+<span class="font-dancing-script text-2xl text-primary font-bold opacity-30 rotate-[-5deg]">Arjun Mehta</span>
+</div>
+<div class="h-px bg-black w-full mb-1"></div>
+<p class="font-bold text-sm uppercase">Advocate for Complainant</p>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-slate-200 text-xs text-slate-500 text-center">
+                            This is a system-generated legal draft powered by Claimr. Verify all details before printing.
+                        </div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

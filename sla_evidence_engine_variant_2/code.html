@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SLA Evidence Engine Variant 2</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b1c2d", // Navy
+                        "alert": "#C62828",   // Red
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#13191f",
+                        "surface": "#ffffff",
+                        "border-color": "#e2e8f0",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem", // 2px for sharp technical feel
+                        "sm": "0.25rem",
+                        "md": "0.375rem",
+                        "lg": "0.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "subtle": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Scrollbar for a technical feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        
+        /* Map Pulse Animation */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.33); opacity: 0.8; }
+            80%, 100% { opacity: 0; transform: scale(2.5); }
+        }
+        @keyframes pulse-dot {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1); }
+            100% { transform: scale(0.8); }
+        }
+        .pulse-marker::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0;
+            display: block; 
+            width: 100%; height: 100%;
+            background-color: #C62828;
+            border-radius: 50%;
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        .pulse-marker::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 0;
+            display: block; 
+            width: 100%; height: 100%;
+            background-color: #C62828;
+            border-radius: 50%;
+            animation: pulse-dot 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-slate-900 font-display h-screen flex overflow-hidden selection:bg-alert/20 selection:text-alert">
+<!-- LEFT SIDEBAR: Navigation -->
+<nav class="w-64 bg-primary flex flex-col shrink-0 h-full border-r border-slate-800 z-20">
+<div class="p-6 flex items-center gap-3">
+<div class="size-8 rounded bg-white/10 flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">shield_lock</span>
+</div>
+<div>
+<h1 class="text-white text-lg font-bold leading-none tracking-tight">Claimr</h1>
+<p class="text-slate-400 text-xs font-normal mt-0.5 tracking-wide">RISK-OPS PORTAL</p>
+</div>
+</div>
+<div class="flex flex-col gap-1 px-3 mt-4">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-slate-300 hover:text-white hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-white transition-colors">grid_view</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded bg-alert text-white shadow-lg shadow-alert/20 group relative overflow-hidden" href="#">
+<div class="absolute inset-0 bg-white/10 w-1/2 -skew-x-12 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-700"></div>
+<span class="material-symbols-outlined">timer</span>
+<span class="text-sm font-bold">SLA Engine</span>
+<span class="ml-auto bg-white/20 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">14</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-slate-300 hover:text-white hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-white transition-colors">folder_open</span>
+<span class="text-sm font-medium">Evidence Locker</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-slate-300 hover:text-white hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-white transition-colors">analytics</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+</div>
+<div class="mt-auto p-4 border-t border-slate-800">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-700 bg-center bg-cover" data-alt="User profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCWojmRbiETtPNg3ERBQKcU7YNwu6UV-FDjby7rhuq9gFFFr0vjM8u9mQOSPKSFSpTaLH_AYdzEaPy7q_5KEAm5T_PekseRx6qaezJQrcXEtaHEtPJcnN6K-49Y8cWVW3UKDJP-23Jy09iJ3EBFf5L0zpB7c5h8GYjrao2cfhSIfl8bMEebsLVwQ2h3IkNcZ52iwrNZ_ym8_sWydha2vr-sdtILWJZUhJaf-XaOPXUljf7YdAPEWvpls5F36ChCPxjFSwCBoMkS1dc');"></div>
+<div class="flex flex-col">
+<p class="text-white text-sm font-medium">Arjun M.</p>
+<p class="text-slate-400 text-xs">Ops Manager</p>
+</div>
+<button class="ml-auto text-slate-400 hover:text-white">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- MAIN CONTENT AREA -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Top Header Area -->
+<header data-shared="true"></header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-8 space-y-6 scroll-smooth">
+<!-- Vulnerability Map Section -->
+<section class="bg-white rounded border border-border-color shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-border-color flex justify-between items-center bg-slate-50">
+<h3 class="text-primary font-bold text-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-alert">hub</span>
+                        Vulnerability Map: Hub Black Holes
+                    </h3>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-white border border-border-color text-xs rounded font-medium text-slate-600">Bhiwandi Hub</span>
+<span class="px-2 py-1 bg-white border border-border-color text-xs rounded font-medium text-slate-600">Guwahati Gateway</span>
+</div>
+</div>
+<div class="relative w-full h-[320px] bg-slate-100 group">
+<!-- Map Image -->
+<div class="w-full h-full bg-cover bg-center opacity-80 mix-blend-multiply grayscale contrast-125" data-alt="Stylized map of India showing logistics hubs" data-location="India" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDUN6zZpcxlE9ZMgWy2-vLwyQzRQXdeREXIPtGMw2E48SKZebmunGUZbQgxiYjWNly98Drq0o063qDtDV0fPY0Pwj_3MWjatVti8MFcwJ0iIrWK5kSPZmor8fZbwWbRlEOUCDGW99syJceRTOgUtHphJBIYraexDbvJUsqcgEr3IVApHbN2JG4ZCzclHqny5G_iIxDDdjfpYrSmxMgIry0S3c3ym7n8tyVUVTluZshpUvKak7gT0IsghsxTdpIsk_iQGjpYCCdXwTY');">
+</div>
+<!-- Hotspots/Markers -->
+<div class="absolute top-[35%] left-[25%] pulse-marker size-4 rounded-full bg-alert cursor-pointer group/marker">
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover/marker:block bg-primary text-white text-xs p-2 rounded w-max z-10 shadow-xl">
+<div class="font-bold">Bhiwandi Hub</div>
+<div class="text-alert font-bold">8 Stuck Shipments</div>
+<div class="text-[10px] text-slate-300">Avg delay: 4 days</div>
+</div>
+</div>
+<div class="absolute top-[42%] left-[68%] pulse-marker size-6 rounded-full bg-alert cursor-pointer group/marker">
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover/marker:block bg-primary text-white text-xs p-2 rounded w-max z-10 shadow-xl">
+<div class="font-bold">Guwahati Gateway</div>
+<div class="text-alert font-bold">12 Stuck Shipments</div>
+<div class="text-[10px] text-slate-300">High Risk Zone</div>
+</div>
+</div>
+<div class="absolute top-[65%] left-[35%] size-3 rounded-full bg-orange-400 cursor-pointer"></div>
+</div>
+</section>
+<!-- Evidence Locker Section -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="text-primary text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined">folder_managed</span>
+                        Evidence Locker
+                    </h3>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 text-xs font-medium text-slate-600 bg-white border border-border-color rounded hover:bg-slate-50">Export Logs</button>
+<button class="px-3 py-1.5 text-xs font-medium text-white bg-primary rounded hover:bg-slate-800">Refresh Data</button>
+</div>
+</div>
+<!-- Evidence Grid/List -->
+<div class="space-y-3">
+<!-- Item 1: Critical -->
+<div class="bg-white border-l-4 border-l-alert border-y border-r border-border-color rounded-r p-5 flex flex-col md:flex-row gap-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex flex-col gap-1 min-w-[140px]">
+<div class="flex items-center gap-2">
+<span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-1.5 py-0.5 rounded uppercase">Blue Dart</span>
+<span class="text-slate-400 text-xs">#9910-X2</span>
+</div>
+<div class="font-bold text-lg text-primary">₹12,400</div>
+<div class="text-alert font-bold text-sm flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+                                Stuck 29 days
+                            </div>
+</div>
+<div class="flex-1 grid grid-cols-2 gap-4 border-x border-dashed border-slate-200 px-6">
+<div class="flex flex-col gap-1">
+<p class="text-xs text-slate-500 font-medium uppercase">Last Log</p>
+<p class="text-sm text-slate-800 font-body">"Consignee address unlocatable - 3rd Attempt"</p>
+<p class="text-[10px] text-slate-400 mt-1">Today, 09:42 AM</p>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-xs text-slate-500 font-medium uppercase">Evidence</p>
+<div class="flex gap-2">
+<div class="size-10 bg-slate-100 rounded border border-slate-200 flex items-center justify-center cursor-pointer hover:border-primary group" title="Call Log">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary text-[18px]">call</span>
+</div>
+<div class="size-10 bg-slate-100 rounded border border-slate-200 flex items-center justify-center cursor-pointer hover:border-primary group" title="Map Geotag">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary text-[18px]">location_on</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2 justify-center min-w-[160px]">
+<button class="w-full py-2 bg-primary text-white text-sm font-bold rounded shadow hover:bg-slate-800 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">gavel</span>
+                                Legal Notice Gen
+                            </button>
+<button class="w-full py-1.5 text-xs text-slate-500 hover:text-primary underline">View Full Timeline</button>
+</div>
+</div>
+<!-- Item 2: Warning -->
+<div class="bg-white border-l-4 border-l-orange-400 border-y border-r border-border-color rounded-r p-5 flex flex-col md:flex-row gap-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex flex-col gap-1 min-w-[140px]">
+<div class="flex items-center gap-2">
+<span class="bg-red-100 text-red-800 text-[10px] font-bold px-1.5 py-0.5 rounded uppercase">Delhivery</span>
+<span class="text-slate-400 text-xs">#8821-A9</span>
+</div>
+<div class="font-bold text-lg text-primary">₹3,250</div>
+<div class="text-orange-600 font-bold text-sm flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">timelapse</span>
+                                Stuck 4 days
+                            </div>
+</div>
+<div class="flex-1 grid grid-cols-2 gap-4 border-x border-dashed border-slate-200 px-6">
+<div class="flex flex-col gap-1">
+<p class="text-xs text-slate-500 font-medium uppercase">Last Log</p>
+<p class="text-sm text-slate-800 font-body">"RTO Initiated - Customer Refused"</p>
+<p class="text-[10px] text-slate-400 mt-1">Yesterday, 04:15 PM</p>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-xs text-slate-500 font-medium uppercase">Evidence</p>
+<div class="flex gap-2">
+<div class="h-10 w-16 bg-cover bg-center rounded border border-slate-200 cursor-pointer hover:border-primary relative group" data-alt="WhatsApp chat screenshot thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD6WnZgTmY92dG_-1Av5l4GTbJi-A4v238fKwgjKtsqIuz1h1GFUaROfIEjI40d2WUbcdH2U1dhs_I5-Vb1QwbbW9_bQqeKH8-ms19aeuSVsr3rRGPBcfO2wtdPmAvE8VdZLkBsRZgffH-7VAkS7djXJK4Gy6gcXhpJPvSBfXcit9uhNkk_0vFCjEY6Fhv92btji8IYxiFEPH6A32h68Zm-XTOH8Lnw4LUiZVqHYjP2puMs5whG9mEFQ3vDPEpUXtCFm8sX5wutm_Y');">
+<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2 justify-center min-w-[160px]">
+<button class="w-full py-2 bg-white border border-primary text-primary text-sm font-bold rounded shadow-sm hover:bg-slate-50 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">support_agent</span>
+                                Escalate to Nodal
+                            </button>
+</div>
+</div>
+<!-- Item 3: Normal -->
+<div class="bg-white border-l-4 border-l-emerald-500 border-y border-r border-border-color rounded-r p-5 flex flex-col md:flex-row gap-6 shadow-sm hover:shadow-md transition-shadow opacity-75 hover:opacity-100">
+<div class="flex flex-col gap-1 min-w-[140px]">
+<div class="flex items-center gap-2">
+<span class="bg-orange-100 text-orange-800 text-[10px] font-bold px-1.5 py-0.5 rounded uppercase">Ecom Express</span>
+<span class="text-slate-400 text-xs">#7723-B1</span>
+</div>
+<div class="font-bold text-lg text-primary">₹1,100</div>
+<div class="text-slate-500 font-medium text-sm flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                In Transit
+                            </div>
+</div>
+<div class="flex-1 border-x border-dashed border-slate-200 px-6 flex items-center">
+<p class="text-sm text-slate-400 font-body italic">Shipment is moving as per SLA. No intervention required.</p>
+</div>
+<div class="flex flex-col gap-2 justify-center min-w-[160px]">
+<button class="w-full py-2 bg-slate-100 text-slate-400 text-sm font-medium rounded cursor-not-allowed flex items-center justify-center gap-2">
+                                View Details
+                            </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- RIGHT SIDEBAR: SLA Countdown Engine -->
+<aside class="w-80 bg-white border-l border-border-color flex flex-col shrink-0 h-full z-20 shadow-xl">
+<div class="p-6 border-b border-border-color bg-slate-50">
+<h2 class="text-primary text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined filled">bolt</span>
+                SLA Countdown
+            </h2>
+<p class="text-slate-500 text-xs mt-1">Deterministic tracking for carrier liability.</p>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4">
+<!-- Countdown Card: Critical -->
+<div class="bg-white rounded border border-alert/30 p-4 shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-1">
+<span class="animate-pulse size-2 bg-alert rounded-full block"></span>
+</div>
+<div class="flex justify-between items-start mb-2">
+<span class="bg-blue-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded uppercase">Blue Dart</span>
+<span class="text-alert font-bold text-xs uppercase tracking-wider">Breach Imminent</span>
+</div>
+<div class="flex justify-between items-end mb-2">
+<span class="text-3xl font-bold text-primary font-display">29<span class="text-sm text-slate-400 font-normal">/30</span></span>
+<span class="text-xs font-medium text-slate-500 mb-1">Days</span>
+</div>
+<!-- Progress Bar -->
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-blue-500 via-orange-400 to-alert w-[95%]"></div>
+</div>
+<p class="text-[10px] text-slate-400 mt-2 text-right">Legal threshold: 30 Days</p>
+<button class="mt-3 w-full py-1.5 bg-alert/10 text-alert hover:bg-alert hover:text-white transition-colors text-xs font-bold rounded uppercase tracking-wide">
+                    Trigger Escalation
+                </button>
+</div>
+<!-- Countdown Card: Warning -->
+<div class="bg-white rounded border border-border-color p-4 shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded uppercase">Delhivery</span>
+<span class="text-orange-500 font-bold text-xs uppercase tracking-wider">Monitoring</span>
+</div>
+<div class="flex justify-between items-end mb-2">
+<span class="text-3xl font-bold text-primary font-display">2<span class="text-sm text-slate-400 font-normal">/3</span></span>
+<span class="text-xs font-medium text-slate-500 mb-1">Days (RTO)</span>
+</div>
+<!-- Progress Bar -->
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-blue-500 w-[60%]"></div>
+</div>
+<p class="text-[10px] text-slate-400 mt-2 text-right">RTO Acceptance SLA</p>
+</div>
+<!-- Countdown Card: Safe -->
+<div class="bg-white rounded border border-border-color p-4 shadow-sm opacity-80">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-orange-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded uppercase">Ecom Express</span>
+<span class="text-emerald-600 font-bold text-xs uppercase tracking-wider">Safe</span>
+</div>
+<div class="flex justify-between items-end mb-2">
+<span class="text-3xl font-bold text-primary font-display">1<span class="text-sm text-slate-400 font-normal">/5</span></span>
+<span class="text-xs font-medium text-slate-500 mb-1">Days</span>
+</div>
+<!-- Progress Bar -->
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 w-[20%]"></div>
+</div>
+<p class="text-[10px] text-slate-400 mt-2 text-right">Standard Delivery SLA</p>
+</div>
+<!-- System Status -->
+<div class="mt-8 p-4 bg-primary/5 rounded border border-primary/10">
+<p class="text-xs font-bold text-primary uppercase mb-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">dns</span>
+                    API Status
+                </p>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between text-[10px] text-slate-600">
+<span>Blue Dart API</span>
+<span class="text-emerald-600 font-bold">Online</span>
+</div>
+<div class="flex justify-between text-[10px] text-slate-600">
+<span>Delhivery API</span>
+<span class="text-emerald-600 font-bold">Online</span>
+</div>
+<div class="flex justify-between text-[10px] text-slate-600">
+<span>Shadowfax API</span>
+<span class="text-orange-500 font-bold">Latency (400ms)</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+
+<!-- Additional Navigation Section -->
+<section class="py-12 bg-background-light dark:bg-background-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h3 class="text-2xl font-bold text-primary dark:text-white mb-8 text-center">Explore More Claimr Features</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Feature Card 1 -->
+<a href="../claimr_homepage_-_panic_interceptor_1/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">home</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Homepage</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Main landing page with live panic interceptor functionality</p>
+</div>
+</a>
+<!-- Feature Card 2 -->
+<a href="../claimr_home_-_command_center_variant_1/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">dashboard</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Command Center</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Live fraud intelligence dashboard with national fraud pulse</p>
+</div>
+</a>
+<!-- Feature Card 3 -->
+<a href="../how_it_works_&_about_claimr/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">info</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">How It Works</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Explanation of Claimr's mission and 4-step process</p>
+</div>
+</a>
+<!-- Feature Card 4 -->
+<a href="../claimr_home_-_escalation_engine_variant_1/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-red-100 text-red-600 flex items-center justify-center mb-4 group-hover:bg-red-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Escalation Engine</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Automated escalation workflow for dispute resolution</p>
+</div>
+</a>
+</div>
+</section>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

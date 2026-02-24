@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Priority Acceleration Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#105870",
+                        "primary-dark": "#0d4659",
+                        "background-light": "#f9fafa",
+                        "background-dark": "#22262a",
+                        "border-light": "#dce3e5",
+                        "text-main": "#111617",
+                        "text-sub": "#647e87",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "sm": "0.125rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main antialiased selection:bg-primary/20 selection:text-primary">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Navigation -->
+<header data-shared="true"></header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-[1280px] mx-auto px-4 py-8 md:px-8 lg:px-12">
+<!-- Hero & Stats Row -->
+<div class="flex flex-col lg:flex-row gap-6 mb-8 justify-between items-start lg:items-end">
+<div class="flex flex-col gap-2 max-w-2xl">
+<h1 class="text-text-main text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">Accelerate Your Resolution</h1>
+<p class="text-text-sub text-base font-normal leading-normal max-w-lg">
+                        Streamline your claim process with professional handling tools. 
+                        We organize your evidence to reduce friction with sellers.
+                    </p>
+</div>
+<!-- System Health Widget -->
+<div class="flex gap-4 w-full lg:w-auto">
+<div class="flex flex-1 lg:flex-none lg:w-48 flex-col gap-1 rounded-lg p-4 border border-border-light bg-white shadow-sm">
+<div class="flex items-center gap-2 mb-1">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+</span>
+<p class="text-text-sub text-xs font-semibold uppercase tracking-wider">Platform Velocity</p>
+</div>
+<p class="text-text-main text-xl font-bold leading-tight">High</p>
+</div>
+<div class="flex flex-1 lg:flex-none lg:w-48 flex-col gap-1 rounded-lg p-4 border border-border-light bg-white shadow-sm">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">history</span>
+<p class="text-text-sub text-xs font-semibold uppercase tracking-wider">Avg. Response</p>
+</div>
+<p class="text-text-main text-xl font-bold leading-tight">~24 hrs</p>
+</div>
+</div>
+</div>
+<!-- Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Free Diagnostics (Span 8) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Risk Assessment Card -->
+<div class="bg-white rounded-lg border border-border-light shadow-sm p-6">
+<div class="flex items-center gap-3 mb-4">
+<div class="p-2 bg-blue-50 rounded text-primary">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div>
+<h3 class="text-text-main text-lg font-bold leading-tight">Transaction Risk Assessment</h3>
+<p class="text-text-sub text-sm">Automated analysis based on seller history &amp; item category</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 mt-6">
+<div class="flex justify-between items-end">
+<span class="text-text-main font-semibold text-2xl">45<span class="text-text-sub text-base font-normal">/100</span></span>
+<span class="px-2 py-1 rounded bg-yellow-50 text-yellow-700 text-xs font-bold uppercase tracking-wide border border-yellow-100">Medium Risk</span>
+</div>
+<div class="relative w-full h-3 bg-gray-100 rounded-full overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-gradient-to-r from-emerald-500 via-yellow-400 to-red-500 w-full opacity-20"></div>
+<div class="absolute top-0 left-0 h-full bg-text-main rounded-full transition-all duration-1000 ease-out" style="width: 45%;"></div>
+</div>
+<div class="flex gap-2 items-start mt-2">
+<span class="material-symbols-outlined text-text-sub text-sm mt-0.5">info</span>
+<p class="text-text-sub text-sm">
+                                    This transaction carries a moderate risk of delay. Standard resolution typically requires 3-5 rounds of email exchanges.
+                                </p>
+</div>
+</div>
+</div>
+<!-- Evidence Checklist Card -->
+<div class="bg-white rounded-lg border border-border-light shadow-sm p-6 flex-1">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-purple-50 rounded text-purple-700">
+<span class="material-symbols-outlined">fact_check</span>
+</div>
+<div>
+<h3 class="text-text-main text-lg font-bold leading-tight">Proof Checklist</h3>
+<p class="text-text-sub text-sm">Required documentation for valid claims</p>
+</div>
+</div>
+<span class="text-sm font-medium text-text-sub bg-gray-50 px-3 py-1 rounded-full border border-gray-100">2/5 Ready</span>
+</div>
+<div class="space-y-1">
+<!-- Checklist Item: Done -->
+<label class="group flex items-start gap-4 p-4 rounded-lg border border-transparent hover:bg-background-light transition-colors cursor-pointer">
+<div class="relative flex items-center mt-0.5">
+<input checked="" class="peer h-5 w-5 cursor-pointer appearance-none rounded border-2 border-border-light bg-white transition-all checked:border-primary checked:bg-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" type="checkbox"/>
+<span class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 peer-checked:opacity-100">
+<svg class="h-3.5 w-3.5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path></svg>
+</span>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-text-main font-medium line-through decoration-text-sub decoration-2 opacity-60">Invoice Uploaded</p>
+<p class="text-xs text-emerald-600 font-medium flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">check_circle</span> Verified automatically</p>
+</div>
+</label>
+<!-- Checklist Item: Done -->
+<label class="group flex items-start gap-4 p-4 rounded-lg border border-transparent hover:bg-background-light transition-colors cursor-pointer">
+<div class="relative flex items-center mt-0.5">
+<input checked="" class="peer h-5 w-5 cursor-pointer appearance-none rounded border-2 border-border-light bg-white transition-all checked:border-primary checked:bg-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" type="checkbox"/>
+<span class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 peer-checked:opacity-100">
+<svg class="h-3.5 w-3.5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path></svg>
+</span>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-text-main font-medium line-through decoration-text-sub decoration-2 opacity-60">ID Proof</p>
+<p class="text-xs text-emerald-600 font-medium flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">check_circle</span> Verified automatically</p>
+</div>
+</label>
+<!-- Checklist Item: Pending -->
+<label class="group flex items-start gap-4 p-4 rounded-lg border border-border-light bg-background-light/50 transition-colors cursor-pointer">
+<div class="relative flex items-center mt-0.5">
+<input class="peer h-5 w-5 cursor-pointer appearance-none rounded border-2 border-border-light bg-white transition-all checked:border-primary checked:bg-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" type="checkbox"/>
+<span class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 peer-checked:opacity-100">
+<svg class="h-3.5 w-3.5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path></svg>
+</span>
+</div>
+<div class="flex flex-col gap-1 w-full">
+<div class="flex justify-between w-full">
+<p class="text-text-main font-medium">Unboxing Video</p>
+<button class="text-xs font-semibold text-primary hover:underline">Upload</button>
+</div>
+<p class="text-xs text-text-sub">Video must show all 6 sides of the package before opening.</p>
+</div>
+</label>
+<!-- Checklist Item: Pending -->
+<label class="group flex items-start gap-4 p-4 rounded-lg border border-border-light bg-background-light/50 transition-colors cursor-pointer">
+<div class="relative flex items-center mt-0.5">
+<input class="peer h-5 w-5 cursor-pointer appearance-none rounded border-2 border-border-light bg-white transition-all checked:border-primary checked:bg-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" type="checkbox"/>
+<span class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 peer-checked:opacity-100">
+<svg class="h-3.5 w-3.5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path></svg>
+</span>
+</div>
+<div class="flex flex-col gap-1 w-full">
+<div class="flex justify-between w-full">
+<p class="text-text-main font-medium">Chat Logs</p>
+<button class="text-xs font-semibold text-primary hover:underline">Upload</button>
+</div>
+<p class="text-xs text-text-sub">Export PDF of conversation with seller.</p>
+</div>
+</label>
+<!-- Checklist Item: Pending -->
+<label class="group flex items-start gap-4 p-4 rounded-lg border border-border-light bg-background-light/50 transition-colors cursor-pointer">
+<div class="relative flex items-center mt-0.5">
+<input class="peer h-5 w-5 cursor-pointer appearance-none rounded border-2 border-border-light bg-white transition-all checked:border-primary checked:bg-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" type="checkbox"/>
+<span class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 peer-checked:opacity-100">
+<svg class="h-3.5 w-3.5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill-rule="evenodd"></path></svg>
+</span>
+</div>
+<div class="flex flex-col gap-1 w-full">
+<div class="flex justify-between w-full">
+<p class="text-text-main font-medium">Warranty Card</p>
+<button class="text-xs font-semibold text-primary hover:underline">Upload</button>
+</div>
+<p class="text-xs text-text-sub">Scan of the physical warranty card inside the box.</p>
+</div>
+</label>
+</div>
+</div>
+</div>
+<!-- Right Column: Paid Handling (Span 4) -->
+<div class="lg:col-span-4 sticky top-24">
+<div class="rounded-lg bg-white border border-primary/20 shadow-lg shadow-primary/5 overflow-hidden flex flex-col h-full relative">
+<!-- Top Accent -->
+<div class="h-1.5 w-full bg-primary"></div>
+<div class="p-6 flex flex-col gap-6">
+<!-- Header -->
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-1 text-primary mb-1">
+<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+<span class="text-xs font-bold uppercase tracking-wider">Priority Acceleration</span>
+</div>
+<h3 class="text-text-main text-xl font-bold">Logistics &amp; Handling</h3>
+</div>
+</div>
+<p class="text-text-sub text-sm leading-relaxed">
+                                Skip the drafting queue. We professionally format your evidence and route your claim through our expedited API channels.
+                            </p>
+<hr class="border-border-light"/>
+<!-- Features -->
+<ul class="flex flex-col gap-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-600 shrink-0">check_circle</span>
+<div>
+<p class="text-text-main text-sm font-semibold">Professional Case Drafting</p>
+<p class="text-xs text-text-sub">We turn your chat logs into a legal-grade incident report.</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-600 shrink-0">check_circle</span>
+<div>
+<p class="text-text-main text-sm font-semibold">Expedited Escalation Queue</p>
+<p class="text-xs text-text-sub">Direct API submission to seller grievance officers.</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-600 shrink-0">check_circle</span>
+<div>
+<p class="text-text-main text-sm font-semibold">Dedicated Case Manager</p>
+<p class="text-xs text-text-sub">Human review of your proof before submission.</p>
+</div>
+</li>
+</ul>
+<div class="bg-background-light p-4 rounded-lg border border-border-light mt-2">
+<p class="text-xs text-text-sub text-center mb-1">One-time handling fee</p>
+<div class="flex items-baseline justify-center gap-1 text-text-main">
+<span class="text-4xl font-black tracking-tight">₹99</span>
+<span class="text-sm font-medium text-text-sub">/ case</span>
+</div>
+</div>
+<button class="w-full py-3.5 px-6 rounded bg-primary hover:bg-primary-dark transition-all transform active:scale-[0.98] text-white font-bold text-sm shadow-md flex items-center justify-center gap-2 group">
+<span>Activate Priority Handling</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<div class="flex items-center justify-center gap-4 opacity-60 grayscale hover:grayscale-0 transition-all">
+<div class="flex items-center gap-1" title="ISO 27001 Certified">
+<span class="material-symbols-outlined text-[16px]">security</span>
+<span class="text-[10px] font-semibold uppercase">Bank Grade Security</span>
+</div>
+<div class="w-px h-3 bg-gray-300"></div>
+<div class="flex items-center gap-1" title="PCI DSS Compliant">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span class="text-[10px] font-semibold uppercase">Encrypted Data</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

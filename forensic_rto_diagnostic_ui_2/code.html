@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr Forensic Evidence Probability Engine</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0B1C2D", // Navy
+                        "primary-dark": "#06101a",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1c23",
+                        "surface": "#ffffff",
+                        "alert": "#C62828", // Alert Red
+                        "alert-light": "#FFEBEE",
+                        "success": "#10b981",
+                        "warning": "#f59e0b",
+                        "subtle": "#94a3b8",
+                        "border-color": "#e2e8f0"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'card': '0 2px 8px -2px rgba(0, 0, 0, 0.05), 0 1px 4px -1px rgba(0, 0, 0, 0.02)',
+                        'glow-red': '0 0 20px rgba(198, 40, 40, 0.25)',
+                        'glow-primary': '0 0 15px rgba(11, 28, 45, 0.2)',
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.375rem",
+                        "xl": "0.5rem",
+                        "full": "9999px"
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7f8;
+            color: #1e293b;
+        }
+        h1, h2, h3, h4, h5, h6, .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .progress-bar {
+            background: conic-gradient(#C62828 78%, #e2e8f0 0);
+        }
+    </style>
+</head>
+<body class="antialiased bg-background-light overflow-x-hidden min-h-screen flex flex-col">
+<header data-shared="true"></header>
+<main class="flex-1 max-w-[1440px] w-full mx-auto px-6 py-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h2 class="font-display text-3xl font-bold text-primary tracking-tight">Case #IND-99284</h2>
+<span class="px-3 py-1 rounded-full bg-alert-light border border-alert/20 text-alert text-xs font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">gavel</span> Evidence Pending
+                    </span>
+</div>
+<div class="flex items-center gap-4 text-sm text-slate-500 font-body">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">local_shipping</span> Express Logistics</span>
+<span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+<span>Created: Oct 24, 2023</span>
+<span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+<span>Target: Proof of No-Attempt</span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-700 text-sm font-bold rounded shadow-sm hover:bg-slate-50 font-display">
+<span class="material-symbols-outlined text-[18px]">history</span> Case History
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-bold rounded shadow-glow-primary hover:bg-primary-dark transition-colors font-display">
+<span class="material-symbols-outlined text-[18px]">lock</span> Freeze Payout
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<div class="lg:col-span-3 flex flex-col gap-6">
+<div class="bg-surface rounded-lg border border-border-color p-6 shadow-card flex flex-col items-center text-center relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-alert animate-pulse-slow"></div>
+<div class="w-full flex justify-between items-center mb-6">
+<h3 class="font-display text-sm font-bold text-slate-500 uppercase tracking-wider">Probability of Fraud</h3>
+<span class="flex h-2 w-2 rounded-full bg-alert animate-ping"></span>
+</div>
+<div class="relative size-48 rounded-full progress-bar shadow-glow-red mb-6 flex items-center justify-center p-[18px]">
+<div class="bg-surface w-full h-full rounded-full flex flex-col items-center justify-center relative z-10 shadow-inner">
+<span class="font-display text-5xl font-bold text-primary tracking-tighter">78<span class="text-2xl text-slate-400">%</span></span>
+<span class="text-xs font-bold text-alert uppercase mt-1 tracking-wide">High Probability</span>
+</div>
+</div>
+<div class="w-full text-left border-t border-slate-100 pt-4">
+<p class="text-xs text-slate-400 font-bold uppercase mb-2">Calculated Weight</p>
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="text-slate-600">GPS Mismatch</span>
+<span class="font-bold text-alert">+45%</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-600">No Call Record</span>
+<span class="font-bold text-alert">+20%</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-600">Short Duration</span>
+<span class="font-bold text-alert">+13%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface rounded-lg border border-border-color p-5 shadow-card">
+<div class="flex items-center justify-between mb-3">
+<h4 class="font-display text-sm font-bold text-slate-900">Historical Pattern</h4>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">fingerprint</span>
+</div>
+<div class="flex items-center gap-3 mb-2">
+<div class="h-10 w-10 rounded bg-slate-100 flex items-center justify-center text-primary font-bold text-xs border border-slate-200">
+                            EL
+                        </div>
+<div>
+<p class="text-sm font-bold text-primary">Express Logistics</p>
+<p class="text-xs text-slate-500">Hub: Mumbai Central</p>
+</div>
+</div>
+<div class="mt-3 p-2 bg-slate-50 rounded border border-slate-100 text-xs text-slate-600 leading-relaxed">
+                        This hub has a <strong>88% correlation</strong> with fake RTO attempts on weekends.
+                    </div>
+</div>
+</div>
+<div class="lg:col-span-6 flex flex-col gap-6">
+<div class="bg-surface rounded-lg border border-border-color shadow-card h-full flex flex-col">
+<div class="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+<h3 class="font-display text-base font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-alert">timeline</span> Evidence Timeline Overlay
+                        </h3>
+<span class="text-xs font-medium px-2 py-1 bg-white border border-slate-200 rounded text-slate-500 shadow-sm">Syncing Proofs...</span>
+</div>
+<div class="p-8 flex-1 overflow-y-auto">
+<div class="relative pl-4">
+<div class="absolute left-[19px] top-2 bottom-2 w-0.5 bg-slate-200 -z-0"></div>
+<div class="relative flex gap-6 pb-12 group">
+<div class="relative z-10 flex-shrink-0 size-10 rounded-full bg-white border-2 border-slate-300 flex items-center justify-center text-slate-400 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</div>
+<div class="pt-1">
+<p class="font-display text-sm font-bold text-primary">Order Shipped</p>
+<p class="text-xs text-slate-500 font-mono mt-0.5">Oct 24, 09:30 AM</p>
+</div>
+</div>
+<div class="relative flex gap-6 pb-12 group">
+<div class="relative z-10 flex-shrink-0 size-10 rounded-full bg-white border-2 border-alert text-alert flex items-center justify-center shadow-glow-red">
+<span class="material-symbols-outlined text-[20px]">radar</span>
+</div>
+<div class="pt-1 w-full">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-display text-sm font-bold text-primary">GPS Evidence Detected</p>
+<p class="text-xs text-slate-500 font-mono mt-0.5">Oct 26, 10:00:15 AM</p>
+</div>
+<span class="px-2 py-0.5 bg-alert text-white text-[10px] font-bold rounded uppercase">High Weight</span>
+</div>
+<div class="mt-3 p-3 bg-red-50 border border-alert/30 rounded-md">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-alert text-[18px]">wrong_location</span>
+<div>
+<p class="text-xs font-bold text-primary mb-1">Location Mismatch</p>
+<p class="text-xs text-slate-600">Driver scan coordinates reflect <strong class="text-alert">540m distance</strong> from delivery geolocation.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute left-[19px] top-[148px] h-[140px] w-0.5 bg-white z-10"></div>
+<div class="absolute left-[18px] top-[148px] h-[140px] w-[3px] border-l-2 border-dashed border-alert z-20"></div>
+<div class="relative flex gap-6 pb-4">
+<div class="relative z-10 flex-shrink-0 size-10 rounded-full bg-primary text-white flex items-center justify-center shadow-glow-primary">
+<span class="material-symbols-outlined text-[20px]">call_missed</span>
+</div>
+<div class="pt-1 w-full">
+<p class="font-display text-sm font-bold text-primary">No-Call Event</p>
+<p class="text-xs text-slate-500 font-mono mt-0.5">Oct 26, 10:01:00 AM</p>
+<div class="mt-3 flex gap-3">
+<div class="flex-1 p-3 border border-dashed border-slate-300 rounded bg-slate-50 flex flex-col items-center justify-center cursor-pointer hover:border-primary hover:bg-blue-50 transition-colors group">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary mb-1">add_a_photo</span>
+<span class="text-[10px] font-bold text-slate-500 group-hover:text-primary">Add Proof</span>
+</div>
+<div class="flex-1 p-3 border border-slate-200 rounded bg-white shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-success text-[18px]">check_circle</span>
+<div>
+<p class="text-[10px] font-bold text-primary">Virtual Number Log</p>
+<p class="text-[10px] text-slate-500">Auto-Verified</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-3 flex flex-col gap-6">
+<div class="bg-surface rounded-lg border border-border-color shadow-card p-0 overflow-hidden">
+<div class="bg-primary p-4 border-b border-border-color flex justify-between items-center">
+<h3 class="font-display text-sm font-bold text-white">Upload Evidence</h3>
+<span class="material-symbols-outlined text-white/50 text-[18px]">cloud_upload</span>
+</div>
+<div class="p-5 flex flex-col gap-4">
+<p class="text-xs text-slate-500 leading-snug">
+                            Upload screenshots, SMS logs, or call recordings to increase the fraud probability weight.
+                        </p>
+<div class="border-2 border-dashed border-slate-300 rounded-lg p-6 flex flex-col items-center justify-center bg-slate-50 hover:bg-slate-100 hover:border-primary/50 transition-all cursor-pointer">
+<div class="bg-white p-2 rounded-full shadow-sm mb-3">
+<span class="material-symbols-outlined text-primary text-[24px]">upload_file</span>
+</div>
+<p class="text-sm font-bold text-primary">Click to Upload</p>
+<p class="text-[10px] text-slate-400 mt-1">PNG, JPG, PDF (Max 5MB)</p>
+</div>
+<div class="space-y-2 mt-2">
+<p class="text-xs font-bold text-slate-900 uppercase tracking-wide mb-2">Applied Proofs</p>
+<div class="flex items-center gap-3 p-2 border border-slate-200 rounded bg-white">
+<span class="material-symbols-outlined text-alert text-[18px]">image</span>
+<div class="flex-1 min-w-0">
+<p class="text-xs font-bold text-slate-700 truncate">sms_header_fail.jpg</p>
+<p class="text-[10px] text-slate-400">Timestamp Mismatch</p>
+</div>
+<span class="text-[10px] font-bold text-alert bg-alert-light px-1.5 py-0.5 rounded">+15%</span>
+</div>
+<div class="flex items-center gap-3 p-2 border border-slate-200 rounded bg-white">
+<span class="material-symbols-outlined text-alert text-[18px]">mic</span>
+<div class="flex-1 min-w-0">
+<p class="text-xs font-bold text-slate-700 truncate">ivr_recording_log.mp3</p>
+<p class="text-[10px] text-slate-400">0s Duration</p>
+</div>
+<span class="text-[10px] font-bold text-alert bg-alert-light px-1.5 py-0.5 rounded">+20%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface rounded-lg border border-border-color shadow-card p-5">
+<h3 class="font-display text-sm font-bold text-slate-900 mb-4">Execute Actions</h3>
+<div class="flex flex-col gap-3">
+<button class="w-full flex items-center justify-between p-3 rounded border border-slate-200 bg-white hover:border-primary/50 hover:shadow-sm group transition-all text-left">
+<div class="flex items-center gap-3">
+<div class="p-1.5 rounded bg-blue-50 text-primary">
+<span class="material-symbols-outlined text-[18px]">description</span>
+</div>
+<span class="text-sm font-bold text-slate-700 group-hover:text-primary">Download Forensics</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[16px]">download</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 rounded border border-slate-200 bg-white hover:border-alert/50 hover:shadow-sm group transition-all text-left">
+<div class="flex items-center gap-3">
+<div class="p-1.5 rounded bg-alert-light text-alert">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+</div>
+<span class="text-sm font-bold text-slate-700 group-hover:text-alert">Auto-Dispute Claim</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 bg-surface rounded-lg border border-border-color shadow-card overflow-hidden">
+<div class="px-6 py-4 border-b border-border-color flex items-center justify-between bg-slate-50/50">
+<h3 class="font-display text-lg font-bold text-primary">Forensic Data Logs</h3>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 text-xs font-medium bg-primary text-white border border-primary rounded shadow-sm">GPS Telemetry</button>
+<button class="px-3 py-1.5 text-xs font-medium bg-transparent text-slate-500 hover:text-primary">Call Records</button>
+<button class="px-3 py-1.5 text-xs font-medium bg-transparent text-slate-500 hover:text-primary">User Uploads</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm font-body">
+<thead class="bg-slate-50 text-slate-500 uppercase tracking-wider text-xs font-medium border-b border-border-color">
+<tr>
+<th class="px-6 py-3">Timestamp</th>
+<th class="px-6 py-3">Event Type</th>
+<th class="px-6 py-3">Evidence Source</th>
+<th class="px-6 py-3">Details</th>
+<th class="px-6 py-3 text-right">Added Weight</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-color text-slate-700">
+<tr class="hover:bg-slate-50 transition-colors bg-red-50/30">
+<td class="px-6 py-4 font-mono text-xs">Oct 26, 10:01:00</td>
+<td class="px-6 py-4 font-bold text-alert flex items-center gap-2">
+<span class="size-2 rounded-full bg-alert"></span> Failed Delivery
+                            </td>
+<td class="px-6 py-4"><span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-slate-400">smartphone</span> User Upload</span></td>
+<td class="px-6 py-4 text-alert font-bold">Screenshot: "Customer Unreachable" SMS</td>
+<td class="px-6 py-4 text-right"><span class="bg-alert-light text-alert px-2 py-1 rounded text-xs font-bold">+20%</span></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs">Oct 26, 10:00:15</td>
+<td class="px-6 py-4 font-medium">Driver Scan</td>
+<td class="px-6 py-4">API Telemetry</td>
+<td class="px-6 py-4 text-slate-500">GPS: 19.0760° N, 72.8777° E (540m Error)</td>
+<td class="px-6 py-4 text-right"><span class="bg-orange-100 text-orange-600 px-2 py-1 rounded text-xs font-bold">+45%</span></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors opacity-60">
+<td class="px-6 py-4 font-mono text-xs">Oct 26, 08:30:00</td>
+<td class="px-6 py-4">Sort Facility</td>
+<td class="px-6 py-4">Carrier API</td>
+<td class="px-6 py-4 text-slate-500">Standard Scan</td>
+<td class="px-6 py-4 text-right"><span class="bg-slate-100 text-slate-500 px-2 py-1 rounded text-xs font-bold">0%</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+
+<script src="../shared-nav-loader.js"></script>
+</body></html>

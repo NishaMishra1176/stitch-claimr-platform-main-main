@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Logistics Recovery</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b1c2d",
+                        "primary-hover": "#162a3f",
+                        "alert-red": "#C62828",
+                        "alert-red-light": "#FFEBEE",
+                        "electric-cyan": "#00E5FF",
+                        "background-light": "#ffffff",
+                        "background-dark": "#21262c",
+                        "border-light": "#e2e8f0",
+                        "text-main": "#121417",
+                        "text-muted": "#64748b",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%23f1f5f9' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .animate-scan {
+            animation: scan 3s linear infinite;
+        }
+        @keyframes scan {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main overflow-x-hidden">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark bg-grid-pattern bg-repeat">
+<!-- Top Navigation -->
+<header data-shared="true"></header>
+<main class="flex-1 flex flex-col items-center w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-10 gap-16">
+<!-- Hero Section -->
+<section class="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Left Content -->
+<div class="lg:col-span-6 flex flex-col gap-8 order-2 lg:order-1">
+<div class="flex items-center gap-2 px-3 py-1 rounded-full border border-alert-red/20 bg-alert-red-light w-fit">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-alert-red opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-alert-red"></span>
+</span>
+<span class="text-alert-red text-xs font-bold uppercase tracking-wide">Live Alert: RTO Spike in North Zone</span>
+</div>
+<div class="space-y-4">
+<h1 class="text-5xl md:text-6xl font-black leading-[1.1] tracking-tight text-primary">
+                            Recover Your Lost<br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#4a5f75]">COD &amp; RTO Losses</span>
+</h1>
+<p class="text-lg text-text-muted max-w-lg leading-relaxed font-normal">
+                            The automated legal recovery engine for Indian e-commerce. Fight fake RTOs and courier fraud instantly with our AI-powered legal stack.
+                        </p>
+</div>
+<div class="flex flex-wrap gap-4 pt-2">
+<button class="flex items-center justify-center rounded-lg h-12 px-8 bg-primary hover:bg-primary-hover text-white text-base font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]">
+                            Start Free Audit
+                            <span class="material-symbols-outlined ml-2 text-[18px]">arrow_forward</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-12 px-8 bg-white border-2 border-alert-red text-alert-red hover:bg-alert-red hover:text-white text-base font-bold transition-all hover:scale-[1.02]">
+<span class="material-symbols-outlined mr-2 text-[20px] filled">report</span>
+                            Report Live Fraud
+                        </button>
+</div>
+<div class="flex items-center gap-4 text-xs text-text-muted font-medium mt-4">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-green-600">check_circle</span>
+<span>No Win, No Fee</span>
+</div>
+<div class="h-1 w-1 rounded-full bg-gray-300"></div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-green-600">verified_user</span>
+<span>GDPR Compliant</span>
+</div>
+<div class="h-1 w-1 rounded-full bg-gray-300"></div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span>24hr Turnaround</span>
+</div>
+</div>
+</div>
+<!-- Right Diagnostic Widget -->
+<div class="lg:col-span-6 order-1 lg:order-2 w-full flex justify-center lg:justify-end">
+<div class="relative w-full max-w-md aspect-square bg-white rounded-xl border border-border-light shadow-2xl shadow-primary/5 overflow-hidden group">
+<!-- Widget Header -->
+<div class="absolute top-0 left-0 w-full p-4 flex justify-between items-center bg-white/90 backdrop-blur-sm z-20 border-b border-border-light/50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary animate-pulse">radar</span>
+<span class="text-xs font-mono font-bold text-primary tracking-wider">DIAGNOSTIC_MODE_ACTIVE</span>
+</div>
+<span class="text-[10px] font-mono text-text-muted">ID: #PKG-8821-X</span>
+</div>
+<!-- 3D Package Area -->
+<div class="absolute inset-0 flex items-center justify-center bg-gray-50">
+<!-- Scanning Laser -->
+<div class="absolute w-full h-[2px] bg-electric-cyan shadow-[0_0_15px_#00E5FF] z-10 animate-scan opacity-0"></div>
+<!-- Package Asset (Using a placeholder but representing a 3D box) -->
+<div class="relative w-48 h-48 transition-transform duration-500 hover:scale-105">
+<img alt="3D brown cardboard package box isometric view" class="w-full h-full object-contain drop-shadow-xl filter grayscale contrast-125 opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDXDcJEMw7AZFefOlM-aKNVmKzuIMzMnMsd-n-BJwQqm20QPudAs_XLOUqPSOnmzjUqBZ6uj46pbRYgBbiqxUOMlwU374B6ISTjocZaEtAObDG2U1x-Vp1gF9jp3CO4taH_KXA4kWxKIWbtU0glBicFgFNUIAaz3Ye0q1rW10XI4Sd_dgl8ceO3xGilK3Ih8rXeixKqldKYXg8OHdTJuh_d05Ok_3ugXpnOGGxdpn_N8srV85TOPsF-oCg-OS4vSx_ClTARdcWcmo"/>
+</div>
+<!-- Floating "Anomaly" Tags -->
+<div class="absolute top-1/3 left-8 bg-white/95 backdrop-blur border-l-4 border-alert-red px-3 py-2 rounded shadow-lg transform -translate-x-4 animate-[pulse_4s_ease-in-out_infinite]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-alert-red text-[16px]">warning</span>
+<div>
+<p class="text-[10px] uppercase font-bold text-text-muted">Weight Mismatch</p>
+<p class="text-xs font-bold text-text-main">0.5kg vs 2.1kg</p>
+</div>
+</div>
+</div>
+<div class="absolute bottom-1/4 right-6 bg-white/95 backdrop-blur border-l-4 border-electric-cyan px-3 py-2 rounded shadow-lg transform translate-x-2 delay-700 animate-[pulse_5s_ease-in-out_infinite]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-electric-cyan text-[16px] fill-current">location_off</span>
+<div>
+<p class="text-[10px] uppercase font-bold text-text-muted">Fake Attempt</p>
+<p class="text-xs font-bold text-text-main">GPS Mismatch</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Console -->
+<div class="absolute bottom-0 left-0 w-full bg-primary text-white p-4 font-mono text-xs z-20">
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<div class="text-electric-cyan">&gt; Scanning manifest...</div>
+<div class="opacity-70">&gt; Analyzing geometric variance...</div>
+<div class="text-alert-red font-bold">&gt; FRAUD PROBABILITY: 94%</div>
+</div>
+<button class="bg-white/10 hover:bg-white/20 px-3 py-1 rounded text-[10px] border border-white/20 transition-colors">
+                                    VIEW FULL REPORT
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Partners Strip -->
+<section class="w-full py-8 border-y border-border-light bg-white/50 backdrop-blur-sm">
+<p class="text-center text-xs font-bold text-text-muted uppercase tracking-widest mb-6">Trusted Integrations &amp; Logistics Partners</p>
+<div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+<img alt="Shopify Logo" class="h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP4WaEwcKvgmZ1ltJaOza2vGYuKjwmHOhE0gj_ML7vMqJ-eY9gQ_7_Uw1S8qo83i52YU2faS1ZbkxZWEYjkMJ5dsDpwg4ulUhMMDya13eNp_Yepit7IDB5Cx6Ch566RJY1l41oMKcrJp2UUpC3eD8aAF7QFcu0Vd7BQK6E6HxXmMOWiFdHvxpIA2_yJ6GZMjaW1xIHF9uhL7lGIpzQ2_wwJ91ZugG4dNoYh8R_olBqS1-nwgsUzgYbJRroZmJXUpzYOYIthR9N7HQ"/>
+<img alt="Amazon Logo" class="h-7 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpunOCUJBwgLBPpUSz9i9C5KK5KRcHzPcNkb27sZm_UkA2G9Xt5zGl1QzXmfDxoezuRNgup3PzdBI2yUTDcbFkvP9wJihWhRtAvDg2z3Shv69qp0MRBHxT1wNIPv9F7mdVDEuPqYDxJ47LXVnCWDX9i4_AZsU7VESjKSP4o19iY8AodlLj9T1hvMGUxxNuAaZlSV7nIhGeKOXiyeg2mt6DzAhmrsoQy6IYgcG6TEBQ-mvrnKMg8QuwzyCcxvGjwnYZ5CL-0s8vrnY"/>
+<img alt="Visa Logo" class="h-5 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdZu5mZUV9Z-2I3--ARDY18h4nCzpSkfmggL0eKgIa8qdQ7SE4-UcqgecuCH4I3QbkJhEWXHMruNO5mVtcfF-ujOFwuUW7zllQvozQWn8rkfoIgGv9Bv3MH2Mg4MvPDpDhl6rxVmDsBu2A8mpiD1VWHU1d20iRoSHegfUJHFxWw8RlJ7lAwDtq3D07wJotKsCXZUl_GwkIjTz60KM_PIop2NYDKZiaaOncp-n4UbRDorMlO8Cjb0Ta2AT-MHxe0HpDS1slRFi5Ars"/>
+<img alt="Paypal Logo" class="h-6 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7OFnDa94-YhG1zd_B-wfa6tHphRpkgAem47pPq0l5MLjEiwsl2fIwGIsvCIPF87rUzG9vy4NqdKz0XNGaLSi60TuJ9jc3FaE4wtEx1dnMLBuo4KsdJoKoaP3ltqkCrWwfnxYzfT9CfFKBWOn2CiBy6Ebz4bEEIk4cANkGOAin5EVD5EeKfbx34dJ-aLMWIJuh66VB7PFjPzZ-ef3fS4qLKJCpqYJSopdbkTfKOX7Jz_eSjafrBwD1_ZosP0ePlj15o1y4zJSpCaY"/>
+<!-- Representing logistics partner like BlueDart with generic text since SVG might be tricky -->
+<span class="text-xl font-black font-display tracking-tight text-gray-800">BlueDart</span>
+<span class="text-xl font-black font-display tracking-tight text-gray-800">Delhivery</span>
+</div>
+</section>
+<!-- Stats & Map Section -->
+<section class="w-full grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- KPI Cards (Left Column) -->
+<div class="lg:col-span-4 flex flex-col gap-4">
+<div class="bg-white rounded-lg border border-border-light p-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<p class="text-text-muted text-sm font-medium">Total Recovered</p>
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full">+12% this week</span>
+</div>
+<p class="text-primary text-3xl font-bold font-display tracking-tight">₹4.52 Cr</p>
+<div class="w-full bg-gray-100 h-1.5 rounded-full mt-4 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 78%"></div>
+</div>
+</div>
+<div class="bg-white rounded-lg border border-border-light p-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<p class="text-text-muted text-sm font-medium">Active Claims</p>
+<span class="material-symbols-outlined text-primary text-xl">gavel</span>
+</div>
+<p class="text-primary text-3xl font-bold font-display tracking-tight">1,248</p>
+<p class="text-xs text-text-muted mt-2">Processing across 14 carriers</p>
+</div>
+<div class="bg-white rounded-lg border border-border-light p-6 shadow-sm hover:shadow-md transition-shadow flex-1">
+<div class="flex justify-between items-start mb-2">
+<p class="text-text-muted text-sm font-medium">Win Rate</p>
+<span class="material-symbols-outlined text-green-600 text-xl">trending_up</span>
+</div>
+<p class="text-primary text-3xl font-bold font-display tracking-tight">92.4%</p>
+<p class="text-xs text-text-muted mt-2">Industry avg: 45%</p>
+</div>
+</div>
+<!-- Live Map Dashboard (Right Column) -->
+<div class="lg:col-span-8 bg-white rounded-xl border border-border-light shadow-sm overflow-hidden flex flex-col">
+<div class="p-5 border-b border-border-light flex justify-between items-center bg-gray-50/50">
+<div>
+<h3 class="font-bold text-primary font-display text-lg">Live Recovery Map</h3>
+<p class="text-xs text-text-muted">Real-time claim resolutions across India</p>
+</div>
+<div class="flex gap-2">
+<span class="flex h-3 w-3 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+</span>
+<span class="text-xs font-bold text-green-600">LIVE FEED</span>
+</div>
+</div>
+<div class="flex flex-1 min-h-[400px]">
+<!-- Map Visual (Using CSS/Abstract rep for Map of India) -->
+<div class="flex-1 relative bg-white p-6 flex items-center justify-center overflow-hidden">
+<!-- Using an image for the map but overlaid with CSS hotspots -->
+<div class="relative w-full h-full max-h-[400px] max-w-[400px]">
+<img class="w-full h-full object-contain opacity-20 filter grayscale invert-0" data-alt="Interactive map of India showing recovery hotspots" data-location="India" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1tVKEVmz582BWWDysYKmRmnToYLqBovLD_4WEh-DFD7q07iEs7tv-A7ECJs3WzPi15Jw3QIetVn04PHQxgDkwsgX-a6a8T-ocYEVmTnWqwH_s5MuWtcQAq7BNHVMIg87qBqj30cGUCKLs5G4o_qeAonfnAfUP3QtO9oaf1I5i8HBZl_T2IxZ2Dad1yyaIxKIZu6-aEQ5Dp7TezJmytml16E1k4VnWz22PY81p4ztBQzdclK_L0UIUQPJWiSoMfvcLENX53o5HKCA"/>
+<!-- Hotspots -->
+<div class="absolute top-[30%] left-[30%] group cursor-pointer">
+<div class="w-3 h-3 bg-primary rounded-full animate-pulse-slow"></div>
+<div class="w-8 h-8 bg-primary/20 rounded-full absolute -top-2.5 -left-2.5 animate-ping"></div>
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10 pointer-events-none">
+                                        Delhi NCR: ₹1.2L Recovered
+                                    </div>
+</div>
+<div class="absolute top-[60%] left-[25%] group cursor-pointer">
+<div class="w-4 h-4 bg-primary rounded-full animate-pulse-slow delay-75"></div>
+<div class="w-10 h-10 bg-primary/20 rounded-full absolute -top-3 -left-3 animate-ping delay-100"></div>
+<div class="absolute bottom-5 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10 pointer-events-none">
+                                        Mumbai: ₹45k Recovered
+                                    </div>
+</div>
+<div class="absolute top-[75%] left-[40%] group cursor-pointer">
+<div class="w-3 h-3 bg-alert-red rounded-full animate-pulse-slow delay-150"></div>
+<div class="w-8 h-8 bg-alert-red/20 rounded-full absolute -top-2.5 -left-2.5 animate-ping delay-200"></div>
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-alert-red text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10 pointer-events-none">
+                                        Bangalore: HIGH FRAUD ALERT
+                                    </div>
+</div>
+</div>
+</div>
+<!-- Side Log Feed -->
+<div class="w-64 border-l border-border-light bg-gray-50 flex flex-col">
+<div class="p-3 border-b border-border-light/50 text-[10px] uppercase font-bold text-text-muted">Recent Activity</div>
+<div class="overflow-y-auto max-h-[360px] p-2 space-y-2">
+<!-- Log Item -->
+<div class="bg-white p-2 rounded border border-border-light shadow-sm text-xs">
+<div class="flex justify-between text-text-muted mb-1">
+<span>12:42 PM</span>
+<span class="text-primary font-bold">Bangalore</span>
+</div>
+<div class="font-bold text-text-main">₹4,500 Recovered</div>
+<div class="text-[10px] text-text-muted truncate">ID: #CLM-9921-A • Weight Dispute</div>
+</div>
+<!-- Log Item -->
+<div class="bg-white p-2 rounded border border-border-light shadow-sm text-xs">
+<div class="flex justify-between text-text-muted mb-1">
+<span>12:38 PM</span>
+<span class="text-primary font-bold">Delhi</span>
+</div>
+<div class="font-bold text-text-main">₹1,200 Recovered</div>
+<div class="text-[10px] text-text-muted truncate">ID: #CLM-8822-B • Lost in Transit</div>
+</div>
+<!-- Log Item -->
+<div class="bg-white p-2 rounded border border-border-light shadow-sm text-xs">
+<div class="flex justify-between text-text-muted mb-1">
+<span>12:30 PM</span>
+<span class="text-primary font-bold">Mumbai</span>
+</div>
+<div class="font-bold text-text-main">Claim Submitted</div>
+<div class="text-[10px] text-text-muted truncate">ID: #CLM-7733-C • Fake Delivery</div>
+</div>
+<!-- Log Item -->
+<div class="bg-white p-2 rounded border border-border-light shadow-sm text-xs">
+<div class="flex justify-between text-text-muted mb-1">
+<span>12:15 PM</span>
+<span class="text-primary font-bold">Pune</span>
+</div>
+<div class="font-bold text-text-main">₹8,900 Recovered</div>
+<div class="text-[10px] text-text-muted truncate">ID: #CLM-6644-D • Damaged Goods</div>
+</div>
+<div class="bg-white p-2 rounded border border-border-light shadow-sm text-xs opacity-60">
+<div class="flex justify-between text-text-muted mb-1">
+<span>11:55 AM</span>
+<span class="text-primary font-bold">Chennai</span>
+</div>
+<div class="font-bold text-text-main">Audit Complete</div>
+<div class="text-[10px] text-text-muted truncate">ID: #CLM-5521-E • Monthly Check</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer data-shared="true"></footer>
+</div>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

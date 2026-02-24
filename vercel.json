@@ -1,0 +1,169 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/panic-interceptor",
+      "destination": "/claimr_homepage_-_panic_interceptor_1/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/command-center",
+      "destination": "/claimr_home_-_command_center_variant_1/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/escalation-engine",
+      "destination": "/claimr_home_-_escalation_engine_variant_1/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/forensic-engine",
+      "destination": "/claimr_home_-_forensic_engine_variant_2/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/fake-delivery-proof",
+      "destination": "/fake_delivery_evidence_page_variant_2/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/fake-rto-checker",
+      "destination": "/fake_rto_forensic_checker_1/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/pending-case-risk",
+      "destination": "/pending_case_danger_visualizer_variant_1/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/wallet-blocked-recovery",
+      "destination": "/wallet_blocked_legal_fix/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/claim-reversed",
+      "destination": "/claim_reversal_visualizer_variant_3/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/recovery-dashboard",
+      "destination": "/seller_recovery_management_dashboard/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/payment-recovery",
+      "destination": "/payment_recovery_action_hub/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/sla-evidence-engine",
+      "destination": "/sla_evidence_engine_variant_2/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/nodal-directory",
+      "destination": "/nodal_officer_email_directory/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/legal-notice",
+      "destination": "/legal_notice_generator_1/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works",
+      "destination": "/how_it_works_&_about_claimr/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/financial-triage",
+      "destination": "/claimr_home_-_financial_triage_variant_1_1/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/risk-dashboard",
+      "destination": "/master_risk_dashboard_variant_1_1/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/seller_recovery_management_dashboard/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/evidence",
+      "destination": "/sla_evidence_engine_variant_2/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/legal",
+      "destination": "/claimr_home_-_escalation_engine_variant_1/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/recovery",
+      "destination": "/payment_recovery_action_hub/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/triage",
+      "destination": "/claimr_home_-_financial_triage_variant_1_1/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/forensics",
+      "destination": "/claimr_home_-_forensic_engine_variant_2/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/escalation",
+      "destination": "/claimr_home_-_escalation_engine_variant_1/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/rto-checker",
+      "destination": "/fake_rto_forensic_checker_1/code.html",
+      "permanent": true
+    },
+    {
+      "source": "/wallet-fix",
+      "destination": "/wallet_blocked_legal_fix/code.html",
+      "permanent": true
+    }
+  ]
+}

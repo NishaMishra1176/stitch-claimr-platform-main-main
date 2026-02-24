@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Visual Wallet Recovery Console</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1289a1",
+                        "primary-dark": "#0e6b7d",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#111e21",
+                        "fraud-red": "#E62929",
+                        "alert-orange": "#F97316",
+                        "recovery-green": "#26B226",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/svg%3E\")",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 antialiased overflow-x-hidden selection:bg-primary/20 selection:text-primary">
+<header data-shared="true"></header>
+<main class="relative pt-24 pb-32 min-h-screen bg-grid-pattern">
+<div class="mx-auto max-w-5xl px-4 text-center mb-12">
+<h1 class="text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl mb-4">
+            Wallet Recovery <span class="text-primary">Console</span>
+</h1>
+<p class="mx-auto max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+            Resolution hub for blocked funds. Track the release timeline and minimize loss.
+        </p>
+</div>
+<div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 mb-24">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="relative group overflow-hidden rounded-2xl bg-white p-6 shadow-xl ring-1 ring-slate-900/5 transition-all hover:-translate-y-1 dark:bg-slate-800 dark:ring-white/10">
+<div class="absolute top-0 left-0 h-1.5 w-full bg-fraud-red"></div>
+<div class="flex flex-col items-center justify-center py-2">
+<div class="mb-4 flex size-16 items-center justify-center rounded-full bg-red-50 text-fraud-red group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">lock_person</span>
+</div>
+<p class="text-sm font-semibold uppercase tracking-wider text-slate-500">Total Blocked Funds</p>
+<h2 class="mt-2 text-4xl font-mono font-bold text-slate-900 dark:text-white">₹12,499</h2>
+<div class="mt-4 flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-bold text-red-700 dark:bg-red-900/30 dark:text-red-300">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                        ACTION REQUIRED
+                    </div>
+</div>
+</div>
+<div class="relative overflow-hidden rounded-2xl bg-white p-6 shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10">
+<div class="absolute top-0 left-0 h-1.5 w-full bg-primary"></div>
+<div class="flex justify-between items-center mb-6">
+<p class="text-sm font-semibold uppercase tracking-wider text-slate-500">Loss Calculator</p>
+<span class="material-symbols-outlined text-slate-400 text-lg">calculate</span>
+</div>
+<div class="flex flex-col items-center justify-center">
+<div class="relative mb-2 h-20 w-40 overflow-hidden">
+<div class="absolute top-0 left-0 h-40 w-40 rounded-full border-[14px] border-slate-100 box-border border-b-transparent border-l-recovery-green border-t-recovery-green border-r-alert-orange rotate-[-45deg] dark:border-slate-700"></div>
+<div class="absolute bottom-0 left-1/2 h-full w-1 origin-bottom bg-slate-800 transition-transform duration-500 ease-out rotate-[-75deg] dark:bg-white"></div>
+<div class="absolute bottom-0 left-1/2 h-3 w-3 -translate-x-1/2 translate-y-1/2 rounded-full bg-slate-900 dark:bg-white"></div>
+</div>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white">₹0.00</h3>
+<p class="text-xs font-bold text-recovery-green mt-1">100% RECOVERABLE</p>
+</div>
+</div>
+<div class="relative overflow-hidden rounded-2xl bg-white p-6 shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 flex flex-col justify-center gap-4">
+<div class="absolute top-0 left-0 h-1.5 w-full bg-slate-900 dark:bg-slate-600"></div>
+<p class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-1">Resolution Actions</p>
+<button class="group flex w-full items-center gap-4 rounded-xl border border-slate-200 p-3 hover:border-primary hover:bg-primary/5 hover:shadow-md transition-all dark:border-slate-700 dark:hover:border-primary">
+<div class="flex size-10 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 group-hover:bg-indigo-100 group-hover:text-indigo-700">
+<span class="material-symbols-outlined">cloud_upload</span>
+</div>
+<div class="text-left">
+<div class="font-bold text-slate-900 dark:text-white">Upload Evidence</div>
+<div class="text-xs text-slate-500">POD &amp; Invoices</div>
+</div>
+</button>
+<button class="group flex w-full items-center gap-4 rounded-xl border border-slate-200 p-3 hover:border-fraud-red hover:bg-red-50 hover:shadow-md transition-all dark:border-slate-700 dark:hover:border-fraud-red dark:hover:bg-red-900/10">
+<div class="flex size-10 items-center justify-center rounded-lg bg-red-50 text-fraud-red group-hover:bg-red-100">
+<span class="material-symbols-outlined">gavel</span>
+</div>
+<div class="text-left">
+<div class="font-bold text-slate-900 dark:text-white">Send Ultimatum</div>
+<div class="text-xs text-slate-500">Issue Legal Notice</div>
+</div>
+</button>
+</div>
+</div>
+</div>
+<div class="mx-auto max-w-4xl px-4 text-center mb-16 relative">
+<span class="absolute top-1/2 left-0 w-full h-px bg-slate-200 -z-10 dark:bg-slate-800"></span>
+<span class="relative inline-block bg-background-light px-6 text-xl font-bold text-slate-900 dark:bg-background-dark dark:text-white">
+            Fund Release Timeline
+        </span>
+</div>
+<div class="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+<div class="absolute left-1/2 top-0 bottom-0 w-2 -translate-x-1/2 rounded-full bg-gradient-to-b from-fraud-red via-alert-orange via-primary to-recovery-green hidden md:block">
+<div class="absolute left-0 top-1/4 h-24 w-full bg-white/50 blur-sm animate-pulse"></div>
+</div>
+<div class="absolute left-8 top-0 bottom-0 w-1.5 bg-gradient-to-b from-fraud-red via-alert-orange via-primary to-recovery-green md:hidden rounded-full"></div>
+<div class="relative mb-24 md:mb-32">
+<div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0">
+<div class="w-full md:w-[42%] md:pr-12 pl-16 md:pl-0 order-2 md:order-1 relative group/card">
+<div class="absolute top-1/2 -right-6 h-[2px] w-6 bg-fraud-red hidden md:block"></div>
+<div class="absolute top-8 -left-8 h-[2px] w-8 bg-fraud-red md:hidden"></div>
+<div class="relative overflow-hidden rounded-2xl bg-white p-6 shadow-xl ring-1 ring-slate-900/5 transition-all hover:-translate-y-1 hover:shadow-2xl dark:bg-slate-800 dark:ring-white/10">
+<div class="absolute top-0 left-0 h-1.5 w-full bg-fraud-red"></div>
+<div class="mb-4 flex items-start justify-between">
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Blocked Funds</h3>
+<p class="text-sm text-slate-500">Order #4029 • Courier Fraud</p>
+</div>
+<span class="material-symbols-outlined text-fraud-red">lock</span>
+</div>
+<div class="rounded-lg bg-red-50 p-3 text-sm text-red-800 border border-red-100 dark:bg-red-900/20 dark:text-red-200 dark:border-red-900/30">
+<strong>Reason:</strong> Courier marked shipment as "Customer Refused" (Fake RTO). Funds frozen in escrow.
+                        </div>
+</div>
+</div>
+<div class="absolute left-8 md:left-1/2 top-8 md:top-1/2 flex size-12 md:size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg ring-4 ring-red-100 dark:bg-slate-800 dark:ring-red-900/30 order-1 z-10">
+<span class="material-symbols-outlined text-2xl md:text-3xl text-fraud-red">error</span>
+</div>
+<div class="w-full md:w-[42%] md:pl-12 pl-16 md:pl-0 order-3 flex justify-center md:justify-start">
+<div class="relative w-48 h-48 md:w-64 md:h-64 rounded-2xl bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 flex items-center justify-center shadow-inner border border-red-100 dark:border-red-900/30">
+<div class="w-3/4 h-3/4 bg-contain bg-center bg-no-repeat drop-shadow-2xl" data-alt="3D render of a glossy red warning triangle sign floating in air" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-xqh-lnqbobPfgUJ1CQqChBJCQwyTXqxCocvWvi4RZyvD0eHC2NaJhOLr_OCkcyNOr71wolZtiUyTkbz_TtTK38wJzTtkI68Sf0OYF9hM9MwXmY8HWcMRkHEN4goBgXzODQZvB872Fdj73u4Goh30vLAEwE-Sj7mOskr0UMVC2ck5NXz1Pot2vC3VaqMU3hXXV3GTRI723T9dNdm8zPLCtJyKFI36WP0fKUJX_FNnPyO7vqdbgl2piBpXDHBBYOzpQrDPlleWIpQ');"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative mb-24 md:mb-32">
+<div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0">
+<div class="w-full md:w-[42%] md:pr-12 pl-16 md:pl-0 order-3 md:order-1 flex justify-center md:justify-end">
+<div class="relative w-48 h-48 md:w-64 md:h-64 rounded-2xl bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900/20 dark:to-teal-800/20 flex items-center justify-center shadow-inner border border-teal-100 dark:border-teal-900/30">
+<div class="w-3/4 h-3/4 bg-contain bg-center bg-no-repeat drop-shadow-2xl" data-alt="3D render of a legal contract document with a pen" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDMszol0fh62-t1FfZXAcJCY5Enl6JQYLaYNR0ilt_-ODqyZHu8Z_Nbbkmbzi77IrJRz5uXrGUlcpKoCFxfmVGxOzpjxdXBsFnn0soMIDt1fp8_aYe0c58NrFLO1NznmNz7aWI4ub-mb71yOEucjNh0XLzj84PfnDkFug2QCzZrQjI-DlwyU-N8KjVEX7Q7XYIwjF5Aw6SshLDu8v0xSa2ixo-bs8KuVOS-obDAwMGUxyzGH1OCtiF_Fd96aSdl_XrjekOt0bnaakc');"></div>
+</div>
+</div>
+<div class="absolute left-8 md:left-1/2 top-8 md:top-1/2 flex size-12 md:size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg ring-4 ring-orange-100 dark:bg-slate-800 dark:ring-orange-900/30 order-1 z-10">
+<span class="material-symbols-outlined text-2xl md:text-3xl text-alert-orange">upload_file</span>
+</div>
+<div class="w-full md:w-[42%] md:pl-12 pl-16 md:pl-0 order-2 flex flex-col items-start relative">
+<div class="absolute top-1/2 -left-6 h-[2px] w-6 bg-alert-orange hidden md:block"></div>
+<div class="absolute top-8 -left-8 h-[2px] w-8 bg-alert-orange md:hidden"></div>
+<div class="relative w-full overflow-hidden rounded-2xl bg-white p-6 shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10">
+<div class="absolute top-0 left-0 h-1.5 w-full bg-alert-orange"></div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Upload Evidence</h3>
+<p class="text-sm text-slate-500 mb-4">Required documents to contest the block.</p>
+<div class="space-y-3">
+<div class="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-slate-700 dark:bg-slate-900">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">description</span>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Proof of Delivery (POD)</span>
+</div>
+<span class="rounded bg-orange-100 px-2 py-0.5 text-xs font-bold text-orange-700">MISSING</span>
+</div>
+<div class="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-slate-700 dark:bg-slate-900">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">receipt</span>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Original Invoice</span>
+</div>
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+</div>
+</div>
+<button class="mt-4 w-full rounded-lg bg-slate-900 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 transition-all">
+                            Upload POD
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<div class="relative mb-24 md:mb-32">
+<div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0">
+<div class="w-full md:w-[42%] md:pr-12 pl-16 md:pl-0 order-2 md:order-1 relative">
+<div class="absolute top-1/2 -right-6 h-[2px] w-6 bg-primary hidden md:block"></div>
+<div class="absolute top-8 -left-8 h-[2px] w-8 bg-primary md:hidden"></div>
+<div class="relative overflow-hidden rounded-2xl bg-white p-6 shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10">
+<div class="absolute top-0 left-0 h-1.5 w-full bg-primary"></div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Nodal Escalation</h3>
+<p class="text-sm text-slate-500 mb-4">Official dispute lodgment.</p>
+<div class="rounded-lg bg-blue-50 p-4 border border-blue-100 dark:bg-blue-900/20 dark:border-blue-900/30">
+<div class="flex items-start gap-3">
+<div class="size-8 rounded bg-white flex items-center justify-center shadow-sm text-primary shrink-0">
+<span class="material-symbols-outlined text-lg">mail</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-900 dark:text-white">Notice_Draft_v1.pdf</p>
+<p class="text-xs text-slate-500 mt-1">Ready to send to Grievance Officer.</p>
+</div>
+</div>
+</div>
+<div class="mt-4 flex gap-2">
+<button class="flex-1 rounded-lg border border-slate-200 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800">Preview</button>
+<button class="flex-1 rounded-lg bg-primary py-2 text-sm font-bold text-white hover:bg-primary-dark shadow-sm">Send Now</button>
+</div>
+</div>
+</div>
+<div class="absolute left-8 md:left-1/2 top-8 md:top-1/2 flex size-12 md:size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg ring-4 ring-teal-100 dark:bg-slate-800 dark:ring-teal-900/30 order-1 z-10">
+<span class="material-symbols-outlined text-2xl md:text-3xl text-primary">gavel</span>
+</div>
+<div class="w-full md:w-[42%] md:pl-12 pl-16 md:pl-0 order-3 flex justify-center md:justify-start">
+<div class="relative w-48 h-48 md:w-64 md:h-64 rounded-2xl bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 flex items-center justify-center shadow-inner border border-orange-100 dark:border-orange-900/30">
+<div class="w-3/4 h-3/4 bg-contain bg-center bg-no-repeat drop-shadow-2xl" data-alt="3D render of a blue mail envelope with an orange notification dot" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_iLdCwxfmJEqCrhB0ZNH8zVcyoWK4enZQSq15CYeDbD0y7XbNDf7prjoK6NOU8mYK5XAw80_Pmb1qjY6HvS4k5Ym452TiN1frZ38Q6qrZXHLjYwI5xCwSDyd8rIm-U5xdpe7_MRn_-3kcMYGDloiAVVoDfwqiyjL62ScvqRrFnVOKm2qyk1s3FesKn87AX-GEGtyKS0GF4JsYcDwpW3Tw2WQ4YxPED62C-_PljvAKZbj-OlqAGFi6jLu3zRUlTso-0sRpoXKDexQ');"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0">
+<div class="w-full md:w-[42%] md:pr-12 pl-16 md:pl-0 order-3 md:order-1 flex justify-center md:justify-end">
+<div class="relative w-48 h-48 md:w-64 md:h-64 rounded-2xl bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 flex items-center justify-center shadow-inner border border-green-100 dark:border-green-900/30">
+<div class="w-3/4 h-3/4 bg-contain bg-center bg-no-repeat drop-shadow-2xl" data-alt="3D render of a green shield with a white checkmark" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDeWsDZMjV16VEBOIXtVXqdT4HnE9zJ995-pA0sXqXalJS4jcfk6R18GENCJtD1fXUjUN8TNJAclXRcgTaF24iUsbrhGQkFUfEer7uBkpuf_lh2o_snQLLCDCileOQvx4YaXnqeLS0B-p0IOtGOuH9-h-UEtbrkh2VRtH_9F0Fn5T9o-yExwRwCXkza-PPLxYIBgPrnezRP0Lrr2Vv9WC58vwC75aZdEBRJt2yljNtSlYMDbLc9Y91QL1UcRu52dBF5u50z_jQJ4Hw');"></div>
+</div>
+</div>
+<div class="absolute left-8 md:left-1/2 top-8 md:top-1/2 flex size-12 md:size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-recovery-green shadow-lg ring-4 ring-green-100 dark:ring-green-900/30 order-1 z-10 animate-bounce">
+<span class="material-symbols-outlined text-2xl md:text-3xl text-white">paid</span>
+</div>
+<div class="w-full md:w-[42%] md:pl-12 pl-16 md:pl-0 order-2 flex flex-col items-start relative">
+<div class="absolute top-1/2 -left-6 h-[2px] w-6 bg-recovery-green hidden md:block"></div>
+<div class="absolute top-8 -left-8 h-[2px] w-8 bg-recovery-green md:hidden"></div>
+<div class="relative w-full overflow-hidden rounded-2xl bg-white p-6 shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-white/10 opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500 cursor-not-allowed">
+<div class="absolute top-0 left-0 h-1.5 w-full bg-recovery-green"></div>
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Settlement</h3>
+<span class="text-xs font-bold uppercase text-slate-400 bg-slate-100 px-2 py-1 rounded">Locked</span>
+</div>
+<p class="text-sm text-slate-500 mb-4">Funds released to seller wallet.</p>
+<div class="flex items-center justify-between py-3 border-t border-slate-100 dark:border-slate-700">
+<span class="text-sm text-slate-500">Estimated TAT</span>
+<span class="font-mono font-bold text-slate-900 dark:text-white">3-5 Days</span>
+</div>
+<div class="flex items-center justify-between py-3 border-t border-slate-100 dark:border-slate-700">
+<span class="text-sm text-slate-500">Projected Recovery</span>
+<span class="font-mono font-bold text-recovery-green">₹12,499</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="fixed bottom-8 right-8 z-40">
+<button class="group flex items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-4 text-white shadow-2xl transition-all hover:bg-slate-800 hover:scale-105 active:scale-95 dark:bg-white dark:text-slate-900">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-semibold">Legal Help</span>
+</button>
+</div>
+
+<script src="../shared-nav-loader.js"></script>
+</body></html>

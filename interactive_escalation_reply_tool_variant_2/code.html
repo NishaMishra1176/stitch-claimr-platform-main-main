@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Escalation Reply Generator</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0B1C2D", 
+                        "primary-hover": "#163A5C",
+                        "success": "#2E7D32",
+                        "background-light": "#FDFDFD",
+                        "background-dark": "#22262a",
+                        "console-bg": "#F5F7F9",
+                        "border-gray": "#E0E0E0",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"]
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 4px 0 rgba(0,0,0,0.05)',
+                        'card': '0 1px 3px rgba(0,0,0,0.1)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #E0E0E0;
+            border-radius: 20px;
+        }
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-start infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-background-light text-[#111417] font-display flex flex-col h-screen overflow-hidden antialiased">
+<!-- Top Navigation -->
+<header data-shared="true"></header>
+<!-- Main Workspace -->
+<div class="flex flex-1 h-[calc(100vh-64px)] overflow-hidden">
+<!-- LEFT COLUMN: Crisis Feed -->
+<aside class="w-[420px] flex flex-col border-r border-border-gray bg-white shrink-0 z-10">
+<div class="p-6 pb-2">
+<h2 class="text-xl font-bold text-gray-900 tracking-tight mb-4">Common Logistics Crisis</h2>
+<!-- Filter Tabs -->
+<div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+<button class="flex items-center justify-center px-4 py-1.5 rounded-full bg-primary text-white text-xs font-medium shadow-sm transition-transform active:scale-95">
+                        All
+                    </button>
+<button class="flex items-center justify-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 text-xs font-medium transition-colors">
+                        Amazon
+                    </button>
+<button class="flex items-center justify-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 text-xs font-medium transition-colors">
+                        Flipkart
+                    </button>
+<button class="flex items-center justify-center px-4 py-1.5 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 text-xs font-medium transition-colors">
+                        Meesho
+                    </button>
+</div>
+</div>
+<!-- Feed List -->
+<div class="flex-1 overflow-y-auto custom-scrollbar px-4 pb-4 space-y-3">
+<!-- Active Item -->
+<div class="group relative flex gap-4 p-4 rounded-lg bg-white border border-primary shadow-soft cursor-pointer transition-all ring-1 ring-primary/5">
+<div class="absolute right-3 top-3 flex gap-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-red-100 text-red-800">
+                            Urgent
+                        </span>
+</div>
+<div class="shrink-0 pt-1">
+<div aria-label="Amazon Logo" class="size-10 rounded-md bg-[#FF9900] flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                            A
+                        </div>
+</div>
+<div class="flex flex-col gap-1 min-w-0">
+<h3 class="text-sm font-semibold text-gray-900 truncate pr-16">Easy Ship Missed Pickup</h3>
+<p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">Driver marked 'attempted' but did not arrive. CCTV footage available for the time slot.</p>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[10px] text-gray-400 font-mono">ID: #AMZ-8921</span>
+<span class="text-[10px] text-gray-400">2 mins ago</span>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group relative flex gap-4 p-4 rounded-lg bg-white border border-transparent hover:border-gray-200 hover:shadow-soft cursor-pointer transition-all">
+<div class="absolute right-3 top-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-yellow-100 text-yellow-800">
+                            Review
+                        </span>
+</div>
+<div class="shrink-0 pt-1">
+<div aria-label="Flipkart Logo" class="size-10 rounded-md bg-[#2874F0] flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                            F
+                        </div>
+</div>
+<div class="flex flex-col gap-1 min-w-0">
+<h3 class="text-sm font-semibold text-gray-900 truncate pr-14">SPF Claim Rejected</h3>
+<p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">Claim ID #88291 denied due to 'insufficient packaging'. Need to contest with packaging photos.</p>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[10px] text-gray-400 font-mono">ID: #FLP-3321</span>
+<span class="text-[10px] text-gray-400">15 mins ago</span>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group relative flex gap-4 p-4 rounded-lg bg-white border border-transparent hover:border-gray-200 hover:shadow-soft cursor-pointer transition-all">
+<div class="absolute right-3 top-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-blue-100 text-blue-800">
+                            New
+                        </span>
+</div>
+<div class="shrink-0 pt-1">
+<div aria-label="Meesho Logo" class="size-10 rounded-md bg-[#f43397] flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                            M
+                        </div>
+</div>
+<div class="flex flex-col gap-1 min-w-0">
+<h3 class="text-sm font-semibold text-gray-900 truncate pr-14">Wrong Return Received</h3>
+<p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">Received a stone instead of headphones. Weight discrepancy is 400g.</p>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[10px] text-gray-400 font-mono">ID: #MSH-0092</span>
+<span class="text-[10px] text-gray-400">45 mins ago</span>
+</div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="group relative flex gap-4 p-4 rounded-lg bg-white border border-transparent hover:border-gray-200 hover:shadow-soft cursor-pointer transition-all">
+<div class="absolute right-3 top-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-gray-100 text-gray-600">
+                            Closed
+                        </span>
+</div>
+<div class="shrink-0 pt-1">
+<div aria-label="Amazon Logo" class="size-10 rounded-md bg-[#FF9900] flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                            A
+                        </div>
+</div>
+<div class="flex flex-col gap-1 min-w-0">
+<h3 class="text-sm font-semibold text-gray-900 truncate pr-14">Safe-T Claim Approved</h3>
+<p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">Reimbursement for damaged inventory processed successfully.</p>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[10px] text-gray-400 font-mono">ID: #AMZ-1120</span>
+<span class="text-[10px] text-gray-400">1 hour ago</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- RIGHT COLUMN: Live Reply Console -->
+<main class="flex-1 bg-console-bg flex flex-col p-6 min-w-0">
+<div class="flex-1 flex flex-col bg-white rounded-xl shadow-card border border-border-gray overflow-hidden">
+<!-- Console Header -->
+<div class="px-6 py-4 border-b border-border-gray flex items-center justify-between bg-white">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h2 class="text-lg font-bold text-primary">Amazon - Easy Ship Missed Pickup</h2>
+<span class="material-symbols-outlined text-gray-400 text-sm cursor-help" title="View original ticket details">info</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<div class="flex items-center gap-1 bg-green-50 text-success border border-green-100 px-2 py-0.5 rounded text-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                                Policy-Compliant (Amazon SPF 4.2)
+                            </div>
+</div>
+</div>
+<!-- Tone Toggle -->
+<div class="bg-gray-100 p-1 rounded-lg flex items-center">
+<button class="px-3 py-1.5 rounded-md text-xs font-medium bg-white text-primary shadow-sm ring-1 ring-black/5 transition-all">
+                            Professional
+                        </button>
+<button class="px-3 py-1.5 rounded-md text-xs font-medium text-gray-500 hover:text-gray-900 transition-colors">
+                            Factual
+                        </button>
+<button class="px-3 py-1.5 rounded-md text-xs font-medium text-gray-500 hover:text-gray-900 transition-colors">
+                            Assertive
+                        </button>
+</div>
+</div>
+<!-- Editor Window -->
+<div class="flex-1 relative flex flex-col group">
+<div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-b from-gray-50 to-transparent pointer-events-none z-10"></div>
+<textarea class="w-full h-full resize-none border-none p-8 text-base text-gray-800 leading-[1.6] focus:ring-0 focus:outline-none font-sans" placeholder="Generating reply..." spellcheck="false">Dear Seller Support,
+
+I am writing to formally escalate the missed pickup for Order ID #123-456 scheduled for today.
+
+Despite the driver marking the attempt as 'failed due to seller unavailable,' our premises were open and staffed. Please find attached CCTV footage confirming no attempt was made during the designated slot.
+
+Per Amazon Easy Ship Policy 4.2, false attempt markings affect our metrics unfairly. We request an immediate re-attempt tomorrow and the removal of any negative performance impact associated with this error.
+
+Sincerely,
+Logistics Manager</textarea>
+<!-- Floating hints or metadata (Visual polish) -->
+<div class="absolute bottom-4 right-6 pointer-events-none opacity-50 text-xs text-gray-400 font-mono">
+                        ~105 words
+                    </div>
+</div>
+<!-- Action Footer -->
+<div class="p-4 bg-gray-50 border-t border-border-gray flex items-center justify-between">
+<div class="flex items-center gap-2 text-xs text-gray-500">
+<span class="material-symbols-outlined text-[16px] text-gray-400">history</span>
+                        Last generated: Just now
+                     </div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 text-sm font-medium hover:bg-gray-50 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+                            Regenerate
+                        </button>
+<button class="flex items-center gap-2 px-6 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-hover shadow-md transition-all active:translate-y-0.5">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+                            Copy to Clipboard
+                        </button>
+</div>
+</div>
+</div>
+<!-- Quick References (Under Console) -->
+<div class="mt-4 flex gap-4 px-1">
+<div class="flex items-center gap-2 text-xs text-gray-500 bg-white px-3 py-2 rounded border border-gray-200 shadow-sm cursor-pointer hover:border-gray-300">
+<span class="material-symbols-outlined text-[16px] text-blue-600">attach_file</span>
+                    Attach Evidence: CCTV_FrontGate_1400hrs.mp4
+                 </div>
+<div class="flex items-center gap-2 text-xs text-gray-500 bg-white px-3 py-2 rounded border border-gray-200 shadow-sm cursor-pointer hover:border-gray-300">
+<span class="material-symbols-outlined text-[16px] text-orange-600">warning</span>
+                    Warning: 3rd missed pickup this month
+                 </div>
+</div>
+</main>
+</div>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

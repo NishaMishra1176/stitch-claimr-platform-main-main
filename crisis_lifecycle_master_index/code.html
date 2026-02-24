@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Crisis Lifecycle Master Index</title>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b1c2d", // Navy
+                        "background-light": "#ffffff",
+                        "background-dark": "#13191f",
+                        "alert-red": "#C62828", // Custom Alert Red
+                        "alert-bg": "#FEF2F2",
+                        "surface": "#F9FAFB",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(11, 28, 45, 0.05)',
+                        'hover': '0 10px 25px -5px rgba(11, 28, 45, 0.1)',
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-primary font-display antialiased">
+<div class="min-h-screen flex flex-col">
+<!-- Navigation Bar -->
+<header data-shared="true"></header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center py-12 px-6 lg:px-12 bg-white">
+<!-- Hero Section -->
+<div class="w-full max-w-4xl text-center mb-16 space-y-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-gray-200 mb-2">
+<span class="flex h-2 w-2 rounded-full bg-alert-red"></span>
+<span class="text-xs font-semibold text-primary uppercase tracking-wide">Triage Mode</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-extrabold text-primary leading-[1.15] tracking-tight">
+                    Where is Your Shipment Stuck?
+                </h1>
+<p class="text-lg text-gray-500 max-w-xl mx-auto font-medium">
+                    Select the precise stage of the dispute below to initiate an automated legal recovery workflow.
+                </p>
+</div>
+<!-- Lifecycle Grid -->
+<div class="w-full max-w-[1200px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1: Fake Delivery -->
+<a class="group relative flex flex-col p-6 rounded-xl border border-gray-100 bg-white hover:border-primary/20 hover:shadow-hover transition-all duration-300" href="#">
+<div class="absolute top-6 right-6">
+<span class="material-symbols-outlined text-gray-300 group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+<div class="mb-6 h-24 w-24 rounded-2xl bg-surface flex items-center justify-center overflow-hidden">
+<!-- Simulated 3D Icon Image -->
+<div class="w-full h-full bg-center bg-contain bg-no-repeat transform group-hover:scale-110 transition-transform duration-500" data-alt="3D icon of a cardboard box representing delivery" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDzwG-SN-2xJ35mpnnz5DQdpk-qhXcvPlz6ohBVrmasKlyQm2rul26y8TmkfnRllQ2nwYC6vhmvkh8mpuinTWC-RQFt-aLjvHsIravC1PzqkAdHmkixGIv1Q9e82hPzIj2-3mjE7jPBZAh-BFonVVPho6VEZNtT7A6Y8Mreipypc1S6-0nssviCokQtNTqOGik_hbQ-A8L91I934yR97T7kWtkZhkW1CAQ2wf4BrfcefwNDsFrSNnoVT8Y35m0s61CvdusEtBmjUKg');">
+</div>
+</div>
+<div class="flex-grow space-y-2">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-primary group-hover:text-primary transition-colors">Fake Delivery</h3>
+</div>
+<p class="text-sm text-gray-500 leading-relaxed">
+                            Marked "delivered" by courier partner but customer denies receipt.
+                        </p>
+</div>
+<div class="mt-6 pt-4 border-t border-gray-50 flex items-center text-sm font-bold text-primary group-hover:translate-x-1 transition-transform">
+                        Start Recovery
+                        <span class="material-symbols-outlined ml-1 text-sm">chevron_right</span>
+</div>
+</a>
+<!-- Card 2: Shipment Lost -->
+<a class="group relative flex flex-col p-6 rounded-xl border border-gray-100 bg-white hover:border-primary/20 hover:shadow-hover transition-all duration-300" href="#">
+<div class="absolute top-6 right-6">
+<span class="material-symbols-outlined text-gray-300 group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+<div class="mb-6 h-24 w-24 rounded-2xl bg-surface flex items-center justify-center overflow-hidden">
+<div class="w-full h-full bg-center bg-contain bg-no-repeat transform group-hover:scale-110 transition-transform duration-500 opacity-60" data-alt="3D icon of a ghost box representing lost shipment" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8R0sOTlojEZmCL1Aw2sMmwznE1jbfs9XqnLg3gUeNVhGKDQZu_xeczt1CID12Zm1CEEFHSUyc-M4pcI4kKKNWKCqqK2MDsXr1fo4KJusghPHdRimzskb0Rlse6TmT2An54C2Ld62FT8BxTyrqM-w2R7Q4J11EHknC2L1uZTZuonqO6DrHiYHq6_bMZVX3ta6nN7OXLgBbxXweFxQS0YE_DMpUNeabB06zP1ICEtCVsZqCl0_j0FogmDqSt6ACaPPHkkryIlBgoIc');">
+</div>
+</div>
+<div class="flex-grow space-y-2">
+<h3 class="text-lg font-bold text-primary">Shipment Lost</h3>
+<p class="text-sm text-gray-500 leading-relaxed">
+                            Stuck in transit hub for 30+ days or officially confirmed lost.
+                        </p>
+</div>
+<div class="mt-6 pt-4 border-t border-gray-50 flex items-center text-sm font-bold text-primary group-hover:translate-x-1 transition-transform">
+                        Start Recovery
+                        <span class="material-symbols-outlined ml-1 text-sm">chevron_right</span>
+</div>
+</a>
+<!-- Card 3: Claim Rejected -->
+<a class="group relative flex flex-col p-6 rounded-xl border border-gray-100 bg-white hover:border-primary/20 hover:shadow-hover transition-all duration-300" href="#">
+<div class="absolute top-6 right-6">
+<span class="material-symbols-outlined text-gray-300 group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+<div class="mb-6 h-24 w-24 rounded-2xl bg-surface flex items-center justify-center overflow-hidden">
+<div class="w-full h-full bg-center bg-contain bg-no-repeat transform group-hover:scale-110 transition-transform duration-500" data-alt="3D icon of a document with a red rejected stamp" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDNoKSG8oWNZRikmepE1JKZH3fc2Pb3Nu-wyNEn8oyOUrpSuhx5MNg5oEO1EO5nr8sQRfo4J2L8c9oLjZQs5zLZLLj3bZnZWRvG5x0wlUwihB77URiaEhe4GZ0iknYYZCRMNm2INwbByuMJRTg7c717zlGABvGCeswz-1ge1x39BGqYGkoci0-dzWcNmRa41ZN5xN4538LEU3ICJ_7pYSqCfUVH2TNknx8qqjuYbZR7MqtUlcam0dur3QAGvIUQ4A3Woai5thI4-Cg');">
+</div>
+</div>
+<div class="flex-grow space-y-2">
+<h3 class="text-lg font-bold text-primary">Claim Rejected</h3>
+<p class="text-sm text-gray-500 leading-relaxed">
+                            Courier rejected initial reimbursement claim. Appeal required.
+                        </p>
+</div>
+<div class="mt-6 pt-4 border-t border-gray-50 flex items-center text-sm font-bold text-primary group-hover:translate-x-1 transition-transform">
+                        Draft Appeal
+                        <span class="material-symbols-outlined ml-1 text-sm">chevron_right</span>
+</div>
+</a>
+<!-- Card 4: Risk Flag (Urgent) -->
+<a class="group relative flex flex-col p-6 rounded-xl border border-alert-red/20 bg-alert-bg/30 hover:border-alert-red hover:shadow-soft transition-all duration-300" href="#">
+<div class="absolute top-6 right-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-alert-red text-white">
+                            Urgent
+                        </span>
+</div>
+<div class="mb-6 h-24 w-24 rounded-2xl bg-white border border-alert-red/10 flex items-center justify-center overflow-hidden">
+<div class="w-full h-full bg-center bg-contain bg-no-repeat transform group-hover:scale-110 transition-transform duration-500" data-alt="3D icon of a red warning shield" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCl9RqI2NrAVnyLmoNhnSimSOLCCRsY-lLlpVgTdnfIfNbpFqUWJjQcrVMKaBYvCoF7oXweGP4Zgfc4uFdHBtoFvgHpyY59GjnjqP2h02JStcKUO2rLcsiQiteMLva5Nq17qBo_W64x7nDnYnNFI9RSh9WFG626Q_vaROyKioxFxPiRn2-3yGu_n1kCC9yqtbpDbGZZqtW4E5y82jdFBVjBJeL792K-0aqq1AjeXU4_XYfqEfxICXGuDtuGWnrxZHDoWdy0ew9Ohxo');">
+</div>
+</div>
+<div class="flex-grow space-y-2">
+<h3 class="text-lg font-bold text-alert-red">Risk Flag</h3>
+<p class="text-sm text-gray-600 leading-relaxed">
+                            High-risk RTO detected or serial offender address identified.
+                        </p>
+</div>
+<div class="mt-6 pt-4 border-t border-alert-red/10 flex items-center text-sm font-bold text-alert-red group-hover:translate-x-1 transition-transform">
+                        Block &amp; Report
+                        <span class="material-symbols-outlined ml-1 text-sm">warning</span>
+</div>
+</a>
+<!-- Card 5: Payment Stuck -->
+<a class="group relative flex flex-col p-6 rounded-xl border border-gray-100 bg-white hover:border-primary/20 hover:shadow-hover transition-all duration-300" href="#">
+<div class="absolute top-6 right-6">
+<span class="material-symbols-outlined text-gray-300 group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+<div class="mb-6 h-24 w-24 rounded-2xl bg-surface flex items-center justify-center overflow-hidden">
+<div class="w-full h-full bg-center bg-contain bg-no-repeat transform group-hover:scale-110 transition-transform duration-500" data-alt="3D icon of a wallet with coins representing stuck payment" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCrzEx_XJNvoNcz2wKDmNRghy4vvGUrZfwOet5avno2bfucsmgMGpZj6kLhddVG696VdQtMY9ZUV4UDxcgiS2HmCkuz6c1RUaIDBFc4wNMREpecKRX2Q4Xc8W1JsutDpXAF4_C9U4nZjNbjC9VD08coORseufvAQKrcNONxInLE8VyiEyQ1W0Prk9FuVLBCE127ISTjeElMAamaUuf5NRwN4ilruXrMb1MMryISH6HdPIe19TirTZR5F6DJoPP7YdPy6BhzoH116rg');">
+</div>
+</div>
+<div class="flex-grow space-y-2">
+<h3 class="text-lg font-bold text-primary">Payment Stuck</h3>
+<p class="text-sm text-gray-500 leading-relaxed">
+                            COD amount collected by logistics partner but not remitted to bank.
+                        </p>
+</div>
+<div class="mt-6 pt-4 border-t border-gray-50 flex items-center text-sm font-bold text-primary group-hover:translate-x-1 transition-transform">
+                        Reconcile
+                        <span class="material-symbols-outlined ml-1 text-sm">chevron_right</span>
+</div>
+</a>
+<!-- Card 6: Legal Threat -->
+<a class="group relative flex flex-col p-6 rounded-xl border border-gray-100 bg-white hover:border-primary/20 hover:shadow-hover transition-all duration-300" href="#">
+<div class="absolute top-6 right-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary/10 text-primary">
+                            Priority
+                        </span>
+</div>
+<div class="mb-6 h-24 w-24 rounded-2xl bg-surface flex items-center justify-center overflow-hidden">
+<div class="w-full h-full bg-center bg-contain bg-no-repeat transform group-hover:scale-110 transition-transform duration-500" data-alt="3D icon of a judge gavel representing legal threat" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAp0u9BK5ZG2bNQN-5pvoka-mwrSPc5mK8v-3lZO2-WWGv1n8k49KBuEuj_HhKr8vBbifUPdhWn3Qeox4yaYwf62pF23CZSI2-5jQCPRlUVctL_-H3XU52ZW3omSq9MnybYOVW0BoI98K4DhCqENhKS0Gh_pPBa6UyYqT3sxjkM1-4yPpVxC3aCGsPzdMEYsvaiP2zuoRl7ekeu3CX_UHcmmpECTR1xeqR2cTjSg-LTVH3hkPzj8OO_UvdefISPQON4eOoxi1k_sA0');">
+</div>
+</div>
+<div class="flex-grow space-y-2">
+<h3 class="text-lg font-bold text-primary">Legal Threat</h3>
+<p class="text-sm text-gray-500 leading-relaxed">
+                            Received legal notice from consumer court or customer lawyer.
+                        </p>
+</div>
+<div class="mt-6 pt-4 border-t border-gray-50 flex items-center text-sm font-bold text-primary group-hover:translate-x-1 transition-transform">
+                        Review Notice
+                        <span class="material-symbols-outlined ml-1 text-sm">gavel</span>
+</div>
+</a>
+</div>
+<!-- Context Footer -->
+<div class="mt-16 text-center">
+<p class="text-sm text-gray-400">
+                    Not sure where your issue fits? 
+                    <a class="text-primary font-bold underline decoration-2 underline-offset-4 hover:text-alert-red transition-colors" href="#">Browse the full Knowledge Base</a>
+</p>
+</div>
+</main>
+</div>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

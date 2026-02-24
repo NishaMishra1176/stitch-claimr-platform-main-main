@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr | Forensic Console - TCL Calculator</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1b7898",
+                        "background-light": "#fafafa",
+                        "background-dark": "#181a1b",
+                        "alert": "#C62828",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom styles for range slider to match theme */
+        input[type=range] {
+            -webkit-appearance: none; 
+            background: transparent; 
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #1b7898;
+            cursor: pointer;
+            margin-top: -10px; 
+            box-shadow: 0 0 0 4px rgba(27, 120, 152, 0.2);
+            border: 2px solid white;
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 6px;
+            cursor: pointer;
+            background: #e5e7eb;
+            border-radius: 9999px;
+        }
+        
+        input[type=range]:focus::-webkit-slider-runnable-track {
+            background: #d1d5db;
+        }
+
+        /* Gauge gradient animation simulation */
+        .gauge-gradient {
+            background: conic-gradient(from 180deg at 50% 100%, #1b7898 0deg, #fbbf24 90deg, #C62828 180deg);
+        }
+        
+        /* Coin drop simulation */
+        @keyframes drop {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(60px); opacity: 0; }
+        }
+        .falling-coin-1 { animation: drop 1.5s infinite linear; }
+        .falling-coin-2 { animation: drop 1.5s infinite linear 0.5s; }
+        .falling-coin-3 { animation: drop 1.5s infinite linear 1s; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#121617] font-display antialiased min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header data-shared="true"></header>
+<main class="flex-1 flex flex-col items-center py-8 px-6 lg:px-20 w-full max-w-[1440px] mx-auto">
+<!-- Breadcrumbs -->
+<div class="w-full mb-6">
+<div class="flex flex-wrap gap-2 items-center">
+<a class="text-[#657e86] hover:text-primary text-sm font-medium leading-normal flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">home</span> Dashboard
+                </a>
+<span class="text-[#657e86] text-sm font-medium leading-normal">/</span>
+<a class="text-[#657e86] hover:text-primary text-sm font-medium leading-normal" href="#">Calculator</a>
+<span class="text-[#657e86] text-sm font-medium leading-normal">/</span>
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-xs font-bold font-mono tracking-wide">CASE #4092-B</span>
+</div>
+</div>
+<!-- Page Heading -->
+<div class="w-full flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-10 pb-6 border-b border-[#e5e7eb]">
+<div class="flex flex-col gap-2 max-w-2xl">
+<h1 class="text-[#121617] text-3xl lg:text-4xl font-black leading-tight tracking-[-0.033em]">Total Cost of Loss ($TCL) Forecaster</h1>
+<p class="text-[#657e86] text-base font-normal leading-normal">Forensic analysis of the financial impact caused by delayed claim resolution.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-[#dce3e5] rounded-lg text-[#121617] text-sm font-medium hover:bg-[#f0f3f4] transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">download</span> Export Report
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-bold hover:bg-[#15627c] transition-colors shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-[18px]">gavel</span> Settle Claim
+                </button>
+</div>
+</div>
+<!-- Main Content Grid -->
+<div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- LEFT COLUMN: The Interactive Calculator -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<!-- Calculator Card -->
+<div class="bg-white rounded-xl border border-[#e5e7eb] shadow-sm p-8 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-yellow-400 to-alert"></div>
+<div class="flex flex-col gap-8">
+<div class="flex justify-between items-center">
+<h3 class="text-[#121617] text-xl font-bold">Simulation Parameters</h3>
+<span class="flex items-center gap-1 text-xs font-medium text-[#657e86] bg-[#f0f3f4] px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px]">tune</span> Live Model
+                            </span>
+</div>
+<!-- Slider Section -->
+<div class="bg-[#fafafa] p-6 rounded-lg border border-[#f0f3f4]">
+<div class="flex justify-between items-end mb-4">
+<label class="text-sm font-semibold text-[#121617] uppercase tracking-wider">Days Pending</label>
+<div class="text-primary font-mono text-2xl font-bold bg-white px-3 py-1 rounded border border-[#e5e7eb] shadow-sm">
+                                    45 <span class="text-sm text-[#657e86] font-normal">Days</span>
+</div>
+</div>
+<input class="w-full mb-2" id="daysSlider" max="120" min="0" type="range" value="45"/>
+<div class="flex justify-between text-xs text-[#657e86] font-medium font-mono mt-2">
+<span>Day 0 (Incident)</span>
+<span>Day 60 (Critical)</span>
+<span>Day 120 (Write-off)</span>
+</div>
+</div>
+<!-- Visualizations Row -->
+<div class="flex flex-col md:flex-row gap-8 items-stretch h-full">
+<!-- Gauge -->
+<div class="flex-1 flex flex-col items-center justify-center p-4">
+<h4 class="text-sm font-semibold text-[#657e86] mb-4 text-center">Loss-to-Value Ratio</h4>
+<div class="relative w-64 h-32 overflow-hidden mb-2">
+<!-- Gauge Background -->
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full border-[24px] border-[#f0f3f4] box-border"></div>
+<!-- Gauge Fill (Simulated with clip-path/conic) -->
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full border-[24px] border-transparent box-border gauge-gradient" style="clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0% 100%); mask-image: radial-gradient(transparent 55%, black 56%); -webkit-mask-image: radial-gradient(transparent 55%, black 56%);"></div>
+<!-- Needle -->
+<div class="absolute bottom-0 left-1/2 w-1 h-32 bg-[#121617] origin-bottom transform -translate-x-1/2 rotate-[-25deg] transition-transform duration-500 shadow-lg z-10">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#121617] rounded-full"></div>
+</div>
+<!-- Center Hub -->
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-8 h-8 bg-white border-4 border-[#121617] rounded-full z-20"></div>
+</div>
+<div class="text-center mt-4">
+<div class="text-3xl font-black text-[#121617] tracking-tight">42%</div>
+<div class="text-xs text-alert font-bold uppercase tracking-wide flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span> Critical Inefficiency
+                                    </div>
+</div>
+</div>
+<!-- Leaking Wallet Animation -->
+<div class="flex-1 border-l border-[#f0f3f4] pl-0 md:pl-8 flex flex-col items-center justify-center p-4">
+<h4 class="text-sm font-semibold text-[#657e86] mb-6 text-center">Cash Hemorrhage</h4>
+<div class="relative h-40 w-full flex justify-center items-start">
+<!-- Wallet Icon -->
+<div class="relative z-10 text-[#657e86]">
+<span class="material-symbols-outlined text-[64px] transform -rotate-12">account_balance_wallet</span>
+</div>
+<!-- Falling Coins (CSS Animation) -->
+<div class="absolute top-10 left-1/2 -translate-x-1/2 flex flex-col items-center">
+<span class="material-symbols-outlined text-alert text-[20px] falling-coin-1 absolute">monetization_on</span>
+<span class="material-symbols-outlined text-alert text-[20px] falling-coin-2 absolute" style="left: 10px;">monetization_on</span>
+<span class="material-symbols-outlined text-alert text-[20px] falling-coin-3 absolute" style="left: -5px;">monetization_on</span>
+</div>
+<!-- Puddle -->
+<div class="absolute bottom-0 w-24 h-4 bg-alert/20 rounded-[100%] blur-sm scale-x-0 animate-[pulse_2s_infinite]"></div>
+</div>
+<p class="text-xs text-[#657e86] text-center max-w-[150px] mt-2">
+                                    Rate increases exponentially with days pending.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Forensic Context -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-white p-5 rounded-xl border border-[#e5e7eb] flex items-start gap-4">
+<div class="p-3 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div>
+<p class="text-sm font-bold text-[#121617]">Historical Pattern Match</p>
+<p class="text-xs text-[#657e86] mt-1 leading-relaxed">This claim trajectory matches 82% of cases that resulted in a total loss settlement.</p>
+</div>
+</div>
+<div class="bg-white p-5 rounded-xl border border-[#e5e7eb] flex items-start gap-4">
+<div class="p-3 bg-[#e5e7eb] rounded-lg text-[#657e86]">
+<span class="material-symbols-outlined">history</span>
+</div>
+<div>
+<p class="text-sm font-bold text-[#121617]">Last Action</p>
+<p class="text-xs text-[#657e86] mt-1 leading-relaxed">Vendor query sent 12 days ago. No response recorded. <a class="text-primary hover:underline" href="#">View Log</a></p>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: The Evidence & Costs -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<!-- The Invisible Cost Card (Hero Metric) -->
+<div class="bg-[#fef2f2] rounded-xl border border-alert/20 p-6 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-alert text-sm font-bold uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">emergency_home</span>
+                            Invisible Cost Accumulated
+                        </h3>
+</div>
+<div class="flex items-baseline gap-1 my-2">
+<span class="text-3xl font-bold text-alert">$</span>
+<span class="text-6xl font-black text-alert font-mono tracking-tighter tabular-nums">12,450</span>
+<span class="text-xl font-bold text-alert/70">.00</span>
+</div>
+<p class="text-sm text-alert/80 font-medium">
+                        + $245.00 accruing every 24 hours
+                    </p>
+</div>
+<!-- Cost Breakdown Grid -->
+<div class="grid grid-cols-1 gap-3">
+<h3 class="text-sm font-bold text-[#121617] uppercase tracking-wide mb-1 px-1">Forensic Breakdown</h3>
+<!-- Item 1 -->
+<div class="bg-white p-4 rounded-lg border border-[#e5e7eb] flex justify-between items-center hover:border-primary/50 transition-colors group cursor-default">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-[#f0f3f4] flex items-center justify-center text-[#657e86] group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">percent</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-[#121617]">Capital Lockup</p>
+<p class="text-xs text-[#657e86]">Interest @ 5% APR</p>
+</div>
+</div>
+<p class="font-mono font-bold text-[#121617] text-lg">$1,850</p>
+</div>
+<!-- Item 2 -->
+<div class="bg-white p-4 rounded-lg border border-[#e5e7eb] flex justify-between items-center hover:border-primary/50 transition-colors group cursor-default">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-[#f0f3f4] flex items-center justify-center text-[#657e86] group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">person_search</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-[#121617]">Admin Overhead</p>
+<p class="text-xs text-[#657e86]">12.5 hrs review time</p>
+</div>
+</div>
+<p class="font-mono font-bold text-[#121617] text-lg">$3,200</p>
+</div>
+<!-- Item 3 -->
+<div class="bg-white p-4 rounded-lg border border-[#e5e7eb] flex justify-between items-center hover:border-primary/50 transition-colors group cursor-default">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-[#f0f3f4] flex items-center justify-center text-[#657e86] group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">trending_down</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-[#121617]">Asset Depreciation</p>
+<p class="text-xs text-[#657e86]">Market value decay</p>
+</div>
+</div>
+<p class="font-mono font-bold text-[#121617] text-lg">$7,400</p>
+</div>
+</div>
+<!-- Comparison Table -->
+<div class="bg-[#181a1b] rounded-xl p-5 text-white mt-2">
+<h3 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">compare_arrows</span> Baseline Comparison
+                    </h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center pb-3 border-b border-gray-700">
+<span class="text-sm font-medium text-gray-300">Immediate Rejection Cost</span>
+<span class="font-mono font-bold text-green-400">$500.00</span>
+</div>
+<div class="flex justify-between items-center pb-3 border-b border-gray-700">
+<span class="text-sm font-medium text-gray-300">Standard Settlement</span>
+<span class="font-mono font-bold text-yellow-400">$8,500.00</span>
+</div>
+<div class="flex justify-between items-center pt-1">
+<span class="text-sm font-bold text-white">Current Reality ($TCL)</span>
+<div class="text-right">
+<span class="block font-mono font-bold text-alert text-xl">$12,950.00</span>
+<span class="text-xs text-gray-500">2,490% variance</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 bg-white/10 hover:bg-white/20 text-white text-xs font-bold py-3 rounded border border-white/10 transition-colors uppercase tracking-wide">
+                        View Detailed Audit Log
+                    </button>
+</div>
+</div>
+</div>
+<!-- Footer Notice -->
+<div class="w-full max-w-4xl text-center mt-12 mb-6">
+<p class="text-xs text-[#657e86] leading-normal">
+<span class="font-bold">Disclaimer:</span> $TCL calculations are estimates based on standard logistics actuarial tables (2024 rev). 
+                Asset depreciation values are pulled from real-time secondary market data via API.
+            </p>
+</div>
+</main>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

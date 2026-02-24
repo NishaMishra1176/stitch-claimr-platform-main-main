@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr: Pending Case Shock Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#cd2323", // Alert Red
+                        "navy": "#0B1C2D",    // Authority Navy
+                        "background-light": "#ffffff",
+                        "background-dark": "#141414",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem", // 2px
+                        "sm": "0.125rem",
+                        "md": "0.25rem",
+                        "lg": "0.25rem",
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased min-h-screen flex flex-col overflow-x-hidden text-navy dark:text-white">
+<!-- Top Navigation Bar -->
+<header data-shared="true"></header>
+<!-- Main Content Area -->
+<main class="flex-1 w-full max-w-[1400px] mx-auto px-6 py-8 md:py-12">
+<!-- Hero Section -->
+<div class="mb-12 border-l-4 border-primary pl-6 py-2">
+<h2 class="text-3xl md:text-5xl lg:text-6xl font-black text-navy dark:text-white uppercase tracking-tighter leading-[0.9] mb-3 max-w-4xl">
+                Pending is not Safe.<br/>
+<span class="text-primary">It is Financial Decay.</span>
+</h2>
+<div class="flex items-center gap-2 text-navy/70 dark:text-white/70 font-mono text-sm uppercase tracking-widest">
+<span class="material-symbols-outlined text-base">grid_view</span>
+<span>Cognitive Shock Dashboard // V.1.0</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+<!-- Left Column: Case Variables (Input) -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div class="bg-white dark:bg-[#1a1a1a] border border-navy/20 dark:border-white/10 p-6 md:p-8 shadow-none relative overflow-hidden group">
+<!-- Decorative corner accent -->
+<div class="absolute top-0 right-0 w-8 h-8 bg-navy/5 -mr-4 -mt-4 rotate-45"></div>
+<div class="flex items-center justify-between mb-8 pb-4 border-b border-navy/10 dark:border-white/10">
+<h3 class="text-xl font-bold text-navy dark:text-white tracking-tight">Case Variables</h3>
+<span class="text-xs font-mono text-navy/50 dark:text-white/50 bg-navy/5 px-2 py-1 rounded">ID: #CX-9921</span>
+</div>
+<form class="space-y-6" onsubmit="event.preventDefault();">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<label class="block space-y-2">
+<span class="text-xs font-bold uppercase tracking-wider text-navy/70 dark:text-white/70">Pending Volume</span>
+<div class="relative">
+<input class="w-full bg-transparent border-b-2 border-navy/20 dark:border-white/20 focus:border-navy dark:focus:border-white text-navy dark:text-white font-mono text-lg py-2 px-0 focus:ring-0 focus:outline-none transition-colors placeholder:text-navy/20" placeholder="0" type="number" value="142"/>
+<span class="absolute right-0 top-3 text-xs text-navy/40 dark:text-white/40 font-mono">CASES</span>
+</div>
+</label>
+<label class="block space-y-2">
+<span class="text-xs font-bold uppercase tracking-wider text-navy/70 dark:text-white/70">Avg. Case Value</span>
+<div class="relative">
+<span class="absolute left-0 top-2 text-lg text-navy/40 dark:text-white/40">$</span>
+<input class="w-full bg-transparent border-b-2 border-navy/20 dark:border-white/20 focus:border-navy dark:focus:border-white text-navy dark:text-white font-mono text-lg py-2 pl-6 pr-0 focus:ring-0 focus:outline-none transition-colors" type="text" value="12,500"/>
+</div>
+</label>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<label class="block space-y-2">
+<span class="text-xs font-bold uppercase tracking-wider text-navy/70 dark:text-white/70">Avg. Duration</span>
+<div class="relative">
+<input class="w-full bg-transparent border-b-2 border-navy/20 dark:border-white/20 focus:border-navy dark:focus:border-white text-navy dark:text-white font-mono text-lg py-2 px-0 focus:ring-0 focus:outline-none transition-colors" type="number" value="45"/>
+<span class="absolute right-0 top-3 text-xs text-navy/40 dark:text-white/40 font-mono">DAYS</span>
+</div>
+</label>
+<label class="block space-y-2">
+<span class="text-xs font-bold uppercase tracking-wider text-navy/70 dark:text-white/70">Admin Overhead</span>
+<div class="relative">
+<span class="absolute left-0 top-2 text-lg text-navy/40 dark:text-white/40">$</span>
+<input class="w-full bg-transparent border-b-2 border-navy/20 dark:border-white/20 focus:border-navy dark:focus:border-white text-navy dark:text-white font-mono text-lg py-2 pl-6 pr-0 focus:ring-0 focus:outline-none transition-colors" type="number" value="75"/>
+<span class="absolute right-0 top-3 text-xs text-navy/40 dark:text-white/40 font-mono">/HR</span>
+</div>
+</label>
+</div>
+<div class="pt-6">
+<button class="w-full group relative overflow-hidden bg-navy text-white h-14 rounded-sm font-bold tracking-widest text-sm uppercase hover:bg-navy/90 transition-all shadow-[4px_4px_0px_0px_rgba(205,35,35,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]" type="submit">
+<span class="relative z-10 flex items-center justify-center gap-2">
+                                    Calculate Impact
+                                    <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Secondary Info Block -->
+<div class="grid grid-cols-2 gap-4">
+<div class="border border-navy/10 p-4 bg-gray-50 dark:bg-white/5 rounded-sm">
+<div class="text-xs font-bold text-navy/50 dark:text-white/50 uppercase mb-1">Last Updated</div>
+<div class="font-mono text-sm text-navy dark:text-white">Today, 14:02 PM</div>
+</div>
+<div class="border border-navy/10 p-4 bg-gray-50 dark:bg-white/5 rounded-sm">
+<div class="text-xs font-bold text-navy/50 dark:text-white/50 uppercase mb-1">Queue Status</div>
+<div class="font-mono text-sm text-primary font-bold">OVERLOADED</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Live Loss Feed (The Shock) -->
+<div class="lg:col-span-7 flex flex-col h-full">
+<div class="relative bg-white dark:bg-[#1a1a1a] border-2 border-navy dark:border-white/20 flex flex-col flex-1 shadow-2xl shadow-navy/5">
+<!-- Feed Header -->
+<div class="flex items-center justify-between bg-navy text-white px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary border border-white"></span>
+</div>
+<span class="font-mono font-bold tracking-widest text-sm uppercase">Live Loss Feed</span>
+</div>
+<span class="material-symbols-outlined text-white/50 animate-pulse">wifi_tethering</span>
+</div>
+<!-- Main Metric: Capital Lock -->
+<div class="flex-1 flex flex-col justify-center p-8 border-b border-dashed border-navy/20 dark:border-white/10 relative overflow-hidden">
+<!-- Background pattern -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#0B1C2D 1px, transparent 1px); background-size: 20px 20px;"></div>
+<p class="text-sm font-bold text-navy/60 dark:text-white/60 uppercase tracking-widest mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">lock</span>
+                            Total Capital Lock
+                        </p>
+<div class="text-6xl md:text-7xl lg:text-8xl font-black text-primary tracking-tighter leading-none mb-2">
+                            $1,775,000
+                        </div>
+<p class="text-xs text-primary/80 font-mono mt-2 bg-primary/5 inline-block px-2 py-1 rounded self-start">
+                            ▲ INCREASING RAPIDLY
+                        </p>
+</div>
+<!-- Secondary Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-navy/10 dark:divide-white/10">
+<!-- Admin Drain -->
+<div class="p-6 md:p-8 bg-primary/5 relative">
+<div class="absolute top-6 right-6 w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<p class="text-xs font-bold text-navy/60 dark:text-white/60 uppercase tracking-wider mb-3">Real-time Admin Drain</p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-black text-primary font-mono tracking-tight">-$450.25</span>
+<span class="text-sm font-bold text-primary/60">/hr</span>
+</div>
+<div class="w-full bg-primary/20 h-1 mt-4 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[85%]"></div>
+</div>
+</div>
+<!-- Inventory Depreciation -->
+<div class="p-6 md:p-8">
+<p class="text-xs font-bold text-navy/60 dark:text-white/60 uppercase tracking-wider mb-3">Inventory Depreciation</p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-black text-navy dark:text-white font-mono tracking-tight">-$125.00</span>
+<span class="text-sm font-bold text-navy/60 dark:text-white/60">/day</span>
+</div>
+<div class="mt-4 flex items-center gap-2 text-xs text-navy/50 font-medium">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+<span>-2.4% vs last week</span>
+</div>
+</div>
+</div>
+<!-- Footer Warning -->
+<div class="bg-primary text-white p-4 flex items-center justify-center gap-3 text-center">
+<span class="material-symbols-outlined text-xl">report</span>
+<span class="text-sm font-bold uppercase tracking-wide">Action Required: Liquidate Pending Queue Immediately.</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

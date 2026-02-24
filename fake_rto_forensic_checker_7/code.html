@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Interactive Legal Notice Builder</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Playfair+Display:wght@400;700&amp;family=Great+Vibes&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#0B1C2D',
+                            800: '#162a40',
+                            700: '#233b5a',
+                            100: '#eef2f6',
+                            50: '#f8fafc'
+                        },
+                        alert: {
+                            red: '#C62828'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'Times New Roman', 'serif'],
+                        signature: ['"Great Vibes"', 'cursive']
+                    },
+                    boxShadow: {
+                        'paper': '0 20px 50px -12px rgba(0, 0, 0, 0.25)',
+                        'paper-lifted': '0 25px 60px -12px rgba(0, 0, 0, 0.35)',
+                    },
+                    animation: {
+                        'stamp-impact': 'stamp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1.2) forwards 1.2s',
+                        'highlight-pulse': 'highlight 2s ease-in-out infinite',
+                        'fade-in': 'fadeIn 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        stamp: {
+                            '0%': { transform: 'scale(3) rotate(-12deg)', opacity: '0' },
+                            '100%': { transform: 'scale(1) rotate(-12deg)', opacity: '0.9' }
+                        },
+                        highlight: {
+                            '0%, 100%': { backgroundColor: 'rgba(254, 243, 199, 0.6)' }, // amber-100/60
+                            '50%': { backgroundColor: 'rgba(254, 243, 199, 1)' } // amber-100
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.material-symbols-outlined.filled {
+    font-variation-settings: "FILL" 1
+    }::-webkit-scrollbar {
+    width: 8px;
+    height: 8px
+    }
+::-webkit-scrollbar-track {
+    background: #f1f5f9
+    }
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px
+    }
+.paper-texture {
+    background-color: #fff;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDxdYMbADT4mKwKY0CvFtB4D13eViBMGeOZOxy0QV-q134xsJAxEyqm1p4qmOhQCVFI873uH5JQYGwD4F63t3rNttejPgWrJ9LIgvFhuRLPC2REYALKEiNvbDHiVVELPGqOt7zjf2_GYlnSPyfQYawSN6wjiX2D-E5O1kjP_eUohgfxjMPyyCQAsZC6vNvGjeerI380HOVt8ShbCUme4gnd6ZcjlmgkT_hwJ1DyQYtqOpc3-r0-uFIT9IEFLuQWWFH6LTU1Js4yIzo)
+    }
+.watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 8rem;
+    font-weight: 900;
+    color: rgba(11, 28, 45, 0.04);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    white-space: nowrap
+    }</style>
+</head>
+<body class="bg-gray-100 text-navy-900 font-sans antialiased h-screen flex flex-col overflow-hidden">
+<header data-shared="true"></header>
+<main class="flex-grow flex overflow-hidden">
+<aside class="w-[420px] bg-white border-r border-gray-200 flex flex-col z-20 shadow-[4px_0_24px_-12px_rgba(0,0,0,0.1)]">
+<div class="p-6 border-b border-gray-100">
+<h2 class="text-lg font-bold text-navy-900 flex items-center gap-2">
+<span class="material-symbols-outlined text-alert-red filled">warning</span>
+                    Notice Configuration
+                </h2>
+<p class="text-xs text-gray-500 mt-1">Configure the parameters for the legal notice.</p>
+</div>
+<div class="flex-grow overflow-y-auto p-6 space-y-8">
+<div class="space-y-3 animate-fade-in" style="animation-delay: 0.1s;">
+<label class="text-xs font-bold text-gray-400 uppercase tracking-wider">1. Select Dispute Reason</label>
+<div class="grid grid-cols-2 gap-3">
+<button class="relative group p-4 rounded-xl border-2 border-navy-900 bg-navy-50 text-left transition-all shadow-sm ring-1 ring-navy-900/10">
+<div class="absolute top-2 right-2 text-navy-900">
+<span class="material-symbols-outlined text-lg filled">check_circle</span>
+</div>
+<span class="material-symbols-outlined text-3xl text-navy-900 mb-2">local_shipping</span>
+<div class="font-bold text-sm text-navy-900">Fake Attempt</div>
+<div class="text-[10px] text-gray-600 leading-tight mt-1">Marked 'Failed' without visit</div>
+</button>
+<button class="relative group p-4 rounded-xl border border-gray-200 bg-white text-left hover:border-gray-300 hover:shadow-md transition-all">
+<span class="material-symbols-outlined text-3xl text-gray-400 mb-2 group-hover:text-navy-700 transition-colors">inventory_2</span>
+<div class="font-bold text-sm text-gray-700 group-hover:text-navy-900">Wrong Return</div>
+<div class="text-[10px] text-gray-400 leading-tight mt-1">Different product returned</div>
+</button>
+<button class="relative group p-4 rounded-xl border border-gray-200 bg-white text-left hover:border-gray-300 hover:shadow-md transition-all">
+<span class="material-symbols-outlined text-3xl text-gray-400 mb-2 group-hover:text-navy-700 transition-colors">broken_image</span>
+<div class="font-bold text-sm text-gray-700 group-hover:text-navy-900">Damaged</div>
+<div class="text-[10px] text-gray-400 leading-tight mt-1">Item broken in transit</div>
+</button>
+<button class="relative group p-4 rounded-xl border border-gray-200 bg-white text-left hover:border-gray-300 hover:shadow-md transition-all">
+<span class="material-symbols-outlined text-3xl text-gray-400 mb-2 group-hover:text-navy-700 transition-colors">currency_rupee</span>
+<div class="font-bold text-sm text-gray-700 group-hover:text-navy-900">COD Fraud</div>
+<div class="text-[10px] text-gray-400 leading-tight mt-1">Cash not remitted</div>
+</button>
+</div>
+</div>
+<div class="space-y-3 animate-fade-in" style="animation-delay: 0.2s;">
+<label class="text-xs font-bold text-gray-400 uppercase tracking-wider">2. Attach Evidence</label>
+<div class="space-y-2">
+<label class="flex items-center p-3 rounded-lg border border-navy-100 bg-navy-50 cursor-pointer">
+<input checked="" class="w-4 h-4 text-navy-900 border-gray-300 rounded focus:ring-navy-900" type="checkbox"/>
+<span class="ml-3 text-sm font-medium text-navy-900">GPS Co-ordinates Mismatch</span>
+<span class="ml-auto text-xs text-alert-red font-bold">CRITICAL</span>
+</label>
+<label class="flex items-center p-3 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 cursor-pointer">
+<input checked="" class="w-4 h-4 text-navy-900 border-gray-300 rounded focus:ring-navy-900" type="checkbox"/>
+<span class="ml-3 text-sm font-medium text-gray-700">Customer Call Recording</span>
+</label>
+<label class="flex items-center p-3 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 cursor-pointer">
+<input class="w-4 h-4 text-navy-900 border-gray-300 rounded focus:ring-navy-900" type="checkbox"/>
+<span class="ml-3 text-sm font-medium text-gray-700">CCTV Footage of Hub</span>
+</label>
+</div>
+</div>
+<div class="space-y-3 animate-fade-in" style="animation-delay: 0.3s;">
+<label class="text-xs font-bold text-gray-400 uppercase tracking-wider">3. Claim Particulars</label>
+<div class="space-y-4">
+<div>
+<label class="block text-xs font-medium text-gray-500 mb-1">Tracking ID (AWB)</label>
+<input class="w-full rounded-lg border-gray-300 text-sm focus:border-navy-900 focus:ring-navy-900" readonly="" type="text" value="DEL-492921002"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-medium text-gray-500 mb-1">Order Value</label>
+<div class="relative">
+<span class="absolute left-3 top-2 text-gray-500">₹</span>
+<input class="w-full pl-6 rounded-lg border-gray-300 text-sm focus:border-navy-900 focus:ring-navy-900" type="text" value="4,500"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-medium text-gray-500 mb-1">Legal Fee Claim</label>
+<div class="relative">
+<span class="absolute left-3 top-2 text-gray-500">₹</span>
+<input class="w-full pl-6 rounded-lg border-gray-300 text-sm focus:border-navy-900 focus:ring-navy-900" type="text" value="2,000"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 border-t border-gray-200 bg-gray-50 mt-auto">
+<button class="w-full py-3 px-4 bg-navy-900 hover:bg-navy-800 text-white font-bold rounded-lg shadow-lg flex items-center justify-center gap-2 transition-all transform hover:-translate-y-0.5">
+<span class="material-symbols-outlined">gavel</span>
+                    Generate Final Notice
+                </button>
+</div>
+</aside>
+<section class="flex-grow bg-[#E8EAEB] relative flex flex-col items-center p-8 overflow-y-auto">
+<div class="sticky top-0 mb-8 z-10 flex gap-2 bg-white/80 backdrop-blur-md p-1.5 rounded-full shadow-sm border border-white/50">
+<button class="p-2 text-gray-500 hover:text-navy-900 rounded-full hover:bg-white transition-colors" title="Zoom In"><span class="material-symbols-outlined text-xl">zoom_in</span></button>
+<button class="p-2 text-gray-500 hover:text-navy-900 rounded-full hover:bg-white transition-colors" title="Zoom Out"><span class="material-symbols-outlined text-xl">zoom_out</span></button>
+<div class="w-px h-6 bg-gray-300 my-auto mx-1"></div>
+<button class="px-4 py-1.5 bg-navy-900 text-white text-xs font-bold rounded-full shadow hover:bg-navy-800 transition-colors">Download PDF</button>
+</div>
+<div class="paper-texture w-[210mm] min-h-[297mm] shadow-paper bg-white relative p-16 md:p-20 text-black font-serif transition-transform duration-500 ease-out origin-top">
+<div class="watermark">CLAIMR</div>
+<div class="relative z-10 flex flex-col h-full">
+<div class="text-center mb-12 border-b-2 border-black pb-6">
+<h2 class="text-3xl font-bold tracking-widest uppercase mb-2">Legal Notice</h2>
+<p class="text-sm italic font-sans text-gray-600">Under Section 138 of the Negotiable Instruments Act &amp; Consumer Protection Act, 2019</p>
+</div>
+<div class="flex justify-between mb-8 font-sans text-sm">
+<div>
+<p><span class="font-bold">Ref No:</span> CLM-LGL-2024/8921</p>
+<p><span class="font-bold">Date:</span> November 15, 2024</p>
+</div>
+<div class="text-right">
+<p class="font-bold text-alert-red uppercase tracking-wider text-xs border border-alert-red px-2 py-0.5 inline-block mb-1">Urgent</p>
+<p>Registered Post A.D.</p>
+</div>
+</div>
+<div class="mb-8 leading-relaxed">
+<p class="font-bold mb-1">To,</p>
+<p class="font-bold">The Branch Manager,</p>
+<p>FastLogistics Pvt Ltd (Okhla Hub),</p>
+<p>Industrial Area, Phase III,</p>
+<p>New Delhi - 110020</p>
+</div>
+<div class="mb-8 font-bold text-center underline underline-offset-4 leading-relaxed">
+                        SUBJECT: NOTICE FOR COMPENSATION REGARDING FRAUDULENT 'RTO' MARKING OF SHIPMENT AWB #DEL-492921002
+                    </div>
+<div class="space-y-6 text-justify leading-7 text-[15px]">
+<p>
+                            Dear Sir/Madam,
+                        </p>
+<p>
+                            Under instruction from my client, <strong>M/s Urban Retailers</strong>, having their registered office at Bangalore, I hereby serve upon you the following legal notice:
+                        </p>
+<p class="p-2 -mx-2 rounded transition-colors duration-500 animate-highlight-pulse border-l-4 border-alert-red bg-yellow-50/50">
+                            1. That my client entrusted a shipment (AWB #DEL-492921002) containing electronics worth <strong>₹4,500</strong> to your courier service on Nov 10, 2024. The records indicate that your delivery agent falsely marked the shipment as <strong>"Customer Not Available"</strong> (Fake Attempt) at 09:17 AM on Nov 14, 2024, merely 2 minutes after marking it "Out for Delivery", which is physically impossible.
+                        </p>
+<p>
+                            2. That the geolocation data captured from your own tracking API places the delivery agent at your warehouse (Lat: 28.521, Long: 77.211) at the time of the alleged attempt, whereas the delivery address is situated 12km away. This constitutes a clear deficiency of service and unfair trade practice under the Consumer Protection Act, 2019.
+                        </p>
+<p>
+                            3. That due to this malicious act of "Fake RTO", my client has suffered financial loss in forward and reverse logistics charges, along with mental agony and loss of business reputation.
+                        </p>
+<p>
+                             4. I, therefore, call upon you to compensate my client a sum of <strong>₹6,500</strong> (Value + Legal Costs) within 7 days of receipt of this notice, failing which my client shall be constrained to initiate appropriate civil and criminal proceedings against your company at your sole risk and cost.
+                        </p>
+</div>
+<div class="mt-16 flex justify-end relative">
+<div class="text-center w-64">
+<div class="h-16 flex items-end justify-center mb-2">
+<span class="font-signature text-4xl text-navy-900 transform -rotate-6 block">Vikram Malhotra</span>
+</div>
+<p class="font-bold border-t border-gray-400 pt-2">Vikram Malhotra</p>
+<p class="text-sm text-gray-600">Advocate, High Court</p>
+</div>
+<div class="absolute -bottom-8 -right-8 w-40 h-40 opacity-0 animate-stamp-impact z-20 pointer-events-none">
+<div class="w-full h-full border-4 border-alert-red rounded-full flex items-center justify-center relative">
+<div class="absolute inset-1 border border-alert-red rounded-full opacity-60"></div>
+<div class="text-center transform">
+<span class="block text-alert-red font-black text-xs uppercase tracking-[0.2em] mb-1">Authentic</span>
+<span class="material-symbols-outlined text-4xl text-alert-red">gavel</span>
+<span class="block text-alert-red font-bold text-[10px] uppercase tracking-widest mt-1">Legal Notice</span>
+<span class="block text-alert-red font-medium text-[8px] mt-0.5">Nov 15, 2024</span>
+</div>
+<svg class="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 100 100">
+<path d="M 12, 50 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" fill="none" id="curve"></path>
+<text fill="#C62828" font-size="5.5" font-weight="bold" letter-spacing="1.5">
+<textPath href="#curve" startOffset="0%">
+                                            CLAIMR LEGAL RECOVERY • CLAIMR LEGAL RECOVERY •
+                                        </textPath>
+</text>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="h-12 w-full flex-shrink-0"></div> 
+</section>
+</main>
+
+<script src="../shared-nav-loader.js"></script>
+</body></html>

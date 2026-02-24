@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Profit Recovery Experience</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0a1d3d",
+                        "background-light": "#f8fafc", // Cool off-white
+                        "background-dark": "#0f172a", // Slate 900
+                        "loss": "#C70039",
+                        "profit": "#00C739",
+                        "slate-mid": "#64748b",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(10, 29, 61, 0.07)',
+                        'glow-green': '0 0 40px -10px rgba(0, 199, 57, 0.3)',
+                        'glow-red': '0 0 40px -10px rgba(199, 0, 57, 0.2)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom Dial Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none; 
+            background: transparent; 
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #0a1d3d;
+            cursor: pointer;
+            margin-top: -10px; 
+            box-shadow: 0 0 0 4px #ffffff, 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #e2e8f0;
+            border-radius: 2px;
+        }
+        
+        /* Animation for the floating elements */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-slow {
+            animation: float 6s ease-in-out infinite;
+        }
+        .float-delayed {
+            animation: float 7s ease-in-out infinite 1s;
+        }
+
+        /* Gradient Text */
+        .text-gradient-navy {
+            background: linear-gradient(135deg, #0a1d3d 0%, #1e3a8a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-primary dark:text-white overflow-x-hidden min-h-screen flex flex-col">
+<!-- Navbar -->
+<header data-shared="true"></header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-center relative py-12 px-4 md:px-6">
+<!-- Background Decor -->
+<div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+<div class="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-blue-100/50 dark:bg-blue-900/10 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-lighten opacity-70"></div>
+<div class="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-red-100/40 dark:bg-red-900/10 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-lighten opacity-70"></div>
+</div>
+<div class="w-full max-w-7xl mx-auto flex flex-col items-center gap-12">
+<!-- Heading Section -->
+<div class="text-center max-w-3xl mx-auto space-y-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/20 text-primary dark:text-blue-200 text-xs font-bold uppercase tracking-wider mb-2">
+<span class="w-2 h-2 rounded-full bg-profit animate-pulse"></span>
+                    Interactive Profit Recovery Experience
+                </div>
+<h2 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-gradient-navy dark:text-white">
+                    How much is RTO fraud <br/> costing you?
+                </h2>
+<p class="text-slate-500 dark:text-slate-400 text-lg md:text-xl font-medium max-w-2xl mx-auto">
+                    Visualize the impact of automated legal recovery on your bottom line.
+                </p>
+</div>
+<!-- The Experience Engine (Calculator) -->
+<div class="w-full relative mt-8">
+<!-- Desktop Layout: 3 Column Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<!-- Left HUD: The Problem (Loss) -->
+<div class="lg:col-span-3 order-2 lg:order-1 flex justify-center lg:justify-end">
+<div class="float-slow relative bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-glass border border-red-100 dark:border-red-900/30 w-full max-w-[320px] min-h-[200px] flex flex-col justify-between group hover:border-red-200 transition-colors">
+<div class="flex items-start justify-between">
+<div>
+<p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">Monthly Potential Loss</p>
+<div class="flex items-center gap-2 text-loss">
+<span class="material-symbols-outlined">trending_down</span>
+<span class="text-sm font-semibold">Critical Leakage</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-red-50 dark:bg-red-900/20 flex items-center justify-center text-loss">
+<span class="material-symbols-outlined">warning</span>
+</div>
+</div>
+<div class="mt-6">
+<p class="text-4xl font-bold text-slate-800 dark:text-white tracking-tight group-hover:text-loss transition-colors duration-300">
+                                    - ₹ 5.2 L
+                                </p>
+<p class="text-slate-400 text-sm mt-2">Unrecovered returns &amp; fake claims</p>
+</div>
+<!-- Decorative background glow -->
+<div class="absolute inset-0 bg-gradient-to-br from-red-50/50 to-transparent dark:from-red-900/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
+</div>
+</div>
+<!-- Center: The Dial & Visualization -->
+<div class="lg:col-span-6 order-1 lg:order-2 flex flex-col items-center relative z-10">
+<!-- Dial Container -->
+<div class="relative w-[340px] h-[340px] md:w-[420px] md:h-[420px] flex items-center justify-center">
+<!-- Outer Ring Graphics (SVG) -->
+<svg class="absolute inset-0 w-full h-full rotate-[-90deg]" viewbox="0 0 100 100">
+<!-- Track -->
+<circle class="dark:stroke-slate-700" cx="50" cy="50" fill="none" r="48" stroke="#e2e8f0" stroke-width="0.5"></circle>
+<!-- Progress Arc (Simulated at 75%) -->
+<circle class="dark:stroke-blue-400 drop-shadow-lg" cx="50" cy="50" fill="none" r="48" stroke="#0a1d3d" stroke-dasharray="301.59" stroke-dashoffset="75" stroke-linecap="round" stroke-width="1.5"></circle>
+</svg>
+<!-- Tick Marks -->
+<div class="absolute inset-0 rounded-full border border-slate-100 dark:border-slate-800"></div>
+<!-- The Central Visual -->
+<div class="w-[80%] h-[80%] rounded-full bg-gradient-to-b from-slate-50 to-white dark:from-slate-800 dark:to-slate-900 shadow-inner flex items-center justify-center relative overflow-hidden group/visual">
+<!-- Background Glow based on state -->
+<div class="absolute inset-0 bg-glow-green opacity-40 blur-3xl"></div>
+<!-- 3D Visual Representation -->
+<div class="relative z-10 w-full h-full flex items-center justify-center p-8">
+<!-- Image: Secure Safe State -->
+<div class="w-full h-full bg-contain bg-center bg-no-repeat transition-transform duration-700 ease-out group-hover/visual:scale-110" data-alt="3D illustration of a futuristic metallic safe with green glowing edges and stacks of gold coins representing secured profit" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBtFuCCktxdN2LBKAk58D5Q_D6XOXwsRrWJt27JCS6EvQB1Pr4X_dviEEmm4Aav-kEu3OitkBh3zBPq5wORxOS-ksQstXNPndmuHwoeEutap4j2nIywmijB6GFdkS1JISkTyySU8NyGLzvRlG9tpeHwEXOzrH-VuXx7fndFmIWOVougNE-vjaXlvsjBGKQ53awMfVE2-Wgn5CxXRW4iR_3f0AsIxqX2puSAZS3XogyN2CRowT_SSJm-vlhi_HsY8RSA5TLTgoyXnT8'); background-size: cover; border-radius: 50%; box-shadow: inset 0 0 20px rgba(0,0,0,0.2);">
+<!-- Overlay content to ensure visual clarity regardless of image -->
+<div class="absolute inset-0 bg-black/20 flex flex-col items-center justify-center text-white backdrop-blur-[2px]">
+<div class="bg-profit/90 backdrop-blur-md px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg mb-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+                                                SECURE
+                                             </div>
+<span class="text-4xl font-black drop-shadow-md">74%</span>
+<span class="text-sm font-medium opacity-90">Recovery Rate</span>
+</div>
+</div>
+</div>
+</div>
+<!-- "Knob" Indicator positioned on the ring (Static for visual) -->
+<div class="absolute top-[10%] right-[10%] w-8 h-8 bg-white dark:bg-slate-700 rounded-full shadow-lg border-4 border-primary dark:border-blue-400 z-20 cursor-grab active:cursor-grabbing hover:scale-110 transition-transform"></div>
+</div>
+<!-- Controls -->
+<div class="mt-8 w-full max-w-sm flex flex-col items-center gap-4">
+<div class="flex items-end justify-between w-full px-2">
+<label class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-wide">Monthly Orders</label>
+<span class="text-2xl font-bold text-primary dark:text-white font-display">25,000</span>
+</div>
+<div class="relative w-full h-12 flex items-center">
+<input class="w-full z-20 focus:outline-none focus:ring-0" max="50000" min="1000" type="range" value="25000"/>
+<div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary dark:bg-blue-500 w-[50%]"></div>
+</div>
+<!-- Ticks below slider -->
+<div class="absolute top-8 w-full flex justify-between text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+<span>1k</span>
+<span>10k</span>
+<span>25k</span>
+<span>50k+</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right HUD: The Solution (Profit) -->
+<div class="lg:col-span-3 order-3 flex justify-center lg:justify-start">
+<div class="float-delayed relative bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-glass border border-green-100 dark:border-green-900/30 w-full max-w-[320px] min-h-[200px] flex flex-col justify-between group hover:border-green-200 transition-colors">
+<div class="flex items-start justify-between">
+<div>
+<p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">Recoverable Profit</p>
+<div class="flex items-center gap-2 text-profit">
+<span class="material-symbols-outlined">verified</span>
+<span class="text-sm font-semibold">Claimr Secure</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-green-50 dark:bg-green-900/20 flex items-center justify-center text-profit">
+<span class="material-symbols-outlined">savings</span>
+</div>
+</div>
+<div class="mt-6">
+<p class="text-4xl font-bold text-slate-800 dark:text-white tracking-tight group-hover:text-profit transition-colors duration-300">
+                                    + ₹ 3.8 L
+                                </p>
+<p class="text-slate-400 text-sm mt-2">Directly to your bank account</p>
+</div>
+<!-- Decorative background glow -->
+<div class="absolute inset-0 bg-gradient-to-bl from-green-50/50 to-transparent dark:from-green-900/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Summary / CTA -->
+<div class="w-full max-w-4xl mt-4 bg-primary dark:bg-blue-950 rounded-2xl p-6 md:p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+<!-- Abstract Pattern Background -->
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white via-primary to-transparent"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-12">
+<div class="text-center md:text-left">
+<div class="text-blue-200 text-xs font-bold uppercase tracking-wider mb-1">Projected Annual ROI</div>
+<div class="text-4xl md:text-5xl font-black tracking-tight text-white flex items-center gap-2 justify-center md:justify-start">
+                            14.5x 
+                            <span class="text-base font-medium opacity-60 bg-white/10 px-2 py-1 rounded">Year 1</span>
+</div>
+</div>
+<div class="h-px w-24 md:w-px md:h-16 bg-white/20"></div>
+<div class="text-center md:text-left">
+<div class="text-blue-200 text-xs font-bold uppercase tracking-wider mb-1">Total Recoverable (Annual)</div>
+<div class="text-2xl font-bold tracking-tight">₹ 45,60,000</div>
+</div>
+</div>
+<div class="relative z-10">
+<button class="bg-white text-primary hover:bg-blue-50 font-bold py-3 px-8 rounded-lg shadow-lg transition-all flex items-center gap-2 group">
+                        Get Full Report
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Trust Badges -->
+<div class="flex flex-wrap justify-center gap-8 mt-4 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+<div class="h-8 flex items-center gap-2">
+<span class="material-symbols-outlined text-3xl">verified_user</span>
+<span class="font-bold text-lg">LegalBacked</span>
+</div>
+<div class="h-8 flex items-center gap-2">
+<span class="material-symbols-outlined text-3xl">lock</span>
+<span class="font-bold text-lg">BankGrade</span>
+</div>
+<div class="h-8 flex items-center gap-2">
+<span class="material-symbols-outlined text-3xl">bolt</span>
+<span class="font-bold text-lg">InstantClaim</span>
+</div>
+</div>
+</div>
+</main>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

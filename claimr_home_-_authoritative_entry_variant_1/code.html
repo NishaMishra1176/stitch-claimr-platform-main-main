@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Authoritative Entry</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b0c2d",
+                        "background-light": "#ffffff",
+                        "background-dark": "#13131f",
+                        "border-light": "#e5e7eb",
+                        "text-secondary": "#4b5563",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Utilities for Authoritative Feel */
+        .card-hover-effect {
+            transition: all 0.2s ease-out;
+        }
+        .card-hover-effect:hover {
+            border-color: #0b0c2d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(11, 12, 45, 0.05);
+        }
+        .icon-box {
+            background-color: #f3f4f6;
+            transition: background-color 0.2s ease;
+        }
+        .group:hover .icon-box {
+            background-color: #e5e7eb;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-primary font-display antialiased min-h-screen flex flex-col">
+<!-- Shared Header Placeholder -->
+<header data-shared="true"></header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-center pt-16 pb-24 px-6 relative overflow-hidden">
+<!-- Hero Section -->
+<div class="max-w-5xl w-full text-center mb-16 relative z-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50 border border-gray-200 mb-6">
+<span class="size-2 bg-green-500 rounded-full animate-pulse"></span>
+<span class="text-xs font-bold text-gray-600 uppercase tracking-wide">Legal Infrastructure Active</span>
+</div>
+<h1 class="text-4xl md:text-5xl lg:text-[64px] font-extrabold leading-[1.1] tracking-tight text-primary mb-6">
+                Force Written Closure from<br class="hidden md:block"/> Logistics Companies
+            </h1>
+<p class="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto font-medium leading-relaxed">
+                Legal recovery infrastructure for Indian e-commerce against fake RTOs and courier fraud. We automate the legal notices that get funds released.
+            </p>
+</div>
+<!-- Visual Triage Widget -->
+<div class="max-w-7xl w-full grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+<!-- Card 1: Seller -->
+<div class="group card-hover-effect bg-white border border-border-light rounded-xl p-8 cursor-pointer flex flex-col items-start h-full">
+<div class="icon-box size-14 rounded-lg flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined text-3xl">storefront</span>
+</div>
+<h3 class="text-2xl font-bold text-primary mb-2">I am a Seller</h3>
+<p class="text-text-secondary font-medium mb-8 flex-grow">
+                    Recover lost funds from fake returns, damaged shipments, and RTO fraud.
+                </p>
+<div class="flex items-center text-primary font-bold text-sm mt-auto group-hover:underline decoration-2 underline-offset-4">
+                    Identify Claims <span class="material-symbols-outlined text-lg ml-1 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+<!-- Card 2: Consumer -->
+<div class="group card-hover-effect bg-white border border-border-light rounded-xl p-8 cursor-pointer flex flex-col items-start h-full">
+<div class="icon-box size-14 rounded-lg flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined text-3xl">person</span>
+</div>
+<h3 class="text-2xl font-bold text-primary mb-2">I am a Consumer</h3>
+<p class="text-text-secondary font-medium mb-8 flex-grow">
+                    Report delivery fraud, missing items, or denial of service by courier partners.
+                </p>
+<div class="flex items-center text-primary font-bold text-sm mt-auto group-hover:underline decoration-2 underline-offset-4">
+                    File a Complaint <span class="material-symbols-outlined text-lg ml-1 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+<!-- Card 3: Nodal Officer -->
+<div class="group card-hover-effect bg-white border border-border-light rounded-xl p-8 cursor-pointer flex flex-col items-start h-full">
+<div class="icon-box size-14 rounded-lg flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined text-3xl">policy</span>
+</div>
+<h3 class="text-2xl font-bold text-primary mb-2">Find Nodal Officer</h3>
+<p class="text-text-secondary font-medium mb-8 flex-grow">
+                    Access our direct contact database for grievance officers at major logistics firms.
+                </p>
+<div class="flex items-center text-primary font-bold text-sm mt-auto group-hover:underline decoration-2 underline-offset-4">
+                    Search Database <span class="material-symbols-outlined text-lg ml-1 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Trust Strip -->
+<section class="w-full border-t border-border-light bg-gray-50/30">
+<div class="max-w-7xl mx-auto px-6 py-12">
+<div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
+<!-- Impact Counter -->
+<div class="flex flex-col items-center md:items-start text-center md:text-left min-w-fit">
+<span class="text-4xl md:text-5xl font-extrabold text-primary tracking-tight">₹12.5 Cr+</span>
+<span class="text-sm font-bold text-text-secondary uppercase tracking-wider mt-2">Unjustly Held Funds Recovered</span>
+</div>
+<!-- Divider -->
+<div class="hidden md:block w-px h-16 bg-gray-200"></div>
+<!-- Logos -->
+<div class="flex flex-wrap items-center justify-center md:justify-end gap-8 md:gap-12 opacity-60 grayscale w-full">
+<!-- Amazon Logo Placeholder -->
+<div class="h-8 flex items-center">
+<span class="text-xl font-bold italic font-serif">amazon</span>
+</div>
+<!-- Flipkart Logo Placeholder -->
+<div class="h-8 flex items-center">
+<span class="text-xl font-bold text-blue-800 italic">Flipkart</span>
+</div>
+<!-- Shiprocket Logo Placeholder -->
+<div class="h-8 flex items-center gap-1">
+<span class="material-symbols-outlined rotate-45">rocket_launch</span>
+<span class="text-lg font-bold">shiprocket</span>
+</div>
+<!-- Delhivery Logo Placeholder -->
+<div class="h-8 flex items-center gap-1">
+<span class="text-lg font-bold tracking-tighter">DELHIVERY</span>
+</div>
+<!-- Ecom Express Logo Placeholder -->
+<div class="h-8 flex items-center gap-1">
+<span class="text-lg font-bold tracking-tight text-blue-900">Ecom Express</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Shared Footer Placeholder -->
+<footer data-shared="true"></footer>
+<!-- Load Shared Header & Footer -->
+<script src="../shared-nav-loader.js"></script>
+</body></html>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Evidence Wall</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0B1C2D",
+                        "primary-light": "#1a2c40",
+                        "alert": "#C62828",
+                        "background-light": "#FFFFFF",
+                        "background-dark": "#13191f", // Keeping for config compliance, but design is pure white
+                        "border-subtle": "#E8EDF2",
+                        "text-main": "#0B1C2D",
+                        "text-secondary": "#677583",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"],
+                        "body": ["Public Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem", // 2px
+                        "sm": "0.25rem", // 4px
+                        "md": "0.375rem", // 6px
+                        "lg": "0.5rem", // 8px
+                        "xl": "0.75rem", // 12px
+                    },
+                    boxShadow: {
+                        'card': '0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05)',
+                        'card-hover': '0 10px 15px -3px rgba(11, 28, 45, 0.08), 0 4px 6px -4px rgba(11, 28, 45, 0.04)',
+                        '3d-icon': '2px 2px 0px 0px rgba(11, 28, 45, 0.1)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Public Sans", sans-serif;
+            background-color: #FFFFFF;
+            color: #0B1C2D;
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        .timeline-line {
+            background-image: linear-gradient(to bottom, #C62828 0%, #0B1C2D 50%, #0B1C2D 100%);
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen flex flex-col overflow-x-hidden text-[#0B1C2D]">
+<!-- Main Layout -->
+<div class="flex flex-1 min-h-screen w-full">
+<!-- Sidebar Navigation -->
+<aside class="w-64 flex-shrink-0 border-r border-[#E8EDF2] flex flex-col bg-white sticky top-0 h-screen z-20">
+<div class="p-6 flex items-center gap-3 border-b border-[#E8EDF2]">
+<div class="size-8 rounded bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+</div>
+<div>
+<h1 class="text-primary font-bold text-lg leading-tight tracking-tight">Claimr</h1>
+<p class="text-text-secondary text-xs font-medium">Legal Recovery</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1 p-4 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-sm text-text-secondary hover:bg-[#F5F7FA] hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<div class="pt-2 pb-1 px-3">
+<p class="text-xs font-bold text-[#9aa4b0] uppercase tracking-wider">Case Files</p>
+</div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-sm bg-[#F0F4F8] text-primary border-l-4 border-primary transition-all" href="#">
+<span class="material-symbols-outlined text-[22px] font-semibold">folder_open</span>
+<span class="text-sm font-bold">Evidence Wall</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-sm text-text-secondary hover:bg-[#F5F7FA] hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">shopping_cart</span>
+<span class="text-sm font-medium">Amazon Claims</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-sm text-text-secondary hover:bg-[#F5F7FA] hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">shopping_bag</span>
+<span class="text-sm font-medium">Flipkart Claims</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-sm text-text-secondary hover:bg-[#F5F7FA] hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">storefront</span>
+<span class="text-sm font-medium">Meesho Claims</span>
+</a>
+<div class="pt-4 pb-1 px-3">
+<p class="text-xs font-bold text-[#9aa4b0] uppercase tracking-wider">Partners</p>
+</div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-sm text-text-secondary hover:bg-[#F5F7FA] hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">local_shipping</span>
+<span class="text-sm font-medium">Logistics Fraud</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-sm text-text-secondary hover:bg-[#F5F7FA] hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-[#E8EDF2]">
+<div class="flex items-center gap-3 px-3 py-2 rounded-sm bg-[#F8F9FA] border border-[#E8EDF2]">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="User avatar placeholder" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBLq2aLDblZEIZjHF9hdOwobJ2DkWsqxS1wZDn-Tay_ghiMdxGrPRGwd_NLrrFDgqOuhfH-y9963WOHTXRI8Zh8NpA0WQzg_DLhRX1756qaCz4YJrZJxOcEzs7YQbrQxD_b_jrvOeP4jm6EBcKCL6e63S6YcfL9gLjmYx_3j5Wb8ozvJBhzkiDwimcvo5E0YkdQ-Trl8XggR6W9L3BBSjhxV6A6oOIhGQjL8SiebxHRagn95MpaZz9HgEItoGDdNCmNKD1_0SXGJiM');"></div>
+<div class="flex flex-col overflow-hidden">
+<p class="text-sm font-bold text-primary truncate">Legal Team</p>
+<p class="text-xs text-text-secondary truncate">admin@claimr.in</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col min-w-0 bg-white">
+<!-- Header Section -->
+<header data-shared="true"></header>
+<!-- Filters & Grid Container -->
+<div class="p-8 flex-1 bg-white">
+<!-- Filters -->
+<div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+<div class="flex flex-wrap gap-2">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-sm border border-[#E8EDF2] bg-white text-primary text-sm font-medium hover:border-primary transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                            Filter
+                        </button>
+<div class="h-8 w-[1px] bg-[#E8EDF2] mx-1"></div>
+<button class="px-4 py-1.5 rounded-sm bg-primary text-white text-sm font-medium shadow-sm">All Cases</button>
+<button class="px-4 py-1.5 rounded-sm bg-white border border-[#E8EDF2] text-text-secondary text-sm font-medium hover:text-primary hover:border-[#cfd8e3] transition-colors">High Value (&gt;10k)</button>
+<button class="px-4 py-1.5 rounded-sm bg-white border border-[#E8EDF2] text-text-secondary text-sm font-medium hover:text-primary hover:border-[#cfd8e3] transition-colors">DNE Disputes</button>
+<button class="px-4 py-1.5 rounded-sm bg-white border border-[#E8EDF2] text-text-secondary text-sm font-medium hover:text-primary hover:border-[#cfd8e3] transition-colors">Wrongful RTO</button>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-sm text-text-secondary">Sort by:</span>
+<div class="relative group">
+<button class="flex items-center gap-1 text-sm font-bold text-primary hover:text-[#1a2c40]">
+                                Recency
+                                <span class="material-symbols-outlined text-[18px]">arrow_drop_down</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Gallery Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Card 1: Flipkart DNE -->
+<article class="group relative flex flex-col bg-white border border-[#E8EDF2] rounded-sm p-0 transition-all duration-300 hover:shadow-card-hover hover:border-[#cfd8e3]">
+<div class="p-5 flex flex-col gap-4">
+<!-- Card Header -->
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-[#fff] border border-[#E8EDF2] rounded-sm flex items-center justify-center shadow-3d-icon">
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">Case #FK-9283</span>
+<h3 class="text-lg font-extrabold text-primary leading-tight">Flipkart DNE SPF</h3>
+</div>
+</div>
+<span class="px-2 py-1 bg-primary text-white text-[10px] font-bold uppercase tracking-wider rounded-sm">Closed</span>
+</div>
+<hr class="border-t border-[#E8EDF2] my-1"/>
+<!-- Timeline -->
+<div class="flex flex-col relative pl-2 py-2">
+<!-- Timeline Line -->
+<div class="absolute left-[19px] top-4 bottom-4 w-[1px] bg-[#E8EDF2]"></div>
+<!-- Step 1: Crisis -->
+<div class="relative flex gap-4 mb-5 z-10">
+<div class="flex-shrink-0 size-8 bg-[#FFF5F5] border border-[#FFEBEB] rounded-full flex items-center justify-center text-alert shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Oct 12 • Crisis</span>
+<span class="text-sm font-bold text-alert">SPF Claim Rejected</span>
+</div>
+</div>
+<!-- Step 2: Action -->
+<div class="relative flex gap-4 mb-5 z-10">
+<div class="flex-shrink-0 size-8 bg-white border border-[#E8EDF2] rounded-full flex items-center justify-center text-primary shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">gavel</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Oct 13 • Action</span>
+<span class="text-sm font-bold text-primary">Legal Draft Sent</span>
+<div class="mt-1 flex items-center gap-1 px-2 py-1 bg-[#F8F9FA] rounded-sm border border-[#E8EDF2] w-fit">
+<span class="material-symbols-outlined text-[12px] text-text-secondary">description</span>
+<span class="text-[10px] font-medium text-primary">Notice_Draft_v2.pdf</span>
+</div>
+</div>
+</div>
+<!-- Step 3: Resolution -->
+<div class="relative flex gap-4 z-10">
+<div class="flex-shrink-0 size-8 bg-[#F0F4F8] border border-[#E1E8F0] rounded-full flex items-center justify-center text-primary shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">support_agent</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Oct 15 • Resolution</span>
+<span class="text-sm font-bold text-primary">Nodal Officer Reply</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="mt-auto p-5 pt-0">
+<div class="rounded-sm bg-[#F8F9FA] border border-[#E8EDF2] p-4 flex items-center justify-between group-hover:bg-[#0B1C2D] group-hover:border-[#0B1C2D] transition-colors duration-300">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold uppercase tracking-wider text-text-secondary group-hover:text-white/70">Recovered Amount</span>
+<span class="text-xl font-black text-primary group-hover:text-white">₹3,868</span>
+</div>
+<button class="size-8 flex items-center justify-center rounded-sm bg-white text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2: Amazon Inventory Loss -->
+<article class="group relative flex flex-col bg-white border border-[#E8EDF2] rounded-sm p-0 transition-all duration-300 hover:shadow-card-hover hover:border-[#cfd8e3]">
+<div class="p-5 flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-[#fff] border border-[#E8EDF2] rounded-sm flex items-center justify-center shadow-3d-icon">
+<span class="material-symbols-outlined text-primary">shopping_cart</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">Case #AZ-1044</span>
+<h3 class="text-lg font-extrabold text-primary leading-tight">Inbound Loss</h3>
+</div>
+</div>
+<span class="px-2 py-1 bg-primary text-white text-[10px] font-bold uppercase tracking-wider rounded-sm">Closed</span>
+</div>
+<hr class="border-t border-[#E8EDF2] my-1"/>
+<div class="flex flex-col relative pl-2 py-2">
+<div class="absolute left-[19px] top-4 bottom-4 w-[1px] bg-[#E8EDF2]"></div>
+<div class="relative flex gap-4 mb-5 z-10">
+<div class="flex-shrink-0 size-8 bg-[#FFF5F5] border border-[#FFEBEB] rounded-full flex items-center justify-center text-alert shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Nov 02 • Crisis</span>
+<span class="text-sm font-bold text-alert">25 Units Missing</span>
+</div>
+</div>
+<div class="relative flex gap-4 mb-5 z-10">
+<div class="flex-shrink-0 size-8 bg-white border border-[#E8EDF2] rounded-full flex items-center justify-center text-primary shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">mark_email_read</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Nov 05 • Action</span>
+<span class="text-sm font-bold text-primary">Legal Notice Sent</span>
+</div>
+</div>
+<div class="relative flex gap-4 z-10">
+<div class="flex-shrink-0 size-8 bg-[#F0F4F8] border border-[#E1E8F0] rounded-full flex items-center justify-center text-primary shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">attach_money</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Nov 12 • Resolution</span>
+<span class="text-sm font-bold text-primary">Reimbursement</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto p-5 pt-0">
+<div class="rounded-sm bg-[#F8F9FA] border border-[#E8EDF2] p-4 flex items-center justify-between group-hover:bg-[#0B1C2D] group-hover:border-[#0B1C2D] transition-colors duration-300">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold uppercase tracking-wider text-text-secondary group-hover:text-white/70">Recovered Amount</span>
+<span class="text-xl font-black text-primary group-hover:text-white">₹12,500</span>
+</div>
+<button class="size-8 flex items-center justify-center rounded-sm bg-white text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3: Bluedart RTO -->
+<article class="group relative flex flex-col bg-white border border-[#E8EDF2] rounded-sm p-0 transition-all duration-300 hover:shadow-card-hover hover:border-[#cfd8e3]">
+<div class="p-5 flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-[#fff] border border-[#E8EDF2] rounded-sm flex items-center justify-center shadow-3d-icon">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">Case #BD-5521</span>
+<h3 class="text-lg font-extrabold text-primary leading-tight">Wrongful RTO</h3>
+</div>
+</div>
+<span class="px-2 py-1 bg-primary text-white text-[10px] font-bold uppercase tracking-wider rounded-sm">Closed</span>
+</div>
+<hr class="border-t border-[#E8EDF2] my-1"/>
+<div class="flex flex-col relative pl-2 py-2">
+<div class="absolute left-[19px] top-4 bottom-4 w-[1px] bg-[#E8EDF2]"></div>
+<div class="relative flex gap-4 mb-5 z-10">
+<div class="flex-shrink-0 size-8 bg-[#FFF5F5] border border-[#FFEBEB] rounded-full flex items-center justify-center text-alert shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">no_transfer</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Sep 20 • Crisis</span>
+<span class="text-sm font-bold text-alert">Fake Attempt Marked</span>
+</div>
+</div>
+<div class="relative flex gap-4 mb-5 z-10">
+<div class="flex-shrink-0 size-8 bg-white border border-[#E8EDF2] rounded-full flex items-center justify-center text-primary shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Sep 21 • Action</span>
+<span class="text-sm font-bold text-primary">GPS Proof Uploaded</span>
+<div class="mt-1 flex items-center gap-1 px-2 py-1 bg-[#F8F9FA] rounded-sm border border-[#E8EDF2] w-fit">
+<span class="material-symbols-outlined text-[12px] text-text-secondary">image</span>
+<span class="text-[10px] font-medium text-primary">Map_Evidence.jpg</span>
+</div>
+</div>
+</div>
+<div class="relative flex gap-4 z-10">
+<div class="flex-shrink-0 size-8 bg-[#F0F4F8] border border-[#E1E8F0] rounded-full flex items-center justify-center text-primary shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Sep 24 • Resolution</span>
+<span class="text-sm font-bold text-primary">Claim Approved</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto p-5 pt-0">
+<div class="rounded-sm bg-[#F8F9FA] border border-[#E8EDF2] p-4 flex items-center justify-between group-hover:bg-[#0B1C2D] group-hover:border-[#0B1C2D] transition-colors duration-300">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold uppercase tracking-wider text-text-secondary group-hover:text-white/70">Recovered Amount</span>
+<span class="text-xl font-black text-primary group-hover:text-white">₹1,200</span>
+</div>
+<button class="size-8 flex items-center justify-center rounded-sm bg-white text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 4: Meesho Penalty -->
+<article class="group relative flex flex-col bg-white border border-[#E8EDF2] rounded-sm p-0 transition-all duration-300 hover:shadow-card-hover hover:border-[#cfd8e3]">
+<div class="p-5 flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-[#fff] border border-[#E8EDF2] rounded-sm flex items-center justify-center shadow-3d-icon">
+<span class="material-symbols-outlined text-primary">storefront</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">Case #ME-8832</span>
+<h3 class="text-lg font-extrabold text-primary leading-tight">Penalty Dispute</h3>
+</div>
+</div>
+<span class="px-2 py-1 bg-primary text-white text-[10px] font-bold uppercase tracking-wider rounded-sm">Closed</span>
+</div>
+<hr class="border-t border-[#E8EDF2] my-1"/>
+<div class="flex flex-col relative pl-2 py-2">
+<div class="absolute left-[19px] top-4 bottom-4 w-[1px] bg-[#E8EDF2]"></div>
+<div class="relative flex gap-4 mb-5 z-10">
+<div class="flex-shrink-0 size-8 bg-[#FFF5F5] border border-[#FFEBEB] rounded-full flex items-center justify-center text-alert shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">money_off</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Dec 01 • Crisis</span>
+<span class="text-sm font-bold text-alert">Wrongful Penalty</span>
+</div>
+</div>
+<div class="relative flex gap-4 mb-5 z-10">
+<div class="flex-shrink-0 size-8 bg-white border border-[#E8EDF2] rounded-full flex items-center justify-center text-primary shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">confirmation_number</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Dec 03 • Action</span>
+<span class="text-sm font-bold text-primary">Ticket Raised</span>
+</div>
+</div>
+<div class="relative flex gap-4 z-10">
+<div class="flex-shrink-0 size-8 bg-[#F0F4F8] border border-[#E1E8F0] rounded-full flex items-center justify-center text-primary shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Dec 05 • Resolution</span>
+<span class="text-sm font-bold text-primary">Penalty Waived</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto p-5 pt-0">
+<div class="rounded-sm bg-[#F8F9FA] border border-[#E8EDF2] p-4 flex items-center justify-between group-hover:bg-[#0B1C2D] group-hover:border-[#0B1C2D] transition-colors duration-300">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold uppercase tracking-wider text-text-secondary group-hover:text-white/70">Recovered Amount</span>
+<span class="text-xl font-black text-primary group-hover:text-white">₹5,000</span>
+</div>
+<button class="size-8 flex items-center justify-center rounded-sm bg-white text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 5: Ekart Damaged Return -->
+<article class="group relative flex flex-col bg-white border border-[#E8EDF2] rounded-sm p-0 transition-all duration-300 hover:shadow-card-hover hover:border-[#cfd8e3]">
+<div class="p-5 flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-[#fff] border border-[#E8EDF2] rounded-sm flex items-center justify-center shadow-3d-icon">
+<span class="material-symbols-outlined text-primary">package_2</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">Case #EK-2910</span>
+<h3 class="text-lg font-extrabold text-primary leading-tight">Damaged Return</h3>
+</div>
+</div>
+<span class="px-2 py-1 bg-primary text-white text-[10px] font-bold uppercase tracking-wider rounded-sm">Closed</span>
+</div>
+<hr class="border-t border-[#E8EDF2] my-1"/>
+<div class="flex flex-col relative pl-2 py-2">
+<div class="absolute left-[19px] top-4 bottom-4 w-[1px] bg-[#E8EDF2]"></div>
+<div class="relative flex gap-4 mb-5 z-10">
+<div class="flex-shrink-0 size-8 bg-[#FFF5F5] border border-[#FFEBEB] rounded-full flex items-center justify-center text-alert shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">broken_image</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Aug 10 • Crisis</span>
+<span class="text-sm font-bold text-alert">Customer Return Broken</span>
+</div>
+</div>
+<div class="relative flex gap-4 mb-5 z-10">
+<div class="flex-shrink-0 size-8 bg-white border border-[#E8EDF2] rounded-full flex items-center justify-center text-primary shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">video_camera_front</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Aug 11 • Action</span>
+<span class="text-sm font-bold text-primary">Unboxing Video Sent</span>
+</div>
+</div>
+<div class="relative flex gap-4 z-10">
+<div class="flex-shrink-0 size-8 bg-[#F0F4F8] border border-[#E1E8F0] rounded-full flex items-center justify-center text-primary shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">handshake</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Aug 14 • Resolution</span>
+<span class="text-sm font-bold text-primary">Full Refund Processed</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto p-5 pt-0">
+<div class="rounded-sm bg-[#F8F9FA] border border-[#E8EDF2] p-4 flex items-center justify-between group-hover:bg-[#0B1C2D] group-hover:border-[#0B1C2D] transition-colors duration-300">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold uppercase tracking-wider text-text-secondary group-hover:text-white/70">Recovered Amount</span>
+<span class="text-xl font-black text-primary group-hover:text-white">₹8,999</span>
+</div>
+<button class="size-8 flex items-center justify-center rounded-sm bg-white text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 6: Myntra Lost in Transit -->
+<article class="group relative flex flex-col bg-white border border-[#E8EDF2] rounded-sm p-0 transition-all duration-300 hover:shadow-card-hover hover:border-[#cfd8e3]">
+<div class="p-5 flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-[#fff] border border-[#E8EDF2] rounded-sm flex items-center justify-center shadow-3d-icon">
+<span class="material-symbols-outlined text-primary">apparel</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">Case #MY-4412</span>
+<h3 class="text-lg font-extrabold text-primary leading-tight">Lost in Transit</h3>
+</div>
+</div>
+<span class="px-2 py-1 bg-primary text-white text-[10px] font-bold uppercase tracking-wider rounded-sm">Closed</span>
+</div>
+<hr class="border-t border-[#E8EDF2] my-1"/>
+<div class="flex flex-col relative pl-2 py-2">
+<div class="absolute left-[19px] top-4 bottom-4 w-[1px] bg-[#E8EDF2]"></div>
+<div class="relative flex gap-4 mb-5 z-10">
+<div class="flex-shrink-0 size-8 bg-[#FFF5F5] border border-[#FFEBEB] rounded-full flex items-center justify-center text-alert shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">where_to_vote</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Jul 01 • Crisis</span>
+<span class="text-sm font-bold text-alert">No Scan for 30 Days</span>
+</div>
+</div>
+<div class="relative flex gap-4 mb-5 z-10">
+<div class="flex-shrink-0 size-8 bg-white border border-[#E8EDF2] rounded-full flex items-center justify-center text-primary shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">campaign</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Jul 05 • Action</span>
+<span class="text-sm font-bold text-primary">Social Media Escalation</span>
+</div>
+</div>
+<div class="relative flex gap-4 z-10">
+<div class="flex-shrink-0 size-8 bg-[#F0F4F8] border border-[#E1E8F0] rounded-full flex items-center justify-center text-primary shadow-sm ring-4 ring-white">
+<span class="material-symbols-outlined text-[16px]">credit_score</span>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-xs font-medium text-text-secondary">Jul 12 • Resolution</span>
+<span class="text-sm font-bold text-primary">Claim Settled</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto p-5 pt-0">
+<div class="rounded-sm bg-[#F8F9FA] border border-[#E8EDF2] p-4 flex items-center justify-between group-hover:bg-[#0B1C2D] group-hover:border-[#0B1C2D] transition-colors duration-300">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold uppercase tracking-wider text-text-secondary group-hover:text-white/70">Recovered Amount</span>
+<span class="text-xl font-black text-primary group-hover:text-white">₹14,250</span>
+</div>
+<button class="size-8 flex items-center justify-center rounded-sm bg-white text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+</div>
+</main>
+</div>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

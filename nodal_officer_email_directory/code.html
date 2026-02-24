@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nodal Officer Email Directory - Claimr</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b1c2d",
+                        "primary-hover": "#162a3f",
+                        "background-light": "#f8fafb",
+                        "background-dark": "#101418",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1c242c",
+                        "border-light": "#e5e7eb",
+                        "border-dark": "#2d3748",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#121417] dark:text-gray-100 flex flex-col min-h-screen transition-colors duration-200">
+<!-- Top Navigation -->
+<header data-shared="true"></header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8">
+<!-- Breadcrumbs -->
+<nav class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+<a class="hover:text-primary dark:hover:text-white transition-colors" href="../claimr_homepage_-_panic_interceptor_1/code.html">Home</a>
+<span class="mx-2 text-gray-300 dark:text-gray-600">/</span>
+<a class="hover:text-primary dark:hover:text-white transition-colors" href="../claimr_home_-_command_center_variant_1/code.html">Resources</a>
+<span class="mx-2 text-gray-300 dark:text-gray-600">/</span>
+<span class="text-primary dark:text-white font-medium">Nodal Officer Directory</span>
+</nav>
+<!-- Page Heading & Context -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+<div class="flex flex-col gap-3 max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/20 w-fit border border-blue-100 dark:border-blue-800">
+<span class="material-symbols-outlined text-blue-600 dark:text-blue-400 text-xs">verified_user</span>
+<span class="text-blue-700 dark:text-blue-300 text-xs font-semibold tracking-wide uppercase">Verified Contacts 2024</span>
+</div>
+<h1 class="text-3xl md:text-4xl font-black text-primary dark:text-white leading-tight tracking-tight">
+                    Logistics Nodal Officer <br class="hidden md:block"/>Contact Directory (India)
+                </h1>
+<p class="text-gray-600 dark:text-gray-300 text-base md:text-lg leading-relaxed">
+                    Direct escalation contacts for major courier partners. Use these contacts only after your initial support tickets have been closed or ignored for &gt;24 hours.
+                </p>
+</div>
+<!-- Quick Action Card (Mobile only, hidden on desktop usually, but useful here for context) -->
+<div class="md:hidden w-full bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-800/30 p-4 rounded-lg flex items-start gap-3">
+<span class="material-symbols-outlined text-red-600 mt-1">warning</span>
+<div>
+<p class="text-sm font-bold text-red-800 dark:text-red-200">No response?</p>
+<p class="text-xs text-red-700 dark:text-red-300 mt-1">Unresolved RTO disputes require a legal notice.</p>
+</div>
+</div>
+</div>
+<!-- Search & Filters -->
+<div class="w-full">
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary dark:group-focus-within:text-white transition-colors">search</span>
+</div>
+<input class="block w-full pl-12 pr-4 py-4 rounded-xl border-none bg-white dark:bg-surface-dark text-gray-900 dark:text-white shadow-sm ring-1 ring-gray-200 dark:ring-gray-700 focus:ring-2 focus:ring-primary dark:focus:ring-white placeholder:text-gray-400 text-base transition-shadow" placeholder="Search by courier name (e.g., Delhivery, BlueDart, Ecom Express)..." type="text"/>
+<div class="absolute inset-y-0 right-2 flex items-center">
+<kbd class="hidden sm:inline-block px-2 py-1 text-xs font-semibold text-gray-400 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md">Cmd + K</kbd>
+</div>
+</div>
+</div>
+<!-- Directory Table -->
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-50/50 dark:bg-gray-800/50 border-b border-gray-100 dark:border-gray-700">
+<th class="py-4 px-6 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider w-16">Logo</th>
+<th class="py-4 px-6 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider min-w-[200px]">Company</th>
+<th class="py-4 px-6 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hidden sm:table-cell">Designation</th>
+<th class="py-4 px-6 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider min-w-[240px]">Contact Email</th>
+<th class="py-4 px-6 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider text-right">Avg. Response</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 dark:divide-gray-700">
+<!-- Row 1 -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="py-4 px-6">
+<div class="size-10 rounded-full bg-white border border-gray-200 dark:border-gray-600 flex items-center justify-center overflow-hidden">
+<img class="w-8 h-8 object-contain" data-alt="Shiprocket logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9GjXbzHIpGK1ndjJNHXrrH4mf1U1GRnJdIN8-evN2ZkIxGgHdi8Z93l-hX-P0KgFIZpqzB8P80AqzTvTkOLFjXValODxnomGbEYlIG2vsrY-5SEC8FU4rrY94pRf4BxIoI13bUKfsMj394v0iqRd5vSivk5j0W_rkUFxxnJHZaACmD3ZwgbzHlETLqURKP0ag5Ubf788A-b9153OfX_AbsUmcWEBhPKrUk44nYG1cfODEIGGQ2g36L0Y3wAUDOxpUy65q2c3bf9w"/>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="font-bold text-gray-900 dark:text-white">Shiprocket</div>
+<div class="text-xs text-gray-500 dark:text-gray-400 sm:hidden">Nodal Officer</div>
+</td>
+<td class="py-4 px-6 text-sm text-gray-600 dark:text-gray-300 hidden sm:table-cell">
+                                Nodal Officer
+                            </td>
+<td class="py-4 px-6">
+<button class="flex items-center gap-2 group/btn py-1.5 px-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:border-primary dark:hover:border-primary hover:bg-white dark:hover:bg-gray-700 transition-all w-full sm:w-auto justify-between sm:justify-start">
+<span class="text-sm font-mono text-gray-700 dark:text-gray-200 select-all">nodal@shiprocket.in</span>
+<span class="material-symbols-outlined text-gray-400 group-hover/btn:text-primary text-[16px]">content_copy</span>
+</button>
+</td>
+<td class="py-4 px-6 text-right">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-50 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-400 border border-yellow-100 dark:border-yellow-800">
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+                                    48 Hrs
+                                </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="py-4 px-6">
+<div class="size-10 rounded-full bg-white border border-gray-200 dark:border-gray-600 flex items-center justify-center overflow-hidden">
+<img class="w-8 h-8 object-contain" data-alt="Delhivery logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoXJKlkPNhQi3iczmVncmgCoX2EFz6TU73FHOesqaAZMNg36apyPh4LFcP-nTSjzLCsMyx_Yfap1S7Tw2otnqMwJLRRkoaKh9_JYiC3YQoaWJdG5CtdAZWpUFqwAZ8QO-H7FpX90f_MZ7Fum3hVxGDLfn9qK4CwnvOPYrkTSRZRN2ZYZTD-eJZk1oeRi_miW2-j0JiDuBm7idGWG4Xlzk3CcEb4vmAtPJBa6keBIVcKhZJdJEHRJFhRHWLgzANDlYegdm3d8cENGM"/>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="font-bold text-gray-900 dark:text-white">Delhivery</div>
+<div class="text-xs text-gray-500 dark:text-gray-400 sm:hidden">Grievance Officer</div>
+</td>
+<td class="py-4 px-6 text-sm text-gray-600 dark:text-gray-300 hidden sm:table-cell">
+                                Grievance Officer
+                            </td>
+<td class="py-4 px-6">
+<button class="flex items-center gap-2 group/btn py-1.5 px-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:border-primary dark:hover:border-primary hover:bg-white dark:hover:bg-gray-700 transition-all w-full sm:w-auto justify-between sm:justify-start">
+<span class="text-sm font-mono text-gray-700 dark:text-gray-200 select-all">grievance@delhivery.com</span>
+<span class="material-symbols-outlined text-gray-400 group-hover/btn:text-primary text-[16px]">content_copy</span>
+</button>
+</td>
+<td class="py-4 px-6 text-right">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 border border-green-100 dark:border-green-800">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                                    24 Hrs
+                                </span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="py-4 px-6">
+<div class="size-10 rounded-full bg-white border border-gray-200 dark:border-gray-600 flex items-center justify-center overflow-hidden">
+<img class="w-8 h-8 object-contain" data-alt="BlueDart logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbotBlDUCwPDoOId6Oqsr9FbLfZo_T2v3nx8gVUzoTcbht8F9FCmb_wHHISYIZIfArMedfwgudoLEQkQMmZFIcpBmv3YyygplEEpGo5RJnnTSB0xt2AfiDoCSXAhDtIvthpgpHEbeL42rdE6PBLV0bsCDp1amNR8pFzE57WHe_ClIDw5pRLitbPWbOZJtxGUQ9AxGuKWcnyrG1IGA71RqAa6a6rG12-VOpoC9kEkW51Or5LOiq-EI7EzeP93R87B6PvzlKNo2sUxY"/>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="font-bold text-gray-900 dark:text-white">BlueDart</div>
+<div class="text-xs text-gray-500 dark:text-gray-400 sm:hidden">Regional Manager</div>
+</td>
+<td class="py-4 px-6 text-sm text-gray-600 dark:text-gray-300 hidden sm:table-cell">
+                                Regional Manager
+                            </td>
+<td class="py-4 px-6">
+<button class="flex items-center gap-2 group/btn py-1.5 px-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:border-primary dark:hover:border-primary hover:bg-white dark:hover:bg-gray-700 transition-all w-full sm:w-auto justify-between sm:justify-start">
+<span class="text-sm font-mono text-gray-700 dark:text-gray-200 select-all">escalations@bluedart.com</span>
+<span class="material-symbols-outlined text-gray-400 group-hover/btn:text-primary text-[16px]">content_copy</span>
+</button>
+</td>
+<td class="py-4 px-6 text-right">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-50 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-400 border border-yellow-100 dark:border-yellow-800">
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+                                    36 Hrs
+                                </span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="py-4 px-6">
+<div class="size-10 rounded-full bg-white border border-gray-200 dark:border-gray-600 flex items-center justify-center overflow-hidden">
+<img class="w-8 h-8 object-contain" data-alt="Ecom Express logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU59y9k4D9EZPHpVx5rIsYaQZ29mZ4_ya_3taRduhuGYQQdDaKnhOLJSy7kgaOfAP-bAqk-bPpB5n4tNSqDTDEq-_1nppbJLWq1-6_DOHejCrdJKmBj7c0qlcjQaJtLV9lCwvYd810vJV7hfTBHqWmrMF4FZPDUFPcKf_umpBNSwvOdwQ5GOlyPlr2gWQXhycLrl-kfaSp1aPSUOUSeVY5RPRaBSlw8umV_waz2RDaqqhox45ji6aDOdhND95jFpwuDHqSdGhAyac"/>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="font-bold text-gray-900 dark:text-white">Ecom Express</div>
+<div class="text-xs text-gray-500 dark:text-gray-400 sm:hidden">Nodal Team</div>
+</td>
+<td class="py-4 px-6 text-sm text-gray-600 dark:text-gray-300 hidden sm:table-cell">
+                                Nodal Team
+                            </td>
+<td class="py-4 px-6">
+<button class="flex items-center gap-2 group/btn py-1.5 px-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:border-primary dark:hover:border-primary hover:bg-white dark:hover:bg-gray-700 transition-all w-full sm:w-auto justify-between sm:justify-start">
+<span class="text-sm font-mono text-gray-700 dark:text-gray-200 select-all">nodal@ecomexpress.in</span>
+<span class="material-symbols-outlined text-gray-400 group-hover/btn:text-primary text-[16px]">content_copy</span>
+</button>
+</td>
+<td class="py-4 px-6 text-right">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-50 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-400 border border-yellow-100 dark:border-yellow-800">
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+                                    48 Hrs
+                                </span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="py-4 px-6">
+<div class="size-10 rounded-full bg-white border border-gray-200 dark:border-gray-600 flex items-center justify-center overflow-hidden">
+<img class="w-8 h-8 object-contain" data-alt="Xpressbees logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVLlTNIm5d1rwUm3ttDm4Tf6NWxakloC335SH8fHaFuKRx8XvCjWmCQEAM7apAcTdk9V78XqpOjdTh04WZy6r6jmI45I3nUGZJAesrL3Me0JnZ_J7rvV3tUDssJHW7NmbAokYRR7XRKV_A2oUK6ZE7RS7vBgr5s89PX0gXiEyDfvX6pYrXMq53aYsgVXeV25Tzu4ZK2kaz4ETHWiILOho2nvnsE9fN-4m2HAuJUM1pPhtJYNhNTsMO-0p68y3w566pLmma5zs3N3A"/>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="font-bold text-gray-900 dark:text-white">Xpressbees</div>
+<div class="text-xs text-gray-500 dark:text-gray-400 sm:hidden">Dispute Resolution</div>
+</td>
+<td class="py-4 px-6 text-sm text-gray-600 dark:text-gray-300 hidden sm:table-cell">
+                                Dispute Resolution
+                            </td>
+<td class="py-4 px-6">
+<button class="flex items-center gap-2 group/btn py-1.5 px-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:border-primary dark:hover:border-primary hover:bg-white dark:hover:bg-gray-700 transition-all w-full sm:w-auto justify-between sm:justify-start">
+<span class="text-sm font-mono text-gray-700 dark:text-gray-200 select-all">disputes@xpressbees.com</span>
+<span class="material-symbols-outlined text-gray-400 group-hover/btn:text-primary text-[16px]">content_copy</span>
+</button>
+</td>
+<td class="py-4 px-6 text-right">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border border-red-100 dark:border-red-800">
+<span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                                    72 Hrs
+                                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer/Pagination -->
+<div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 flex justify-between items-center">
+<span class="text-xs text-gray-500 dark:text-gray-400">Showing 1-5 of 12 registered partners</span>
+<div class="flex gap-2">
+<button class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-white disabled:opacity-50" disabled="">Previous</button>
+<button class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-white">Next</button>
+</div>
+</div>
+</div>
+<!-- Conversion / Escalation Block -->
+<div class="mt-4 relative overflow-hidden rounded-2xl bg-primary dark:bg-surface-dark shadow-xl border border-primary dark:border-gray-700">
+<!-- Decorative background pattern -->
+<div class="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+<div class="absolute bottom-0 left-0 -mb-16 -ml-16 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+<div class="relative z-10 p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+<div class="flex-1 space-y-4">
+<div class="flex items-center gap-3 mb-2">
+<span class="flex items-center justify-center w-8 h-8 rounded bg-red-500/20 text-red-200 ring-1 ring-red-500/50">
+<span class="material-symbols-outlined text-sm">gavel</span>
+</span>
+<span class="text-red-200 font-bold uppercase tracking-wider text-xs">Legal Escalation Protocol</span>
+</div>
+<h3 class="text-2xl font-bold text-white leading-tight">If they ignore this email, the next step is a legal notice.</h3>
+<p class="text-gray-300 max-w-xl">
+                        Nodal officers are legally required to resolve grievances under the Consumer Protection (E-Commerce) Rules, 2020. Silence is grounds for litigation.
+                    </p>
+<div class="flex items-center gap-4 text-sm text-gray-400 pt-2">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px] text-green-400">check_circle</span>
+                            Trusted by 5,000+ sellers
+                        </span>
+<span class="w-1 h-1 rounded-full bg-gray-600"></span>
+<span>Starts at ₹499</span>
+</div>
+</div>
+<div class="flex-shrink-0 w-full md:w-auto">
+<button class="w-full md:w-auto flex items-center justify-center gap-2 bg-white text-primary hover:bg-gray-50 px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+<span class="material-symbols-outlined">edit_document</span>
+                        Draft Legal Notice
+                    </button>
+<p class="text-center text-xs text-gray-400 mt-3">Takes less than 2 minutes to generate</p>
+</div>
+</div>
+</div>
+<!-- Trust/FAQ Section (Brief) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-gray-200 dark:border-gray-800">
+<div class="p-4 rounded-lg bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-800">
+<div class="flex items-center gap-2 text-primary dark:text-white font-semibold mb-2">
+<span class="material-symbols-outlined text-gray-400">help</span>
+                    Who is a Nodal Officer?
+                </div>
+<p class="text-sm text-gray-500 dark:text-gray-400">A designated officer mandated by law to ensure compliance with e-commerce rules and handle escalated grievances.</p>
+</div>
+<div class="p-4 rounded-lg bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-800">
+<div class="flex items-center gap-2 text-primary dark:text-white font-semibold mb-2">
+<span class="material-symbols-outlined text-gray-400">schedule</span>
+                    When to contact?
+                </div>
+<p class="text-sm text-gray-500 dark:text-gray-400">Only escalate if customer support fails to resolve your issue within the promised SLA (usually 24-48 hours).</p>
+</div>
+<div class="p-4 rounded-lg bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-800">
+<div class="flex items-center gap-2 text-primary dark:text-white font-semibold mb-2">
+<span class="material-symbols-outlined text-gray-400">description</span>
+                    What to include?
+                </div>
+<p class="text-sm text-gray-500 dark:text-gray-400">Attach your AWB number, proof of delivery/dispute, and previous ticket IDs. Be concise and professional.</p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer data-shared="true"></footer>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

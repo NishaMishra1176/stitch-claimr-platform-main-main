@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Dispute Interceptor</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1289a1",
+                        "primary-dark": "#0e6b7d",
+                        "background-light": "#ffffff",
+                        "slate-custom": "#f8fafc",
+                        "alert-orange": "#F97316",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/svg%3E\")",
+                    }
+                },
+            },
+        }
+    </script>
+<style>.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+    </style>
+</head>
+<body class="bg-white font-body text-slate-800 antialiased overflow-x-hidden selection:bg-primary/10 selection:text-primary">
+<nav class="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/90 backdrop-blur-md">
+<div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+<div class="flex items-center gap-2">
+<div class="flex size-8 items-center justify-center rounded-lg bg-slate-900 text-white">
+<span class="material-symbols-outlined text-xl">gavel</span>
+</div>
+<span class="text-xl font-bold font-display tracking-tight text-slate-900">Claimr</span>
+</div>
+<div class="hidden md:flex items-center gap-2 text-sm font-medium text-slate-500">
+<span class="hover:text-slate-900 cursor-pointer transition-colors">Dispute Center</span>
+<span class="material-symbols-outlined text-base text-slate-300">chevron_right</span>
+<span class="hover:text-slate-900 cursor-pointer transition-colors">Courier Fraud</span>
+<span class="material-symbols-outlined text-base text-slate-300">chevron_right</span>
+<span class="rounded-md bg-slate-100 px-2 py-0.5 text-slate-900 font-semibold">Shiprocket</span>
+</div>
+<div>
+<button class="rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium hover:bg-slate-50 transition-colors text-slate-700">Login</button>
+</div>
+</div>
+</nav>
+<main class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 bg-grid-pattern min-h-screen">
+<div class="mb-12 max-w-3xl">
+<div class="inline-flex items-center gap-2 rounded-full border border-orange-100 bg-orange-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-orange-700 mb-6">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+</span>
+            Interceptor Active
+        </div>
+<h1 class="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl mb-6">
+            Shiprocket Fake Delivery? <br/>
+<span class="text-primary">Generate Your Legal Notice</span>
+</h1>
+<p class="text-lg text-slate-600 max-w-xl leading-relaxed">
+            Don't let fake RTOs eat your profits. Generate a legally compliant Section 138 notice instantly to dispute false "Customer Refused" or "Undelivered" remarks.
+        </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-24">
+<div class="lg:col-span-5 space-y-8 relative z-10">
+<div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/50">
+<div class="mb-6 border-b border-slate-100 pb-4 flex justify-between items-start">
+<div>
+<h2 class="text-lg font-bold text-slate-900 font-display">Quick Diagnostic</h2>
+<p class="text-sm text-slate-500">Select the issue to customize your notice.</p>
+</div>
+<span class="material-symbols-outlined text-slate-300">stethoscope</span>
+</div>
+<form class="space-y-5">
+<div class="space-y-3">
+<label class="block text-xs font-bold uppercase text-slate-500 tracking-wider">Reason for Dispute</label>
+<label class="group relative flex cursor-pointer rounded-xl border border-slate-200 p-4 focus:outline-none hover:border-primary/50 hover:bg-slate-50 transition-all has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:ring-1 has-[:checked]:ring-primary">
+<input checked="" class="peer sr-only" name="issue_type" type="radio" value="no_call"/>
+<span class="flex items-center gap-4">
+<span class="flex size-10 flex-shrink-0 items-center justify-center rounded-full bg-slate-50 border border-slate-100 text-slate-500 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-colors">
+<span class="material-symbols-outlined">phone_missed</span>
+</span>
+<span class="flex flex-col">
+<span class="block text-sm font-bold text-slate-900">No Call Attempted</span>
+<span class="block text-xs text-slate-500">Delivery agent never contacted customer</span>
+</span>
+</span>
+<span class="ml-auto flex items-center text-primary opacity-0 transition-opacity peer-checked:opacity-100">
+<span class="material-symbols-outlined">check_circle</span>
+</span>
+</label>
+<label class="group relative flex cursor-pointer rounded-xl border border-slate-200 p-4 focus:outline-none hover:border-primary/50 hover:bg-slate-50 transition-all has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:ring-1 has-[:checked]:ring-primary">
+<input class="peer sr-only" name="issue_type" type="radio" value="late_marking"/>
+<span class="flex items-center gap-4">
+<span class="flex size-10 flex-shrink-0 items-center justify-center rounded-full bg-slate-50 border border-slate-100 text-slate-500 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-colors">
+<span class="material-symbols-outlined">bedtime</span>
+</span>
+<span class="flex flex-col">
+<span class="block text-sm font-bold text-slate-900">Late Night Marking</span>
+<span class="block text-xs text-slate-500">Marked 'Undelivered' after 9 PM</span>
+</span>
+</span>
+<span class="ml-auto flex items-center text-primary opacity-0 transition-opacity peer-checked:opacity-100">
+<span class="material-symbols-outlined">check_circle</span>
+</span>
+</label>
+<label class="group relative flex cursor-pointer rounded-xl border border-slate-200 p-4 focus:outline-none hover:border-primary/50 hover:bg-slate-50 transition-all has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:ring-1 has-[:checked]:ring-primary">
+<input class="peer sr-only" name="issue_type" type="radio" value="fake_location"/>
+<span class="flex items-center gap-4">
+<span class="flex size-10 flex-shrink-0 items-center justify-center rounded-full bg-slate-50 border border-slate-100 text-slate-500 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-colors">
+<span class="material-symbols-outlined">wrong_location</span>
+</span>
+<span class="flex flex-col">
+<span class="block text-sm font-bold text-slate-900">Fake Location</span>
+<span class="block text-xs text-slate-500">Agent wasn't near delivery address</span>
+</span>
+</span>
+<span class="ml-auto flex items-center text-primary opacity-0 transition-opacity peer-checked:opacity-100">
+<span class="material-symbols-outlined">check_circle</span>
+</span>
+</label>
+</div>
+<div class="space-y-2 pt-2">
+<label class="block text-xs font-bold uppercase text-slate-500 tracking-wider" for="tracking-id">Tracking Information</label>
+<div class="relative">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">qr_code_2</span>
+</div>
+<input class="block w-full rounded-lg border-slate-200 bg-slate-50 pl-10 text-sm placeholder:text-slate-400 focus:border-primary focus:ring-primary py-3 transition-shadow" id="tracking-id" name="tracking-id" placeholder="Paste AWB Number (e.g. 143255221)" type="text"/>
+</div>
+</div>
+<button class="group flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-slate-900/10 hover:bg-slate-800 hover:shadow-xl hover:shadow-slate-900/20 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 transition-all active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined group-hover:animate-pulse">bolt</span>
+                        Generate Notice Draft
+                    </button>
+<div class="flex items-center justify-center gap-2 text-xs text-slate-400 pt-2">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<span>Encrypted &amp; Private. No credit card required.</span>
+</div>
+</form>
+</div>
+<div class="flex items-center gap-4 px-2 opacity-80 grayscale transition-all hover:grayscale-0">
+<div class="text-xs font-semibold text-slate-400">TRUSTED BY</div>
+<div class="flex -space-x-2 overflow-hidden">
+<div class="inline-block h-8 w-8 rounded-full ring-2 ring-white bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-500">S</div>
+<div class="inline-block h-8 w-8 rounded-full ring-2 ring-white bg-slate-300 flex items-center justify-center text-[10px] font-bold text-slate-600">K</div>
+<div class="inline-block h-8 w-8 rounded-full ring-2 ring-white bg-slate-400 flex items-center justify-center text-[10px] font-bold text-white">M</div>
+</div>
+<div class="text-sm text-slate-500">
+<span class="font-bold text-slate-900">2,400+</span> sellers
+                </div>
+</div>
+</div>
+<div class="lg:col-span-7 relative pl-0 lg:pl-12">
+<div class="absolute -top-12 -right-12 -z-10 h-[110%] w-[110%] rounded-[3rem] bg-slate-100/50 hidden lg:block"></div>
+<div class="relative mx-auto max-w-lg rounded-t-lg bg-white shadow-2xl shadow-slate-300/40 ring-1 ring-slate-900/5 transition-all">
+<div class="flex items-center justify-between border-b border-slate-100 bg-slate-50 px-4 py-3 rounded-t-lg">
+<div class="flex items-center gap-2">
+<span class="flex size-2.5 rounded-full bg-slate-300"></span>
+<span class="flex size-2.5 rounded-full bg-slate-300"></span>
+<span class="flex size-2.5 rounded-full bg-slate-300"></span>
+</div>
+<div class="flex items-center gap-2 rounded bg-white px-2 py-0.5 border border-slate-100 shadow-sm">
+<span class="material-symbols-outlined text-[12px] text-primary">description</span>
+<span class="text-[10px] font-mono font-medium text-slate-500">NOTICE_DRAFT_V1.PDF</span>
+</div>
+<div class="w-8"></div>
+</div>
+<div class="p-8 md:p-12 min-h-[600px] bg-white relative overflow-hidden">
+<div class="mb-10 text-center">
+<div class="mb-3 flex justify-center">
+<div class="size-12 border-2 border-slate-900 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl text-slate-900">balance</span>
+</div>
+</div>
+<div class="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">By Registered Post A.D.</div>
+<h3 class="font-serif text-2xl font-bold text-slate-900 underline decoration-4 decoration-slate-200 underline-offset-4">LEGAL NOTICE</h3>
+</div>
+<div class="space-y-5 font-serif text-sm leading-relaxed text-slate-800 opacity-90">
+<div class="flex justify-between items-end border-b border-slate-100 pb-4 mb-6">
+<div class="text-xs text-slate-500">Ref: CLM/SR/2023/8492</div>
+<div class="bg-yellow-100 px-2 py-0.5 font-mono text-xs text-yellow-800 border border-yellow-200 rounded">DATE: 25 OCT 2023</div>
+</div>
+<div>
+<p class="font-bold text-slate-900">To,</p>
+<p class="font-bold text-slate-900">The Grievance Officer,</p>
+<p class="text-slate-600">Shiprocket (BigFoot Retail Solutions Pvt. Ltd.)</p>
+<p class="text-slate-600">Plot No. B, Udyog Vihar, Phase V, Gurugram.</p>
+</div>
+<div class="bg-slate-50 p-3 border-l-4 border-slate-300 my-4">
+<p class="text-xs font-bold uppercase text-slate-500 mb-1">Subject</p>
+<p class="font-bold text-slate-900">
+                                Notice regarding deficiency in service and fraudulent marking of shipment <span class="bg-yellow-100 font-mono px-1">#AWB_NUMBER</span>.
+                            </p>
+</div>
+<p>Sir/Madam,</p>
+<p>
+                            Under instructions from my client, <strong>[Your Company Name]</strong>, I hereby serve you with the following notice:
+                        </p>
+<div class="space-y-3 text-justify pl-4 border-l border-slate-200">
+<p>1. That my client entrusted a shipment bearing AWB No. <span class="bg-yellow-100 px-1 font-mono text-xs">XXXXXXXXXX</span> for delivery.</p>
+<p>2. That as per your tracking records, the said shipment was marked as <span class="font-bold text-red-600">"Customer Refused"</span> on <span class="bg-yellow-100 px-1 font-mono text-xs">DD/MM/YYYY</span>.</p>
+<div class="h-2 w-full rounded bg-slate-100 mt-2"></div>
+<div class="h-2 w-5/6 rounded bg-slate-100"></div>
+</div>
+<div class="mt-12 flex justify-between items-end">
+<div>
+<div class="h-12 w-24 bg-contain bg-no-repeat opacity-40 mb-2" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuARJ_7015LFimGq9ehUxfQxhYM5NNS4iqa9BnA3JoNdil_5uF2GZebxudwIyQv-LQl9MuNaUsfAVmjhj22gW3OM7v_UUamdj72X5WJrzyHVX5-BeEJTcb_nnZZBo7lQ32cKGSeDTHmV0EpRpIXZyE1U_0bwnq41eha8r1Glp-4ss87Q--BBv4rJQKhhr_pIDPtTQv8nKC9sUeoAiPE6u4bbSgitZlcq3Ijluktfq5qyytRXZ1Kva6vQN1I3XhxSt01_XqEAM9n4GkY');"></div>
+<div class="h-px w-32 bg-slate-300 mb-1"></div>
+<p class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Advocate Signature</p>
+</div>
+<div class="size-16 rounded-full border-4 border-double border-primary/20 flex items-center justify-center opacity-50 rotate-[-15deg]">
+<span class="text-[10px] font-bold text-primary uppercase text-center leading-tight">Legal<br/>Draft<br/>Verified</span>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white via-white/95 to-transparent flex items-end justify-center pb-8">
+<div class="group flex cursor-pointer items-center gap-3 rounded-full bg-slate-900 pl-5 pr-2 py-2 text-white shadow-xl hover:scale-105 transition-all">
+<span class="text-sm font-bold">Preview Full Document</span>
+<span class="flex size-8 items-center justify-center rounded-full bg-white text-slate-900">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="border-t border-slate-200 pt-16">
+<div class="mb-12 text-center">
+<h2 class="text-2xl font-bold text-slate-900 font-display">Nodal Officer Verification</h2>
+<p class="mt-2 text-slate-500">Skip the bot support. Reach the human decision maker directly.</p>
+</div>
+<div class="mx-auto max-w-4xl">
+<div class="relative overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-xl shadow-slate-200/40">
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-primary"></div>
+<div class="flex flex-col md:flex-row items-center gap-8 p-8 md:p-10">
+<div class="relative flex-shrink-0">
+<div class="size-28 rounded-full bg-slate-50 p-1 ring-4 ring-slate-50 shadow-inner">
+<div class="h-full w-full rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuApQ6aTF4NjhKiF4-tiPt4vmAl_cYopK9p5sC5k6ric3CQUKQYhyRSVVQyCSVn2HVebL2_-tYEhEdhk0iyfhZkfYlkaIZBRaEz3g6r-oJfHCsBc8SBbAuoUemk2TpKJyeNFtBf2jt1C5aB19SnRESLVNOQMmWxBWVkPIC6FOpRO1RV4qLGZD5TvaKqz78Fy9mX3y3OQyRRNys7ACIh_6jDGBOUukIYCLbjtzo1EY78ecTIpd7poiRA23OVfuO9F-CeG3w_Cd6Umv9c');"></div>
+</div>
+<div class="absolute bottom-1 right-1 flex size-8 items-center justify-center rounded-full bg-blue-500 ring-4 ring-white shadow-md" title="Verified Officer">
+<span class="material-symbols-outlined text-white text-base font-bold">verified</span>
+</div>
+</div>
+<div class="flex-1 text-center md:text-left">
+<div class="flex flex-col md:flex-row items-center gap-2 mb-2">
+<h3 class="text-2xl font-bold text-slate-900">Ashish Sabharwal</h3>
+<span class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-bold text-blue-700 ring-1 ring-inset ring-blue-700/10">
+<span class="size-1.5 rounded-full bg-blue-600 animate-pulse"></span>
+                                Active Now
+                            </span>
+</div>
+<p class="text-sm font-medium text-slate-500 mb-6 flex items-center justify-center md:justify-start gap-2">
+<span class="material-symbols-outlined text-slate-400 text-lg">business_center</span>
+                            Grievance Officer • Shiprocket India
+                        </p>
+<div class="flex flex-col sm:flex-row items-center gap-3">
+<div class="group flex w-full sm:w-auto items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-700 transition-colors hover:border-blue-300 hover:bg-blue-50 cursor-pointer">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-blue-500">mail</span>
+<span class="font-mono font-medium">escalations@shiprocket.com</span>
+</div>
+<button class="flex w-full sm:w-auto items-center justify-center gap-2 rounded-lg bg-white border border-slate-200 px-5 py-2.5 text-sm font-bold text-slate-700 shadow-sm hover:bg-slate-50 hover:border-slate-300 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+                                Copy Email
+                            </button>
+</div>
+</div>
+</div>
+<div class="bg-slate-50 px-8 py-4 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">info</span>
+<span>Official Escalation Channel per IT Rules, 2021</span>
+</div>
+<span>Response Time: &lt; 24 Hours</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="fixed bottom-8 right-8 z-40">
+<button class="group flex items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-4 text-white shadow-2xl transition-all hover:bg-slate-800 hover:scale-105 active:scale-95 ring-4 ring-slate-900/10">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-semibold">Talk to Lawyer</span>
+</button>
+</div>
+
+<script src="../shared-nav-loader.js"></script>
+</body></html>

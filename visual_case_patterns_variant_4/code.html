@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Pattern Recognition Gallery</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#269dd9",
+                        "background-light": "#ffffff",
+                        "background-dark": "#21262c",
+                        "success-bg": "#f0fcf4",
+                        "success-text": "#15803d",
+                        "success-border": "#bbf7d0",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                    boxShadow: {
+                        "card": "0 2px 8px rgba(0, 0, 0, 0.04), 0 0 1px rgba(0,0,0,0.1)",
+                        "card-hover": "0 12px 24px rgba(38, 157, 217, 0.08), 0 4px 8px rgba(0,0,0,0.04)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .timeline-line {
+            background: repeating-linear-gradient(to right, #e2e8f0 0, #e2e8f0 6px, transparent 6px, transparent 10px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#121517] overflow-x-hidden min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header data-shared="true"></header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col items-center w-full px-6 py-8 md:py-12 bg-[#fafbfb]">
+<div class="w-full max-w-[1200px] flex flex-col gap-10">
+<!-- Page Heading -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+<div class="max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-primary text-xs font-bold uppercase tracking-wider mb-4">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+                        Pattern Gallery
+                    </div>
+<h1 class="text-[#121517] text-3xl md:text-4xl lg:text-5xl font-black leading-[1.1] tracking-[-0.02em] mb-4">
+                        Recognize Your Problem? <br/><span class="text-primary">See How We Solved It.</span>
+</h1>
+<p class="text-[#64748b] text-lg font-medium leading-relaxed max-w-xl">
+                        Don't waste time explaining. Browse our visual dispute patterns to find your exact scenario and automate the recovery process immediately.
+                    </p>
+</div>
+<!-- Quick Stats / Trust -->
+<div class="flex gap-8 border-l-2 border-[#e2e8f0] pl-8 hidden lg:flex">
+<div>
+<p class="text-3xl font-bold text-[#121517] tracking-tight">₹14Cr+</p>
+<p class="text-sm font-medium text-[#64748b]">Total Recovered</p>
+</div>
+<div>
+<p class="text-3xl font-bold text-[#121517] tracking-tight">8,200+</p>
+<p class="text-sm font-medium text-[#64748b]">Patterns Identified</p>
+</div>
+</div>
+</div>
+<!-- Filters (Chips) -->
+<div class="flex flex-wrap gap-3 pb-2 border-b border-[#e2e8f0]/50">
+<button class="group flex h-9 items-center justify-center gap-x-2 rounded-lg bg-[#121517] pl-4 pr-3 text-white transition-all shadow-md">
+<span class="text-sm font-bold">All Patterns</span>
+</button>
+<button class="group flex h-9 items-center justify-center gap-x-2 rounded-lg bg-white border border-[#e2e8f0] pl-4 pr-3 hover:border-primary/50 hover:bg-blue-50/50 transition-all">
+<span class="text-[#64748b] group-hover:text-primary text-sm font-semibold">Courier: All</span>
+<span class="material-symbols-outlined text-[#94a3b8] text-[18px]">keyboard_arrow_down</span>
+</button>
+<button class="group flex h-9 items-center justify-center gap-x-2 rounded-lg bg-white border border-[#e2e8f0] pl-4 pr-3 hover:border-primary/50 hover:bg-blue-50/50 transition-all">
+<span class="text-[#64748b] group-hover:text-primary text-sm font-semibold">Dispute Type: RTO Fraud</span>
+<span class="material-symbols-outlined text-[#94a3b8] text-[18px]">keyboard_arrow_down</span>
+</button>
+<button class="group flex h-9 items-center justify-center gap-x-2 rounded-lg bg-white border border-[#e2e8f0] pl-4 pr-3 hover:border-primary/50 hover:bg-blue-50/50 transition-all">
+<span class="text-[#64748b] group-hover:text-primary text-sm font-semibold">Severity: High</span>
+<span class="material-symbols-outlined text-[#94a3b8] text-[18px]">keyboard_arrow_down</span>
+</button>
+<button class="group flex h-9 items-center justify-center gap-x-2 rounded-lg bg-white border border-[#e2e8f0] pl-4 pr-3 hover:border-primary/50 hover:bg-blue-50/50 transition-all ml-auto">
+<span class="material-symbols-outlined text-[#64748b] text-[20px]">sort</span>
+<span class="text-[#64748b] text-sm font-semibold">Sort by: Recovery</span>
+</button>
+</div>
+<!-- Pattern Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-20">
+<!-- Card 1: Weight Discrepancy -->
+<article class="group flex flex-col bg-white rounded-2xl p-6 border border-[#e2e8f0] shadow-card hover:shadow-card-hover hover:border-primary/30 transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary/20 text-[64px]">scale</span>
+</div>
+<header data-shared="true"></header>
+<!-- Timeline Visualization -->
+<div class="relative w-full mb-8 px-2 z-10">
+<!-- Background Line -->
+<div class="absolute top-[18px] left-0 w-full h-[2px] bg-[#f1f5f9] -z-10"></div>
+<div class="flex justify-between relative">
+<!-- Node 1 -->
+<div class="flex flex-col items-center gap-3 w-24">
+<div class="size-9 rounded-full bg-white border-2 border-slate-200 text-slate-400 flex items-center justify-center z-10 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">package_2</span>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-[#121517]">Shipment</p>
+<p class="text-[10px] font-semibold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded mt-1">5.0 KG</p>
+</div>
+</div>
+<!-- Node 2 -->
+<div class="flex flex-col items-center gap-3 w-24">
+<div class="size-9 rounded-full bg-white border-2 border-slate-200 text-slate-400 flex items-center justify-center z-10 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">warehouse</span>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-[#121517]">Hub Scan</p>
+<p class="text-[10px] font-semibold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded mt-1">5.0 KG</p>
+</div>
+</div>
+<!-- Node 3 (Problem) -->
+<div class="flex flex-col items-center gap-3 w-24">
+<div class="size-9 rounded-full bg-red-50 border-2 border-red-500 text-red-500 flex items-center justify-center z-10 shadow-sm animate-pulse">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-red-600">Dest. Hub</p>
+<p class="text-[10px] font-bold text-red-600 bg-red-100 px-1.5 py-0.5 rounded mt-1">2.0 KG!</p>
+</div>
+</div>
+<!-- Node 4 (Solution) -->
+<div class="flex flex-col items-center gap-3 w-24">
+<div class="size-9 rounded-full bg-primary border-2 border-primary text-white flex items-center justify-center z-10 shadow-md">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-primary">Auto-Claim</p>
+<p class="text-[10px] font-medium text-slate-400 mt-1">Instant File</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto flex items-center justify-between p-4 bg-success-bg border border-success-border rounded-xl">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-success-text uppercase tracking-wider mb-0.5">Recovery Success</span>
+<span class="text-xl font-bold text-[#121517] font-mono tracking-tight">₹4,500</span>
+</div>
+<button class="flex items-center gap-1 text-sm font-bold text-primary hover:text-[#1a7bb0] transition-colors">
+                            Details
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 2: Fake Delivery Attempt -->
+<article class="group flex flex-col bg-white rounded-2xl p-6 border border-[#e2e8f0] shadow-card hover:shadow-card-hover hover:border-primary/30 transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary/20 text-[64px]">person_off</span>
+</div>
+<header data-shared="true"></header>
+<!-- Timeline Visualization -->
+<div class="relative w-full mb-8 px-2 z-10">
+<div class="absolute top-[18px] left-0 w-full h-[2px] bg-[#f1f5f9] -z-10"></div>
+<div class="flex justify-between relative">
+<!-- Node 1 -->
+<div class="flex flex-col items-center gap-3 w-24">
+<div class="size-9 rounded-full bg-white border-2 border-slate-200 text-slate-400 flex items-center justify-center z-10 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-[#121517]">Out for Dlv</p>
+<p class="text-[10px] font-medium text-slate-400 mt-1">9:00 AM</p>
+</div>
+</div>
+<!-- Node 2 (Problem) -->
+<div class="flex flex-col items-center gap-3 w-24">
+<div class="size-9 rounded-full bg-red-50 border-2 border-red-500 text-red-500 flex items-center justify-center z-10 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">phonelink_erase</span>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-red-600">"Unreachable"</p>
+<p class="text-[10px] font-bold text-red-600 bg-red-100 px-1.5 py-0.5 rounded mt-1">0 Calls</p>
+</div>
+</div>
+<!-- Node 3 -->
+<div class="flex flex-col items-center gap-3 w-24">
+<div class="size-9 rounded-full bg-white border-2 border-slate-200 text-slate-400 flex items-center justify-center z-10 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">sync_problem</span>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-[#121517]">RTO Init</p>
+<p class="text-[10px] font-medium text-slate-400 mt-1">Instant</p>
+</div>
+</div>
+<!-- Node 4 (Solution) -->
+<div class="flex flex-col items-center gap-3 w-24">
+<div class="size-9 rounded-full bg-primary border-2 border-primary text-white flex items-center justify-center z-10 shadow-md">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-primary">GPS Proof</p>
+<p class="text-[10px] font-medium text-slate-400 mt-1">Evidence</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto flex items-center justify-between p-4 bg-success-bg border border-success-border rounded-xl">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-success-text uppercase tracking-wider mb-0.5">Recovery Success</span>
+<span class="text-xl font-bold text-[#121517] font-mono tracking-tight">₹8,200</span>
+</div>
+<button class="flex items-center gap-1 text-sm font-bold text-primary hover:text-[#1a7bb0] transition-colors">
+                            Details
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 3: Product Switch (Stones) -->
+<article class="group flex flex-col bg-white rounded-2xl p-6 border border-[#e2e8f0] shadow-card hover:shadow-card-hover hover:border-primary/30 transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary/20 text-[64px]">videocam</span>
+</div>
+<header data-shared="true"></header>
+<!-- Timeline Visualization -->
+<div class="relative w-full mb-8 px-2 z-10">
+<div class="absolute top-[18px] left-0 w-full h-[2px] bg-[#f1f5f9] -z-10"></div>
+<div class="flex justify-between relative">
+<!-- Node 1 -->
+<div class="flex flex-col items-center gap-3 w-24">
+<div class="size-9 rounded-full bg-white border-2 border-slate-200 text-slate-400 flex items-center justify-center z-10 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-[#121517]">Delivered</p>
+</div>
+</div>
+<!-- Node 2 -->
+<div class="flex flex-col items-center gap-3 w-24">
+<div class="size-9 rounded-full bg-white border-2 border-slate-200 text-slate-400 flex items-center justify-center z-10 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">keyboard_return</span>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-[#121517]">Return Init</p>
+</div>
+</div>
+<!-- Node 3 (Problem) -->
+<div class="flex flex-col items-center gap-3 w-24">
+<div class="size-9 rounded-full bg-red-50 border-2 border-red-500 text-red-500 flex items-center justify-center z-10 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">block</span>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-red-600">Got Stones</p>
+<p class="text-[10px] font-bold text-red-600 bg-red-100 px-1.5 py-0.5 rounded mt-1">Scam</p>
+</div>
+</div>
+<!-- Node 4 (Solution) -->
+<div class="flex flex-col items-center gap-3 w-24">
+<div class="size-9 rounded-full bg-primary border-2 border-primary text-white flex items-center justify-center z-10 shadow-md">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-primary">Legal Notice</p>
+<p class="text-[10px] font-medium text-slate-400 mt-1">Video Proof</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto flex items-center justify-between p-4 bg-success-bg border border-success-border rounded-xl">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-success-text uppercase tracking-wider mb-0.5">Recovery Success</span>
+<span class="text-xl font-bold text-[#121517] font-mono tracking-tight">₹15,000</span>
+</div>
+<button class="flex items-center gap-1 text-sm font-bold text-primary hover:text-[#1a7bb0] transition-colors">
+                            Details
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 4: Lost in Transit -->
+<article class="group flex flex-col bg-white rounded-2xl p-6 border border-[#e2e8f0] shadow-card hover:shadow-card-hover hover:border-primary/30 transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary/20 text-[64px]">question_mark</span>
+</div>
+<header data-shared="true"></header>
+<!-- Timeline Visualization -->
+<div class="relative w-full mb-8 px-2 z-10">
+<div class="absolute top-[18px] left-0 w-full h-[2px] bg-[#f1f5f9] -z-10"></div>
+<div class="flex justify-between relative">
+<!-- Node 1 -->
+<div class="flex flex-col items-center gap-3 w-24">
+<div class="size-9 rounded-full bg-white border-2 border-slate-200 text-slate-400 flex items-center justify-center z-10 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">input</span>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-[#121517]">Picked Up</p>
+</div>
+</div>
+<!-- Node 2 (Problem) -->
+<div class="flex flex-col items-center gap-3 w-24">
+<div class="size-9 rounded-full bg-red-50 border-2 border-red-500 text-red-500 flex items-center justify-center z-10 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">hourglass_disabled</span>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-red-600">Stuck at Hub</p>
+<p class="text-[10px] font-bold text-red-600 bg-red-100 px-1.5 py-0.5 rounded mt-1">14 Days</p>
+</div>
+</div>
+<!-- Node 3 -->
+<div class="flex flex-col items-center gap-3 w-24">
+<div class="size-9 rounded-full bg-white border-2 border-slate-200 text-slate-400 flex items-center justify-center z-10 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">thumb_down</span>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-[#121517]">Claim Denied</p>
+</div>
+</div>
+<!-- Node 4 (Solution) -->
+<div class="flex flex-col items-center gap-3 w-24">
+<div class="size-9 rounded-full bg-primary border-2 border-primary text-white flex items-center justify-center z-10 shadow-md">
+<span class="material-symbols-outlined text-[18px]">support_agent</span>
+</div>
+<div class="text-center">
+<p class="text-xs font-bold text-primary">Escalation</p>
+<p class="text-[10px] font-medium text-slate-400 mt-1">L2 Support</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto flex items-center justify-between p-4 bg-success-bg border border-success-border rounded-xl">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-success-text uppercase tracking-wider mb-0.5">Insurance Payout</span>
+<span class="text-xl font-bold text-[#121517] font-mono tracking-tight">100% Value</span>
+</div>
+<button class="flex items-center gap-1 text-sm font-bold text-primary hover:text-[#1a7bb0] transition-colors">
+                            Details
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</article>
+</div>
+</div>
+</main>
+<!-- Sticky Footer / FAB Area -->
+<div class="fixed bottom-6 right-6 z-40">
+<button class="flex items-center gap-3 bg-[#121517] text-white px-6 py-4 rounded-full shadow-2xl hover:scale-105 transition-transform group">
+<span class="material-symbols-outlined text-[24px] text-green-400">currency_rupee</span>
+<div class="flex flex-col items-start">
+<span class="text-xs font-medium text-gray-400 uppercase tracking-wider">Don't lose money</span>
+<span class="text-base font-bold">Start Recovery Now</span>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Moving Goalpost Visualizer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0095b2",
+                        "primary-dark": "#007a93",
+                        "background-light": "#ffffff",
+                        "background-dark": "#1d1d20",
+                        "accent-red": "#D22B2B",
+                        "accent-red-light": "#FDE8E8",
+                        "off-white": "#F8F8F8",
+                        "border-gray": "#E5E5E5",
+                        "text-main": "#101718",
+                        "text-sub": "#5e858d",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'crisp': '0px 2px 8px -2px rgba(0, 0, 0, 0.05)',
+                        'card': '0px 4px 6px -1px rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main antialiased overflow-x-hidden">
+<div class="relative flex min-h-screen flex-col">
+<!-- Navigation -->
+<header data-shared="true"></header>
+<main class="flex flex-1 flex-col items-center">
+<!-- Hero Section -->
+<section class="w-full max-w-6xl px-6 py-12 md:px-12 md:py-16 lg:px-20">
+<div class="flex flex-col gap-6 md:max-w-3xl">
+<div class="inline-flex items-center gap-2 rounded-full border border-accent-red/20 bg-accent-red-light px-3 py-1 w-fit">
+<span class="material-symbols-outlined text-sm text-accent-red">warning</span>
+<span class="text-xs font-bold uppercase tracking-wider text-accent-red">Delay Tactic Detected</span>
+</div>
+<h1 class="text-5xl font-black leading-[0.95] tracking-tight text-text-main md:text-6xl lg:text-7xl">
+                        Delay is a Strategy.<br/>
+<span class="text-primary decoration-primary underline decoration-4 underline-offset-4">Don't fall for it.</span>
+</h1>
+<p class="max-w-2xl text-lg font-normal leading-relaxed text-text-sub md:text-xl">
+                        Platforms profit from your patience. The visualizer below exposes exactly how they are stalling your payout with bureaucratic loops.
+                    </p>
+</div>
+</section>
+<!-- Timeline Visualizer -->
+<section class="w-full border-y border-border-gray bg-off-white px-6 py-16 md:px-12 lg:px-20">
+<div class="mx-auto max-w-6xl">
+<!-- Timeline Container -->
+<div class="relative rounded-xl border border-border-gray bg-white p-8 shadow-crisp md:p-12">
+<!-- Loop Warning Overlay -->
+<div class="absolute right-8 top-6 flex items-center gap-2 rounded bg-accent-red/10 px-3 py-1.5 text-accent-red md:right-12">
+<span class="material-symbols-outlined animate-pulse">update</span>
+<span class="text-sm font-bold">Loop 3 Active: Regression to Compliance</span>
+</div>
+<!-- Timeline Flex -->
+<div class="relative mt-12 flex flex-col justify-between gap-8 md:flex-row md:items-start md:gap-4">
+<!-- Connecting Line (Desktop) -->
+<div class="absolute left-0 top-[18px] -z-10 hidden h-[2px] w-full bg-border-gray md:block"></div>
+<!-- Step 1 -->
+<div class="group flex flex-1 flex-col items-center gap-4 text-center md:items-start md:text-left">
+<div class="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary bg-white text-primary shadow-sm">
+<span class="material-symbols-outlined text-xl">check_circle</span>
+</div>
+<div>
+<p class="text-sm font-bold uppercase tracking-wider text-primary">Step 1</p>
+<h3 class="text-lg font-bold text-text-main">Accepted</h3>
+<p class="mt-1 text-sm text-text-sub">Initial receipt confirmed</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="group flex flex-1 flex-col items-center gap-4 text-center md:items-start md:text-left">
+<div class="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary bg-white text-primary shadow-sm">
+<span class="material-symbols-outlined text-xl">sync</span>
+</div>
+<div>
+<p class="text-sm font-bold uppercase tracking-wider text-primary">Step 2</p>
+<h3 class="text-lg font-bold text-text-main">Processing</h3>
+<p class="mt-1 text-sm text-text-sub">Verification checks</p>
+</div>
+</div>
+<!-- Step 3 (The Problem Area) -->
+<div class="relative flex flex-1 flex-col items-center gap-4 text-center md:items-start md:text-left">
+<!-- Red Loop Arrow Animation CSS Representation -->
+<div class="absolute -top-12 left-1/2 h-14 w-[120%] -translate-x-1/2 md:left-auto md:w-[160%] md:translate-x-0 hidden md:block pointer-events-none">
+<svg fill="none" height="100%" preserveaspectratio="none" viewbox="0 0 200 50" width="100%" xmlns="http://www.w3.org/2000/svg">
+<path class="animate-pulse" d="M10 40 C 10 10, 190 10, 190 40" fill="none" stroke="#D22B2B" stroke-dasharray="6 4" stroke-width="2"></path>
+<path d="M5 35 L 10 42 L 15 35" fill="none" stroke="#D22B2B" stroke-width="2"></path>
+</svg>
+<div class="absolute -top-2 left-1/2 -translate-x-1/2 bg-white px-2 text-xs font-bold text-accent-red">Recursive Request</div>
+</div>
+<div class="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 border-accent-red bg-accent-red-light text-accent-red shadow-sm ring-4 ring-accent-red/10">
+<span class="material-symbols-outlined text-xl">error</span>
+</div>
+<div>
+<p class="text-sm font-bold uppercase tracking-wider text-accent-red">Stuck Here</p>
+<h3 class="text-lg font-bold text-text-main">Compliance</h3>
+<p class="mt-1 text-sm text-text-sub">"Additional info needed"</p>
+<p class="mt-1 text-xs font-medium text-accent-red bg-accent-red/5 px-2 py-1 rounded w-fit mx-auto md:mx-0">Returned 3 times</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-1 flex-col items-center gap-4 text-center opacity-60 md:items-start md:text-left grayscale">
+<div class="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-border-gray bg-white text-border-gray shadow-sm">
+<span class="material-symbols-outlined text-xl">gavel</span>
+</div>
+<div>
+<p class="text-sm font-bold uppercase tracking-wider text-text-sub">Step 4</p>
+<h3 class="text-lg font-bold text-text-main">Review</h3>
+<p class="mt-1 text-sm text-text-sub">Internal escalation</p>
+</div>
+</div>
+<!-- Step 5 -->
+<div class="flex flex-col items-center gap-4 text-center opacity-40 md:items-start md:text-left grayscale">
+<div class="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-border-gray bg-white text-border-gray shadow-sm">
+<span class="text-lg font-bold">?</span>
+</div>
+<div>
+<p class="text-sm font-bold uppercase tracking-wider text-text-sub">End</p>
+<h3 class="text-lg font-bold text-text-main">Unknown</h3>
+<p class="mt-1 text-sm text-text-sub">No fixed date</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Impact Stats -->
+<div class="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+<div class="flex flex-col gap-2 rounded-lg border border-border-gray bg-white p-6 shadow-sm">
+<div class="flex items-center gap-2 text-text-sub">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-sm font-medium uppercase tracking-wide">Frozen Funds</span>
+</div>
+<p class="text-4xl font-bold tracking-tight text-text-main">$12,500</p>
+<p class="text-sm text-accent-red">At risk of permanent hold</p>
+</div>
+<div class="flex flex-col gap-2 rounded-lg border border-border-gray bg-white p-6 shadow-sm">
+<div class="flex items-center gap-2 text-text-sub">
+<span class="material-symbols-outlined">schedule</span>
+<span class="text-sm font-medium uppercase tracking-wide">Time Wasted</span>
+</div>
+<p class="text-4xl font-bold tracking-tight text-text-main">14 Hours</p>
+<p class="text-sm text-text-sub">Writing generic emails</p>
+</div>
+<div class="flex flex-col gap-2 rounded-lg border border-border-gray bg-white p-6 shadow-sm">
+<div class="flex items-center gap-2 text-text-sub">
+<span class="material-symbols-outlined">gavel</span>
+<span class="text-sm font-medium uppercase tracking-wide">Decisions Made</span>
+</div>
+<p class="text-4xl font-bold tracking-tight text-text-main text-accent-red">0</p>
+<p class="text-sm text-text-sub">Platform has stalled 45 days</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Comparison Section -->
+<section class="w-full bg-white px-6 py-20 md:px-12 lg:px-20">
+<div class="mx-auto max-w-6xl">
+<div class="mb-12 text-center">
+<h2 class="text-3xl font-bold leading-tight tracking-tight text-text-main md:text-4xl">
+                            The Cost of Waiting vs. The Power of Action
+                        </h2>
+<p class="mt-4 text-text-sub">Bureaucracy vs. Legal Leverage</p>
+</div>
+<div class="grid grid-cols-1 overflow-hidden rounded-xl border border-border-gray shadow-lg md:grid-cols-2">
+<!-- Left Side: Without Claimr -->
+<div class="flex flex-col bg-[#F9FAFB] p-8 md:p-12 md:border-r border-border-gray relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gray-200"></div>
+<div class="mb-8 flex items-center gap-3">
+<span class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-gray-500">
+<span class="material-symbols-outlined text-lg">close</span>
+</span>
+<h3 class="text-xl font-bold text-gray-600">Without Claimr</h3>
+</div>
+<ul class="flex flex-col gap-6">
+<li class="flex items-start gap-4 opacity-70">
+<span class="material-symbols-outlined mt-1 text-gray-400">remove_circle_outline</span>
+<div>
+<p class="font-bold text-gray-700">"Please allow 48 hours"</p>
+<p class="text-sm text-gray-500">Repeated indefinitely via automated response.</p>
+</div>
+</li>
+<li class="flex items-start gap-4 opacity-70">
+<span class="material-symbols-outlined mt-1 text-gray-400">remove_circle_outline</span>
+<div>
+<p class="font-bold text-gray-700">Vague Requirements</p>
+<p class="text-sm text-gray-500">"Provide relevant documents" without specification.</p>
+</div>
+</li>
+<li class="flex items-start gap-4 opacity-70">
+<span class="material-symbols-outlined mt-1 text-gray-400">remove_circle_outline</span>
+<div>
+<p class="font-bold text-gray-700">Zero Accountability</p>
+<p class="text-sm text-gray-500">Tickets closed without resolution.</p>
+</div>
+</li>
+</ul>
+<div class="mt-auto pt-10">
+<div class="rounded border border-dashed border-gray-300 bg-gray-50 p-4 text-center text-sm font-medium text-gray-500">
+                                    Outcome: Indefinite Hold
+                                </div>
+</div>
+</div>
+<!-- Right Side: With Claimr -->
+<div class="flex flex-col bg-white p-8 md:p-12 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+<div class="mb-8 flex items-center gap-3">
+<span class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined text-lg">check</span>
+</span>
+<h3 class="text-xl font-bold text-primary">With Claimr</h3>
+</div>
+<ul class="flex flex-col gap-6">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined mt-1 text-primary">verified</span>
+<div>
+<p class="font-bold text-text-main">Formal Demand Letter</p>
+<p class="text-sm text-text-sub">Legally drafted PDF sent via registered mail.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined mt-1 text-primary">verified</span>
+<div>
+<p class="font-bold text-text-main">14-Day Statutory Deadline</p>
+<p class="text-sm text-text-sub">Force a "Yes" or "No" decision by specific date.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined mt-1 text-primary">verified</span>
+<div>
+<p class="font-bold text-text-main">Arbitration Prepped</p>
+<p class="text-sm text-text-sub">One-click escalation if deadline is missed.</p>
+</div>
+</li>
+</ul>
+<div class="mt-auto pt-10">
+<button class="w-full rounded bg-primary py-4 text-center text-sm font-bold text-white shadow-lg transition-transform hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/20">
+                                    Generate Demand Letter Now
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Sticky CTA -->
+<div class="sticky bottom-0 z-40 w-full border-t border-border-gray bg-white/95 backdrop-blur px-6 py-6 md:px-12">
+<div class="mx-auto flex max-w-4xl flex-col items-center justify-between gap-4 md:flex-row">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-accent-red/10 text-accent-red">
+<span class="material-symbols-outlined">timer_off</span>
+</div>
+<div>
+<p class="text-sm font-bold text-text-main">Stop the clock.</p>
+<p class="text-xs text-text-sub">Every day represents 1.2% profit loss.</p>
+</div>
+</div>
+<button class="flex w-full min-w-[280px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-text-main px-8 py-4 text-base font-bold text-white shadow-xl transition-all hover:bg-black md:w-auto">
+<span>Force a final written decision</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

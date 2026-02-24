@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr Risk Control Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        
+        /* Custom scrollbar for table area */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D1D5DB; }
+
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(198, 40, 40, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(198, 40, 40, 0); }
+        }
+        .animate-pulse-ring { animation: pulse-red 2s infinite; }
+        
+        /* Monospace for numbers */
+        .font-mono-nums { font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b1c2d",
+                        "primary-hover": "#152a40",
+                        "alert": "#C62828",
+                        "alert-bg": "#FFEBEE",
+                        "background-light": "#ffffff",
+                        "surface": "#F8F9FA",
+                        "border-subtle": "#E5E7EB",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'card': '0 4px 0 0 rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light text-primary font-display antialiased h-screen w-full overflow-hidden flex selection:bg-primary selection:text-white">
+<!-- Sidebar -->
+<aside class="w-64 bg-primary text-white flex flex-col h-full shrink-0 relative z-20 border-r border-primary/10">
+<div class="p-6 pb-8 border-b border-white/10">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-gradient-to-br from-white to-gray-400 flex items-center justify-center text-primary font-bold text-lg">C</div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-bold leading-none tracking-wide">CLAIMR</h1>
+<p class="text-gray-400 text-xs font-medium mt-1 uppercase tracking-wider">Risk-Ops Terminal</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-2 p-4 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-3 rounded bg-white/10 text-white group transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded hover:bg-white/5 text-gray-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">policy</span>
+<span class="text-sm font-medium">Forensics</span>
+<span class="ml-auto bg-alert text-white text-[10px] font-bold px-1.5 py-0.5 rounded">9</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded hover:bg-white/5 text-gray-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+<span class="text-sm font-medium">Claims</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded hover:bg-white/5 text-gray-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+<span class="text-sm font-medium">Logistics</span>
+</a>
+<div class="h-px bg-white/10 my-2 mx-3"></div>
+<a class="flex items-center gap-3 px-3 py-3 rounded hover:bg-white/5 text-gray-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-white/10">
+<div class="flex items-center gap-3 px-3 py-2">
+<div class="size-8 rounded-full bg-cover bg-center border border-white/20" data-alt="User profile picture showing a professional headshot" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCfT2VXFLAldzBwBrA0D7eS-V__UnC7j7_r5yd7uwvVQ0_czDlr1_wqrpxQ51ZGNG-sKXOtuKk0jNDE0rXDb9gYZuEaChL37iI1YKzxWtbrPzGMIj6F7dJzaq4xBdyP7USpR8wxXnVk2VnMq-zpuLyS03TvGILa1YHnZOdIuvgyEnSlVa-Zai8gfLs75ajrTo4ZXmIjRDJCeirQB9eTleg1C_NNV-Y7BmPFiq8jwujLWIWaBbu5Wdq3-sjItr1eOZXur0PVWXJvcg0");'></div>
+<div class="flex flex-col overflow-hidden">
+<p class="text-sm font-medium text-white truncate">Rohan M.</p>
+<p class="text-xs text-gray-400 truncate">Risk Manager</p>
+</div>
+<button class="ml-auto text-gray-400 hover:text-white">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-full overflow-y-auto bg-[#F5F7F9]">
+<!-- Top Bar / Breadcrumb -->
+<header data-shared="true"></header>
+<div class="p-8 max-w-[1400px] w-full mx-auto flex flex-col gap-8">
+<!-- Hero Impact Section -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3 mb-1">
+<span class="text-xs font-bold text-gray-500 uppercase tracking-widest">System Status</span>
+<span class="h-px w-8 bg-gray-300"></span>
+<span class="text-xs font-bold text-alert bg-alert-bg px-2 py-0.5 rounded border border-alert/20">CRITICAL EXPOSURE</span>
+</div>
+<h1 class="text-primary text-4xl md:text-5xl font-bold leading-tight uppercase tracking-tight max-w-4xl">
+                    Pending is an unpriced <span class="text-gray-400">financial liability</span>
+</h1>
+</div>
+<!-- Risk Grid (2x2) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Card 1: Capital-at-Risk -->
+<div class="bg-white p-6 rounded-lg border border-border-subtle shadow-card flex flex-col justify-between h-[220px] relative overflow-hidden group hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-start z-10">
+<div class="flex flex-col gap-1">
+<h3 class="text-gray-500 text-sm font-medium uppercase tracking-wider">Total Capital-at-Risk</h3>
+<p class="text-xs text-gray-400">Aggregated pending shipments</p>
+</div>
+<div class="bg-primary/5 p-2 rounded text-primary">
+<span class="material-symbols-outlined">currency_rupee</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 z-10">
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-bold text-primary tracking-tight font-mono-nums">₹ 42,50,000</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 text-alert bg-alert-bg px-2 py-1 rounded text-xs font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                +12% vs Yesterday
+                            </div>
+<span class="text-xs text-gray-400">Volume spike detected</span>
+</div>
+</div>
+<!-- Abstract Background Pattern -->
+<div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[200px]">finance</span>
+</div>
+</div>
+<!-- Card 2: Depreciation Burn Rate -->
+<div class="bg-white p-6 rounded-lg border border-border-subtle shadow-card flex flex-col justify-between h-[220px] relative overflow-hidden group hover:border-alert/30 transition-colors">
+<div class="flex justify-between items-start z-10">
+<div class="flex flex-col gap-1">
+<h3 class="text-gray-500 text-sm font-medium uppercase tracking-wider">Depreciation Burn Rate</h3>
+<p class="text-xs text-gray-400">Seasonal Inventory Loss Ticker</p>
+</div>
+<div class="bg-alert-bg p-2 rounded text-alert animate-pulse">
+<span class="material-symbols-outlined">local_fire_department</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 z-10">
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-bold text-alert tracking-tight font-mono-nums">- ₹ 120.50</span>
+<span class="text-xl font-medium text-alert/70">/ hr</span>
+</div>
+<p class="text-sm font-medium text-gray-600">Context: Winter Apparel Season Ending</p>
+</div>
+<div class="w-full bg-gray-100 h-1.5 mt-auto rounded-full overflow-hidden">
+<div class="bg-alert h-full w-[85%] rounded-full"></div>
+</div>
+</div>
+<!-- Card 3: SLA Expiry Countdown -->
+<div class="bg-white p-6 rounded-lg border border-border-subtle shadow-card flex flex-col h-[280px] overflow-hidden">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-primary text-base font-bold uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-alert">timer</span>
+                            SLA Expiry Countdown
+                        </h3>
+<a class="text-xs font-bold text-primary underline underline-offset-4 decoration-primary/30 hover:decoration-primary" href="#">VIEW ALL</a>
+</div>
+<div class="flex flex-col gap-3 overflow-y-auto pr-2 custom-scrollbar">
+<!-- Alert Item 1 -->
+<div class="flex items-center justify-between p-3 rounded bg-red-50 border border-red-100 group cursor-pointer hover:bg-red-100 transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-2 rounded-full bg-alert animate-pulse-ring relative"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary">Order #4492-BX</span>
+<span class="text-xs text-alert font-medium">Return Window Closing</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-base font-bold text-alert font-mono-nums">04h : 12m</span>
+<span class="text-[10px] uppercase font-bold text-alert/70">Remaining</span>
+</div>
+</div>
+<!-- Alert Item 2 -->
+<div class="flex items-center justify-between p-3 rounded bg-white border border-gray-100 hover:bg-gray-50 transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-2 rounded-full bg-orange-500"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary">Order #9921-AZ</span>
+<span class="text-xs text-gray-500">Carrier Delay</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-sm font-bold text-primary font-mono-nums">12h : 30m</span>
+<span class="text-[10px] uppercase font-bold text-gray-400">Remaining</span>
+</div>
+</div>
+<!-- Alert Item 3 -->
+<div class="flex items-center justify-between p-3 rounded bg-white border border-gray-100 hover:bg-gray-50 transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-2 rounded-full bg-yellow-500"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary">Order #1102-CC</span>
+<span class="text-xs text-gray-500">Verification Pending</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-sm font-bold text-primary font-mono-nums">1d : 02h</span>
+<span class="text-[10px] uppercase font-bold text-gray-400">Remaining</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4: Float Advantage -->
+<div class="bg-white p-6 rounded-lg border border-border-subtle shadow-card flex flex-col h-[280px]">
+<div class="flex justify-between items-start mb-2">
+<div class="flex flex-col gap-1">
+<h3 class="text-primary text-base font-bold uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+                                Float Advantage
+                            </h3>
+<p class="text-xs text-gray-400 max-w-[200px]">Working capital currently held by aggregators</p>
+</div>
+<span class="text-2xl font-bold text-primary font-mono-nums">₹ 15.2 L</span>
+</div>
+<div class="flex-1 flex flex-col justify-end gap-4 mt-4">
+<!-- Chart Area -->
+<div class="w-full flex flex-col gap-3">
+<div class="flex justify-between text-xs font-medium text-gray-500 mb-1">
+<span>Aggregator A</span>
+<span>₹ 8.4L</span>
+</div>
+<div class="w-full bg-gray-100 rounded-sm h-3 overflow-hidden">
+<div class="bg-primary h-full rounded-sm" style="width: 65%"></div>
+</div>
+<div class="flex justify-between text-xs font-medium text-gray-500 mb-1 mt-1">
+<span>Aggregator B</span>
+<span>₹ 4.1L</span>
+</div>
+<div class="w-full bg-gray-100 rounded-sm h-3 overflow-hidden">
+<div class="bg-primary/70 h-full rounded-sm" style="width: 32%"></div>
+</div>
+<div class="flex justify-between text-xs font-medium text-gray-500 mb-1 mt-1">
+<span>Others</span>
+<span>₹ 2.7L</span>
+</div>
+<div class="w-full bg-gray-100 rounded-sm h-3 overflow-hidden">
+<div class="bg-primary/40 h-full rounded-sm" style="width: 20%"></div>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-auto pt-4 border-t border-gray-100">
+<span class="material-symbols-outlined text-sm text-green-600">check_circle</span>
+<span class="text-xs font-medium text-green-700">Reconciliation active for all channels</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Forensic Feed Table -->
+<div class="bg-white rounded-lg border border-border-subtle shadow-card flex flex-col overflow-hidden">
+<div class="p-4 px-6 border-b border-border-subtle flex items-center justify-between bg-gray-50/50">
+<h3 class="text-primary text-base font-bold uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-gray-600">radar</span>
+                        Forensic Feed <span class="text-gray-400 font-normal normal-case ml-2 text-sm">Real-time fake attempt triangulation</span>
+</h3>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 text-xs font-medium bg-white border border-gray-200 rounded text-gray-600 hover:text-primary hover:border-gray-300">Filter</button>
+<button class="px-3 py-1.5 text-xs font-medium bg-white border border-gray-200 rounded text-gray-600 hover:text-primary hover:border-gray-300">Export</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-white text-xs uppercase text-gray-400 border-b border-border-subtle">
+<th class="px-6 py-3 font-medium tracking-wider">Order / User ID</th>
+<th class="px-6 py-3 font-medium tracking-wider">Location</th>
+<th class="px-6 py-3 font-medium tracking-wider">Pattern Detected</th>
+<th class="px-6 py-3 font-medium tracking-wider">Risk Score</th>
+<th class="px-6 py-3 font-medium tracking-wider text-right">Action</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<tr class="border-b border-gray-100 hover:bg-red-50/30 transition-colors group">
+<td class="px-6 py-4 font-mono-nums font-medium text-primary">
+                                    #8829-AF
+                                    <div class="text-[10px] text-gray-400 font-body">2 mins ago</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-5 rounded bg-gray-200 bg-cover bg-center" data-alt="Small map thumbnail showing Mumbai location" data-location="Mumbai" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB_alCCJ-ZtAT3nqOdADxEAPmBuS_Rf3EXu4i4GLK3W_sODaRtudeaYgI0FhnEX4YBppKswTB7YGU8MnLTIWUCbq3muqhhtdZKRCDo5LEqzRTbd9ZaZKXAdmUYqnZHQJLfjjBtisvGLX8XywMu7Xbq_RzyhOwZRyGtzv1zXpiW8qy1WA0BFReTZCAUEjNuwZI9UCRAY9cxo7pelwMfYFa8hkU-nMLI3j8YeaJtXhQKj9Nu82DSZAfLcERll6iW8fV-hZ20LkGB9FKM");'></div>
+<span class="font-medium text-gray-700">Mumbai, MH</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-red-100 text-alert text-xs font-bold border border-red-200">
+<span class="material-symbols-outlined text-[14px]">speed</span>
+                                        Velocity Abuse
+                                    </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-16 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+<div class="bg-alert h-full w-[92%]"></div>
+</div>
+<span class="text-alert font-bold">92/100</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-xs font-bold bg-primary text-white px-3 py-1.5 rounded hover:bg-primary-hover transition-colors shadow-sm">BLOCK</button>
+</td>
+</tr>
+<tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 font-mono-nums font-medium text-primary">
+                                    #7721-BC
+                                    <div class="text-[10px] text-gray-400 font-body">14 mins ago</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-5 rounded bg-gray-200 bg-cover bg-center" data-alt="Small map thumbnail showing Bangalore location" data-location="Bangalore" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCtt2_hgSJZJfyB5G9MQbHJw0TTDpm5W94ujM88C70w4ccujXjZ8Nn-h5MhHPCTLCW4NZPDi4s8aOA-oHat01EQHN42G9Co4V6G992JCP_xeRKQG5UhGoSrS0QOeOOWj6CgRGRbEWF7VajUzYCL4xHnXey3qUQodUnUWtOBc4-Vew7XeJo-puijhV3N4Dbqz_6fOuo5ADyKTWw3sqHoGYYqsdzMkVeZFbyXJp-IOGqT07texjdObCEmuzglOcvyDfX58cRAjvqnC8U");'></div>
+<span class="font-medium text-gray-700">Bangalore, KA</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-orange-100 text-orange-700 text-xs font-bold border border-orange-200">
+<span class="material-symbols-outlined text-[14px]">devices</span>
+                                        Device Spoofing
+                                    </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-16 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+<div class="bg-orange-500 h-full w-[65%]"></div>
+</div>
+<span class="text-orange-600 font-bold">65/100</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-xs font-bold bg-white border border-gray-300 text-gray-700 px-3 py-1.5 rounded hover:bg-gray-50 transition-colors shadow-sm">VERIFY</button>
+</td>
+</tr>
+<tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 font-mono-nums font-medium text-primary">
+                                    #1029-DD
+                                    <div class="text-[10px] text-gray-400 font-body">42 mins ago</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-5 rounded bg-gray-200 bg-cover bg-center" data-alt="Small map thumbnail showing Delhi location" data-location="Delhi" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCskb8QYexvg0XxIj6-gZb7jqXsVvVHsDnRCmHbxr7U1Ux1fC9UpICLsTEm-01iFw4sNqjAFrDld56V-ujdLlS0BNQ1OsX245erIgJOGsrCuU6EyAkHZNHt7C0i-ObwaWYXE4zbmi6VCVVCHCE20_bSk0NLcAmNdzoExjjl1LlOumkCfsaN1k4qJGoL6TSPuqp1SFWjbfnJsuKKD0xtX7hEv45ZzDFWfE1is5wZCvgQsBqHDErbaMuP8bQYeBjY7EcqaT6VDGf4Df8");'></div>
+<span class="font-medium text-gray-700">Delhi, DL</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-blue-100 text-blue-700 text-xs font-bold border border-blue-200">
+<span class="material-symbols-outlined text-[14px]">history</span>
+                                        RTO History
+                                    </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-16 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+<div class="bg-blue-500 h-full w-[45%]"></div>
+</div>
+<span class="text-blue-600 font-bold">45/100</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-xs font-bold bg-white border border-gray-300 text-gray-700 px-3 py-1.5 rounded hover:bg-gray-50 transition-colors shadow-sm">VERIFY</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- Additional Navigation Section -->
+<section class="py-12 bg-surface">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h3 class="text-2xl font-bold text-primary mb-8 text-center">Explore More Claimr Features</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Feature Card 1 -->
+<a href="../claimr_homepage_-_panic_interceptor_1/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">home</span>
+</div>
+<h4 class="text-lg font-bold text-primary mb-2">Homepage</h4>
+<p class="text-sm text-gray-500">Main landing page with live panic interceptor functionality</p>
+</div>
+</a>
+<!-- Feature Card 2 -->
+<a href="../claimr_home_-_command_center_variant_1/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">dashboard</span>
+</div>
+<h4 class="text-lg font-bold text-primary mb-2">Command Center</h4>
+<p class="text-sm text-gray-500">Live fraud intelligence dashboard with national fraud pulse</p>
+</div>
+</a>
+<!-- Feature Card 3 -->
+<a href="../how_it_works_&_about_claimr/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">info</span>
+</div>
+<h4 class="text-lg font-bold text-primary mb-2">How It Works</h4>
+<p class="text-sm text-gray-500">Explanation of Claimr's mission and 4-step process</p>
+</div>
+</a>
+<!-- Feature Card 4 -->
+<a href="../claimr_home_-_escalation_engine_variant_1/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-red-100 text-red-600 flex items-center justify-center mb-4 group-hover:bg-red-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<h4 class="text-lg font-bold text-primary mb-2">Escalation Engine</h4>
+<p class="text-sm text-gray-500">Automated escalation workflow for dispute resolution</p>
+</div>
+</a>
+</div>
+</section>
+</div>
+</div>
+</main>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

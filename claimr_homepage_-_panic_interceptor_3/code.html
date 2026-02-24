@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Modern Recovery Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "brand-dark": "#0B1120",
+                        "brand-navy": "#0f172a",
+                        "brand-slate": "#1e293b",
+                        "accent-blue": "#38bdf8",
+                        "alert-red": "#ef4444",
+                        "alert-bg": "rgba(239, 68, 68, 0.1)",
+                        "success": "#10b981",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                        "glass-surface": "rgba(15, 23, 42, 0.6)",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #3341551a 1px, transparent 1px), linear-gradient(to bottom, #3341551a 1px, transparent 1px)",
+                        'hero-glow': "radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.15), transparent 60%)"
+                    },
+                    animation: {
+                        'scroll': 'scroll 40s linear infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-grid {
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-300 font-sans antialiased selection:bg-accent-blue/30 selection:text-white">
+<div class="relative flex flex-col min-h-screen overflow-x-hidden">
+<header data-shared="true"></header>
+<main class="flex-grow">
+<section class="relative pt-16 pb-20 lg:pt-24 lg:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+<div class="absolute inset-0 bg-grid-pattern hero-grid pointer-events-none opacity-20"></div>
+<div class="absolute top-0 right-0 w-[800px] h-[600px] bg-hero-glow pointer-events-none"></div>
+<div class="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center relative z-10">
+<div class="flex-1 w-full text-center lg:text-left">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/50 border border-slate-700 text-accent-blue text-xs font-bold uppercase tracking-wider mb-8 animate-pulse-slow">
+<span class="w-2 h-2 rounded-full bg-accent-blue shadow-[0_0_10px_rgba(56,189,248,0.5)]"></span>
+                        Panic Interceptor Active
+                    </div>
+<h1 class="text-5xl sm:text-6xl lg:text-7xl font-display font-bold text-white tracking-tight leading-[1.05] mb-6">
+                        Stop losing revenue to <span class="text-transparent bg-clip-text bg-gradient-to-r from-alert-red to-orange-500">fake delivery</span> attempts.
+                    </h1>
+<p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        The only legal recovery platform that detects fake RTOs in real-time. We arm sellers with enterprise-grade data analysis to dispute anomalies before they become losses.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+<div class="relative flex-grow max-w-md group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-500 group-focus-within:text-accent-blue transition-colors">search</span>
+</div>
+<input class="block w-full pl-10 pr-4 py-4 border border-slate-700 rounded-xl leading-5 bg-slate-900/80 text-white placeholder-slate-500 focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-all shadow-xl" placeholder="Enter Tracking ID (AWB)" type="text"/>
+<button class="absolute inset-y-1.5 right-1.5 px-4 bg-accent-blue hover:bg-sky-400 text-brand-dark text-sm font-bold rounded-lg transition-colors shadow-lg shadow-accent-blue/20" type="button">
+                                Analyze
+                            </button>
+</div>
+<button class="flex items-center justify-center h-[58px] px-6 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm font-bold hover:bg-slate-700 transition-colors shadow-lg gap-2">
+<span class="material-symbols-outlined text-[20px]">play_circle</span>
+                            Watch Demo
+                        </button>
+</div>
+<div class="mt-12 pt-8 border-t border-slate-800/50">
+<p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4">Integrated with ecosystem leaders</p>
+<div class="flex flex-wrap justify-center lg:justify-start gap-8 items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+<span class="text-xl font-bold font-display text-white">shopify</span>
+<span class="text-xl font-bold font-display text-white italic">Woo</span>
+<span class="text-xl font-bold font-display text-white">amazon</span>
+<span class="text-xl font-bold font-display text-white">magento</span>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full relative perspective-1000">
+<div class="absolute -top-20 -right-20 w-80 h-80 bg-accent-blue/20 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute -bottom-10 -left-10 w-60 h-60 bg-alert-red/20 rounded-full blur-[80px] pointer-events-none"></div>
+<div class="relative glass-panel rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/10 transform rotate-y-2 hover:rotate-y-0 transition-transform duration-700">
+<div class="flex justify-between items-center mb-8 pb-4 border-b border-white/5">
+<div>
+<h3 class="text-sm font-bold text-white">Fraud Analysis Dashboard</h3>
+<p class="text-xs text-slate-400 font-mono mt-1">AWB: 8821903321 • Delhivery</p>
+</div>
+<div class="flex items-center gap-2 px-2 py-1 bg-alert-red/10 border border-alert-red/20 rounded text-alert-red text-xs font-bold">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+                                High Risk
+                            </div>
+</div>
+<div class="relative pl-4 space-y-8">
+<div class="absolute left-[23px] top-3 bottom-3 w-0.5 bg-slate-700"></div>
+<div class="relative flex items-start gap-4 opacity-50">
+<div class="relative z-10 w-5 h-5 rounded-full bg-slate-800 border-2 border-slate-500 flex items-center justify-center flex-shrink-0">
+<div class="w-1.5 h-1.5 bg-slate-500 rounded-full"></div>
+</div>
+<div>
+<div class="text-xs font-mono text-slate-500">08:30 AM</div>
+<div class="text-sm font-medium text-slate-300">Out for Delivery</div>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="relative z-10 w-5 h-5 rounded-full bg-brand-dark border-2 border-alert-red flex items-center justify-center flex-shrink-0 shadow-[0_0_15px_rgba(239,68,68,0.4)]">
+<div class="w-1.5 h-1.5 bg-alert-red rounded-full animate-ping"></div>
+</div>
+<div class="flex-grow bg-alert-red/5 border border-alert-red/20 rounded-lg p-3 -mt-1">
+<div class="flex justify-between items-start mb-1">
+<div class="text-xs font-mono text-alert-red">08:31 AM</div>
+<span class="text-[10px] font-bold bg-alert-red text-white px-1.5 rounded">FRAUD</span>
+</div>
+<div class="text-sm font-bold text-white mb-1">Customer Not Available</div>
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-symbols-outlined text-[14px] text-alert-red">timer</span>
+                                        Attempt window: <span class="text-white font-mono">58s</span> (Impossible)
+                                    </div>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="relative z-10 w-5 h-5 rounded-full bg-brand-dark border-2 border-accent-blue flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[12px] text-accent-blue">bolt</span>
+</div>
+<div class="flex-grow bg-accent-blue/5 border border-accent-blue/20 rounded-lg p-3 -mt-1">
+<div class="flex justify-between items-start mb-1">
+<div class="text-xs font-mono text-accent-blue">08:32 AM</div>
+<span class="text-[10px] font-bold bg-accent-blue text-brand-dark px-1.5 rounded">AUTO-ACTION</span>
+</div>
+<div class="text-sm font-bold text-white mb-1">Legal Notice Drafted</div>
+<div class="text-xs text-slate-400">Sent to courier nodal officer automatically.</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute -right-4 bottom-8 bg-brand-navy border border-slate-700 rounded-xl p-4 shadow-2xl max-w-[200px] animate-pulse-slow">
+<div class="text-xs text-slate-400 mb-1">Win Probability</div>
+<div class="text-2xl font-bold text-success flex items-center gap-1">
+                            98.5%
+                            <span class="material-symbols-outlined text-[20px]">trending_up</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="border-y border-slate-800 bg-brand-navy relative">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-slate-800/40 rounded-xl p-6 border border-slate-700/50 hover:border-slate-600 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-sm font-medium text-slate-400">Recovered Funds</p>
+<h4 class="text-2xl font-bold text-white mt-1">₹42.5L</h4>
+</div>
+<span class="p-2 bg-success/10 rounded-lg text-success">
+<span class="material-symbols-outlined">payments</span>
+</span>
+</div>
+<div class="h-12 w-full flex items-end gap-1">
+<div class="w-1/6 bg-slate-700 h-[30%] rounded-sm"></div>
+<div class="w-1/6 bg-slate-700 h-[50%] rounded-sm"></div>
+<div class="w-1/6 bg-slate-700 h-[40%] rounded-sm"></div>
+<div class="w-1/6 bg-slate-700 h-[70%] rounded-sm"></div>
+<div class="w-1/6 bg-slate-700 h-[60%] rounded-sm"></div>
+<div class="w-1/6 bg-success h-[90%] rounded-sm"></div>
+</div>
+<p class="text-xs text-success mt-3 font-medium">+12% vs last month</p>
+</div>
+<div class="bg-slate-800/40 rounded-xl p-6 border border-slate-700/50 hover:border-slate-600 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-sm font-medium text-slate-400">Fraud Attempts Blocked</p>
+<h4 class="text-2xl font-bold text-white mt-1">1,284</h4>
+</div>
+<span class="p-2 bg-alert-red/10 rounded-lg text-alert-red">
+<span class="material-symbols-outlined">shield</span>
+</span>
+</div>
+<div class="h-12 w-full relative">
+<svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 40">
+<path d="M0,35 Q20,30 40,15 T100,5" fill="none" stroke="#ef4444" stroke-width="2"></path>
+<circle cx="100" cy="5" fill="#ef4444" r="3"></circle>
+</svg>
+</div>
+<p class="text-xs text-slate-400 mt-3 font-medium">Real-time intervention active</p>
+</div>
+<div class="bg-slate-800/40 rounded-xl p-6 border border-slate-700/50 hover:border-slate-600 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-sm font-medium text-slate-400">Legal Notices Sent</p>
+<h4 class="text-2xl font-bold text-white mt-1">856</h4>
+</div>
+<span class="p-2 bg-accent-blue/10 rounded-lg text-accent-blue">
+<span class="material-symbols-outlined">gavel</span>
+</span>
+</div>
+<div class="h-12 w-full flex items-end gap-1">
+<div class="w-full bg-slate-700/30 h-1.5 rounded-full overflow-hidden">
+<div class="bg-accent-blue h-full w-[85%]"></div>
+</div>
+</div>
+<p class="text-xs text-accent-blue mt-3 font-medium">85% Resolution Rate</p>
+</div>
+</div>
+</div>
+<div class="border-t border-slate-800 py-3 bg-brand-dark overflow-hidden flex items-center">
+<div class="flex-shrink-0 px-6 z-20 bg-brand-dark flex items-center gap-2 border-r border-slate-800">
+<div class="w-2 h-2 rounded-full bg-success animate-pulse"></div>
+<span class="text-xs font-bold text-slate-300 uppercase tracking-wider">Live Recoveries</span>
+</div>
+<div class="flex animate-scroll hover:[animation-play-state:paused] gap-12 pl-6">
+<div class="flex items-center gap-3 text-slate-400 text-sm font-mono whitespace-nowrap">
+<span class="text-success font-bold">₹12,400</span> recovered from XpressBees <span class="text-slate-600 text-xs">2m ago</span>
+</div>
+<div class="flex items-center gap-3 text-slate-400 text-sm font-mono whitespace-nowrap">
+<span class="text-alert-red font-bold">Fraud Blocked</span> Delhivery AWB #8831 <span class="text-slate-600 text-xs">5m ago</span>
+</div>
+<div class="flex items-center gap-3 text-slate-400 text-sm font-mono whitespace-nowrap">
+<span class="text-success font-bold">₹4,200</span> Refund Processed <span class="text-slate-600 text-xs">12m ago</span>
+</div>
+<div class="flex items-center gap-3 text-slate-400 text-sm font-mono whitespace-nowrap">
+<span class="text-accent-blue font-bold">Notice Sent</span> Ecom Express <span class="text-slate-600 text-xs">14m ago</span>
+</div>
+<div class="flex items-center gap-3 text-slate-400 text-sm font-mono whitespace-nowrap">
+<span class="text-success font-bold">₹12,400</span> recovered from XpressBees <span class="text-slate-600 text-xs">2m ago</span>
+</div>
+<div class="flex items-center gap-3 text-slate-400 text-sm font-mono whitespace-nowrap">
+<span class="text-alert-red font-bold">Fraud Blocked</span> Delhivery AWB #8831 <span class="text-slate-600 text-xs">5m ago</span>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-white relative">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="mb-16 text-center max-w-3xl mx-auto">
+<span class="text-brand-navy font-bold tracking-wider text-sm uppercase mb-2 block">The Toolkit</span>
+<h2 class="text-3xl md:text-4xl font-display font-bold text-brand-dark mb-4">3 Core Weapons Against Fraud</h2>
+<p class="text-slate-600 text-lg">We arm sellers with the same data and legal infrastructure used by enterprises to fight back against logistics inefficiency.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="group bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-brand-navy hover:shadow-xl transition-all duration-300">
+<div class="flex items-center justify-between mb-6">
+<div class="w-12 h-12 rounded-xl bg-white border border-slate-200 text-brand-navy flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[28px]">menu_book</span>
+</div>
+<span class="text-4xl font-black text-slate-200 group-hover:text-slate-300 transition-colors">01</span>
+</div>
+<h3 class="text-xl font-bold text-brand-dark mb-3">Nodal Directory</h3>
+<p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                            Direct access to 500+ appellate authority emails across all major courier partners. Bypass customer support.
+                        </p>
+<div class="flex items-center gap-2 text-xs font-bold text-brand-navy bg-white px-3 py-1.5 rounded-full border border-slate-200 w-fit">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+                            500+ Verified Officers
+                        </div>
+</div>
+<div class="group bg-brand-navy rounded-2xl p-8 border border-brand-navy hover:shadow-xl hover:shadow-brand-navy/20 transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-alert-red/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+<div class="flex items-center justify-between mb-6 relative z-10">
+<div class="w-12 h-12 rounded-xl bg-slate-800 text-alert-red flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[28px]">manage_search</span>
+</div>
+<span class="text-4xl font-black text-slate-700">02</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-3 relative z-10">RTO Checker</h3>
+<p class="text-slate-300 text-sm mb-6 leading-relaxed relative z-10">
+                            Instantly analyze AWB tracking logs for 50+ fraud signals including time-gaps and GPS mismatches.
+                        </p>
+<div class="flex items-center gap-2 text-xs font-bold text-alert-red bg-alert-red/10 px-3 py-1.5 rounded-full border border-alert-red/20 w-fit relative z-10">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+                            1M+ AWBs Scanned
+                        </div>
+</div>
+<div class="group bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-brand-navy hover:shadow-xl transition-all duration-300">
+<div class="flex items-center justify-between mb-6">
+<div class="w-12 h-12 rounded-xl bg-white border border-slate-200 text-brand-navy flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[28px]">gavel</span>
+</div>
+<span class="text-4xl font-black text-slate-200 group-hover:text-slate-300 transition-colors">03</span>
+</div>
+<h3 class="text-xl font-bold text-brand-dark mb-3">Legal Notice Engine</h3>
+<p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                            Auto-draft and send legally valid notices to courier legal cells. Escalate disputes formally to recover COD funds.
+                        </p>
+<div class="flex items-center gap-2 text-xs font-bold text-brand-navy bg-white px-3 py-1.5 rounded-full border border-slate-200 w-fit">
+<span class="material-symbols-outlined text-[16px]">balance</span>
+                            100% Legal Validity
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-brand-dark relative overflow-hidden">
+<div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+<div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+<h2 class="text-3xl md:text-5xl font-display font-bold text-white mb-6 tracking-tight">Ready to stop the bleeding?</h2>
+<p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto">Join 500+ sellers who have secured their revenue pipelines with Claimr's legal infrastructure.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="px-8 h-12 bg-white text-brand-dark font-bold rounded-lg hover:bg-slate-100 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                        Check Your RTO Risk Free
+                    </button>
+<button class="px-8 h-12 bg-transparent border border-white/20 text-white font-bold rounded-lg hover:bg-white/10 transition-colors">
+                        Talk to Sales
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<footer data-shared="true"></footer>
+</div>
+
+<script src="../shared-nav-loader.js"></script>
+</body></html>

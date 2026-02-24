@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Pattern Matcher</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d81818",
+                        "primary-dark": "#b91515",
+                        "navy": "#0B1C2D",
+                        "alert-red": "#C62828",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#211111",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", "Noto Sans", sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#181111] dark:text-white min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header data-shared="true"></header>
+<main class="flex-1 flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+<!-- Hero Section -->
+<div class="text-center max-w-3xl mb-12 animate-fade-in-up">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 dark:bg-red-900/20 text-primary text-xs font-semibold mb-6 border border-red-100 dark:border-red-900/30">
+<span class="material-symbols-outlined text-sm">notifications_active</span>
+<span>Potential Fraud Detected</span>
+</div>
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-4 text-[#181111] dark:text-white">
+                Is this your exact situation?
+            </h1>
+<p class="text-lg md:text-xl text-[#886363] dark:text-gray-400 font-normal max-w-2xl mx-auto">
+                Our AI scanned recent logistics disputes and detected <span class="font-bold text-[#181111] dark:text-gray-200">3 common fraud patterns</span> matching your description.
+            </p>
+</div>
+<!-- Cards Section -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mb-16">
+<!-- Card 1: LinkedIn Style -->
+<div class="group relative bg-white dark:bg-[#2a1d1d] rounded-xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-[#3a2828] p-0 flex flex-col transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+<!-- Analysis Badge -->
+<div class="absolute top-0 right-0 bg-navy text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-bl-lg z-10 shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">analytics</span>
+                    Claimr Analysis
+                </div>
+<!-- Card Content -->
+<div class="p-6 flex-1 flex flex-col gap-4">
+<!-- User Header -->
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center border border-gray-200" data-alt="Portrait of a professional man in a suit" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD0CrrMn-It4tXWWWixwWztCBJkgl9SU-RID-dWz6A1_fFUGjDLax2-jaGw1AY2Plc90lzO1L3hzF4VBjbxc8wNSJCGS3PRxgCT4g2804AEn8oPXFQ39x0RjNZGXF1cVtDMGV1NO-Leb6DxiBmyPfaKeX64RlVW8BqoJWo8UTYf3ylUClVLN0dgIkK-hBaHiAm8sImhQ2-osHK9rM-tSRa0tTB949OcsuLy_kDnkB_lwBBH-epexC98F8sj_lwpTq_MNyoTWTl0WoE");'></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#181111] dark:text-white">Snehil K.</span>
+<span class="text-xs text-gray-500">E-commerce Seller • 2h ago</span>
+</div>
+</div>
+<span class="text-[#0077b5] material-symbols-outlined" title="LinkedIn">post_add</span>
+</div>
+<!-- Post Body -->
+<div class="space-y-2">
+<h3 class="text-base font-bold text-[#181111] dark:text-gray-100 leading-snug">
+                            Amazon keeps bouncing me between departments regarding the refund...
+                        </h3>
+<p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                            "I've opened 3 tickets. Seller support says talk to logistics, logistics says talk to payments. It's been 2 weeks and ₹45k is stuck. Is this a new tactic?"
+                        </p>
+</div>
+<div class="h-px w-full bg-gray-100 dark:bg-gray-800 my-1"></div>
+<!-- Analysis Result -->
+<div class="flex flex-col gap-1">
+<span class="text-xs font-semibold text-navy dark:text-blue-200 uppercase tracking-wide">Detected Pattern</span>
+<span class="text-lg font-bold text-primary">Diffused Ownership</span>
+</div>
+</div>
+<!-- Rebuttal Preview (Footer) -->
+<div class="bg-[#fcf8f8] dark:bg-[#251515] border-t border-red-100 dark:border-red-900/20 p-4">
+<div class="flex items-start gap-3">
+<div class="mt-0.5 text-green-600 bg-green-100 dark:bg-green-900 rounded-full p-0.5">
+<span class="material-symbols-outlined text-sm block">check</span>
+</div>
+<div>
+<p class="text-xs font-bold text-[#886363] dark:text-gray-400 uppercase mb-1">Successful Rebuttal Preview</p>
+<p class="text-sm font-medium text-[#181111] dark:text-gray-200 line-clamp-2">
+<span class="text-primary font-bold">Ref Case #402:</span> Legal Notice sent citing consumer protection clause 14(b) regarding undefined liability periods.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Reddit Style -->
+<div class="group relative bg-white dark:bg-[#2a1d1d] rounded-xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-[#3a2828] p-0 flex flex-col transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+<div class="absolute top-0 right-0 bg-navy text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-bl-lg z-10 shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">analytics</span>
+                    Claimr Analysis
+                </div>
+<div class="p-6 flex-1 flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center border border-gray-200" data-alt="Generic colorful avatar illustration" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCyDUGII8fLIYVhEgQmTYyRTJB3oeGHtV7O3BqCm3r6tQqjHU2R_3ClD2lmpyFs0ccS5RDEr0syVCY3jXP7-qwzyg_Ywxof_T-EuCaYqW5cVDpSaUA6Jar-g67mh3wcyb3YEfSaKD7ne3lEWQ-BMEqqscYlgdITvDkHg_VPDTkZd2wKjagj2tu0IZARSMS3NWPafeao8M-2J2kWyv7okzW7rqVKS8CBhhjsIuoVnLGKme_FjokEYZ3zfL1h3nPMd9qEz1sKpVNYCc8");'></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#181111] dark:text-white">u/Manish_Sellz</span>
+<span class="text-xs text-gray-500">r/SellerHubIndia • 5h ago</span>
+</div>
+</div>
+<span class="text-[#FF4500] material-symbols-outlined" title="Reddit">forum</span>
+</div>
+<div class="space-y-2">
+<h3 class="text-base font-bold text-[#181111] dark:text-gray-100 leading-snug">
+                            Refund denied because package was 'delivered' empty...
+                        </h3>
+<p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                            "Customer claims empty box. Courier tracking shows 1.2kg weight at delivery. Platform sided with customer instantly. How do I prove this?"
+                        </p>
+</div>
+<div class="h-px w-full bg-gray-100 dark:bg-gray-800 my-1"></div>
+<div class="flex flex-col gap-1">
+<span class="text-xs font-semibold text-navy dark:text-blue-200 uppercase tracking-wide">Detected Pattern</span>
+<span class="text-lg font-bold text-primary">False Proof of Delivery</span>
+</div>
+</div>
+<div class="bg-[#fcf8f8] dark:bg-[#251515] border-t border-red-100 dark:border-red-900/20 p-4">
+<div class="flex items-start gap-3">
+<div class="mt-0.5 text-green-600 bg-green-100 dark:bg-green-900 rounded-full p-0.5">
+<span class="material-symbols-outlined text-sm block">check</span>
+</div>
+<div>
+<p class="text-xs font-bold text-[#886363] dark:text-gray-400 uppercase mb-1">Successful Rebuttal Preview</p>
+<p class="text-sm font-medium text-[#181111] dark:text-gray-200 line-clamp-2">
+<span class="text-primary font-bold">Ref Case #899:</span> CCTV Evidence Log correlation with courier API weight timestamps.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3: X Style -->
+<div class="group relative bg-white dark:bg-[#2a1d1d] rounded-xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-[#3a2828] p-0 flex flex-col transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+<div class="absolute top-0 right-0 bg-navy text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-bl-lg z-10 shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">analytics</span>
+                    Claimr Analysis
+                </div>
+<div class="p-6 flex-1 flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center border border-gray-200" data-alt="Abstract silhouette avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDrKy4cEJphVEcbxMyyHR4UA4k3mfxxEsrZQQDA7KqhyyRmCjSOxb3jEIBRvP977jwMoTkITEsqKGA78tnYCfcUNiRvnEzTohZyKlXnO8WR9WPaKCQajmydjqrM4DnX63raghYKK4t9AFRAqPtyCEcdhXDY4g_9eDK_UC8nAA18muzqdHIym17wkjuowGl8lVeJAZs2U7WlE7Neu9faBmCB_HYL9J29nbVqGwd-60phXBwcrBMT4CMl-BmjXXdTqmvFSTws2cj_7-o");'></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#181111] dark:text-white">AnonUser_99</span>
+<span class="text-xs text-gray-500">@anon_seller • 12m ago</span>
+</div>
+</div>
+<span class="text-black dark:text-white material-symbols-outlined" title="X / Twitter">alternate_email</span>
+</div>
+<div class="space-y-2">
+<h3 class="text-base font-bold text-[#181111] dark:text-gray-100 leading-snug">
+                            Return received but item replaced with soap bars.
+                        </h3>
+<p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                            "I have unboxing video but platform refuses to acknowledge it, saying it could be staged. They deducted the refund from my account."
+                        </p>
+</div>
+<div class="h-px w-full bg-gray-100 dark:bg-gray-800 my-1"></div>
+<div class="flex flex-col gap-1">
+<span class="text-xs font-semibold text-navy dark:text-blue-200 uppercase tracking-wide">Detected Pattern</span>
+<span class="text-lg font-bold text-primary">Switcheroo Fraud</span>
+</div>
+</div>
+<div class="bg-[#fcf8f8] dark:bg-[#251515] border-t border-red-100 dark:border-red-900/20 p-4">
+<div class="flex items-start gap-3">
+<div class="mt-0.5 text-green-600 bg-green-100 dark:bg-green-900 rounded-full p-0.5">
+<span class="material-symbols-outlined text-sm block">check</span>
+</div>
+<div>
+<p class="text-xs font-bold text-[#886363] dark:text-gray-400 uppercase mb-1">Successful Rebuttal Preview</p>
+<p class="text-sm font-medium text-[#181111] dark:text-gray-200 line-clamp-2">
+<span class="text-primary font-bold">Ref Case #112:</span> Automated Weight Discrepancy Report generated from warehouse intake scan.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- CTA Section -->
+<div class="w-full max-w-2xl flex flex-col items-center gap-6 animate-pulse-slow">
+<button class="w-full sm:w-auto bg-alert-red hover:bg-primary-dark text-white text-lg md:text-xl font-bold py-4 px-10 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-3 group">
+<span class="material-symbols-outlined group-hover:animate-bounce">description</span>
+                Get the exact escalation script for this case
+            </button>
+<div class="flex items-center gap-6 text-gray-500 dark:text-gray-400 text-sm font-medium">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-green-600 text-lg">verified_user</span>
+<span>Trusted by 500+ sellers</span>
+</div>
+<div class="w-1 h-1 bg-gray-300 rounded-full"></div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-lg">bolt</span>
+<span>Instant Generation</span>
+</div>
+</div>
+</div>
+</main>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claim Reversal Visualizer</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b1a2d", // Navy
+                        "accent-gold": "#FFC107", // Amber-Gold
+                        "accent-red": "#DC3545", // Refined Red
+                        "background-light": "#F9FAFA", // Cool White
+                        "background-dark": "#13181f",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Newsreader", "serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "paper": "0 4px 6px -1px rgba(11, 28, 45, 0.05), 0 2px 4px -1px rgba(11, 28, 45, 0.03)",
+                        "float": "0 10px 15px -3px rgba(11, 28, 45, 0.08), 0 4px 6px -2px rgba(11, 28, 45, 0.04)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #F9FAFA;
+        }
+        
+        .font-serif-display {
+            font-family: 'Newsreader', serif;
+        }
+
+        /* Skeuomorphic Paper Icon CSS */
+        .paper-doc {
+            position: relative;
+            background: #ffffff;
+            border: 1px solid #e2e4e7;
+        }
+        .paper-doc::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-width: 0 16px 16px 0;
+            border-style: solid;
+            border-color: #f1f2f4 #f9fafa #d1d5db #f1f2f4;
+            background: #e5e7eb;
+            box-shadow: -1px 1px 1px rgba(0,0,0,0.1);
+            display: block; 
+            width: 0;
+        }
+
+        /* Gauge Gradient */
+        .gauge-fill {
+            background: conic-gradient(
+                #FFC107 0% 87%, 
+                #f1f2f4 87% 100%
+            );
+        }
+    </style>
+</head>
+<body class="bg-background-light min-h-screen flex flex-col text-primary">
+<!-- Shared Header Placeholder -->
+<header data-shared="true"></header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-[1400px] mx-auto p-6 lg:p-10 flex flex-col gap-8">
+<!-- Hero Section -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-gray-200 pb-8">
+<div class="max-w-2xl">
+<div class="flex items-center gap-2 mb-3">
+<span class="px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-gray-100 text-gray-600 border border-gray-200">Active Dispute</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-red-50 text-accent-red border border-red-100">Action Required</span>
+</div>
+<h1 class="text-5xl md:text-6xl font-serif-display font-medium text-primary tracking-tight leading-[0.95] mb-4">
+                    Silence is not proof.
+                </h1>
+<p class="text-gray-500 font-medium text-lg">
+                    Claim ID #8920-X  |  <span class="text-primary font-bold">Disputed Amount: $12,450.00</span>
+</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<div class="text-right">
+<p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Time to respond</p>
+<p class="text-2xl font-mono font-bold text-primary">48:12:05</p>
+</div>
+</div>
+</header>
+<!-- Visual Timeline Card -->
+<section class="bg-white rounded-xl shadow-paper border border-gray-200 overflow-hidden">
+<div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+<h3 class="font-serif-display text-xl font-semibold text-primary">Forensic Timeline</h3>
+<button class="text-sm font-semibold text-primary flex items-center gap-1 hover:underline">
+                    Expand Log <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+<div class="p-8">
+<!-- Timeline Container -->
+<div class="relative">
+<!-- Connecting Line Base -->
+<div class="absolute top-6 left-0 w-full h-1 bg-gray-100 rounded"></div>
+<!-- Timeline Steps -->
+<div class="relative flex justify-between">
+<!-- Step 1: Accepted -->
+<div class="flex flex-col items-start w-1/4 group cursor-pointer">
+<div class="relative z-10 flex items-center justify-center w-12 h-12 bg-green-50 border-2 border-green-500 rounded-full shadow-sm mb-4 transition-transform group-hover:scale-105">
+<span class="material-symbols-outlined text-green-600">check_circle</span>
+</div>
+<div class="pr-4">
+<p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Oct 12, 09:42 AM</p>
+<h4 class="text-lg font-bold text-primary mb-1">Accepted Clean</h4>
+<p class="text-sm text-gray-600 leading-relaxed">Goods received and signed for. No visual damage reported on BOL.</p>
+</div>
+</div>
+<!-- Step 2: Processing -->
+<div class="flex flex-col items-center w-1/4 group cursor-pointer text-center">
+<div class="relative z-10 flex items-center justify-center w-12 h-12 bg-white border-2 border-primary rounded-full shadow-sm mb-4 transition-transform group-hover:scale-105">
+<span class="material-symbols-outlined text-primary">schedule</span>
+</div>
+<div class="px-2">
+<p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Oct 13, 11:00 AM</p>
+<h4 class="text-lg font-bold text-primary mb-1">Processing</h4>
+<p class="text-sm text-gray-600 leading-relaxed">Standard credit timeline initiated. No flags raised.</p>
+</div>
+</div>
+<!-- Step 3: Status Changed -->
+<div class="flex flex-col items-center w-1/4 group cursor-pointer text-center">
+<div class="relative z-10 flex items-center justify-center w-12 h-12 bg-amber-50 border-2 border-accent-gold rounded-full shadow-sm mb-4 transition-transform group-hover:scale-105">
+<span class="material-symbols-outlined text-yellow-700">warning</span>
+</div>
+<div class="px-2">
+<p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Oct 14, 08:15 AM</p>
+<h4 class="text-lg font-bold text-primary mb-1">Status Shift</h4>
+<p class="text-sm text-gray-600 leading-relaxed">Carrier manually updated status to 'Pending Review'.</p>
+</div>
+</div>
+<!-- Step 4: Allegation -->
+<div class="flex flex-col items-end w-1/4 group cursor-pointer text-right">
+<div class="relative z-10 flex items-center justify-center w-12 h-12 bg-red-50 border-2 border-accent-red rounded-full shadow-sm mb-4 transition-transform group-hover:scale-105">
+<span class="material-symbols-outlined text-accent-red">gavel</span>
+</div>
+<div class="pl-4">
+<p class="text-xs font-bold text-accent-red uppercase tracking-wider mb-1">Oct 14, 02:30 PM</p>
+<h4 class="text-lg font-bold text-accent-red mb-1">Allegation Filed</h4>
+<p class="text-sm text-gray-600 leading-relaxed">Claim filed for "Crushed" goods. <span class="font-bold text-accent-red">Direct contradiction to Oct 12 event.</span></p>
+</div>
+</div>
+</div>
+<!-- Insight Banner -->
+<div class="mt-8 bg-blue-50 border border-blue-100 rounded-lg p-4 flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-0.5">info</span>
+<div>
+<p class="text-primary text-sm font-medium leading-relaxed">
+<span class="font-bold">Automated Insight:</span> A 48-hour gap exists between the "Clean" receipt and the damage claim. Statistical analysis of 14 similar cases suggests a high probability of post-delivery mishandling by the receiver.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Lower Grid: Stats & Evidence -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left: Leverage Meter -->
+<div class="lg:col-span-5 flex flex-col">
+<div class="bg-white rounded-xl shadow-paper border border-gray-200 p-6 h-full flex flex-col">
+<div class="mb-6">
+<h3 class="font-serif-display text-xl font-semibold text-primary">Leverage Meter</h3>
+<p class="text-sm text-gray-500 mt-1">Based on forensic contradiction analysis</p>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center py-4">
+<div class="relative w-48 h-48 rounded-full gauge-fill flex items-center justify-center shadow-inner">
+<div class="w-36 h-36 bg-white rounded-full flex flex-col items-center justify-center shadow-sm z-10">
+<span class="text-4xl font-bold text-primary font-serif-display">87%</span>
+<span class="text-xs font-bold uppercase text-gray-400 tracking-wider mt-1">Recovery</span>
+</div>
+<!-- Needle (Static representation) -->
+<div class="absolute w-1 h-20 bg-primary top-4 origin-bottom transform rotate-[45deg] rounded-full shadow-md z-20"></div>
+</div>
+<div class="mt-8 text-center px-4">
+<p class="text-sm font-medium text-gray-700">
+<span class="inline-block w-2 h-2 rounded-full bg-accent-gold mr-2"></span>
+                                High probability of reversal
+                            </p>
+<p class="text-xs text-gray-500 mt-2 leading-relaxed">
+                                Challenging now forces the carrier to produce evidence for the gap period, which they typically lack.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Evidence Vault -->
+<div class="lg:col-span-7 flex flex-col">
+<div class="bg-white rounded-xl shadow-paper border border-gray-200 p-6 h-full">
+<div class="mb-6 flex justify-between items-end">
+<div>
+<h3 class="font-serif-display text-xl font-semibold text-primary">Evidence Vault</h3>
+<p class="text-sm text-gray-500 mt-1">Chain of custody documents</p>
+</div>
+<button class="text-xs font-bold text-primary bg-gray-100 hover:bg-gray-200 px-3 py-1.5 rounded transition-colors uppercase tracking-wide">Download All</button>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+<!-- Doc Item 1 -->
+<div class="group cursor-pointer">
+<div class="paper-doc h-32 flex items-center justify-center mb-3 shadow-sm group-hover:shadow-md transition-shadow group-hover:-translate-y-1 transition-transform duration-300">
+<div class="text-center">
+<span class="material-symbols-outlined text-4xl text-red-500 mb-2">picture_as_pdf</span>
+<p class="text-[10px] font-mono text-gray-400 uppercase">PDF • 2.4 MB</p>
+</div>
+</div>
+<p class="text-sm font-bold text-primary truncate">Bill_of_Lading_Orig.pdf</p>
+<p class="text-xs text-gray-500">Oct 12 • Signed Clean</p>
+</div>
+<!-- Doc Item 2 -->
+<div class="group cursor-pointer">
+<div class="paper-doc h-32 relative bg-gray-50 overflow-hidden mb-3 shadow-sm group-hover:shadow-md transition-shadow group-hover:-translate-y-1 transition-transform duration-300">
+<div class="absolute inset-0 bg-cover bg-center opacity-80" data-alt="Close up of cardboard boxes on a pallet" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB2NJV8CxPjPUgrHnRbaRNx2UawE4nUL3OW68fHDy0GSpagHjg3gx9E34sDakUmbdqi1w4Ohn_fCYxM4xYoV5QUJl9LQtLKmQmv3kViQkUleN2YV5tB30p7jysO5bDnyoeDDMxjjjxkF-RHQValSeMmr6IyaVHg-jTfgE3joXiVGJn8ZeEow92xqSxFjeNDi3eVeL3nWOBk0R-7WadTAbCOAUevbryu-Harn7dU1i5tnLURndes0QMlZayWI0lf9m0SdgCyBr1w-iU");'></div>
+<div class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-1.5 py-0.5 rounded font-mono">JPG</div>
+</div>
+<p class="text-sm font-bold text-primary truncate">Dock_Photo_001.jpg</p>
+<p class="text-xs text-gray-500">Oct 12 • Condition Verified</p>
+</div>
+<!-- Doc Item 3 -->
+<div class="group cursor-pointer">
+<div class="paper-doc h-32 flex items-center justify-center mb-3 shadow-sm group-hover:shadow-md transition-shadow group-hover:-translate-y-1 transition-transform duration-300">
+<div class="text-center">
+<span class="material-symbols-outlined text-4xl text-blue-500 mb-2">mail</span>
+<p class="text-[10px] font-mono text-gray-400 uppercase">MSG • 12 KB</p>
+</div>
+</div>
+<p class="text-sm font-bold text-primary truncate">Driver_Statement.msg</p>
+<p class="text-xs text-gray-500">Oct 12 • "No issues"</p>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-gray-100">
+<div class="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+<span class="material-symbols-outlined text-gray-400">lock</span>
+<p class="text-xs text-gray-500">Documents are cryptographically timestamped for court admissibility.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Footer Action Panel -->
+<div class="sticky bottom-6 z-40 px-6 lg:px-10 pointer-events-none">
+<div class="max-w-[1400px] mx-auto pointer-events-auto">
+<div class="bg-primary text-white rounded-xl shadow-float p-4 flex flex-col md:flex-row items-center justify-between gap-4 border border-white/10 backdrop-blur-sm">
+<div class="flex items-center gap-4 px-2">
+<div class="p-2 bg-white/10 rounded-lg">
+<span class="material-symbols-outlined text-accent-gold">shield_lock</span>
+</div>
+<div>
+<h4 class="font-bold text-lg leading-tight">Prepare Legal Rebuttal</h4>
+<p class="text-sm text-gray-300">Generate a formal response citing the Oct 12 Clean Receipt.</p>
+</div>
+</div>
+<div class="flex gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-6 py-3 rounded-lg border border-white/20 hover:bg-white/10 font-semibold text-sm transition-colors">
+                        Preview Draft
+                    </button>
+<button class="flex-1 md:flex-none px-8 py-3 rounded-lg bg-white text-primary hover:bg-gray-100 font-bold text-sm shadow-lg transition-all transform active:scale-95 flex items-center justify-center gap-2">
+<span>Lock the contradiction</span>
+<span class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Spacer for sticky footer -->
+<div class="h-24"></div>
+<!-- Shared Footer Placeholder -->
+<footer data-shared="true"></footer>
+<!-- Load Shared Header & Footer -->
+<script src="../shared-nav-loader.js"></script>
+</body></html>

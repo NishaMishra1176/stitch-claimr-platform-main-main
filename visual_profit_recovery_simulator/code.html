@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Visual Profit Recovery Simulator</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19b359",
+                        "loss": "#ff4d4d",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#111714",
+                        "surface-dark": "#1c2621",
+                        "surface-light": "#29382f",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+            background-color: #111714;
+            color: white;
+        }
+        
+        /* Custom Styles for the Dial Tick Marks */
+        .tick-mark {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            transform-origin: center;
+            pointer-events: none;
+        }
+        .tick-mark::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -1px;
+            width: 2px;
+            height: 12px;
+            background-color: #3d5246;
+            transition: background-color 0.3s ease;
+        }
+        
+        .tick-mark.active::before {
+            background-color: #19b359;
+            box-shadow: 0 0 8px #19b359;
+        }
+
+        /* Money Stack 3D Effect */
+        .bill-stack-item {
+            height: 8px;
+            width: 100%;
+            margin-bottom: -4px; /* Stack overlap */
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+
+        .bill-stack-item.green {
+            background: linear-gradient(90deg, #148f47 0%, #19b359 50%, #148f47 100%);
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .bill-stack-item.red {
+            background: linear-gradient(90deg, #cc263f 0%, #ff4d4d 50%, #cc263f 100%);
+            border-top: 1px solid rgba(255,255,255,0.2);
+            opacity: 0.8;
+        }
+
+        /* Dial Glow */
+        .dial-knob-shadow {
+            box-shadow: 0 0 30px 5px rgba(25, 179, 89, 0.3);
+        }
+    </style>
+</head>
+<body class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-dark">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation -->
+<header data-shared="true"></header>
+<main class="flex-1 flex justify-center py-10 px-4 md:px-10 lg:px-40">
+<div class="layout-content-container flex flex-col w-full max-w-[1024px] gap-8">
+<!-- Header Section -->
+<div class="flex flex-col items-center text-center gap-2 pt-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-light border border-white/5 text-[#9eb7a9] text-xs font-medium uppercase tracking-wider mb-2">
+<span class="material-symbols-outlined text-sm">tune</span> Profit Recovery Simulator
+                    </div>
+<h1 class="text-white text-4xl md:text-5xl font-bold leading-tight tracking-[-0.02em]">
+                        Calculate Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-300">Recoverable Profit</span>
+</h1>
+<p class="text-gray-400 text-lg max-w-xl">
+                        Turn the dial to match your monthly shipping volume and see exactly how much revenue Claimr can unlock for you.
+                    </p>
+</div>
+<!-- Main Simulator Interface -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
+<!-- Left: Lost Money Stack -->
+<div class="lg:col-span-3 flex flex-col justify-end items-center order-2 lg:order-1 relative min-h-[300px] p-6 rounded-2xl bg-surface-dark border border-white/5 overflow-hidden group">
+<!-- Abstract bg pattern -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_rgba(255,77,77,0.1),_transparent_70%)]"></div>
+<div class="relative z-10 w-full max-w-[140px] flex flex-col-reverse items-center h-[240px]">
+<!-- Generated red bills -->
+<div class="bill-stack-item red w-full"></div>
+<div class="bill-stack-item red w-full"></div>
+<div class="bill-stack-item red w-full"></div>
+<div class="bill-stack-item red w-full opacity-90"></div>
+<div class="bill-stack-item red w-full opacity-80"></div>
+<div class="bill-stack-item red w-full opacity-70"></div>
+<div class="bill-stack-item red w-full opacity-60"></div>
+<div class="bill-stack-item red w-full opacity-40"></div>
+</div>
+<div class="relative z-10 mt-6 text-center">
+<p class="text-loss/80 text-sm font-medium uppercase tracking-wide mb-1">Potential Loss</p>
+<p class="text-white text-2xl font-bold tracking-tight">₹2.5L</p>
+<p class="text-xs text-gray-500 mt-1">Monthly</p>
+</div>
+</div>
+<!-- Center: The Giant Dial -->
+<div class="lg:col-span-6 flex flex-col items-center justify-center p-8 rounded-3xl bg-[#161c18] border border-[#29382f] shadow-2xl relative order-1 lg:order-2">
+<!-- Dial Container -->
+<div class="relative size-72 md:size-80 rounded-full flex items-center justify-center bg-[#0d120f] border-8 border-[#1c2621] shadow-[inset_0_4px_20px_rgba(0,0,0,0.8)]">
+<!-- Ticks Container (Simulated via simple rotation divs logic would be here, creating simplified visuals for pure HTML) -->
+<!-- Creating a few visible ticks for the effect -->
+<div class="absolute inset-0 rounded-full w-full h-full" style="transform: rotate(-135deg);">
+<!-- Generating radial ticks with inline styles for positioning -->
+<div class="absolute top-0 left-1/2 -ml-[1px] w-[2px] h-full">
+<div class="h-4 w-full bg-primary/40 rounded-full"></div>
+<div class="absolute bottom-0 h-4 w-full bg-primary/40 rounded-full"></div>
+</div>
+<div class="absolute top-0 left-1/2 -ml-[1px] w-[2px] h-full rotate-[15deg]">
+<div class="h-4 w-full bg-primary/60 rounded-full"></div>
+</div>
+<div class="absolute top-0 left-1/2 -ml-[1px] w-[2px] h-full rotate-[30deg]">
+<div class="h-4 w-full bg-primary/80 rounded-full"></div>
+</div>
+<div class="absolute top-0 left-1/2 -ml-[1px] w-[2px] h-full rotate-[45deg]">
+<div class="h-4 w-full bg-primary rounded-full shadow-[0_0_10px_#19b359]"></div>
+</div>
+<div class="absolute top-0 left-1/2 -ml-[1px] w-[2px] h-full rotate-[60deg]">
+<div class="h-4 w-full bg-[#3d5246] rounded-full"></div>
+</div>
+<div class="absolute top-0 left-1/2 -ml-[1px] w-[2px] h-full rotate-[75deg]">
+<div class="h-4 w-full bg-[#3d5246] rounded-full"></div>
+</div>
+<div class="absolute top-0 left-1/2 -ml-[1px] w-[2px] h-full rotate-[90deg]">
+<div class="h-4 w-full bg-[#3d5246] rounded-full"></div>
+</div>
+<!-- More simulated ticks -->
+</div>
+<!-- The Knob/Handle -->
+<div class="absolute inset-0 rounded-full" style="transform: rotate(45deg);">
+<div class="absolute top-6 left-1/2 -translate-x-1/2 size-8 bg-primary rounded-full dial-knob-shadow border-4 border-[#0d120f] cursor-pointer hover:scale-110 transition-transform flex items-center justify-center">
+<div class="size-2 bg-white rounded-full"></div>
+</div>
+</div>
+<!-- Inner Display -->
+<div class="relative z-10 flex flex-col items-center justify-center text-center">
+<span class="text-primary/60 text-xs font-bold uppercase tracking-widest mb-2">Monthly Orders</span>
+<span class="text-white text-5xl font-bold tracking-tighter tabular-nums drop-shadow-xl">15,000</span>
+<div class="flex items-center gap-1 mt-3 px-3 py-1 bg-white/5 rounded-full border border-white/5">
+<span class="size-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-xs text-gray-400">Live Simulation</span>
+</div>
+</div>
+</div>
+<!-- Instruction -->
+<div class="mt-8 flex items-center gap-3 text-gray-500">
+<span class="material-symbols-outlined">touch_app</span>
+<span class="text-sm font-medium">Drag dial to adjust volume</span>
+</div>
+</div>
+<!-- Right: Recovered Profit Stack -->
+<div class="lg:col-span-3 flex flex-col justify-end items-center order-3 lg:order-3 relative min-h-[300px] p-6 rounded-2xl bg-surface-dark border border-primary/20 overflow-hidden shadow-[0_0_40px_rgba(25,179,89,0.05)]">
+<!-- Abstract bg pattern -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_rgba(25,179,89,0.15),_transparent_70%)]"></div>
+<div class="relative z-10 w-full max-w-[140px] flex flex-col-reverse items-center h-[240px]">
+<!-- Generated green bills (More of them to show profit) -->
+<div class="bill-stack-item green w-full"></div>
+<div class="bill-stack-item green w-full"></div>
+<div class="bill-stack-item green w-full"></div>
+<div class="bill-stack-item green w-full"></div>
+<div class="bill-stack-item green w-full"></div>
+<div class="bill-stack-item green w-full"></div>
+<div class="bill-stack-item green w-full"></div>
+<div class="bill-stack-item green w-full"></div>
+<div class="bill-stack-item green w-full"></div>
+<div class="bill-stack-item green w-full"></div>
+<div class="bill-stack-item green w-full"></div>
+<div class="bill-stack-item green w-full"></div>
+<div class="bill-stack-item green w-full"></div>
+</div>
+<div class="relative z-10 mt-6 text-center">
+<p class="text-primary text-sm font-medium uppercase tracking-wide mb-1">Recoverable Profit</p>
+<p class="text-white text-3xl font-bold tracking-tight">₹12.5L</p>
+<p class="text-xs text-gray-500 mt-1">Monthly</p>
+</div>
+</div>
+</div>
+<!-- ROI Chart & Detailed Stats -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-12">
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-light/30 rounded-xl p-5 border border-white/5 flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-gray-400 text-xl">trending_up</span>
+<span class="text-gray-400 text-sm font-medium">ROI Boost</span>
+</div>
+<span class="text-white text-2xl font-bold">12x</span>
+<span class="text-xs text-gray-500 mt-1">Return on service fee</span>
+</div>
+<div class="bg-surface-light/30 rounded-xl p-5 border border-white/5 flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-gray-400 text-xl">schedule</span>
+<span class="text-gray-400 text-sm font-medium">Time Saved</span>
+</div>
+<span class="text-white text-2xl font-bold">45 Hrs</span>
+<span class="text-xs text-gray-500 mt-1">Manual work eliminated</span>
+</div>
+<div class="col-span-2 bg-primary/10 rounded-xl p-5 border border-primary/20 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-primary text-sm font-medium uppercase mb-1">Total Annual Impact</span>
+<span class="text-white text-3xl font-bold tracking-tight">₹1.5 Crores</span>
+</div>
+<div class="size-12 rounded-full bg-primary text-white flex items-center justify-center">
+<span class="material-symbols-outlined">currency_rupee</span>
+</div>
+</div>
+</div>
+<!-- Visual Bar Chart -->
+<div class="bg-surface-light/30 rounded-xl p-6 border border-white/5 flex flex-col justify-center gap-6">
+<div class="flex justify-between items-end mb-1">
+<h3 class="text-white text-lg font-bold">Net Margin Comparison</h3>
+<span class="text-xs text-gray-500 bg-black/20 px-2 py-1 rounded">Projected</span>
+</div>
+<!-- Without Claimr Bar -->
+<div class="w-full">
+<div class="flex justify-between text-xs mb-2">
+<span class="text-gray-400">Current Net Margin</span>
+<span class="text-white font-mono">12%</span>
+</div>
+<div class="h-8 w-full bg-black/40 rounded-lg overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full w-[45%] bg-gray-600 rounded-lg"></div>
+<!-- Loss segment -->
+<div class="absolute top-0 left-[45%] h-full w-[10%] bg-loss striped-bg opacity-80" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(0,0,0,0.1) 5px, rgba(0,0,0,0.1) 10px);"></div>
+</div>
+</div>
+<!-- With Claimr Bar -->
+<div class="w-full">
+<div class="flex justify-between text-xs mb-2">
+<span class="text-white font-medium">With Claimr</span>
+<span class="text-primary font-bold font-mono">+5% Recovered</span>
+</div>
+<div class="h-10 w-full bg-black/40 rounded-lg overflow-hidden relative flex items-center px-1">
+<div class="absolute top-0 left-0 h-full w-[45%] bg-gray-600 rounded-lg"></div>
+<div class="absolute top-0 left-[45%] h-full w-[20%] bg-primary rounded-r-lg shadow-[0_0_15px_rgba(25,179,89,0.5)] z-10 flex items-center justify-center">
+<span class="text-[10px] font-bold text-white uppercase tracking-wider">Profit</span>
+</div>
+</div>
+</div>
+<p class="text-xs text-gray-500 mt-1">
+                            *Claimr helps you recover the 5-8% margin usually lost to fake returns.
+                        </p>
+</div>
+</div>
+<!-- Bottom CTA -->
+<div class="flex flex-col items-center gap-6 pb-20">
+<button class="relative group cursor-pointer">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-emerald-400 rounded-xl blur opacity-25 group-hover:opacity-60 transition duration-200"></div>
+<div class="relative flex min-w-[280px] h-14 items-center justify-center rounded-xl bg-primary px-8 text-white text-lg font-bold leading-normal tracking-[0.015em] shadow-xl transform transition hover:-translate-y-1">
+                            Recover ₹12.5 Lakhs Now
+                            <span class="material-symbols-outlined ml-2">arrow_forward</span>
+</div>
+</button>
+<p class="text-gray-500 text-sm">No credit card required for simulation.</p>
+</div>
+</div>
+</main>
+</div>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

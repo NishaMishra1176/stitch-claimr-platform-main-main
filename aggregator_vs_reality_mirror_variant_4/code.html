@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Aggregator vs Reality</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Epilogue:wght@500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00665e",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2322",
+                        "corp-blue": "#6699CC",
+                        "alert-red": "#C62828",
+                        "muted-silver": "#E0E0E0",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "heading": ["Epilogue", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    animation: {
+                        'pulse-subtle': 'pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        'pulse-subtle': {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '.85' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom pulsing shadow for urgent items */
+        .pulse-shadow-red {
+            box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.4);
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-red {
+            0% {
+                transform: scale(0.99);
+                box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.4);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(198, 40, 40, 0);
+            }
+            100% {
+                transform: scale(0.99);
+                box-shadow: 0 0 0 0 rgba(198, 40, 40, 0);
+            }
+        }
+        .vs-separator::before, .vs-separator::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #E0E0E0;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#101818] font-display min-h-screen flex flex-col antialiased">
+<!-- Shared Header Placeholder -->
+<header data-shared="true"></header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center justify-center px-4 py-8 md:px-10 lg:py-12">
+<div class="w-full max-w-[960px] flex flex-col gap-10">
+<!-- Hero Heading -->
+<div class="text-center space-y-3">
+<h1 class="text-3xl md:text-5xl font-heading font-black leading-tight tracking-tight text-[#101818]">
+                    They earn float while <br class="hidden md:block"/>you bleed margin.
+                </h1>
+<p class="text-lg text-slate-500 font-medium max-w-xl mx-auto">
+                    See the hidden cost of the 'Pending Case' trap.
+                </p>
+</div>
+<!-- The Mirror Split Container -->
+<div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden flex flex-col relative">
+<!-- TOP PANE: Aggregator Dash (The Lie) -->
+<div class="p-8 md:p-10 bg-white relative z-10 transition-colors duration-500">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-corp-blue">dashboard</span>
+<h3 class="text-gray-400 text-xs font-bold uppercase tracking-wider">Aggregator Dashboard View</h3>
+</div>
+<div class="px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-500">
+                            Last update: 2m ago
+                        </div>
+</div>
+<!-- Blue Status Card -->
+<div class="border border-slate-200 bg-slate-50 rounded-lg p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 opacity-90 hover:opacity-100 transition-opacity">
+<div class="flex items-start gap-4">
+<div class="h-12 w-12 rounded-full bg-corp-blue/10 flex items-center justify-center text-corp-blue shrink-0">
+<span class="material-symbols-outlined text-2xl">hourglass_top</span>
+</div>
+<div>
+<h4 class="text-lg font-heading font-bold text-[#101818]">Case ID #9921</h4>
+<p class="text-slate-500 text-sm mt-1">Status: Under Investigation</p>
+</div>
+</div>
+<div class="flex items-center gap-3 bg-white px-4 py-2 rounded border border-slate-100 shadow-sm">
+<span class="block w-2 h-2 rounded-full bg-corp-blue"></span>
+<span class="text-sm font-medium text-corp-blue">Resolution ETA: 48-72 hrs</span>
+</div>
+</div>
+<div class="mt-4 flex gap-4 opacity-50 pointer-events-none select-none grayscale-[0.5]">
+<!-- Fake decorative bars to simulate dashboard look -->
+<div class="h-2 w-1/3 bg-slate-100 rounded"></div>
+<div class="h-2 w-1/4 bg-slate-100 rounded"></div>
+</div>
+</div>
+<!-- DIVIDER -->
+<div class="relative flex items-center justify-center py-2 bg-gradient-to-b from-white to-red-50/30">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-dashed border-gray-300"></div>
+</div>
+<div class="relative flex justify-center">
+<span class="bg-white px-4 text-sm font-bold text-gray-400 uppercase tracking-widest border border-gray-100 rounded-full py-1 shadow-sm z-20">VS</span>
+</div>
+</div>
+<!-- BOTTOM PANE: Financial Reality (The Truth) -->
+<div class="p-8 md:p-10 bg-gradient-to-b from-red-50/30 to-red-50/60 relative z-10 border-t border-red-100/50">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-alert-red animate-pulse">emergency_home</span>
+<h3 class="text-alert-red text-xs font-bold uppercase tracking-wider">Financial Reality (Live)</h3>
+</div>
+<div class="px-3 py-1 rounded-full bg-red-100 border border-red-200 text-xs font-bold text-alert-red animate-pulse-subtle">
+                            ACTION REQUIRED
+                        </div>
+</div>
+<!-- Red Alert Card -->
+<div class="bg-white border-l-4 border-l-alert-red rounded-r-lg shadow-lg p-6 pulse-shadow-red relative overflow-hidden group">
+<!-- Abstract background pattern for urgency -->
+<div class="absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-red-50 to-transparent opacity-50 pointer-events-none"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+<div class="flex items-start gap-4">
+<div class="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center text-alert-red shrink-0 animate-bounce" style="animation-duration: 2s;">
+<span class="material-symbols-outlined text-2xl">trending_down</span>
+</div>
+<div>
+<h4 class="text-lg font-heading font-bold text-[#101818]">Inventory Locked &amp; Depreciating</h4>
+<p class="text-alert-red text-sm font-bold mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+                                        Status: Margin Erosion
+                                    </p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-xs font-semibold text-gray-400 uppercase tracking-wide">Hidden Loss Mounting</span>
+<div class="text-3xl font-heading font-black text-alert-red tabular-nums tracking-tight flex items-center gap-1">
+<span>₹461.00</span>
+<span class="material-symbols-outlined text-xl align-top pt-1">arrow_upward</span>
+</div>
+<span class="text-[10px] text-gray-400 font-medium mt-1">+₹1.20 / hour holding cost</span>
+</div>
+</div>
+<!-- Mini Sparkline for Loss -->
+<div class="mt-6 pt-4 border-t border-red-50 flex items-center gap-4">
+<div class="flex-1 h-12 bg-gray-50 rounded relative overflow-hidden" data-alt="Red sparkline graph showing upward trend of financial loss">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 300 50">
+<path d="M0,45 Q50,45 80,35 T150,30 T220,15 T300,5" fill="none" stroke="#C62828" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<path d="M0,45 L300,45 L300,5 L220,15 L150,30 L80,35 L50,45 Z" fill="url(#grad1)" opacity="0.2"></path>
+<defs>
+<lineargradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#C62828;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#C62828;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+<div class="text-xs text-gray-500 font-medium">projected 7-day loss: <span class="text-alert-red font-bold">₹3,200+</span></div>
+</div>
+</div>
+</div>
+<!-- Floating Bottom Action Bar (Contextual to the card) -->
+<div class="bg-gray-50 px-8 py-4 border-t border-gray-100 flex items-center justify-between gap-4 flex-wrap">
+<p class="text-sm text-gray-500 font-medium hidden sm:block">Don't let them stall. Recover your funds now.</p>
+<button class="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-primary hover:bg-[#00524b] text-white px-6 py-3 rounded-lg font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]">
+<span>Take Control &amp; Recover Funds</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Trust / Social Proof Footer -->
+<div class="flex flex-wrap justify-center gap-6 md:gap-12 opacity-60">
+<div class="flex items-center gap-2 grayscale">
+<div class="size-5 rounded-full bg-gray-300"></div>
+<span class="text-sm font-bold text-gray-400">LogiTrust Certified</span>
+</div>
+<div class="flex items-center gap-2 grayscale">
+<div class="size-5 rounded-full bg-gray-300"></div>
+<span class="text-sm font-bold text-gray-400">MSME Bharat Approved</span>
+</div>
+<div class="flex items-center gap-2 grayscale">
+<div class="size-5 rounded-full bg-gray-300"></div>
+<span class="text-sm font-bold text-gray-400">Instant Settlement API</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Shared Footer Placeholder -->
+<footer data-shared="true"></footer>
+<!-- Load Shared Header & Footer -->
+<script src="../shared-nav-loader.js"></script>
+</body></html>

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Seller Escalation Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0b1c2d", // Navy
+              "alert": "#C62828",   // Alert Red
+              "background-light": "#f6f7f8",
+              "background-dark": "#13191f",
+              "surface": "#ffffff",
+              "success": "#078838",
+              "warning": "#eab308",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"],
+              "body": ["Space Grotesk", "sans-serif"], 
+            },
+            borderRadius: {
+              "DEFAULT": "4px",
+              "sm": "2px",
+              "md": "4px",
+              "lg": "8px",
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        /* Custom scrollbar for data density */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8; 
+        }
+        .text-xxs {
+            font-size: 0.65rem;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-primary font-display antialiased overflow-hidden">
+<div class="flex h-screen w-full">
+<!-- SIDEBAR -->
+<aside class="flex w-64 flex-col bg-primary text-white border-r border-gray-800 shrink-0 z-20">
+<div class="flex items-center gap-3 px-6 py-6 border-b border-gray-700/50">
+<div class="flex h-8 w-8 items-center justify-center rounded bg-white/10 text-white">
+<span class="material-symbols-outlined text-xl">shield_lock</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-lg font-bold leading-none tracking-tight">Claimr</h1>
+<span class="text-xs text-gray-400 mt-1">Risk-Ops Infra</span>
+</div>
+</div>
+<nav class="flex flex-col flex-1 gap-1 px-3 py-6 overflow-y-auto">
+<div class="text-xs font-medium text-gray-500 uppercase tracking-wider px-3 mb-2">Main</div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-gray-300 hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-gray-400 group-hover:text-white">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-gray-300 hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-gray-400 group-hover:text-white">package_2</span>
+<span class="text-sm font-medium">Shipments</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-gray-300 hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-gray-400 group-hover:text-white">warning</span>
+<div class="flex flex-1 justify-between items-center">
+<span class="text-sm font-medium">Disputes</span>
+<span class="text-xs bg-red-900/50 text-red-200 px-1.5 py-0.5 rounded border border-red-800">12</span>
+</div>
+</a>
+<div class="text-xs font-medium text-gray-500 uppercase tracking-wider px-3 mt-6 mb-2">Recovery</div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded bg-white/10 text-white border border-white/5 shadow-sm" href="#">
+<span class="material-symbols-outlined text-[20px] text-alert">gavel</span>
+<span class="text-sm font-bold">Escalations</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-gray-300 hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-gray-400 group-hover:text-white">account_balance_wallet</span>
+<span class="text-sm font-medium">Settlements</span>
+</a>
+<div class="mt-auto">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-gray-300 hover:bg-white/5 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-gray-400 group-hover:text-white">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+<div class="mt-4 px-3 py-4 border-t border-gray-700/50 flex items-center gap-3">
+<div class="h-8 w-8 rounded bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center text-xs font-bold border border-gray-600" data-alt="User Avatar Placeholder">
+                            JD
+                        </div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-white">John Doe</span>
+<span class="text-[10px] text-gray-400">Seller ID: #8821X</span>
+</div>
+</div>
+</div>
+</nav>
+</aside>
+<!-- MAIN CONTENT -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- HEADER -->
+<header data-shared="true"></header>
+<!-- SCROLLABLE CONTENT AREA -->
+<div class="flex-1 overflow-y-auto overflow-x-hidden p-6 lg:p-8 bg-background-light">
+<div class="max-w-[1400px] mx-auto flex flex-col gap-6">
+<!-- PAGE TITLE & ACTIONS -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-primary">Escalation Control Center</h2>
+<p class="text-gray-500 mt-1 max-w-2xl">Manage high-priority disputes and monitor real-time recovery status across all carriers.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 shadow-sm rounded text-sm font-semibold text-primary hover:bg-gray-50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                                Report
+                            </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white shadow-md rounded text-sm font-bold hover:bg-[#081522] transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                                New Dispute
+                            </button>
+</div>
+</div>
+<!-- STATS GRID -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Stat 1 -->
+<div class="bg-white p-5 rounded border border-gray-200 shadow-sm hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start mb-2">
+<div class="p-2 bg-gray-100 rounded text-gray-600 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<span class="flex items-center gap-1 text-xs font-bold text-alert bg-red-50 px-2 py-1 rounded-full border border-red-100">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                                    +2.5% vs LW
+                                </span>
+</div>
+<p class="text-gray-500 text-sm font-medium">Total Capital Stuck</p>
+<h3 class="text-2xl font-bold text-primary mt-1">₹ 4,25,000</h3>
+<div class="w-full bg-gray-100 h-1 mt-4 rounded-full overflow-hidden">
+<div class="bg-gray-400 h-full w-[65%]"></div>
+</div>
+</div>
+<!-- Stat 2 -->
+<div class="bg-white p-5 rounded border border-gray-200 shadow-sm hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start mb-2">
+<div class="p-2 bg-gray-100 rounded text-gray-600 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">donut_large</span>
+</div>
+<span class="flex items-center gap-1 text-xs font-bold text-success bg-green-50 px-2 py-1 rounded-full border border-green-100">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+                                    +5% Efficiency
+                                </span>
+</div>
+<p class="text-gray-500 text-sm font-medium">Asset Recovery Score</p>
+<h3 class="text-2xl font-bold text-primary mt-1">82%</h3>
+<div class="w-full bg-gray-100 h-1 mt-4 rounded-full overflow-hidden">
+<div class="bg-success h-full w-[82%]"></div>
+</div>
+</div>
+<!-- Stat 3 (DANGER) -->
+<div class="bg-white p-5 rounded border border-alert/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute right-0 top-0 h-16 w-16 bg-gradient-to-br from-transparent to-red-50 rounded-bl-full"></div>
+<div class="flex justify-between items-start mb-2 relative z-10">
+<div class="p-2 bg-red-50 rounded text-alert animate-pulse">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+<span class="flex items-center gap-1 text-xs font-bold text-alert px-2 py-1 rounded border border-alert/20 bg-white">
+                                    Critical
+                                </span>
+</div>
+<p class="text-gray-500 text-sm font-medium relative z-10">Critical Alerts (7-Day Zone)</p>
+<h3 class="text-2xl font-bold text-primary mt-1 relative z-10">12 Shipments</h3>
+<div class="w-full bg-red-100 h-1 mt-4 rounded-full overflow-hidden relative z-10">
+<div class="bg-alert h-full w-[35%]"></div>
+</div>
+</div>
+</div>
+<!-- MAIN LAYOUT: TABLE + SIDE PANEL -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full min-h-[500px]">
+<!-- LEFT COLUMN: DEMAND BOARD (Table) -->
+<div class="lg:col-span-8 flex flex-col gap-4">
+<div class="bg-white border border-gray-200 rounded shadow-sm flex flex-col h-full">
+<div class="px-5 py-4 border-b border-gray-200 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<h3 class="font-bold text-primary">AWB-Level Demand Board</h3>
+<span class="bg-gray-100 text-gray-600 text-xs font-bold px-2 py-0.5 rounded-full">48 Active</span>
+</div>
+<div class="flex gap-2">
+<button class="p-1.5 hover:bg-gray-100 rounded text-gray-500">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+<button class="p-1.5 hover:bg-gray-100 rounded text-gray-500">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-50/50 border-b border-gray-200 text-xs uppercase tracking-wider text-gray-500 font-semibold">
+<th class="px-5 py-3 font-medium">AWB Details</th>
+<th class="px-5 py-3 font-medium">Carrier</th>
+<th class="px-5 py-3 font-medium">Dispute Type</th>
+<th class="px-5 py-3 font-medium">Pending</th>
+<th class="px-5 py-3 font-medium">Leverage</th>
+<th class="px-5 py-3 font-medium text-right">Action</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-gray-100">
+<!-- Row 1: High Risk -->
+<tr class="hover:bg-blue-50/30 transition-colors group cursor-pointer border-l-4 border-l-alert bg-red-50/10">
+<td class="px-5 py-3">
+<div class="font-bold text-primary">7712839901</div>
+<div class="text-xs text-gray-500">Ord: #BLK-2291</div>
+</td>
+<td class="px-5 py-3">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 rounded-full bg-yellow-400 flex items-center justify-center text-[10px] font-bold text-black" data-alt="Delhivery Logo">D</div>
+<span class="font-medium">Delhivery</span>
+</div>
+</td>
+<td class="px-5 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 border border-gray-200">
+                                                        Wrong Weight
+                                                    </span>
+</td>
+<td class="px-5 py-3">
+<span class="text-alert font-bold">6 Days</span>
+</td>
+<td class="px-5 py-3 w-32">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-primary w-6">92%</span>
+<div class="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+<div class="h-full bg-success w-[92%]"></div>
+</div>
+</div>
+</td>
+<td class="px-5 py-3 text-right">
+<button class="text-primary hover:text-alert font-bold text-xs uppercase tracking-wide opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        Details
+                                                    </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-blue-50/30 transition-colors group cursor-pointer border-l-4 border-l-transparent">
+<td class="px-5 py-3">
+<div class="font-medium text-primary">1192837455</div>
+<div class="text-xs text-gray-500">Ord: #BLK-2280</div>
+</td>
+<td class="px-5 py-3">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 rounded-full bg-blue-600 flex items-center justify-center text-[10px] font-bold text-white" data-alt="BlueDart Logo">B</div>
+<span class="font-medium">BlueDart</span>
+</div>
+</td>
+<td class="px-5 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 border border-gray-200">
+                                                        Damaged
+                                                    </span>
+</td>
+<td class="px-5 py-3">
+<span class="text-gray-600 font-medium">3 Days</span>
+</td>
+<td class="px-5 py-3">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-gray-500 w-6">65%</span>
+<div class="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+<div class="h-full bg-warning w-[65%]"></div>
+</div>
+</div>
+</td>
+<td class="px-5 py-3 text-right">
+<button class="text-primary hover:text-alert font-bold text-xs uppercase tracking-wide opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        Details
+                                                    </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-blue-50/30 transition-colors group cursor-pointer border-l-4 border-l-transparent">
+<td class="px-5 py-3">
+<div class="font-medium text-primary">8829103941</div>
+<div class="text-xs text-gray-500">Ord: #BLK-2275</div>
+</td>
+<td class="px-5 py-3">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 rounded-full bg-red-600 flex items-center justify-center text-[10px] font-bold text-white" data-alt="XpressBees Logo">X</div>
+<span class="font-medium">XpressBees</span>
+</div>
+</td>
+<td class="px-5 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 border border-gray-200">
+                                                        RTO Fake
+                                                    </span>
+</td>
+<td class="px-5 py-3">
+<span class="text-gray-600 font-medium">2 Days</span>
+</td>
+<td class="px-5 py-3">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-gray-500 w-6">40%</span>
+<div class="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+<div class="h-full bg-primary/40 w-[40%]"></div>
+</div>
+</div>
+</td>
+<td class="px-5 py-3 text-right">
+<button class="text-primary hover:text-alert font-bold text-xs uppercase tracking-wide opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        Details
+                                                    </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-blue-50/30 transition-colors group cursor-pointer border-l-4 border-l-transparent">
+<td class="px-5 py-3">
+<div class="font-medium text-primary">5510293844</div>
+<div class="text-xs text-gray-500">Ord: #BLK-2261</div>
+</td>
+<td class="px-5 py-3">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 rounded-full bg-orange-500 flex items-center justify-center text-[10px] font-bold text-white" data-alt="Ecom Logo">E</div>
+<span class="font-medium">Ecom Exp</span>
+</div>
+</td>
+<td class="px-5 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 border border-gray-200">
+                                                        Lost
+                                                    </span>
+</td>
+<td class="px-5 py-3">
+<span class="text-gray-600 font-medium">1 Day</span>
+</td>
+<td class="px-5 py-3">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-primary w-6">88%</span>
+<div class="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+<div class="h-full bg-success w-[88%]"></div>
+</div>
+</div>
+</td>
+<td class="px-5 py-3 text-right">
+<button class="text-primary hover:text-alert font-bold text-xs uppercase tracking-wide opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        Details
+                                                    </button>
+</td>
+</tr>
+<!-- Row 5 (Danger) -->
+<tr class="hover:bg-blue-50/30 transition-colors group cursor-pointer border-l-4 border-l-alert bg-red-50/10">
+<td class="px-5 py-3">
+<div class="font-bold text-primary">9918273645</div>
+<div class="text-xs text-gray-500">Ord: #BLK-2210</div>
+</td>
+<td class="px-5 py-3">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 rounded-full bg-yellow-400 flex items-center justify-center text-[10px] font-bold text-black" data-alt="Delhivery Logo">D</div>
+<span class="font-medium">Delhivery</span>
+</div>
+</td>
+<td class="px-5 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 border border-gray-200">
+                                                        Wrong Weight
+                                                    </span>
+</td>
+<td class="px-5 py-3">
+<span class="text-alert font-bold">7 Days</span>
+</td>
+<td class="px-5 py-3 w-32">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-primary w-6">95%</span>
+<div class="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+<div class="h-full bg-success w-[95%]"></div>
+</div>
+</div>
+</td>
+<td class="px-5 py-3 text-right">
+<button class="text-primary hover:text-alert font-bold text-xs uppercase tracking-wide opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        Details
+                                                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-5 py-3 border-t border-gray-200 flex items-center justify-between bg-gray-50 rounded-b">
+<span class="text-xs text-gray-500 font-medium">Showing 5 of 48 active disputes</span>
+<div class="flex gap-1">
+<button class="h-7 w-7 flex items-center justify-center rounded bg-white border border-gray-300 text-gray-500 hover:bg-gray-100 disabled:opacity-50">
+<span class="material-symbols-outlined text-base">chevron_left</span>
+</button>
+<button class="h-7 w-7 flex items-center justify-center rounded bg-white border border-gray-300 text-gray-500 hover:bg-gray-100">
+<span class="material-symbols-outlined text-base">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: ACTION & TIMELINE -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- DANGER ZONE CARD -->
+<div class="bg-white rounded border border-alert shadow-sm overflow-hidden relative">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagonal-stripes.png')] opacity-[0.03] pointer-events-none" data-alt="Caution stripe pattern texture"></div>
+<div class="p-5 flex flex-col gap-4 relative z-10">
+<div class="flex items-center gap-2">
+<div class="h-8 w-8 rounded flex items-center justify-center bg-alert text-white shadow-sm">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+</div>
+<h3 class="font-bold text-primary text-lg leading-tight">Danger Zone Actions</h3>
+</div>
+<p class="text-sm text-gray-600">
+<strong class="text-alert">12 shipments</strong> are approaching the 7-day limitation period. Immediate legal escalation required.
+                                    </p>
+<button class="w-full h-11 bg-alert hover:bg-red-800 text-white text-sm font-bold uppercase tracking-wide rounded flex items-center justify-center gap-2 transition-all shadow-md active:transform active:scale-[0.98]">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+                                        Force Action (12)
+                                    </button>
+<div class="text-xs text-center text-gray-400 font-medium">
+                                        Automated drafting of Form-12B
+                                    </div>
+</div>
+</div>
+<!-- TIMELINE CARD -->
+<div class="bg-white rounded border border-gray-200 shadow-sm flex flex-col flex-1 min-h-[400px]">
+<div class="p-4 border-b border-gray-200 bg-gray-50 rounded-t">
+<h4 class="font-bold text-primary text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-gray-500 text-[18px]">history_edu</span>
+                                        Nodal Officer Timeline
+                                    </h4>
+<p class="text-xs text-gray-500 mt-1">AWB: <span class="font-mono font-bold text-primary">7712839901</span> (Selected)</p>
+</div>
+<div class="p-5 flex-1 overflow-y-auto">
+<div class="relative pl-4 border-l-2 border-gray-100 space-y-8">
+<!-- Item 1 -->
+<div class="relative">
+<div class="absolute -left-[23px] top-1 h-4 w-4 rounded-full bg-white border-2 border-primary ring-4 ring-white"></div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-baseline">
+<span class="text-sm font-bold text-primary">Nodal Reply Received</span>
+<span class="text-xs text-gray-400">10m ago</span>
+</div>
+<p class="text-xs text-gray-600 leading-relaxed bg-blue-50 p-2 rounded border border-blue-100">
+                                                    "We have reviewed the CCTV footage provided. The weight discrepancy is acknowledged. Initiating partial refund process."
+                                                </p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="relative">
+<div class="absolute -left-[23px] top-1 h-4 w-4 rounded-full bg-gray-200 border-2 border-gray-400 ring-4 ring-white"></div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-baseline">
+<span class="text-sm font-bold text-gray-700">Video Evidence Uploaded</span>
+<span class="text-xs text-gray-400">2h ago</span>
+</div>
+<p class="text-xs text-gray-500">
+                                                    Packing video (24MB) uploaded to secure vault. Link shared with carrier.
+                                                </p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="relative">
+<div class="absolute -left-[23px] top-1 h-4 w-4 rounded-full bg-gray-200 border-2 border-gray-400 ring-4 ring-white"></div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-baseline">
+<span class="text-sm font-bold text-gray-700">Automated Escalation</span>
+<span class="text-xs text-gray-400">Yesterday</span>
+</div>
+<p class="text-xs text-gray-500">
+                                                    Ticket #99281 escalated to Level 2 due to SLA breach (&gt;48 hours).
+                                                </p>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="relative">
+<div class="absolute -left-[23px] top-1 h-4 w-4 rounded-full bg-gray-200 border-2 border-gray-400 ring-4 ring-white"></div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-baseline">
+<span class="text-sm font-bold text-gray-700">Dispute Raised</span>
+<span class="text-xs text-gray-400">2 days ago</span>
+</div>
+<p class="text-xs text-gray-500">
+                                                    Dispute created for "Wrong Weight" via API.
+                                                </p>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-4 border-t border-gray-100">
+<div class="flex gap-2">
+<input class="w-full text-xs rounded border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary h-9" placeholder="Type a reply to Nodal Officer..." type="text"/>
+<button class="bg-primary text-white h-9 w-9 rounded flex items-center justify-center hover:bg-gray-800">
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+<!-- Additional Navigation Section -->
+<section class="py-12 bg-background-light dark:bg-background-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h3 class="text-2xl font-bold text-primary dark:text-white mb-8 text-center">Explore More Claimr Features</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Feature Card 1 -->
+<a href="../claimr_homepage_-_panic_interceptor_1/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">home</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Homepage</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Main landing page with live panic interceptor functionality</p>
+</div>
+</a>
+<!-- Feature Card 2 -->
+<a href="../claimr_home_-_command_center_variant_1/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">dashboard</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Command Center</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Live fraud intelligence dashboard with national fraud pulse</p>
+</div>
+</a>
+<!-- Feature Card 3 -->
+<a href="../how_it_works_&_about_claimr/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">info</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">How It Works</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Explanation of Claimr's mission and 4-step process</p>
+</div>
+</a>
+<!-- Feature Card 4 -->
+<a href="../claimr_home_-_escalation_engine_variant_1/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-red-100 text-red-600 flex items-center justify-center mb-4 group-hover:bg-red-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Escalation Engine</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Automated escalation workflow for dispute resolution</p>
+</div>
+</a>
+</div>
+</section>
+</main>
+</div>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

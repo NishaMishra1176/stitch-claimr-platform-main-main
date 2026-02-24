@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Traffic Command Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#006c75",
+                        "primary-dark": "#004d53",
+                        "secondary": "#0f172a", // Deep Navy
+                        "accent": "#f0fdf4", // Light green for positive trends
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f1729",
+                        "surface": "#ffffff",
+                        "border-subtle": "#e2e8f0",
+                        "text-main": "#1e293b",
+                        "text-subtle": "#64748b",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "sans": ["Manrope", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px",
+                    },
+                    boxShadow: {
+                        "soft": "0 2px 8px -1px rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.01)",
+                        "hover": "0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Scrollbar for dense lists */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main font-display antialiased overflow-hidden">
+<div class="flex h-screen w-full">
+<!-- Sidebar Navigation -->
+<aside class="w-[260px] flex-shrink-0 bg-secondary flex flex-col justify-between h-full border-r border-slate-800 z-20">
+<div class="flex flex-col p-6 gap-8">
+<!-- Brand -->
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-lg bg-gradient-to-br from-primary to-teal-400 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-primary/20">C</div>
+<div class="flex flex-col">
+<span class="text-white font-bold tracking-tight text-lg leading-none">Claimr</span>
+<span class="text-slate-400 text-xs font-medium tracking-wide">Command Center</span>
+</div>
+</div>
+<!-- Main Nav -->
+<nav class="flex flex-col gap-1.5">
+<a class="group flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-white border-l-2 border-primary transition-all" href="#">
+<span class="material-symbols-outlined text-primary group-hover:text-white transition-colors" style="font-size: 20px;">dashboard</span>
+<span class="text-sm font-semibold">Dashboard</span>
+</a>
+<a class="group flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">folder_open</span>
+<span class="text-sm font-medium">Case Files</span>
+</a>
+<a class="group flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">radar</span>
+<span class="text-sm font-medium">Intercept Feed</span>
+<span class="ml-auto bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md">12</span>
+</a>
+<a class="group flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">analytics</span>
+<span class="text-sm font-medium">Analytics</span>
+</a>
+</nav>
+<!-- Secondary Nav -->
+<div class="pt-6 border-t border-slate-800 flex flex-col gap-1.5">
+<p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Configuration</p>
+<a class="group flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">integration_instructions</span>
+<span class="text-sm font-medium">Integrations</span>
+</a>
+<a class="group flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</div>
+<!-- Profile -->
+<div class="p-4 border-t border-slate-800 bg-slate-900/50">
+<div class="flex items-center gap-3 cursor-pointer hover:opacity-90">
+<div class="size-9 rounded-full bg-slate-700 overflow-hidden border border-slate-600" data-alt="User profile picture showing a professional man">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8fmdm8k27kGgc5cgeU_QiEsY2WMZj99Ww7EqHlPeTzj89CvYZuNLiAaDQh8QA1x7WCMwfCPiT2qAsdlyvoy3IP7ysog_lQzDqx9F77pwCwr1UJDe7ZP3-iPfE_WKT4cP0YT5ngwh4j3TqppfusvFLJevkc6AynkYxwnmBNVoW_DMysp_Sz3kdCV1ECiwrFjcOyouCSQo0eN97kMWL0ZeUPxGCo0T1SCmYa0VpSwGwJcaeLHsq5Mu0p2J5FugVrxrE_Oqfvx6Cilw"/>
+</div>
+<div class="flex flex-col overflow-hidden">
+<p class="text-sm font-medium text-white truncate">Rajesh Kumar</p>
+<p class="text-xs text-slate-400 truncate">Pro Seller Account</p>
+</div>
+<span class="material-symbols-outlined text-slate-500 ml-auto" style="font-size: 18px;">expand_more</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Top Header -->
+<header data-shared="true"></header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto custom-scrollbar bg-[#f8fafc] p-8">
+<div class="max-w-7xl mx-auto space-y-6">
+<!-- Power Metrics Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Metric 1 -->
+<div class="bg-white p-5 rounded-xl border border-border-subtle shadow-soft group hover:border-primary/30 transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-blue-50 p-2 rounded-lg text-blue-600">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+</div>
+<span class="flex items-center text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded text-xs font-bold">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span>
+                                    18.2%
+                                </span>
+</div>
+<h3 class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Total Notices Sent</h3>
+<div class="flex items-baseline gap-2">
+<p class="text-2xl font-bold text-slate-900">1,248</p>
+<span class="text-xs text-slate-400">vs. last month</span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-white p-5 rounded-xl border border-border-subtle shadow-soft group hover:border-primary/30 transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-purple-50 p-2 rounded-lg text-purple-600">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<span class="flex items-center text-primary bg-cyan-50 px-2 py-0.5 rounded text-xs font-bold">
+                                    pSEO Active
+                                </span>
+</div>
+<h3 class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Organic Search Traffic</h3>
+<div class="flex items-baseline gap-2">
+<p class="text-2xl font-bold text-slate-900">8.4k</p>
+<span class="text-xs text-slate-400">Visits</span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-white p-5 rounded-xl border border-border-subtle shadow-soft group hover:border-primary/30 transition-all">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-orange-50 p-2 rounded-lg text-orange-600">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</div>
+<span class="flex items-center text-orange-600 bg-orange-50 px-2 py-0.5 rounded text-xs font-bold">
+                                    High Growth
+                                </span>
+</div>
+<h3 class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Viral Coefficient</h3>
+<div class="flex items-baseline gap-2">
+<p class="text-2xl font-bold text-slate-900">1.42</p>
+<span class="text-xs text-slate-400">k-factor</span>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-white p-5 rounded-xl border border-border-subtle shadow-soft group hover:border-primary/30 transition-all relative overflow-hidden">
+<div class="absolute right-0 top-0 w-24 h-24 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-full pointer-events-none"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="bg-red-50 p-2 rounded-lg text-red-600">
+<span class="material-symbols-outlined text-[20px]">emergency_share</span>
+</div>
+<span class="flex items-center text-slate-500 bg-slate-100 px-2 py-0.5 rounded text-xs font-bold">
+                                    this week
+                                </span>
+</div>
+<h3 class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1 relative z-10">Community Interceptions</h3>
+<div class="flex items-baseline gap-2 relative z-10">
+<p class="text-2xl font-bold text-slate-900">84</p>
+<span class="text-xs text-slate-400">Opportunities</span>
+</div>
+</div>
+</section>
+<!-- Main Grid Area -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6 h-full">
+<!-- Left Column: Intercept Feed (2/3 width) -->
+<div class="xl:col-span-2 flex flex-col gap-6">
+<!-- Feed Header & Container -->
+<div class="bg-white rounded-xl border border-border-subtle shadow-soft flex flex-col overflow-hidden h-full min-h-[500px]">
+<div class="px-6 py-4 border-b border-border-subtle flex justify-between items-center bg-slate-50/50">
+<div class="flex items-center gap-3">
+<div class="bg-primary/10 text-primary p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-[20px]">campaign</span>
+</div>
+<div>
+<h2 class="text-base font-bold text-slate-900">Live Community Opportunities</h2>
+<p class="text-xs text-slate-500">Real-time grievances detected on social channels</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-primary bg-white border border-border-subtle rounded-md shadow-sm transition-colors">
+                                            Filters
+                                        </button>
+<button class="px-3 py-1.5 text-xs font-medium text-white bg-slate-900 rounded-md shadow-sm hover:bg-slate-800 transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">refresh</span> Refresh
+                                        </button>
+</div>
+</div>
+<div class="divide-y divide-border-subtle overflow-y-auto">
+<!-- Feed Item 1 -->
+<div class="p-5 hover:bg-slate-50 transition-colors group relative border-l-4 border-transparent hover:border-primary">
+<div class="flex gap-4">
+<div class="flex-shrink-0 pt-1">
+<div class="size-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
+<span class="font-bold text-sm">r/</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<span class="font-bold text-slate-900 text-sm">u/DesiSeller_99</span>
+<span class="text-xs text-slate-500">• Reddit • r/IndiaInvestments</span>
+</div>
+<span class="text-xs font-medium text-slate-400">24m ago</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-800 mb-1">Lost ₹50k due to return fraud on major platform...</h3>
+<p class="text-sm text-slate-600 leading-relaxed mb-3 line-clamp-2">
+                                                    Sent a high-value electronic item, buyer claimed empty box. Logistics partner denying claim despite video proof. Need legal advice ASAP on how to proceed with consumer court...
+                                                </p>
+<div class="flex items-center justify-between">
+<div class="flex gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-red-50 text-red-600 border border-red-100">High Intent</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-600 border border-slate-200">Fraud</span>
+</div>
+<button class="opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 px-4 py-1.5 bg-primary text-white text-xs font-bold rounded-lg shadow-md hover:bg-primary-dark flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+                                                        Intercept
+                                                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Feed Item 2 -->
+<div class="p-5 hover:bg-slate-50 transition-colors group relative border-l-4 border-transparent hover:border-primary">
+<div class="flex gap-4">
+<div class="flex-shrink-0 pt-1">
+<div class="size-10 rounded-full bg-sky-100 flex items-center justify-center text-sky-600">
+<svg aria-hidden="true" class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<span class="font-bold text-slate-900 text-sm">@EcomWarrior</span>
+<span class="text-xs text-slate-500">• Twitter (X)</span>
+</div>
+<span class="text-xs font-medium text-slate-400">1h ago</span>
+</div>
+<p class="text-sm text-slate-600 leading-relaxed mb-3">
+                                                    Anyone have a template for a legal notice to a courier company? They damaged my shipment and are ghosting me now. #ecommerce #logistics #help
+                                                </p>
+<div class="flex items-center justify-between">
+<div class="flex gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-orange-50 text-orange-600 border border-orange-100">Medium Intent</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-600 border border-slate-200">Damage</span>
+</div>
+<button class="opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 px-4 py-1.5 bg-primary text-white text-xs font-bold rounded-lg shadow-md hover:bg-primary-dark flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+                                                        Intercept
+                                                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Feed Item 3 -->
+<div class="p-5 hover:bg-slate-50 transition-colors group relative border-l-4 border-transparent hover:border-primary">
+<div class="flex gap-4">
+<div class="flex-shrink-0 pt-1">
+<div class="size-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
+<span class="font-bold text-sm">r/</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-2">
+<span class="font-bold text-slate-900 text-sm">u/StartUpGuy22</span>
+<span class="text-xs text-slate-500">• Reddit • r/StartupsIndia</span>
+</div>
+<span class="text-xs font-medium text-slate-400">3h ago</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-800 mb-1">Choosing between Shiprocket vs Delhivery?</h3>
+<p class="text-sm text-slate-600 leading-relaxed mb-3">
+                                                    Just starting my D2C brand. Worried about RTOs and lost shipments. Which one has better support if things go wrong?
+                                                </p>
+<div class="flex items-center justify-between">
+<div class="flex gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-green-50 text-green-600 border border-green-100">Lead Gen</span>
+</div>
+<button class="opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 px-4 py-1.5 bg-primary text-white text-xs font-bold rounded-lg shadow-md hover:bg-primary-dark flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+                                                        Intercept
+                                                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-3 bg-slate-50 border-t border-border-subtle text-center">
+<button class="text-xs font-bold text-primary hover:text-primary-dark transition-colors flex items-center justify-center gap-1 w-full">
+                                        View All Opportunities
+                                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Column: Rankings & Quick Actions -->
+<div class="xl:col-span-1 flex flex-col gap-6">
+<!-- Keyword Ranking Tracker -->
+<div class="bg-white rounded-xl border border-border-subtle shadow-soft flex flex-col">
+<div class="px-5 py-4 border-b border-border-subtle bg-slate-50/50">
+<h2 class="text-base font-bold text-slate-900">Keyword Ranking</h2>
+<p class="text-xs text-slate-500 mt-0.5">Visibility for high-intent queries</p>
+</div>
+<div class="p-2">
+<table class="w-full text-left border-collapse">
+<thead class="text-xs font-semibold text-slate-400 uppercase tracking-wider border-b border-slate-100">
+<tr>
+<th class="px-4 py-3">Keyword</th>
+<th class="px-4 py-3 text-right">Rank</th>
+<th class="px-4 py-3 text-right">Mov.</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-slate-50">
+<tr>
+<td class="px-4 py-3 font-medium text-slate-700 max-w-[140px] truncate" title="Shiprocket Grievance Email">Shiprocket Grievance Email</td>
+<td class="px-4 py-3 text-right font-bold text-slate-900">#3</td>
+<td class="px-4 py-3 text-right text-emerald-600 font-bold">▲ 2</td>
+</tr>
+<tr>
+<td class="px-4 py-3 font-medium text-slate-700 max-w-[140px] truncate" title="Delhivery Fraud Support">Delhivery Fraud Support</td>
+<td class="px-4 py-3 text-right font-bold text-slate-900">#1</td>
+<td class="px-4 py-3 text-right text-slate-400">-</td>
+</tr>
+<tr>
+<td class="px-4 py-3 font-medium text-slate-700 max-w-[140px] truncate" title="Flipkart Seller Legal Notice">Flipkart Seller Legal Notice</td>
+<td class="px-4 py-3 text-right font-bold text-slate-900">#5</td>
+<td class="px-4 py-3 text-right text-emerald-600 font-bold">▲ 1</td>
+</tr>
+<tr>
+<td class="px-4 py-3 font-medium text-slate-700 max-w-[140px] truncate" title="Consumer Court Online">Consumer Court Online</td>
+<td class="px-4 py-3 text-right font-bold text-slate-900">#8</td>
+<td class="px-4 py-3 text-right text-red-500 font-bold">▼ 2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-5 py-3 border-t border-border-subtle">
+<button class="w-full py-2 text-xs font-bold text-slate-600 bg-slate-50 hover:bg-slate-100 rounded-lg border border-border-subtle transition-colors">
+                                        Open SEO Console
+                                    </button>
+</div>
+</div>
+<!-- Quick Stats / Mini Cards -->
+<div class="grid grid-cols-1 gap-4">
+<div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-xl p-5 text-white shadow-lg relative overflow-hidden group cursor-pointer">
+<div class="absolute right-0 top-0 opacity-10 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[100px]">security</span>
+</div>
+<h3 class="font-bold text-lg mb-1">Active Protection</h3>
+<p class="text-slate-300 text-sm mb-4">You have 3 draft notices ready for review.</p>
+<button class="bg-white/10 hover:bg-white/20 text-white text-xs font-bold py-2 px-4 rounded-lg backdrop-blur-sm transition-colors border border-white/10">
+                                        Review Drafts
+                                    </button>
+</div>
+<div class="bg-white rounded-xl border border-border-subtle p-5 shadow-soft">
+<h3 class="font-bold text-sm text-slate-900 mb-3">System Health</h3>
+<div class="space-y-3">
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-500">API Usage</span>
+<span class="font-bold text-slate-700">85%</span>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-1.5 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-500">Notice Success Rate</span>
+<span class="font-bold text-slate-700">92.4%</span>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+<div class="bg-emerald-500 h-1.5 rounded-full" style="width: 92%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

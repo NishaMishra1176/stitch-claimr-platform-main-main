@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fake Delivery Lifecycle Guide - Claimr</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;900&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c52626",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#201212",
+                        "surface-light": "#FFFFFF",
+                        "surface-off": "#F7F7F7",
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Work Sans", "Noto Sans", sans-serif;
+        }
+        /* Custom Checkbox Style to match design requirement */
+        .checkbox-custom {
+            appearance: none;
+            background-color: transparent;
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.5em;
+            height: 1.5em;
+            border: 2px solid #e5dcdc;
+            border-radius: 0.25rem;
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-custom::before {
+            content: "";
+            width: 0.85em;
+            height: 0.85em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em white;
+            transform-origin: center;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+
+        .checkbox-custom:checked {
+            background-color: #c52626;
+            border-color: #c52626;
+        }
+
+        .checkbox-custom:checked::before {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#171212] dark:text-white overflow-x-hidden min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header data-shared="true"></header>
+<main class="flex-1 w-full max-w-[1200px] mx-auto px-4 md:px-10 py-8">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap items-center gap-2 mb-8 text-sm">
+<a class="text-gray-500 hover:text-primary font-medium" href="#">Home</a>
+<span class="text-gray-300">/</span>
+<a class="text-gray-500 hover:text-primary font-medium" href="#">Lifecycle</a>
+<span class="text-gray-300">/</span>
+<span class="text-[#171212] font-semibold">Fake Delivery Attempt</span>
+</div>
+<!-- Hero Heading -->
+<div class="mb-10">
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl md:text-4xl font-black tracking-tight text-[#171212]">Marked Attempted But No One Came?</h1>
+<p class="text-gray-600 text-lg max-w-2xl">Immediate steps to freeze the RTO process and create an undeniable paper trail.</p>
+</div>
+</div>
+<!-- Main Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+<!-- Left Column: Correct Action Flow (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<div class="flex items-center gap-3 pb-2 border-b border-gray-100">
+<span class="material-symbols-outlined text-primary">fact_check</span>
+<h3 class="text-xl font-bold text-[#171212]">Correct Action Flow</h3>
+</div>
+<!-- Step 1 -->
+<div class="group bg-white rounded-xl border border-gray-100 shadow-sm p-5 flex gap-4 transition-all hover:border-primary/20 hover:shadow-md">
+<div class="pt-1">
+<input class="checkbox-custom" id="step1" type="checkbox"/>
+</div>
+<div class="flex-1">
+<label class="flex items-center gap-2 mb-1 cursor-pointer" for="step1">
+<span class="bg-gray-100 text-gray-600 text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider">Step 1</span>
+<h4 class="text-lg font-bold text-[#171212] group-hover:text-primary transition-colors">Verify Timestamp</h4>
+</label>
+<p class="text-gray-600 text-sm leading-relaxed mb-3">Check your CCTV or security logs for the exact time the delivery was marked "failed". Save a snapshot if possible.</p>
+<div class="flex gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded border border-blue-100">
+<span class="material-symbols-outlined text-[14px]">videocam</span> CCTV
+                             </span>
+</div>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="group bg-white rounded-xl border border-gray-100 shadow-sm p-5 flex gap-4 transition-all hover:border-primary/20 hover:shadow-md">
+<div class="pt-1">
+<input class="checkbox-custom" id="step2" type="checkbox"/>
+</div>
+<div class="flex-1">
+<label class="flex items-center gap-2 mb-1 cursor-pointer" for="step2">
+<span class="bg-gray-100 text-gray-600 text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider">Step 2</span>
+<h4 class="text-lg font-bold text-[#171212] group-hover:text-primary transition-colors">Raise Ticket on Courier Portal</h4>
+</label>
+<p class="text-gray-600 text-sm leading-relaxed mb-3">Must be done within <strong class="text-primary">2 hours</strong> of the status update. Use the specific dispute option for "Fake Attempt".</p>
+<div class="flex gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-1 bg-orange-50 text-orange-700 text-xs font-medium rounded border border-orange-100">
+<span class="material-symbols-outlined text-[14px]">timer</span> Critical Timing
+                             </span>
+</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="group bg-white rounded-xl border border-gray-100 shadow-sm p-5 flex gap-4 transition-all hover:border-primary/20 hover:shadow-md">
+<div class="pt-1">
+<input class="checkbox-custom" id="step3" type="checkbox"/>
+</div>
+<div class="flex-1">
+<label class="flex items-center gap-2 mb-1 cursor-pointer" for="step3">
+<span class="bg-gray-100 text-gray-600 text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider">Step 3</span>
+<h4 class="text-lg font-bold text-[#171212] group-hover:text-primary transition-colors">Preserve SMS/Call Logs</h4>
+</label>
+<p class="text-gray-600 text-sm leading-relaxed mb-3">Screenshots of your call history prove the agent never called you. This is vital evidence for the claim.</p>
+<div class="flex gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-1 bg-purple-50 text-purple-700 text-xs font-medium rounded border border-purple-100">
+<span class="material-symbols-outlined text-[14px]">smartphone</span> Evidence
+                             </span>
+</div>
+</div>
+</div>
+<!-- Warning Block -->
+<div class="mt-4 bg-red-50 border border-red-100 rounded-xl p-5 flex gap-4 items-start">
+<div class="bg-white p-2 rounded-full shadow-sm text-primary shrink-0">
+<span class="material-symbols-outlined text-xl">block</span>
+</div>
+<div>
+<h4 class="text-red-900 font-bold mb-1">Do NOT share OTP remotely</h4>
+<p class="text-red-800 text-sm">Delivery agents may call asking for OTP to "reschedule". Sharing this marks the item as delivered or rejected in the system, voiding your insurance.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Social Pressure Kit (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-6 sticky top-24">
+<div class="flex items-center gap-3 pb-2 border-b border-gray-100">
+<span class="material-symbols-outlined text-primary">campaign</span>
+<h3 class="text-xl font-bold text-[#171212]">The Social Pressure Kit</h3>
+</div>
+<div class="bg-surface-off rounded-xl p-1 shadow-inner">
+<!-- Tabs -->
+<div class="grid grid-cols-2 gap-1 mb-4">
+<button class="bg-white shadow-sm text-primary font-bold py-2 px-4 rounded-lg text-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">post</span> Twitter / X
+                        </button>
+<button class="text-gray-500 hover:bg-white/50 font-medium py-2 px-4 rounded-lg text-sm flex items-center justify-center gap-2 transition">
+<span class="material-symbols-outlined text-[18px]">work</span> LinkedIn
+                        </button>
+</div>
+<!-- Template Card -->
+<div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm relative group">
+<div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="bg-gray-900 text-white text-xs font-bold py-1 px-3 rounded shadow hover:bg-primary transition flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">content_copy</span> Copy
+                             </button>
+</div>
+<p class="font-mono text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+My package [ORDER_ID] was falsely marked "Attempted" by @[COURIER_HANDLE] at [TIME]. 
+
+I have CCTV proof showing no agent arrived. This is a recurring issue. 
+
+Please escalate immediately to avoid legal action for service deficiency. #EcommerceFraud #FakeRTO
+                        </p>
+</div>
+<!-- Tagging Helper -->
+<div class="mt-4 px-2">
+<p class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Who to tag</p>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center px-2 py-1 rounded bg-blue-100 text-blue-800 text-xs font-bold cursor-pointer hover:bg-blue-200">@DelhiveryHelp</span>
+<span class="inline-flex items-center px-2 py-1 rounded bg-blue-100 text-blue-800 text-xs font-bold cursor-pointer hover:bg-blue-200">@EcomExpressSupport</span>
+<span class="inline-flex items-center px-2 py-1 rounded bg-blue-100 text-blue-800 text-xs font-bold cursor-pointer hover:bg-blue-200">@Shadowfax_Care</span>
+<span class="inline-flex items-center px-2 py-1 rounded bg-gray-200 text-gray-800 text-xs font-bold cursor-pointer hover:bg-gray-300">@ConsumerConnect</span>
+</div>
+</div>
+</div>
+<!-- Helper Card -->
+<div class="bg-blue-50 rounded-xl p-4 border border-blue-100 flex gap-3">
+<span class="material-symbols-outlined text-blue-600 shrink-0">info</span>
+<div>
+<p class="text-sm text-blue-900 font-medium">Tip: Attach the CCTV snapshot to your tweet for maximum visibility.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Footer Action -->
+<div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-40">
+<div class="max-w-[1200px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="hidden sm:block">
+<p class="text-sm font-medium text-gray-500">Completed 0/3 Actions</p>
+<div class="w-48 h-1.5 bg-gray-100 rounded-full mt-1 overflow-hidden">
+<div class="h-full bg-primary w-[5%] rounded-full"></div>
+</div>
+</div>
+<div class="flex gap-4 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none py-3 px-6 rounded-lg font-bold text-gray-700 bg-gray-100 hover:bg-gray-200 transition">
+                        Save for Later
+                    </button>
+<button class="flex-1 sm:flex-none py-3 px-8 rounded-lg font-bold text-white bg-primary hover:bg-red-700 transition shadow-lg shadow-red-200 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">description</span>
+                        Generate Escalation Draft
+                    </button>
+</div>
+</div>
+</div>
+<!-- Bottom spacer for sticky footer -->
+<div class="h-24"></div>
+</main>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

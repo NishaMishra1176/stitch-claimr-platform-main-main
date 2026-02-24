@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Lifecycle of Loss Map Variant 3 - Claimr</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#cf1717",
+                        "background-light": "#f9fafa",
+                        "background-dark": "#1a1f23",
+                        "alert-yellow": "#fbbf24",
+                        "mute-grey": "#9ca3af",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    animation: {
+                        'pulse-glow': 'pulse-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        'pulse-glow': {
+                            '0%, 100%': { boxShadow: '0 0 5px rgba(207, 23, 23, 0.2), 0 0 1px rgba(207, 23, 23, 0.1)' },
+                            '50%': { boxShadow: '0 0 25px rgba(207, 23, 23, 0.4), 0 0 5px rgba(207, 23, 23, 0.3)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom 3D Marker Styles */
+        .marker-3d-yellow {
+            background: radial-gradient(circle at 30% 30%, #fcd34d, #d97706);
+            box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
+        }
+        .marker-3d-red {
+            background: radial-gradient(circle at 30% 30%, #ef4444, #991b1b);
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
+        }
+        .marker-3d-grey {
+            background: radial-gradient(circle at 30% 30%, #e5e7eb, #9ca3af);
+            box-shadow: inset 1px 1px 2px rgba(255,255,255,0.5);
+        }
+        
+        /* Grid Line Utilities */
+        .timeline-line {
+            background: linear-gradient(to bottom, #e5e7eb 0%, #e5e7eb 100%);
+        }
+        .timeline-line-danger {
+            background: linear-gradient(to bottom, #fbbf24 0%, #cf1717 100%);
+        }
+        .timeline-line-death {
+            background: linear-gradient(to bottom, #cf1717 0%, #9ca3af 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-slate-800 font-body antialiased selection:bg-primary/20">
+<!-- Main Wrapper -->
+<div class="flex flex-col h-full min-h-screen">
+<!-- Header -->
+<header data-shared="true"></header>
+<!-- Breadcrumbs -->
+<div class="border-b border-gray-100 bg-white">
+<div class="px-6 lg:px-8 max-w-7xl mx-auto py-3">
+<div class="flex items-center gap-2 text-sm">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">Cases</a>
+<span class="text-slate-300">/</span>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">Logistics</a>
+<span class="text-slate-300">/</span>
+<span class="font-medium text-slate-900 bg-slate-100 px-2 py-0.5 rounded text-xs tracking-wide">CASE #8492-L</span>
+</div>
+</div>
+</div>
+<!-- Main Content -->
+<main class="flex-1 px-6 lg:px-8 py-8 w-full max-w-5xl mx-auto">
+<!-- Page Heading -->
+<div class="mb-12">
+<h1 class="font-display text-4xl font-bold text-slate-900 mb-2 tracking-tight">The Lifecycle of Loss</h1>
+<p class="text-slate-500 max-w-2xl">Interactive Map Variant 3. Visualize and intercept critical loss events before financial write-off.</p>
+</div>
+<!-- The Danger Route (Timeline Container) -->
+<div class="relative grid grid-cols-[64px_1fr] gap-x-0 sm:gap-x-8 pb-20">
+<!-- STAGE 01: SHOCK -->
+<!-- Timeline Column -->
+<div class="relative flex flex-col items-center">
+<!-- 3D Marker -->
+<div class="z-10 w-12 h-12 rounded-full marker-3d-yellow flex items-center justify-center text-white border-4 border-white dark:border-background-dark shadow-xl">
+<span class="material-symbols-outlined font-bold text-[22px] drop-shadow-sm">warning</span>
+</div>
+<!-- Connecting Line -->
+<div class="w-1 h-full timeline-line-danger absolute top-12 bottom-0 left-1/2 -translate-x-1/2 -z-0"></div>
+</div>
+<!-- Content Column -->
+<div class="mb-12 pt-1">
+<div class="bg-white border border-yellow-200 rounded-xl p-6 shadow-sm relative overflow-hidden group hover:border-yellow-400 transition-colors">
+<!-- Alert Stripe -->
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-alert-yellow"></div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+<div>
+<h3 class="font-display text-lg font-bold text-slate-900 flex items-center gap-2">
+                                    STAGE 01: INITIAL SHOCK
+                                    <span class="bg-yellow-100 text-yellow-800 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Alert</span>
+</h3>
+<p class="text-sm text-slate-500 mt-1">Incident Reported: 2 days ago via Mobile App</p>
+</div>
+<div class="text-right">
+<span class="block text-xs text-slate-400 font-medium uppercase tracking-wider">Estimated Impact</span>
+<span class="font-display font-semibold text-slate-700">$1,200 - $3,500</span>
+</div>
+</div>
+<!-- See & Do Block -->
+<div class="bg-background-light rounded-lg border border-dashed border-gray-200 p-4">
+<h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Action Required</h4>
+<div class="flex flex-wrap items-center gap-3">
+<button class="bg-white border border-gray-200 hover:border-yellow-400 hover:text-yellow-700 text-slate-600 text-sm font-medium px-4 py-2 rounded-lg transition-all flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                                    Review Incident Photos
+                                </button>
+<button class="bg-yellow-400 hover:bg-yellow-500 text-yellow-950 text-sm font-bold px-4 py-2 rounded-lg transition-colors flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+                                    Verify Proof of Delivery
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- STAGE 02: PENDING TRAP (ACTIVE/CRITICAL) -->
+<!-- Timeline Column -->
+<div class="relative flex flex-col items-center">
+<!-- 3D Marker with Pulse -->
+<div class="relative z-10">
+<div class="absolute inset-0 bg-primary/40 rounded-full animate-ping"></div>
+<div class="relative w-14 h-14 rounded-full marker-3d-red flex items-center justify-center text-white border-4 border-white dark:border-background-dark shadow-2xl">
+<span class="material-symbols-outlined font-bold text-[26px] animate-pulse">local_fire_department</span>
+</div>
+</div>
+<!-- Connecting Line -->
+<div class="w-1 h-full timeline-line-death absolute top-12 bottom-0 left-1/2 -translate-x-1/2 -z-0"></div>
+</div>
+<!-- Content Column -->
+<div class="mb-12 pt-0">
+<div class="relative bg-white border-2 border-primary rounded-xl p-6 md:p-8 shadow-[0_0_40px_-10px_rgba(207,23,23,0.15)] animate-pulse-glow">
+<div class="absolute top-0 right-0 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">
+                            High Priority
+                        </div>
+<div class="flex flex-col gap-6">
+<!-- Header & Status -->
+<div>
+<h3 class="font-display text-2xl font-bold text-primary flex items-center gap-2 mb-2">
+                                    STAGE 02: THE PENDING TRAP
+                                </h3>
+<p class="text-sm font-medium text-slate-500 bg-red-50 inline-block px-2 py-0.5 rounded border border-red-100">
+<span class="w-1.5 h-1.5 rounded-full bg-primary inline-block mr-1"></span>
+                                    Critical Loss Zone - Action Required Immediately
+                                </p>
+</div>
+<!-- Daily Burn Rate Ticker -->
+<div class="bg-gray-900 rounded-lg p-6 border border-gray-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #cf1717 10px, #cf1717 20px);"></div>
+<div class="relative z-10">
+<span class="text-gray-400 text-xs font-mono uppercase tracking-widest block mb-1">Daily Burn Rate</span>
+<div class="font-display text-4xl md:text-5xl font-bold text-white tracking-tighter tabular-nums flex items-baseline gap-1">
+                                        $450.00
+                                        <span class="text-lg text-gray-500 font-normal">/day</span>
+</div>
+</div>
+<div class="relative z-10 flex flex-col items-end">
+<div class="text-primary font-bold text-sm bg-primary/10 px-2 py-1 rounded border border-primary/20 flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                        +15% Since Yesterday
+                                    </div>
+<span class="text-gray-500 text-xs">Accumulating now</span>
+</div>
+</div>
+<!-- See & Do Block (Escalate) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="border border-gray-200 rounded-lg p-4 bg-background-light">
+<h4 class="text-xs font-bold text-slate-800 mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">gavel</span>
+                                        Legal Compliance
+                                    </h4>
+<ul class="space-y-2">
+<li class="flex items-center gap-2 text-sm text-slate-600">
+<span class="material-symbols-outlined text-green-600 text-[18px]">check_circle</span>
+                                            Carrier Liability Confirmed
+                                        </li>
+<li class="flex items-center gap-2 text-sm text-slate-600">
+<span class="material-symbols-outlined text-slate-300 text-[18px]">radio_button_unchecked</span>
+                                            Insurance Waiver Signed
+                                        </li>
+</ul>
+</div>
+<div class="flex flex-col justify-center items-stretch gap-3">
+<button class="bg-primary hover:bg-red-700 text-white font-display font-bold text-base px-6 py-4 rounded-lg shadow-lg shadow-red-500/30 transition-all transform active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">campaign</span>
+                                        ESCALATE TO SUPERVISOR
+                                    </button>
+<p class="text-center text-xs text-slate-400">Escalation freezes the burn rate for 24h.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- STAGE 03: THE WRITE-OFF (INACTIVE/FUTURE) -->
+<!-- Timeline Column -->
+<div class="relative flex flex-col items-center">
+<!-- 3D Marker -->
+<div class="z-10 w-10 h-10 rounded-sm marker-3d-grey flex items-center justify-center text-slate-500 border-4 border-white dark:border-background-dark shadow-sm">
+<span class="material-symbols-outlined text-[20px]">archive</span>
+</div>
+<!-- Line Fade Out -->
+<div class="w-1 h-32 bg-gradient-to-b from-gray-300 to-transparent absolute top-10 left-1/2 -translate-x-1/2 -z-0"></div>
+</div>
+<!-- Content Column -->
+<div class="pt-1 opacity-60 hover:opacity-100 transition-opacity duration-300">
+<div class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+<div>
+<h3 class="font-display text-lg font-bold text-slate-500 flex items-center gap-2">
+                                    STAGE 03: THE WRITE-OFF
+                                </h3>
+<p class="text-sm text-slate-400 mt-1">Projected Outcome: Financial Death</p>
+</div>
+</div>
+<div class="bg-white rounded border border-slate-100 p-4 flex items-center justify-between gap-4 grayscale">
+<div class="flex items-center gap-3">
+<div class="bg-slate-100 p-2 rounded">
+<span class="material-symbols-outlined text-slate-400">delete_forever</span>
+</div>
+<div class="text-sm text-slate-500">
+                                    Total Loss Value: <span class="font-mono font-bold">$12,450.00</span>
+</div>
+</div>
+<button class="bg-slate-100 text-slate-400 text-xs font-bold px-3 py-2 rounded cursor-not-allowed" disabled="">
+                                Archive Case
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Stats -->
+<div class="mt-8 border-t border-gray-100 pt-8 flex flex-wrap gap-8 justify-center opacity-60 hover:opacity-100 transition-opacity">
+<div class="text-center">
+<div class="text-xs text-slate-400 uppercase tracking-widest font-semibold mb-1">Time to Resolution</div>
+<div class="font-display text-2xl font-bold text-slate-700">4.5 Days</div>
+</div>
+<div class="w-px bg-gray-200 h-12 hidden sm:block"></div>
+<div class="text-center">
+<div class="text-xs text-slate-400 uppercase tracking-widest font-semibold mb-1">Risk Score</div>
+<div class="font-display text-2xl font-bold text-primary">High (82/100)</div>
+</div>
+<div class="w-px bg-gray-200 h-12 hidden sm:block"></div>
+<div class="text-center">
+<div class="text-xs text-slate-400 uppercase tracking-widest font-semibold mb-1">Carriers Involved</div>
+<div class="flex items-center justify-center gap-[-8px]">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-blue-600 flex items-center justify-center text-white text-[10px] font-bold">F</div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-purple-600 flex items-center justify-center text-white text-[10px] font-bold -ml-2">U</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

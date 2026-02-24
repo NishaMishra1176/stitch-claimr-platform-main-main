@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Loss Mirror Calculator</title>
+<!-- Google Fonts: Space Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#cb2a2a",
+                        "background-light": "#ffffff",
+                        "background-dark": "#1a1a1a",
+                        "charcoal": "#1a1a1a",
+                        "border-dark": "#4A4A4A",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "sans": ["Space Grotesk", "sans-serif"], // Force Space Grotesk everywhere
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem", // 2px
+                        "sm": "0.125rem",
+                        "md": "0.25rem", // 4px
+                        "lg": "0.25rem", 
+                        "xl": "0.5rem",
+                        "full": "9999px",
+                    },
+                    borderWidth: {
+                        '3': '3px',
+                    },
+                    keyframes: {
+                        'fast-pulse': {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.7' },
+                        }
+                    },
+                    animation: {
+                        'fast-pulse': 'fast-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom overrides for specific brutalist feel */
+        body {
+            font-family: "Space Grotesk", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .technical-grid {
+            background-image: linear-gradient(#f0f0f0 1px, transparent 1px),
+            linear-gradient(90deg, #f0f0f0 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .dark .technical-grid {
+            background-image: linear-gradient(#2a2a2a 1px, transparent 1px),
+            linear-gradient(90deg, #2a2a2a 1px, transparent 1px);
+        }
+
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-charcoal dark:text-white min-h-screen flex flex-col font-display">
+<!-- Fixed Alert Header -->
+<header data-shared="true"></header>
+<!-- Main Content Area -->
+<main class="flex-grow technical-grid flex items-center justify-center p-4 md:p-8 lg:p-12 relative">
+<div class="w-full max-w-6xl flex flex-col gap-8 z-10">
+<!-- Title & Context (Mobile Only Context) -->
+<div class="md:hidden">
+<h2 class="text-3xl font-bold uppercase leading-none mb-2">Loss Mirror</h2>
+<p class="text-sm text-neutral-500 font-mono">Quantify the bleeding immediately.</p>
+</div>
+<!-- Dashboard Split Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+<!-- LEFT: Input Block -->
+<div class="bg-white dark:bg-neutral-900 border-2 border-border-dark dark:border-neutral-600 rounded-lg p-6 md:p-8 flex flex-col gap-6 shadow-none">
+<div class="border-b-2 border-dashed border-neutral-200 dark:border-neutral-700 pb-4 flex justify-between items-center">
+<h3 class="text-charcoal dark:text-white text-xl font-bold uppercase tracking-tight flex items-center gap-2">
+<span class="material-symbols-outlined">input</span>
+                            Input Damage Metrics
+                        </h3>
+<span class="bg-neutral-100 dark:bg-neutral-800 text-xs font-mono px-2 py-1 rounded border border-neutral-300 dark:border-neutral-700">EDITABLE</span>
+</div>
+<div class="space-y-6">
+<!-- Input 1 -->
+<div class="group">
+<label class="block text-sm font-bold uppercase tracking-wide text-charcoal dark:text-neutral-300 mb-2">
+                                Average Order Value (₹)
+                            </label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400 font-mono">₹</span>
+<input class="w-full bg-neutral-50 dark:bg-neutral-800 border-2 border-border-dark dark:border-neutral-600 rounded-lg p-4 pl-10 text-xl font-bold font-mono text-charcoal dark:text-white focus:ring-0 focus:border-primary focus:outline-none transition-colors placeholder:text-neutral-300" placeholder="0" type="number" value="1500"/>
+</div>
+</div>
+<!-- Input 2 -->
+<div class="group">
+<label class="block text-sm font-bold uppercase tracking-wide text-charcoal dark:text-neutral-300 mb-2">
+                                Shipping Cost per Return (₹)
+                            </label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400 font-mono">₹</span>
+<input class="w-full bg-neutral-50 dark:bg-neutral-800 border-2 border-border-dark dark:border-neutral-600 rounded-lg p-4 pl-10 text-xl font-bold font-mono text-charcoal dark:text-white focus:ring-0 focus:border-primary focus:outline-none transition-colors placeholder:text-neutral-300" placeholder="0" type="number" value="200"/>
+</div>
+</div>
+<!-- Input 3 -->
+<div class="group">
+<label class="block text-sm font-bold uppercase tracking-wide text-charcoal dark:text-neutral-300 mb-2">
+                                Total Orders Stuck/Blocked
+                            </label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400 font-mono">#</span>
+<input class="w-full bg-neutral-50 dark:bg-neutral-800 border-2 border-border-dark dark:border-neutral-600 rounded-lg p-4 pl-10 text-xl font-bold font-mono text-charcoal dark:text-white focus:ring-0 focus:border-primary focus:outline-none transition-colors placeholder:text-neutral-300" placeholder="0" type="number" value="15"/>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-4 text-xs text-neutral-400 font-mono uppercase border-t border-neutral-100 dark:border-neutral-800">
+                        * Data is processed locally. No external transmission.
+                    </div>
+</div>
+<!-- RIGHT: Mirror Display (Output) -->
+<div class="bg-charcoal text-white border-2 border-border-dark rounded-lg p-1 relative overflow-hidden flex flex-col shadow-2xl">
+<!-- Background Pattern inside card -->
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="relative z-10 flex flex-col h-full bg-neutral-900/50 backdrop-blur-sm rounded-md p-6 md:p-8">
+<div class="flex justify-between items-start mb-8 border-b border-neutral-700 pb-4">
+<h3 class="text-white text-xl font-bold uppercase tracking-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                                Reality Check
+                            </h3>
+<div class="animate-fast-pulse bg-primary/20 text-primary border border-primary/50 text-xs font-bold px-3 py-1 rounded uppercase tracking-widest">
+                                Live Calculation
+                            </div>
+</div>
+<div class="flex-grow flex flex-col justify-center items-center text-center space-y-2">
+<p class="text-neutral-400 font-mono uppercase text-sm tracking-widest mb-2">Total Loss So Far</p>
+<div class="text-6xl md:text-7xl lg:text-8xl font-bold text-primary tracking-tighter tabular-nums leading-none drop-shadow-[0_0_15px_rgba(203,42,42,0.3)] animate-pulse">
+                                -₹25,500
+                            </div>
+<p class="text-primary/80 font-medium text-lg uppercase tracking-wide mt-4">
+<span class="material-symbols-outlined align-middle mr-1 text-sm">trending_down</span>
+                                Irrecoverable Funds
+                            </p>
+</div>
+<div class="mt-8 bg-black/40 border border-neutral-700 rounded p-4 flex justify-between items-center">
+<div class="flex flex-col">
+<span class="text-xs text-neutral-400 uppercase font-bold mb-1">Projected 7-Day Bleed</span>
+<span class="text-xl font-mono font-bold text-white tabular-nums">-₹10,500</span>
+</div>
+<div class="h-8 w-px bg-neutral-700"></div>
+<div class="flex flex-col text-right">
+<span class="text-xs text-neutral-400 uppercase font-bold mb-1">Time to Zero Recovery</span>
+<span class="text-xl font-mono font-bold text-primary tabular-nums">14 Days</span>
+</div>
+</div>
+</div>
+<!-- Top red accent line -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-black"></div>
+</div>
+</div>
+<!-- Time Decay Visualizer -->
+<div class="bg-white dark:bg-neutral-900 border-2 border-border-dark dark:border-neutral-600 rounded-lg p-6 md:p-8">
+<div class="flex justify-between items-end mb-4">
+<h3 class="text-sm font-bold uppercase tracking-wider text-charcoal dark:text-white">
+                        Recovery Probability Decay (30 Day Window)
+                    </h3>
+<span class="text-primary font-bold text-sm uppercase animate-pulse">Critical Zone</span>
+</div>
+<!-- Custom Segmented Progress Bar -->
+<div class="relative w-full h-12 flex gap-[2px]">
+<!-- Generate segments via loop logic simulation -->
+<div class="flex-1 bg-neutral-300 dark:bg-neutral-700 h-full rounded-l-sm relative group" title="Day 1"></div>
+<div class="flex-1 bg-neutral-300 dark:bg-neutral-700 h-full relative group" title="Day 2"></div>
+<div class="flex-1 bg-neutral-300 dark:bg-neutral-700 h-full relative group" title="Day 3"></div>
+<div class="flex-1 bg-neutral-300 dark:bg-neutral-700 h-full relative group" title="Day 4"></div>
+<div class="flex-1 bg-neutral-300 dark:bg-neutral-700 h-full relative group" title="Day 5"></div>
+<!-- Mid zone fading to red -->
+<div class="flex-1 bg-neutral-400 dark:bg-neutral-600 h-full relative" title="Day 6"></div>
+<div class="flex-1 bg-neutral-400 dark:bg-neutral-600 h-full relative" title="Day 7"></div>
+<div class="flex-1 bg-neutral-500 dark:bg-neutral-500 h-full relative" title="Day 8"></div>
+<div class="flex-1 bg-neutral-500 dark:bg-neutral-500 h-full relative" title="Day 9"></div>
+<div class="flex-1 bg-neutral-600 dark:bg-neutral-500 h-full relative" title="Day 10"></div>
+<!-- Danger zone -->
+<div class="flex-1 bg-primary/40 h-full relative" title="Day 11"></div>
+<div class="flex-1 bg-primary/50 h-full relative" title="Day 12"></div>
+<div class="flex-1 bg-primary/60 h-full relative" title="Day 13"></div>
+<div class="flex-1 bg-primary/70 h-full relative" title="Day 14"></div>
+<div class="flex-1 bg-primary/80 h-full relative border-t-4 border-white dark:border-neutral-900 -mt-1 z-10 shadow-lg" title="Current Day">
+<!-- Current Day Marker -->
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-charcoal text-white text-[10px] font-bold px-2 py-1 rounded uppercase whitespace-nowrap">
+                            You are here
+                            <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-charcoal rotate-45"></div>
+</div>
+</div>
+<!-- Critical/Lost zone -->
+<div class="flex-1 bg-primary h-full relative" title="Day 16"></div>
+<div class="flex-1 bg-primary h-full relative" title="Day 17"></div>
+<div class="flex-1 bg-primary h-full relative" title="Day 18"></div>
+<div class="flex-1 bg-primary h-full relative" title="Day 19"></div>
+<div class="flex-1 bg-primary h-full relative" title="Day 20"></div>
+<!-- Deep red zone -->
+<div class="flex-1 bg-[#a31a1a] h-full relative" title="Day 21"></div>
+<div class="flex-1 bg-[#a31a1a] h-full relative" title="Day 22"></div>
+<div class="flex-1 bg-[#a31a1a] h-full relative" title="Day 23"></div>
+<div class="flex-1 bg-[#a31a1a] h-full relative" title="Day 24"></div>
+<div class="flex-1 bg-[#a31a1a] h-full relative" title="Day 25"></div>
+<!-- Black/Dead zone -->
+<div class="flex-1 bg-[#7a1212] h-full relative" title="Day 26"></div>
+<div class="flex-1 bg-[#5a0d0d] h-full relative" title="Day 27"></div>
+<div class="flex-1 bg-[#400909] h-full relative" title="Day 28"></div>
+<div class="flex-1 bg-[#2b0505] h-full relative" title="Day 29"></div>
+<div class="flex-1 bg-black h-full relative rounded-r-sm" title="Day 30"></div>
+</div>
+<div class="flex justify-between mt-3 text-xs font-mono font-bold text-neutral-400 uppercase">
+<span class="text-neutral-500">Day 1 (High Recovery)</span>
+<span class="text-primary">Day 15 (Probability Drop)</span>
+<span class="text-black dark:text-neutral-600">Day 30 (Gone)</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Action Area -->
+<footer data-shared="true"></footer>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

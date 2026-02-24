@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Pending Risk Intelligence</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b1c2d", // Navy
+                        "alert": "#C62828",   // Red
+                        "safe": "#0E7F47",    // Green
+                        "neutral": "#E0E6EB", // Light Gray Border
+                        "surface": "#F8F9FA", // Light bg
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Manrope", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "4px", // Structural feel
+                        "sm": "2px",
+                        "md": "4px",
+                        "lg": "8px",
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom range slider styling for mechanical feel */
+        input[type=range] {
+            -webkit-appearance: none; 
+            background: transparent; 
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 8px;
+            border-radius: 2px;
+            background: #0b1c2d;
+            cursor: pointer;
+            margin-top: -8px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #E0E6EB;
+            border-radius: 2px;
+        }
+
+        input[type=range]:focus::-webkit-slider-runnable-track {
+            background: #ccc;
+        }
+
+        .pulse-marker {
+            box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.7);
+            animation: pulse-red 2s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(198, 40, 40, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(198, 40, 40, 0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-primary font-display antialiased overflow-hidden selection:bg-alert selection:text-white">
+<div class="flex h-screen w-full">
+<!-- Sidebar -->
+<aside class="w-64 bg-primary flex-shrink-0 flex flex-col justify-between border-r border-gray-800 z-20">
+<div>
+<!-- Logo -->
+<div class="h-16 flex items-center px-6 border-b border-white/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-white text-3xl">token</span>
+<h1 class="text-white text-lg font-bold tracking-tight">Claimr <span class="text-white/40 font-normal">Console</span></h1>
+</div>
+</div>
+<!-- Nav -->
+<nav class="flex flex-col gap-1 p-4">
+<a class="flex items-center gap-3 px-3 py-3 rounded text-white/60 hover:text-white hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="relative flex items-center gap-3 px-3 py-3 rounded bg-white/10 text-white transition-colors group" href="#">
+<!-- Active Indicator -->
+<div class="absolute left-0 top-2 bottom-2 w-1 bg-safe rounded-r"></div>
+<span class="material-symbols-outlined text-[20px]">warning</span>
+<span class="text-sm font-medium">Risk Intelligence</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded text-white/60 hover:text-white hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<span class="text-sm font-medium">Active Claims</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded text-white/60 hover:text-white hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px]">shield</span>
+<span class="text-sm font-medium">Risk Ops</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Actions -->
+<div class="p-4 border-t border-white/10">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-white/60 hover:text-white hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+<div class="mt-4 flex items-center gap-3 px-3">
+<div class="w-8 h-8 rounded bg-gradient-to-br from-gray-500 to-gray-700 flex items-center justify-center text-xs font-bold text-white border border-white/20">
+                        LL
+                    </div>
+<div class="flex flex-col">
+<span class="text-white text-xs font-semibold">Logistics Lead</span>
+<span class="text-white/40 text-[10px]">US-East-4</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-white">
+<!-- Content Scroll Area -->
+<div class="flex-1 overflow-y-auto">
+<div class="max-w-[1400px] mx-auto p-8 flex flex-col gap-8">
+<!-- Header Section -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-primary text-4xl font-black leading-tight tracking-[-0.02em]">Pending Risk Intelligence</h2>
+<p class="text-alert mt-2 text-base font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-alert text-sm">error</span>
+                                    Current Status: A Pending Case is Not a Neutral State. It is a Structural Loss.
+                                </p>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-sm text-gray-500 font-medium">Last Refresh: 12:04 PM</span>
+<button class="p-2 hover:bg-neutral rounded text-primary">
+<span class="material-symbols-outlined">refresh</span>
+</button>
+</div>
+</div>
+</div>
+<!-- KPI Cards (Rigid Grid) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="border border-neutral p-6 rounded flex flex-col justify-between h-32 hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-start">
+<span class="text-gray-500 text-xs font-bold uppercase tracking-wider">Total At Risk</span>
+<span class="material-symbols-outlined text-primary text-xl">monetization_on</span>
+</div>
+<div>
+<div class="text-3xl font-black text-primary tracking-tight">$42,500.00</div>
+<div class="text-sm font-medium text-alert mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                    +1.2% since yesterday
+                                </div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="border border-neutral p-6 rounded flex flex-col justify-between h-32 hover:border-primary/30 transition-colors bg-surface">
+<div class="flex justify-between items-start">
+<span class="text-gray-500 text-xs font-bold uppercase tracking-wider">Avg. Pending Age</span>
+<span class="material-symbols-outlined text-primary text-xl">schedule</span>
+</div>
+<div>
+<div class="text-3xl font-black text-primary tracking-tight">12 Days</div>
+<div class="text-sm font-medium text-alert mt-1">
+                                    Critical Zone (&gt;7 Days)
+                                </div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="border border-neutral p-6 rounded flex flex-col justify-between h-32 hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-start">
+<span class="text-gray-500 text-xs font-bold uppercase tracking-wider">Projected Write-off</span>
+<span class="material-symbols-outlined text-primary text-xl">delete_forever</span>
+</div>
+<div>
+<div class="text-3xl font-black text-alert tracking-tight">$5,100.00</div>
+<div class="text-sm font-medium text-gray-500 mt-1">
+                                    If unresolved by EOW
+                                </div>
+</div>
+</div>
+</div>
+<!-- Visual Centerpiece: Loss Acceleration Timeline -->
+<section class="border border-neutral rounded p-8 flex flex-col gap-6 relative overflow-hidden bg-white shadow-sm">
+<div class="flex justify-between items-end">
+<h3 class="text-xl font-bold text-primary">Loss Acceleration Timeline</h3>
+<div class="flex gap-6 text-sm">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-safe"></div>
+<span class="font-medium text-gray-600">Leverage (Day 1-7)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-alert"></div>
+<span class="font-medium text-gray-600">Structural Decay (&gt; Day 8)</span>
+</div>
+</div>
+</div>
+<div class="relative w-full pt-8 pb-4">
+<!-- Labels -->
+<div class="absolute top-0 w-full flex text-xs font-bold text-gray-400 uppercase tracking-wide justify-between px-1">
+<span>Incident Filed (Day 0)</span>
+<span class="pl-16 text-primary">Leverage Expiry (Day 7)</span>
+<span>Total Write-off (Day 45)</span>
+</div>
+<!-- The Bar -->
+<div class="h-6 w-full bg-gray-100 rounded-sm relative mt-2 flex">
+<!-- Leverage Zone (Green) -->
+<div class="w-[15.5%] h-full bg-gradient-to-r from-safe to-[#0E7F47] border-r border-white/20"></div>
+<!-- Decay Zone (Red Gradient) -->
+<div class="flex-1 h-full bg-gradient-to-r from-[#e57373] to-[#b71c1c]"></div>
+</div>
+<!-- Markers -->
+<!-- Day 7 Marker Line -->
+<div class="absolute top-8 bottom-4 w-px border-l border-dashed border-primary left-[15.5%] h-10 z-10"></div>
+<!-- Current Day Indicator (Day 12) -->
+<div class="absolute top-6 left-[26%] flex flex-col items-center group z-20">
+<div class="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded mb-1 shadow-lg">Day 12</div>
+<div class="w-4 h-4 rounded-full bg-alert pulse-marker border-2 border-white"></div>
+</div>
+</div>
+<div class="bg-surface p-4 rounded-sm border-l-4 border-alert text-sm text-primary flex justify-between items-center">
+<span class="font-medium"><strong>Insight:</strong> Claims aging beyond 7 days show a 40% reduction in carrier cooperation.</span>
+<span class="text-alert font-bold cursor-pointer hover:underline">View Policy Details →</span>
+</div>
+</section>
+<!-- Bottom Grid: Estimator & Table -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-12">
+<!-- Left: Conservative Loss Estimator -->
+<div class="lg:col-span-5 flex flex-col gap-0 border border-neutral rounded shadow-sm">
+<div class="p-5 border-b border-neutral bg-gray-50/50">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-xl">calculate</span>
+<h3 class="text-lg font-bold text-primary">Conservative Loss Estimator</h3>
+</div>
+<p class="text-xs text-gray-500">Model: Linear Depreciation w/ Capital Lock</p>
+</div>
+<div class="p-6 flex flex-col gap-8 bg-white">
+<!-- Sliders -->
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<div class="flex justify-between text-sm font-bold text-primary">
+<span>Item Value</span>
+<span>$12,450</span>
+</div>
+<input class="w-full" max="50000" min="1000" type="range" value="12450"/>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between text-sm font-bold text-primary">
+<span>Days Pending</span>
+<span class="text-alert">18 Days</span>
+</div>
+<input class="w-full" max="45" min="1" type="range" value="18"/>
+</div>
+</div>
+<!-- Output Metrics -->
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-dashed border-gray-200">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Capital Lock</span>
+<span class="text-2xl font-black text-primary">$12,450</span>
+<span class="text-xs text-gray-400">Frozen assets</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Depreciation</span>
+<span class="text-2xl font-black text-alert">-$2,689</span>
+<span class="text-xs text-alert font-medium">21.6% Loss</span>
+</div>
+</div>
+<!-- Mini Viz -->
+<div class="w-full h-4 bg-gray-100 rounded-sm overflow-hidden flex">
+<div class="h-full bg-primary" style="width: 78.4%"></div>
+<div class="h-full bg-alert" style="width: 21.6%"></div>
+</div>
+<div class="flex justify-between text-[10px] font-bold text-gray-400 uppercase">
+<span>Recoverable Value</span>
+<span>Lost Value</span>
+</div>
+</div>
+</div>
+<!-- Right: Actionable Risk List -->
+<div class="lg:col-span-7 border border-neutral rounded bg-white shadow-sm flex flex-col">
+<div class="p-5 border-b border-neutral flex justify-between items-center bg-gray-50/50">
+<h3 class="text-lg font-bold text-primary">Actionable Risk Queue</h3>
+<button class="text-xs font-bold text-primary border border-neutral px-3 py-1.5 rounded hover:bg-white bg-white shadow-sm">
+                                    Export CSV
+                                </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead class="bg-white border-b border-neutral text-xs uppercase text-gray-500 font-bold tracking-wider">
+<tr>
+<th class="px-6 py-4">Case ID</th>
+<th class="px-6 py-4">Cargo Type</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4 text-right">Est. Loss</th>
+<th class="px-6 py-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-neutral">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50 group">
+<td class="px-6 py-4 font-bold text-primary">#CLM-4921</td>
+<td class="px-6 py-4 text-gray-600">Electronics / Pallet</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold bg-alert/10 text-alert border border-alert/20">
+                                                    14 Days
+                                                </span>
+</td>
+<td class="px-6 py-4 text-right font-medium text-gray-900">$1,200</td>
+<td class="px-6 py-4 text-right">
+<button class="text-xs font-bold text-white bg-primary px-3 py-1.5 rounded shadow hover:bg-primary/90">Escalate</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50 group">
+<td class="px-6 py-4 font-bold text-primary">#CLM-4944</td>
+<td class="px-6 py-4 text-gray-600">Perishables</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold bg-alert text-white shadow-sm animate-pulse">
+                                                    CRITICAL (22d)
+                                                </span>
+</td>
+<td class="px-6 py-4 text-right font-medium text-gray-900">$4,850</td>
+<td class="px-6 py-4 text-right">
+<button class="text-xs font-bold text-white bg-primary px-3 py-1.5 rounded shadow hover:bg-primary/90">Escalate</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50 group">
+<td class="px-6 py-4 font-bold text-primary">#CLM-5001</td>
+<td class="px-6 py-4 text-gray-600">Textiles</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold bg-safe/10 text-safe border border-safe/20">
+                                                    2 Days
+                                                </span>
+</td>
+<td class="px-6 py-4 text-right font-medium text-gray-900">$0</td>
+<td class="px-6 py-4 text-right">
+<button class="text-xs font-bold text-primary bg-white border border-neutral px-3 py-1.5 rounded shadow-sm hover:bg-gray-50">Resolve</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50 group">
+<td class="px-6 py-4 font-bold text-primary">#CLM-4802</td>
+<td class="px-6 py-4 text-gray-600">Auto Parts</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold bg-yellow-100 text-yellow-800 border border-yellow-200">
+                                                    6 Days
+                                                </span>
+</td>
+<td class="px-6 py-4 text-right font-medium text-gray-900">$150</td>
+<td class="px-6 py-4 text-right">
+<button class="text-xs font-bold text-primary bg-white border border-neutral px-3 py-1.5 rounded shadow-sm hover:bg-gray-50">Resolve</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-3 border-t border-neutral bg-gray-50 text-center">
+<span class="text-xs font-bold text-gray-500 cursor-pointer hover:text-primary">View all 12 pending cases</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

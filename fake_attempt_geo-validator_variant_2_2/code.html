@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Signal Validator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=Noto+Sans:wght@300..700&amp;family=Inter:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#C62828",
+                        "navy": "#0B1C2D",
+                        "background-light": "#F8F8F8",
+                        "background-dark": "#1a1a1a",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "sm": "0.125rem", 
+                        "md": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #e5e7eb 1px, transparent 1px), linear-gradient(to bottom, #e5e7eb 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .stamp-rotate {
+            transform: rotate(-8deg);
+            animation: stamp-slam 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+        }
+        @keyframes stamp-slam {
+            0% {
+                transform: scale(3) rotate(-8deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) rotate(-8deg);
+                opacity: 0.95;
+            }
+        }
+        .map-dot-pattern {
+             background-image: radial-gradient(#0B1C2D 1px, transparent 1px);
+             background-size: 20px 20px;
+             opacity: 0.1;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display text-navy overflow-x-hidden">
+<nav class="bg-navy text-white border-b-4 border-primary px-6 py-4 flex items-center justify-between sticky top-0 z-50 shadow-md">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">shield_lock</span>
+<h1 class="text-2xl font-bold tracking-tight uppercase">Claimr</h1>
+</div>
+<div class="h-6 w-px bg-white/20 mx-2"></div>
+<span class="text-sm font-mono text-white/70">SIGNAL ID: #SIG-9921</span>
+</div>
+<div class="hidden md:flex items-center gap-8 text-sm font-medium">
+<a class="hover:text-primary transition-colors" href="#">DASHBOARD</a>
+<a class="text-primary font-bold border-b border-primary pb-0.5" href="#">SIGNALS</a>
+<a class="hover:text-primary transition-colors" href="#">SETTINGS</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-primary/20 px-3 py-1 rounded border border-primary/50">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-xs font-bold tracking-wider text-primary">LIVE ANALYSIS</span>
+</div>
+<button class="md:hidden text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<main class="flex-grow flex flex-col items-center justify-start py-8 px-4 md:px-8 max-w-7xl mx-auto w-full gap-8">
+<header data-shared="true"></header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full h-full">
+<div class="lg:col-span-8 flex flex-col gap-6">
+<div class="border border-navy bg-white shadow-lg relative group overflow-hidden flex flex-col h-[500px]">
+<div class="bg-navy text-white px-4 py-2 flex justify-between items-center text-xs font-mono uppercase tracking-widest border-b border-navy">
+<span>Probability Signal Generator // Variance</span>
+<span>Feed Status: <span class="text-green-400">Active</span></span>
+</div>
+<div class="relative flex-grow bg-slate-100 map-dot-pattern">
+<div class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-multiply grayscale" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAhqr8Zsjl6JGOXYbwZXzavQvBhuWS-On1QWu15XKS-f6ARy3_jx6NaMXdtTCdnE3umaIbMj7ykozECn4FnEoWhnRuqQ0TkogKaGuMw7iOiiX4TBqmgKFh2SSDFu9mtSlUDqqmwNf5mGGj6_Ys1eD7cDeIpyShVjTYqQQZB7HAHmSvjj5bkpl6FkwbdTmBLhQ1_PUCjQy-aYGlU_AQtPq9wPgEXNkGUn7nKzb0w9-o3AJxH4TxGL4TmJNAUgDLgT_C2gGlEBqHxSB0');"></div>
+<div class="absolute inset-0 bg-grid-pattern bg-[length:40px_40px] opacity-20 pointer-events-none"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent h-full w-full opacity-20 pointer-events-none"></div>
+<div class="absolute inset-0 p-8 flex items-center justify-center pointer-events-none">
+<svg class="absolute w-full h-full" style="z-index: 10;">
+<line stroke="#0B1C2D" stroke-dasharray="8 4" stroke-width="2" x1="30%" x2="70%" y1="70%" y2="30%"></line>
+<text class="bg-white px-2" dy="-10" fill="#C62828" font-family="Space Grotesk" font-size="14" font-weight="bold" text-anchor="middle" x="50%" y="50%">4.2 KM DEVIATION</text>
+</svg>
+<div class="absolute left-[30%] top-[70%] flex flex-col items-center group cursor-pointer pointer-events-auto transform -translate-x-1/2 -translate-y-1/2">
+<div class="bg-navy text-white text-[10px] font-bold px-2 py-0.5 rounded shadow mb-1 whitespace-nowrap">VERIFIED HOME</div>
+<div class="relative">
+<span class="material-symbols-outlined text-[#078807] text-5xl drop-shadow-lg fill-current">location_on</span>
+<div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-2 bg-black/20 rounded-full blur-sm"></div>
+</div>
+</div>
+<div class="absolute left-[70%] top-[30%] flex flex-col items-center group cursor-pointer pointer-events-auto transform -translate-x-1/2 -translate-y-1/2">
+<div class="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded shadow mb-1 whitespace-nowrap">AGENT SIGNAL (14:02 PM)</div>
+<div class="relative">
+<span class="material-symbols-outlined text-primary text-5xl drop-shadow-lg fill-current">person_pin_circle</span>
+<div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-2 bg-black/20 rounded-full blur-sm"></div>
+</div>
+</div>
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none stamp-rotate border-[6px] border-primary px-6 py-4 bg-white/40 backdrop-blur-md shadow-xl">
+<h2 class="text-3xl md:text-5xl font-black text-primary tracking-widest uppercase text-center leading-none" style="text-shadow: 1px 1px 0px rgba(255,255,255,0.8);">
+                                HIGH PROBABILITY<br/>DISCREPANCY
+                            </h2>
+</div>
+</div>
+</div>
+<div class="bg-white border-t border-navy p-4 flex flex-wrap gap-4 justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-navy">schedule</span>
+<span class="font-bold">Claimed Time:</span>
+<span class="font-mono">14:00:05</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">satellite_alt</span>
+<span class="font-bold">GPS Time:</span>
+<span class="font-mono text-primary">14:02:12</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-navy">straighten</span>
+<span class="font-bold">Variance:</span>
+<span class="font-mono text-primary bg-primary/10 px-2 py-0.5 rounded font-bold">4.2 KM</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-lg font-bold text-navy flex items-center gap-2">
+<span class="material-symbols-outlined">verified_user</span>
+                    How to Verify &amp; Escalate
+                </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="border border-navy bg-white p-5 relative hover:shadow-md transition-shadow">
+<h3 class="text-xs font-bold uppercase tracking-widest text-navy/60 mb-3">Step 1: Verification</h3>
+<div class="flex items-start gap-3">
+<div class="bg-navy/5 p-2 rounded">
+<span class="material-symbols-outlined text-navy">perm_phone_msg</span>
+</div>
+<div>
+<p class="text-sm font-bold">Check Call Logs</p>
+<p class="text-xs text-gray-500 mt-1">Cross-reference the agent's reported attempt time with your received calls history to confirm no contact was made.</p>
+</div>
+</div>
+</div>
+<div class="border border-navy bg-white p-5 relative hover:shadow-md transition-shadow">
+<h3 class="text-xs font-bold uppercase tracking-widest text-navy/60 mb-3">Step 2: Escalation</h3>
+<div class="flex items-start gap-3">
+<div class="bg-primary/5 p-2 rounded">
+<span class="material-symbols-outlined text-primary">report_problem</span>
+</div>
+<div>
+<p class="text-sm font-bold text-primary">Submit Signal Report</p>
+<p class="text-xs text-gray-500 mt-1">Use the ID #SIG-9921 when contacting support to request a formal internal audit of this delivery attempt.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="bg-white border border-navy shadow-lg flex flex-col">
+<div class="bg-navy p-3 text-white text-center font-bold tracking-wider uppercase text-sm">
+                    Agent Signal History
+                </div>
+<div class="p-6 flex flex-col items-center gap-4">
+<div class="w-24 h-24 rounded-full bg-gray-200 border-2 border-navy relative overflow-hidden">
+<img alt="Portrait of delivery agent" class="object-cover w-full h-full grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1Fi-PH_R-DiSMsFzg1mFHNXAWplDYBfHeJ0p7PJyrdETyrUddVNoJsYBumBnvd6C_GtNLSkGk_wrC1hhTHU7piGGgdjehQ6lodAjOp9s4BTT-_BRVo5Evd3iOKwy9DH26VqeO80WwaIfXJkXXVCjbCLhsg5cozJTD_2OBedvaL9lEb5jYcqyvvILri-8KfVvlN85DnQN1-_1Hx2phTOlFSk6I6uAME9YrUBLUUvebpoTrdzAwQrAJo_Lue89wUbrxNl-gps0pht8"/>
+<div class="absolute bottom-0 w-full bg-primary text-white text-[10px] text-center py-0.5 font-bold">SIGNAL FLAGGED</div>
+</div>
+<div class="text-center">
+<h3 class="text-xl font-bold text-navy">Ramesh K.</h3>
+<p class="text-sm font-mono text-gray-500">ID: DL-882-X9</p>
+<div class="mt-2 text-xs font-bold bg-gray-100 px-2 py-1 rounded inline-block">Flash Logistics Pvt Ltd</div>
+</div>
+<div class="w-full border-t border-dashed border-gray-300 pt-4 mt-2">
+<p class="text-xs font-bold text-gray-400 uppercase tracking-widest text-center mb-3">24HR Signal Count</p>
+<div class="flex justify-center gap-3">
+<div class="w-10 h-10 border-2 border-primary bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary font-bold">warning</span>
+</div>
+<div class="w-10 h-10 border-2 border-primary bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary font-bold">warning</span>
+</div>
+<div class="w-10 h-10 border-2 border-primary bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary font-bold">warning</span>
+</div>
+</div>
+<p class="text-center text-primary text-xs font-bold mt-2">3RD SIGNAL TODAY</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3 sticky bottom-4">
+<div class="bg-navy/5 p-4 border-l-4 border-primary rounded-r text-sm">
+<p class="font-bold text-navy mb-1">Threshold Breached</p>
+<p class="text-gray-600 leading-snug">The variance of 4.2km exceeds the standard 0.5km tolerance. Escalation protocols are available.</p>
+</div>
+<button class="group relative flex w-full cursor-pointer items-center justify-center overflow-hidden rounded bg-primary py-4 px-6 text-white shadow-[4px_4px_0px_0px_rgba(11,28,45,1)] active:shadow-none active:translate-x-1 active:translate-y-1 transition-all">
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors"></div>
+<div class="relative flex items-center gap-3 z-10">
+<span class="material-symbols-outlined text-2xl">gavel</span>
+<div class="flex flex-col items-start">
+<span class="font-bold text-lg leading-none tracking-wide">ESCALATE SIGNAL</span>
+<span class="text-[10px] uppercase font-medium opacity-90 tracking-wider">Report to Nodal Officer</span>
+</div>
+</div>
+</button>
+<button class="flex w-full cursor-pointer items-center justify-center rounded border-2 border-navy bg-white py-3 px-6 text-navy hover:bg-navy hover:text-white transition-colors gap-2">
+<span class="material-symbols-outlined text-lg">download</span>
+<span class="text-sm font-bold uppercase tracking-wide">Download Report</span>
+</button>
+</div>
+</div>
+</div>
+<footer data-shared="true"></footer>
+</main>
+
+<script src="../shared-nav-loader.js"></script>
+</body></html>

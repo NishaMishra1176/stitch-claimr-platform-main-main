@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Live Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0a1c2e",
+                        "alert": "#C62828",
+                        "background-light": "#eff2f5",
+                        "background-dark": "#14212e",
+                        "surface": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    boxShadow: {
+                        'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
+                        'neo': '5px 5px 10px #d9d9d9, -5px -5px 10px #ffffff',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .map-pulse {
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-red {
+            0% {
+                box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(198, 40, 40, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(198, 40, 40, 0);
+            }
+        }
+        .glass-icon {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background-color: #0a1c2e;
+            color: white;
+        }
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            padding-right: 100%;
+            animation: ticker 30s linear infinite;
+        }
+        .ticker__item {
+            display: inline-block;
+            padding: 0 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display flex flex-col min-h-screen text-[#121417]">
+<!-- Shared Header Placeholder -->
+<header data-shared="true"></header>
+<!-- Main Content -->
+<div class="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-primary">Claimr</h1>
+<div class="hidden md:flex ml-8 gap-1">
+<a class="px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-primary hover:bg-gray-100 rounded-md transition-colors" href="../claimr_homepage_-_panic_interceptor_1/code.html">Homepage</a>
+<a class="px-3 py-1.5 text-sm font-medium text-white bg-primary rounded-md" href="#">Command Center</a>
+<a class="px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-primary hover:bg-gray-100 rounded-md transition-colors" href="../claim_reversal_visualizer_variant_3/code.html">Visualizer</a>
+<a class="px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-primary hover:bg-gray-100 rounded-md transition-colors" href="../seller_recovery_management_dashboard/code.html">Recovery Dashboard</a>
+<a class="px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-primary hover:bg-gray-100 rounded-md transition-colors" href="../fake_rto_forensic_checker_1/code.html">Forensic Checker</a>
+<a class="px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-primary hover:bg-gray-100 rounded-md transition-colors" href="../payment_recovery_action_hub/code.html">Payment Recovery</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2 px-3 py-1 bg-green-50 text-green-700 border border-green-200 rounded-full text-xs font-bold uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    System Online
+                </div>
+<button class="relative p-2 text-gray-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-alert rounded-full border border-white"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-gray-200 border-2 border-white shadow-sm overflow-hidden cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCS8dWQV6z54EhPtQPahX-s21hkvgpSbW7gWubBCPr-ACmKGJy79XCMyI_4FvW5zg55mlqY_NwDUhvfKHBqa9LibPJaW6wqpfwJxJfm8fF_P8kAamAATfCBvAPm3N2zG2GtsPtNoOp4PefdEDfnliiqYCLO3jFaBSSjp9lyr7bHkzhstePsKf8TjGZaMO7gBRCjyB-xwQZ0o72QdKEXxOD5PxrmsjYfff0bH-YdGF0Ozy72HnZhoEoTa6Qzucv1Wc_rqJg7N_vMDV4"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col p-6 gap-6 max-w-[1400px] mx-auto w-full">
+<!-- Dashboard Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 text-sm text-gray-500 font-medium mb-1">
+<span class="material-symbols-outlined text-base">radar</span>
+                    LIVE FRAUD INTELLIGENCE
+                </div>
+<h2 class="text-3xl font-bold text-primary tracking-tight">NATIONAL FRAUD PULSE</h2>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                    Filter View
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium shadow-md hover:bg-[#142d45] transition-colors">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+                    Refresh Data
+                </button>
+</div>
+</div>
+<!-- Hero: Fraud Pulse Map -->
+<div class="relative w-full h-[500px] bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden group">
+<!-- Map Container -->
+<div class="absolute inset-0 bg-[#f8fafc] flex items-center justify-center p-8">
+<!-- Abstract India Map Representation -->
+<div class="relative w-full h-full max-w-[600px] opacity-90" data-alt="Stylized map of India showing fraud hotspots" data-location="India" style="https://lh3.googleusercontent.com/aida-public/AB6AXuAO_SXvCWNzZlvP2IWPeoDG6hthTXiRYgY_mzZFYiWmDFW7j0MjWlT7ckts1uokYKCl2mhoQDVAEGVa0mLRpOGYkUGy56-TVrjR9Dr6KnnVODd_QFMhdc6ww_16KD1zDgbM_3IXMAZ0lHJq2f2YOVOIF-E9H5U-EUApenwvWhhGm3brBbSNXmxjjpcjzyNfcdshuiuRWmDdgDZ5ZX1W7HTGoSVTaYyCBLM3ZA3Aq0eclK3l8F2Avt9vgiC6a3tz7RAGGlFmZg5sRgE">
+<svg class="w-full h-full text-slate-200 drop-shadow-md" fill="none" viewbox="0 0 612 700" xmlns="http://www.w3.org/2000/svg">
+<!-- Simplified India Path -->
+<path d="M298.5,10 L350,50 L400,60 L450,120 L550,150 L580,250 L500,350 L400,600 L300,690 L200,600 L100,450 L50,300 L120,200 L220,100 L298.5,10 Z" fill="currentColor" stroke="#cbd5e1" stroke-width="2"></path>
+<!-- Pulse Point: Delhi -->
+<g class="group/marker cursor-pointer">
+<circle class="map-pulse opacity-80" cx="280" cy="180" fill="#C62828" r="8"></circle>
+<circle cx="280" cy="180" fill="white" r="4"></circle>
+<!-- Tooltip -->
+<foreignobject class="overflow-visible pointer-events-none opacity-0 group-hover/marker:opacity-100 transition-opacity duration-300 z-50" height="80" width="160" x="300" y="140">
+<div class="bg-primary/90 backdrop-blur text-white text-xs p-3 rounded-lg shadow-xl border border-white/10" xmlns="http://www.w3.org/1999/xhtml">
+<div class="font-bold mb-1 flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-alert"></span>
+                                        DELHI NCR
+                                    </div>
+<div class="text-gray-300">Fraud Rate: <span class="text-white font-mono font-bold">18.4%</span></div>
+<div class="text-gray-300">Active RTOs: <span class="text-white font-mono font-bold">1,240</span></div>
+</div>
+</foreignobject>
+</g>
+<!-- Pulse Point: Surat -->
+<g class="group/marker cursor-pointer">
+<circle class="map-pulse opacity-60" cx="180" cy="300" fill="#C62828" r="6"></circle>
+<circle cx="180" cy="300" fill="white" r="3"></circle>
+</g>
+<!-- Pulse Point: Bangalore -->
+<g class="group/marker cursor-pointer">
+<circle class="map-pulse" cx="280" cy="500" fill="#C62828" r="10"></circle>
+<circle cx="280" cy="500" fill="white" r="5"></circle>
+<!-- Tooltip -->
+<foreignobject class="overflow-visible pointer-events-none opacity-0 group-hover/marker:opacity-100 transition-opacity duration-300 z-50" height="80" width="160" x="300" y="460">
+<div class="bg-primary/90 backdrop-blur text-white text-xs p-3 rounded-lg shadow-xl border border-white/10" xmlns="http://www.w3.org/1999/xhtml">
+<div class="font-bold mb-1 flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-alert"></span>
+                                        BANGALORE
+                                    </div>
+<div class="text-gray-300">Address Fraud: <span class="text-white font-mono font-bold">High</span></div>
+<div class="text-gray-300">Recent: <span class="text-white font-mono font-bold">220 Cases</span></div>
+</div>
+</foreignobject>
+</g>
+</svg>
+</div>
+</div>
+<!-- Map HUD Overlay -->
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<div class="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-lg p-3 shadow-sm min-w-[200px]">
+<div class="text-xs font-bold text-gray-500 uppercase mb-1">Total Active Threats</div>
+<div class="text-2xl font-bold text-alert font-mono">2,849</div>
+<div class="text-xs text-alert font-medium flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                        +12% vs last week
+                    </div>
+</div>
+</div>
+<div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-lg p-2 shadow-sm flex flex-col gap-2">
+<button class="p-2 hover:bg-gray-100 rounded text-primary"><span class="material-symbols-outlined">add</span></button>
+<button class="p-2 hover:bg-gray-100 rounded text-primary"><span class="material-symbols-outlined">remove</span></button>
+</div>
+</div>
+<!-- Power Tiles Section -->
+<h3 class="text-xl font-bold text-primary mt-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">bolt</span>
+            QUICK ACTIONS
+        </h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Tile 1: Check RTO -->
+<div class="group relative bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px] text-primary rotate-12">search_check</span>
+</div>
+<div class="p-6 relative z-10 flex flex-col h-full">
+<div class="w-12 h-12 rounded-lg bg-blue-50 text-primary flex items-center justify-center mb-4 border border-blue-100 shadow-inner">
+<span class="material-symbols-outlined text-[28px]">travel_explore</span>
+</div>
+<h4 class="text-lg font-bold text-primary mb-1">Verify Return</h4>
+<p class="text-sm text-gray-500 mb-6 flex-grow">Analyze AWB for fake RTO probability instantly.</p>
+<div class="flex flex-col gap-2">
+<input class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5 font-mono" placeholder="Enter AWB / Order ID" type="text"/>
+<button class="w-full bg-primary hover:bg-[#0f2942] text-white font-bold py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+<span>Scan Now</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<!-- Fake Attempt Indicator -->
+<div class="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+<span class="text-xs font-medium text-yellow-700">Fake Attempt Detection Active</span>
+</div>
+</div>
+
+<!-- Evidence Locker -->
+<div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-blue-500"></span>
+<span class="text-xs font-medium text-blue-700">Evidence Locker: Daily Snapshots Active</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tile 2: Unblock Wallet -->
+<div class="group relative bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px] text-orange-600 rotate-12">account_balance_wallet</span>
+</div>
+<div class="p-6 relative z-10 flex flex-col h-full">
+<div class="w-12 h-12 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center mb-4 border border-orange-100 shadow-inner">
+<span class="material-symbols-outlined text-[28px]">shield_lock</span>
+</div>
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-lg font-bold text-primary">Wallet Health</h4>
+<span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-0.5 rounded border border-orange-200">2 HOLDS</span>
+</div>
+<p class="text-sm text-gray-500 mb-6 flex-grow">Marketplace funds frozen? Initiate automated appeal.</p>
+<div class="mt-auto bg-orange-50/50 rounded-lg p-3 border border-orange-100 mb-3">
+<div class="flex justify-between items-center text-xs mb-1">
+<span class="font-medium text-gray-600">Amazon Pay</span>
+<span class="font-mono font-bold text-alert">₹42,500 Locked</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-1.5">
+<div class="bg-alert h-1.5 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<button class="w-full bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+<span>Initiate Appeal</span>
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+</button>
+</div>
+</div>
+<!-- Tile 3: File Notice (Primary Action) -->
+<div class="group relative bg-gradient-to-br from-white to-red-50 rounded-xl shadow-lg border border-red-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ring-1 ring-red-100">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px] text-alert rotate-12">assignment_late</span>
+</div>
+<div class="p-6 relative z-10 flex flex-col h-full">
+<div class="w-12 h-12 rounded-lg bg-red-100 text-alert flex items-center justify-center mb-4 border border-red-200 shadow-inner animate-[pulse_3s_ease-in-out_infinite]">
+<span class="material-symbols-outlined text-[28px]">campaign</span>
+</div>
+<h4 class="text-lg font-bold text-primary mb-1">Legal Action</h4>
+<p class="text-sm text-gray-600 mb-6 flex-grow">Generate &amp; serve legal notice for courier fraud.</p>
+<div class="bg-white/60 backdrop-blur-sm rounded-lg p-3 mb-4 border border-red-100">
+<div class="flex items-center gap-2 text-xs text-gray-600 mb-1">
+<span class="material-symbols-outlined text-[16px] text-green-600">check_circle</span>
+<span>Template: Section 420 IPC</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-gray-600">
+<span class="material-symbols-outlined text-[16px] text-green-600">check_circle</span>
+<span>Platform: WhatsApp + Email</span>
+</div>
+</div>
+<button class="w-full bg-alert hover:bg-red-800 text-white font-bold py-2.5 px-4 rounded-lg transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2 mt-auto">
+<span class="material-symbols-outlined text-[20px]">send</span>
+<span>Draft Notice (Instant)</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Additional Navigation Section -->
+<section class="py-12 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h3 class="text-xl font-bold text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">explore</span>
+            Explore All Features
+        </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Feature Card 1 -->
+<a href="../claimr_homepage_-_panic_interceptor_1/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">home</span>
+</div>
+<h4 class="text-lg font-bold text-primary mb-1">Homepage</h4>
+<p class="text-sm text-gray-500">Main landing page with live panic interceptor functionality</p>
+</div>
+</a>
+<!-- Feature Card 2 -->
+<a href="../how_it_works_&_about_claimr/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">info</span>
+</div>
+<h4 class="text-lg font-bold text-primary mb-1">How It Works</h4>
+<p class="text-sm text-gray-500">Explanation of Claimr's mission and 4-step process</p>
+</div>
+</a>
+<!-- Feature Card 3 -->
+<a href="../claim_reversal_visualizer_variant_3/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-red-100 text-red-600 flex items-center justify-center mb-4 group-hover:bg-red-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">bar_chart</span>
+</div>
+<h4 class="text-lg font-bold text-primary mb-1">Visualizer</h4>
+<p class="text-sm text-gray-500">Visualization of claim reversal patterns and trends</p>
+</div>
+</a>
+<!-- Feature Card 4 -->
+<a href="../nodal_officer_email_directory/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center mb-4 group-hover:bg-green-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">contacts</span>
+</div>
+<h4 class="text-lg font-bold text-primary mb-1">Nodal Directory</h4>
+<p class="text-sm text-gray-500">Directory of nodal officers for various logistics companies</p>
+</div>
+</a>
+</div>
+</section>
+</main>
+<!-- Additional Navigation Section -->
+<section class="py-12 bg-surface-grey">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h3 class="text-2xl font-bold text-primary mb-8 text-center">Explore More Claimr Features</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Feature Card 1 -->
+<a href="../claimr_homepage_-_panic_interceptor_1/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">home</span>
+</div>
+<h4 class="text-lg font-bold text-primary mb-2">Homepage</h4>
+<p class="text-sm text-gray-500">Main landing page with live panic interceptor functionality</p>
+</div>
+</a>
+<!-- Feature Card 2 -->
+<a href="../claimr_home_-_escalation_engine_variant_1/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<h4 class="text-lg font-bold text-primary mb-2">Escalation Engine</h4>
+<p class="text-sm text-gray-500">Automated escalation workflow for dispute resolution</p>
+</div>
+</a>
+<!-- Feature Card 3 -->
+<a href="../claimr_home_-_forensic_engine_variant_2/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-red-100 text-red-600 flex items-center justify-center mb-4 group-hover:bg-red-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<h4 class="text-lg font-bold text-primary mb-2">Forensic Engine</h4>
+<p class="text-sm text-gray-500">Advanced forensic analysis for fraud detection</p>
+</div>
+</a>
+<!-- Feature Card 4 -->
+<a href="../seller_recovery_management_dashboard/code.html" class="block group">
+<div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center mb-4 group-hover:bg-green-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<h4 class="text-lg font-bold text-primary mb-2">Recovery Dashboard</h4>
+<p class="text-sm text-gray-500">Comprehensive dashboard for seller recovery management</p>
+</div>
+</a>
+</div>
+</section>
+
+<!-- Footer Ticker -->
+<div class="fixed bottom-0 left-0 right-0 h-10 bg-primary z-40 border-t border-[#1a3652] shadow-2xl">
+<div class="ticker-wrap h-full flex items-center">
+<div class="ticker font-mono text-xs uppercase tracking-wide">
+<div class="ticker__item"><span class="text-green-400 font-bold">₹45,000 Recovered</span> for Seller #8821 in Mumbai</div>
+<div class="ticker__item text-gray-400">|</div>
+<div class="ticker__item"><span class="text-green-400 font-bold">Notice Served</span> to Order #9912 via WhatsApp</div>
+<div class="ticker__item text-gray-400">|</div>
+<div class="ticker__item"><span class="text-green-400 font-bold">₹12,000 Recovered</span> from XpressBees Dispute</div>
+<div class="ticker__item text-gray-400">|</div>
+<div class="ticker__item"><span class="text-green-400 font-bold">Wallet Unfrozen</span> for Seller #3390 on Amazon</div>
+<div class="ticker__item text-gray-400">|</div>
+<div class="ticker__item"><span class="text-green-400 font-bold">₹5,600 Recovered</span> from Shadowfax</div>
+</div>
+</div>
+</div>
+<!-- Spacer for fixed footer -->
+<div class="h-10"></div>
+<!-- Shared Footer Placeholder -->
+<footer data-shared="true"></footer>
+<!-- Load Shared Header & Footer -->
+<script src="../shared-nav-loader.js"></script>
+</body></html>

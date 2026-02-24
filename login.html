@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Login - Claimr</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b1c2d",
+                        "primary-light": "#1a3a5a",
+                        "background-light": "#f7f9fb",
+                        "background-dark": "#101418",
+                        "text-main": "#0b1c2d",
+                        "text-body": "#3A4654",
+                        "success": "#10b981",
+                        "alert": "#C62828",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "md": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-text-body font-display selection:bg-primary/20 selection:text-primary antialiased min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#e5e7eb]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-primary rounded-md flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined text-[20px]">shield_lock</span>
+                    </div>
+                    <a href="./index.html" class="text-xl font-bold tracking-tight text-primary">Claimr</a>
+                </div>
+                <!-- Back to Home -->
+                <a href="./index.html" class="text-sm font-medium text-primary hover:text-primary-light transition-colors flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Home
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Section -->
+    <main class="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="w-full max-w-md">
+            <!-- Login Card -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-xl overflow-hidden">
+                <!-- Header -->
+                <div class="bg-gradient-to-br from-primary to-primary-light px-8 py-6 text-center">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-white text-3xl">login</span>
+                    </div>
+                    <h1 class="text-2xl font-bold text-white">Welcome Back</h1>
+                    <p class="text-white/80 text-sm mt-1">Sign in to access your Claimr dashboard</p>
+                </div>
+
+                <!-- Login Form -->
+                <div class="px-8 py-8">
+                    <form id="loginForm" class="space-y-6">
+                        <!-- Email Field -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-text-main mb-2">
+                                Email Address
+                            </label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">email</span>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    required
+                                    class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                                    placeholder="your@email.com"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Password Field -->
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-text-main mb-2">
+                                Password
+                            </label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">lock</span>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    required
+                                    class="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                                    placeholder="Enter your password"
+                                />
+                                <button 
+                                    type="button" 
+                                    id="togglePassword"
+                                    class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary transition-colors"
+                                >
+                                    <span class="material-symbols-outlined text-sm">visibility</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Remember Me & Forgot Password -->
+                        <div class="flex items-center justify-between">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" id="remember" class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"/>
+                                <span class="text-sm text-text-body">Remember me</span>
+                            </label>
+                            <a href="#" class="text-sm font-medium text-primary hover:text-primary-light transition-colors">
+                                Forgot password?
+                            </a>
+                        </div>
+
+                        <!-- Error Message -->
+                        <div id="errorMessage" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                            <span class="material-symbols-outlined text-sm align-middle mr-1">error</span>
+                            <span id="errorText">Invalid email or password</span>
+                        </div>
+
+                        <!-- Success Message -->
+                        <div id="successMessage" class="hidden bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg text-sm">
+                            <span class="material-symbols-outlined text-sm align-middle mr-1">check_circle</span>
+                            <span>Login successful! Redirecting...</span>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button 
+                            type="submit" 
+                            id="submitBtn"
+                            class="w-full bg-[#C62828] hover:bg-red-800 text-white font-bold py-3 px-4 rounded-lg transition-all transform hover:translate-y-[-1px] shadow-md"
+                        >
+                            <span class="flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined">verified_user</span>
+                                Sign In
+                            </span>
+                        </button>
+                    </form>
+
+                    <!-- Divider -->
+                    <div class="relative my-6">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-200"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-4 bg-white text-gray-500">Or continue as guest</span>
+                        </div>
+                    </div>
+
+                    <!-- Guest Access -->
+                    <a href="./index.html" class="w-full block text-center bg-gray-100 hover:bg-gray-200 text-text-main font-semibold py-3 px-4 rounded-lg transition-colors">
+                        <span class="flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">person_outline</span>
+                            Continue Without Login
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Footer -->
+                <div class="bg-gray-50 px-8 py-4 text-center border-t border-gray-200">
+                    <p class="text-sm text-text-body">
+                        Don't have an account? 
+                        <a href="#" class="font-medium text-primary hover:text-primary-light transition-colors">
+                            Contact for access
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Security Notice -->
+            <div class="mt-6 text-center">
+                <div class="inline-flex items-center gap-2 text-xs text-gray-500">
+                    <span class="material-symbols-outlined text-sm">security</span>
+                    <span>Your data is protected with enterprise-grade security</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-gray-500">
+                    © 2026 Claimr. All rights reserved.
+                </p>
+                <div class="flex items-center gap-6">
+                    <a href="./index.html" class="text-sm text-gray-500 hover:text-primary transition-colors">Home</a>
+                    <a href="./SITEMAP.md" class="text-sm text-gray-500 hover:text-primary transition-colors">Sitemap</a>
+                    <a href="#" class="text-sm text-gray-500 hover:text-primary transition-colors">Privacy</a>
+                    <a href="#" class="text-sm text-gray-500 hover:text-primary transition-colors">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle password visibility
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            togglePassword.innerHTML = type === 'password' 
+                ? '<span class="material-symbols-outlined text-sm">visibility</span>'
+                : '<span class="material-symbols-outlined text-sm">visibility_off</span>';
+        });
+
+        // Form submission handler
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const submitBtn = document.getElementById('submitBtn');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Hide previous messages
+            errorMessage.classList.add('hidden');
+            successMessage.classList.add('hidden');
+            
+            // Get form values
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Disable button during submission
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="flex items-center justify-center gap-2"><span class="material-symbols-outlined animate-spin">progress_activity</span>Signing in...</span>';
+            
+            // Simulate login (replace with actual authentication)
+            setTimeout(() => {
+                // Demo: Accept any valid email/password combination
+                if (email && password) {
+                    // Success
+                    successMessage.classList.remove('hidden');
+                    submitBtn.innerHTML = '<span class="flex items-center justify-center gap-2"><span class="material-symbols-outlined">check_circle</span>Success</span>';
+                    
+                    // Redirect after success
+                    setTimeout(() => {
+                        window.location.href = './index.html';
+                    }, 1500);
+                } else {
+                    // Error
+                    errorMessage.classList.remove('hidden');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span class="flex items-center justify-center gap-2"><span class="material-symbols-outlined">verified_user</span>Sign In</span>';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

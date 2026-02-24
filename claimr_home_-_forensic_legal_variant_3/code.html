@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Forensic Console</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3b4654", // Slate Grey
+                        "alert": "#C62828",   // Alert Red
+                        "success": "#2E7D32", // Success Green
+                        "background-light": "#ffffff",
+                        "background-dark": "#17191b",
+                        "surface": "#f8f9fa"
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    backgroundImage: {
+                        'dot-grid': 'radial-gradient(#e2e8f0 1.5px, transparent 1.5px)',
+                    },
+                    backgroundSize: {
+                        'dot-grid': '24px 24px',
+                    },
+                    keyframes: {
+                        scan: {
+                            '0%': { top: '0%', opacity: '0' },
+                            '10%': { opacity: '1' },
+                            '90%': { opacity: '1' },
+                            '100%': { top: '100%', opacity: '0' },
+                        },
+                        pulse: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.5' },
+                        }
+                    },
+                    animation: {
+                        'scan-line': 'scan 3s linear infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for the forensic feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-[#3b4654] font-display antialiased overflow-hidden">
+<div class="flex h-screen w-full">
+<!-- Sidebar: Dark Slate Grey for the Console feel -->
+<aside class="w-64 bg-primary flex-shrink-0 flex flex-col h-full border-r border-slate-700 shadow-xl z-20">
+<div class="h-16 flex items-center px-6 border-b border-slate-600/50 bg-slate-800/20">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-gradient-to-br from-white to-slate-300 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">policy</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-white text-lg font-bold leading-none tracking-tight">Claimr</h1>
+<span class="text-slate-400 text-xs font-mono tracking-wider mt-0.5">FORENSIC v3.0</span>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1 p-4 overflow-y-auto">
+<div class="px-3 py-2">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Console</p>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md bg-white/10 text-white border-l-2 border-alert shadow-sm group transition-all" href="#">
+<span class="material-symbols-outlined text-alert group-hover:text-white transition-colors">radar</span>
+<span class="text-sm font-medium">Fraud Scanner</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-slate-300 hover:bg-white/5 hover:text-white transition-all mt-1" href="#">
+<span class="material-symbols-outlined">gavel</span>
+<span class="text-sm font-medium">Active Claims</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-slate-300 hover:bg-white/5 hover:text-white transition-all mt-1" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="text-sm font-medium">Evidence Locker</span>
+</a>
+</div>
+<div class="px-3 py-2 mt-2">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Analytics</p>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-slate-300 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-md text-slate-300 hover:bg-white/5 hover:text-white transition-all mt-1" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-sm font-medium">Recovery &amp; Fees</span>
+</a>
+</div>
+</nav>
+<div class="p-4 border-t border-slate-600/50 bg-slate-800/20">
+<div class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-white/5 cursor-pointer">
+<div class="size-8 rounded-full bg-slate-600 flex items-center justify-center text-xs text-white font-bold border border-slate-500">
+                        JD
+                    </div>
+<div class="flex flex-col overflow-hidden">
+<span class="text-white text-sm font-medium truncate">Legal Team</span>
+<span class="text-slate-400 text-xs truncate">admin@claimr.in</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-background-light bg-dot-grid relative">
+<!-- Subtle Vignette -->
+<div class="absolute inset-0 pointer-events-none bg-gradient-to-br from-transparent via-transparent to-slate-200/50 z-0"></div>
+<!-- Top Header -->
+<header data-shared="true"></header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto z-10 p-8 scroll-smooth">
+<div class="max-w-7xl mx-auto flex flex-col gap-8">
+<!-- Hero Section: Fraud Scanner -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+<!-- Left: Text & Action -->
+<div class="lg:col-span-5 flex flex-col justify-center gap-6">
+<div>
+<h2 class="text-3xl font-bold text-primary tracking-tight leading-tight">
+                                    Forensic Recovery <br/>for E-commerce
+                                </h2>
+<p class="text-slate-500 mt-2 text-lg leading-relaxed">
+                                    Real-time fraud detection is active. We've flagged <span class="font-bold text-alert bg-red-50 px-1 rounded">12 suspect returns</span> in the last 24 hours requiring immediate forensic analysis.
+                                </p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 bg-primary hover:bg-slate-700 text-white px-6 py-3 rounded-md font-medium shadow-lg hover:shadow-xl transition-all active:scale-95 group">
+<span class="material-symbols-outlined group-hover:animate-pulse">bug_report</span>
+                                    Analyze Suspect AWBs
+                                </button>
+<button class="flex items-center gap-2 bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 px-6 py-3 rounded-md font-medium shadow-sm transition-all">
+                                    View Scan History
+                                </button>
+</div>
+</div>
+<!-- Right: Interactive Scanner Visual -->
+<div class="lg:col-span-7">
+<div class="relative w-full h-80 bg-slate-900 rounded-lg overflow-hidden border border-slate-700 shadow-2xl group cursor-crosshair">
+<!-- Grid Background for Scanner -->
+<div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(#334155 1px, transparent 1px), linear-gradient(to right, #334155 1px, transparent 1px); background-size: 40px 40px;"></div>
+<!-- Scanner Header -->
+<div class="absolute top-0 left-0 right-0 h-10 bg-slate-800/80 backdrop-blur border-b border-slate-700 flex items-center justify-between px-4 z-20">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-alert animate-pulse"></div>
+<span class="text-xs font-mono text-slate-300 uppercase tracking-widest">Live Monitoring: REGION_IN_NORTH</span>
+</div>
+<span class="text-xs font-mono text-slate-400">FPS: 60 | LATENCY: 24ms</span>
+</div>
+<!-- Map/Visual Placeholder -->
+<div class="absolute inset-0 mt-10 p-6 flex items-center justify-center">
+<!-- Using an abstract map representation -->
+<div class="w-full h-full relative" data-alt="Abstract dark map of India with connection nodes glowing" data-location="India" style="https://lh3.googleusercontent.com/aida-public/AB6AXuCh-dbYdtKXHRZLzkIVVSFIJO7d8wY9wB5nqQebMXFG3EKgpcy3ZGX2JexT8xI1-v03MOFtYUHRLF4WCXhX1LmXmyTlbYpor_B_DhXlaWtoTcmr-S2QpklR_LM1_gxlUJmwu3ecHqj2Urkv7VgENWoYbRM0jizPvOq22De1MltkZWJ1wYLTyj4GwAwc2GNRn2MZXZUcrnXyp12zHhwFXPuhUWYzyXQhTXhhO06PrGTUS0gU5HZ-Rn9K6jm01f9OflskjX5dXF_ipNQ">
+<!-- Nodes -->
+<div class="absolute top-1/4 left-1/4 size-3 bg-slate-600 rounded-full opacity-50"></div>
+<div class="absolute top-1/2 left-1/2 size-4 bg-slate-600 rounded-full opacity-50"></div>
+<div class="absolute bottom-1/3 right-1/3 size-3 bg-slate-600 rounded-full opacity-50"></div>
+<!-- Alert Node -->
+<div class="absolute top-1/3 right-1/4 size-4 bg-alert/20 rounded-full flex items-center justify-center animate-ping">
+<div class="size-1.5 bg-alert rounded-full"></div>
+</div>
+<div class="absolute top-1/3 right-1/4 size-4 bg-transparent rounded-full flex items-center justify-center">
+<div class="size-1.5 bg-alert rounded-full shadow-[0_0_10px_rgba(198,40,40,0.8)]"></div>
+<!-- Tooltip style label -->
+<div class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-alert text-white text-[10px] font-mono px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                                                Fraud Pattern #402
+                                            </div>
+</div>
+</div>
+</div>
+<!-- Scan Line -->
+<div class="absolute left-0 right-0 h-px bg-green-400/50 shadow-[0_0_15px_rgba(74,222,128,0.5)] z-10 animate-scan-line pointer-events-none"></div>
+<!-- Overlay Data -->
+<div class="absolute bottom-4 left-4 bg-slate-800/90 border border-slate-600 p-2 rounded text-xs font-mono text-green-400">
+                                    &gt; SCANNING_PACKETS... <br/>
+                                    &gt; DETECTED_ANOMALIES: 12
+                                </div>
+</div>
+</div>
+</div>
+<!-- Metric Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-white p-5 rounded-md border border-slate-200 shadow-sm flex flex-col gap-2 relative overflow-hidden">
+<div class="absolute right-0 top-0 p-4 opacity-5">
+<span class="material-symbols-outlined text-6xl">currency_rupee</span>
+</div>
+<h3 class="text-slate-500 text-sm font-medium uppercase tracking-wider">Total Recovered</h3>
+<div class="flex items-end gap-3">
+<span class="text-3xl font-bold text-primary tracking-tight font-mono">₹12,45,000</span>
+<span class="text-success text-sm font-bold mb-1 flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span> 12%
+                                </span>
+</div>
+<div class="w-full bg-slate-100 h-1 mt-2 rounded-full overflow-hidden">
+<div class="bg-success h-full w-[70%]"></div>
+</div>
+</div>
+<div class="bg-white p-5 rounded-md border border-slate-200 shadow-sm flex flex-col gap-2 relative overflow-hidden">
+<div class="absolute right-0 top-0 p-4 opacity-5">
+<span class="material-symbols-outlined text-6xl">gavel</span>
+</div>
+<h3 class="text-slate-500 text-sm font-medium uppercase tracking-wider">Active Disputes</h3>
+<div class="flex items-end gap-3">
+<span class="text-3xl font-bold text-primary tracking-tight font-mono">24</span>
+<span class="text-alert text-sm font-bold mb-1 flex items-center">
+<span class="material-symbols-outlined text-sm">priority_high</span> 3 High Risk
+                                </span>
+</div>
+<div class="w-full bg-slate-100 h-1 mt-2 rounded-full overflow-hidden">
+<div class="bg-alert h-full w-[30%]"></div>
+</div>
+</div>
+<div class="bg-white p-5 rounded-md border border-slate-200 shadow-sm flex flex-col gap-2 relative overflow-hidden">
+<div class="absolute right-0 top-0 p-4 opacity-5">
+<span class="material-symbols-outlined text-6xl">check_circle</span>
+</div>
+<h3 class="text-slate-500 text-sm font-medium uppercase tracking-wider">Success Rate</h3>
+<div class="flex items-end gap-3">
+<span class="text-3xl font-bold text-primary tracking-tight font-mono">92%</span>
+<span class="text-success text-sm font-bold mb-1 flex items-center">
+<span class="material-symbols-outlined text-sm">arrow_upward</span> 5%
+                                </span>
+</div>
+<div class="w-full bg-slate-100 h-1 mt-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[92%]"></div>
+</div>
+</div>
+</div>
+<!-- Dispute Roadmap & Pricing -->
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+<!-- Timeline -->
+<div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400">account_tree</span>
+                                    Dispute Roadmap
+                                </h3>
+<button class="text-sm text-primary hover:underline font-medium">View Policy</button>
+</div>
+<div class="relative flex items-start justify-between mt-8">
+<!-- Connecting Line -->
+<div class="absolute top-5 left-0 w-full h-0.5 bg-slate-200 -z-10"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-3 w-1/3">
+<div class="size-10 rounded-full bg-slate-100 border-2 border-slate-300 flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-slate-500 text-xl">search</span>
+</div>
+<div class="text-center">
+<p class="font-bold text-primary">Identify Fraud</p>
+<p class="text-xs text-slate-500 mt-1">AI scans AWB patterns &amp; historical data</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-3 w-1/3">
+<div class="size-10 rounded-full bg-red-50 border-2 border-alert flex items-center justify-center z-10 shadow-[0_0_10px_rgba(198,40,40,0.2)]">
+<span class="material-symbols-outlined text-alert text-xl">gavel</span>
+</div>
+<div class="text-center">
+<p class="font-bold text-alert">Legal Escalation</p>
+<p class="text-xs text-slate-500 mt-1">Notices sent automatically to courier</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-3 w-1/3">
+<div class="size-10 rounded-full bg-green-50 border-2 border-success flex items-center justify-center z-10 shadow-[0_0_10px_rgba(46,125,50,0.2)]">
+<span class="material-symbols-outlined text-success text-xl">payments</span>
+</div>
+<div class="text-center">
+<p class="font-bold text-success">Funds Recovery</p>
+<p class="text-xs text-slate-500 mt-1">Settlement directly to your bank</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Pricing Module -->
+<div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm flex flex-col justify-between">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-lg font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400">verified</span>
+                                    Transparent Fees
+                                </h3>
+<span class="bg-slate-100 text-slate-600 text-xs px-2 py-1 rounded font-mono">ISO 27001</span>
+</div>
+<div class="grid grid-cols-2 gap-4 h-full">
+<!-- Micro Claims -->
+<div class="border-2 border-success/30 bg-green-50/30 rounded-lg p-4 flex flex-col justify-center relative overflow-hidden">
+<div class="absolute -right-6 -top-6 bg-success text-white w-20 h-20 rotate-45 flex items-end justify-center pb-1 text-[10px] font-bold shadow-sm">
+                                        PRO
+                                    </div>
+<p class="text-sm font-medium text-slate-500 uppercase tracking-wide">Micro-Claims</p>
+<p class="text-xs text-slate-400 mb-2">Under ₹5 Lakhs</p>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="text-2xl font-bold text-success">NIL</span>
+<span class="text-sm font-medium text-slate-600">Upfront Fee</span>
+</div>
+<div class="mt-3 text-xs text-slate-500 border-t border-slate-200 pt-2">
+                                        15% Success Fee only on recovery.
+                                    </div>
+</div>
+<!-- Enterprise -->
+<div class="border border-slate-200 rounded-lg p-4 flex flex-col justify-center bg-slate-50">
+<p class="text-sm font-medium text-slate-500 uppercase tracking-wide">Enterprise</p>
+<p class="text-xs text-slate-400 mb-2">High Volume</p>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="text-2xl font-bold text-primary">Custom</span>
+</div>
+<span class="text-sm font-medium text-slate-600">Retainer</span>
+<div class="mt-3 text-xs text-slate-500 border-t border-slate-200 pt-2">
+                                        Dedicated legal team &amp; API access.
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity Table -->
+<div class="bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50/50">
+<h3 class="text-lg font-bold text-primary">Recent Forensic Logs</h3>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 text-xs font-medium bg-white border border-slate-300 rounded hover:bg-slate-50 text-slate-600 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">filter_list</span> Filter
+                                </button>
+<button class="px-3 py-1.5 text-xs font-medium bg-white border border-slate-300 rounded hover:bg-slate-50 text-slate-600 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">download</span> Export
+                                </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left">
+<thead class="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200 font-medium">
+<tr>
+<th class="px-6 py-3" scope="col">AWB No.</th>
+<th class="px-6 py-3" scope="col">Date Detected</th>
+<th class="px-6 py-3" scope="col">Courier</th>
+<th class="px-6 py-3" scope="col">Risk Score</th>
+<th class="px-6 py-3" scope="col">Status</th>
+<th class="px-6 py-3 text-right" scope="col">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<tr class="bg-white hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4 font-mono font-medium text-primary">7823-1928-1029</td>
+<td class="px-6 py-4 text-slate-500">24 Oct, 10:42 AM</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="size-6 bg-yellow-100 rounded-full flex items-center justify-center text-[10px] font-bold text-yellow-700">DX</div>
+<span class="text-slate-700">Delhivery</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-16 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="bg-alert h-full w-[85%]"></div>
+</div>
+<span class="text-alert font-bold text-xs">85/100</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 text-xs font-medium rounded-full bg-red-50 text-alert border border-red-100">
+                                                Legal Notice Sent
+                                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:text-slate-900 font-medium text-xs border border-slate-300 px-2 py-1 rounded hover:bg-slate-100">Details</button>
+</td>
+</tr>
+<tr class="bg-white hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4 font-mono font-medium text-primary">1102-4492-5591</td>
+<td class="px-6 py-4 text-slate-500">24 Oct, 09:15 AM</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="size-6 bg-blue-100 rounded-full flex items-center justify-center text-[10px] font-bold text-blue-700">EK</div>
+<span class="text-slate-700">Ecom Express</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-16 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="bg-orange-400 h-full w-[60%]"></div>
+</div>
+<span class="text-orange-600 font-bold text-xs">60/100</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 text-xs font-medium rounded-full bg-orange-50 text-orange-600 border border-orange-100">
+                                                Evidence Review
+                                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:text-slate-900 font-medium text-xs border border-slate-300 px-2 py-1 rounded hover:bg-slate-100">Details</button>
+</td>
+</tr>
+<tr class="bg-white hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4 font-mono font-medium text-primary">5592-1002-3341</td>
+<td class="px-6 py-4 text-slate-500">23 Oct, 04:20 PM</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="size-6 bg-indigo-100 rounded-full flex items-center justify-center text-[10px] font-bold text-indigo-700">BX</div>
+<span class="text-slate-700">BlueDart</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-16 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="bg-success h-full w-[10%]"></div>
+</div>
+<span class="text-success font-bold text-xs">10/100</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 text-xs font-medium rounded-full bg-slate-100 text-slate-600 border border-slate-200">
+                                                Cleared
+                                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-slate-600 font-medium text-xs px-2 py-1">Archive</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="bg-slate-50 px-6 py-3 border-t border-slate-200 flex justify-center">
+<button class="text-xs font-bold text-primary hover:text-slate-900 flex items-center gap-1">
+                                VIEW ALL CLAIMS <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Footer Trust Signals -->
+<div class="flex justify-between items-center text-slate-400 text-xs pb-8 px-2">
+<div class="flex gap-4">
+<span>© 2024 Claimr Technologies Pvt Ltd.</span>
+<a class="hover:text-primary" href="#">Privacy Policy</a>
+<a class="hover:text-primary" href="#">Terms of Service</a>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">lock</span>
+<span>256-bit SSL Secured</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

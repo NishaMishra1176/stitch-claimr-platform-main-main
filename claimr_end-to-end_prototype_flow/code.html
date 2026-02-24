@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr Prototype Flow</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c72929",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#201212",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2d2424",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem", // rounded-sm feeling
+                        "sm": "0.125rem",
+                        "md": "0.25rem", 
+                        "lg": "0.375rem",
+                        "xl": "0.5rem",
+                        "full": "9999px"
+                    },
+                    backgroundImage: {
+                        'dot-pattern': 'radial-gradient(#e5e7eb 1.5px, transparent 1.5px)',
+                        'dot-pattern-dark': 'radial-gradient(#4a3e3e 1.5px, transparent 1.5px)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white h-screen overflow-hidden flex flex-col">
+<!-- Shared Header Placeholder -->
+<header data-shared="true"></header>
+<!-- Main Workspace -->
+<div class="flex flex-1 overflow-hidden relative">
+<!-- Left Sidebar / Legend -->
+<aside class="w-64 flex-none bg-surface-light dark:bg-surface-dark border-r border-[#e5e7eb] dark:border-[#3a2e2e] z-10 flex flex-col">
+<div class="p-4 border-b border-[#e5e7eb] dark:border-[#3a2e2e]">
+<h2 class="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 font-bold mb-4">Flow Stages</h2>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded bg-primary/10 text-primary border border-primary/20" href="#">
+<span class="material-symbols-outlined text-[20px] filled">group</span>
+<span class="text-sm font-bold">1. Entry</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-[#3a2e2e] text-gray-600 dark:text-gray-300" href="#">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+<span class="text-sm font-medium">2. Triage</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-[#3a2e2e] text-gray-600 dark:text-gray-300" href="#">
+<span class="material-symbols-outlined text-[20px]">search</span>
+<span class="text-sm font-medium">3. Evidence</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-[#3a2e2e] text-gray-600 dark:text-gray-300" href="#">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+<span class="text-sm font-medium">4. Weaponization</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-50 dark:hover:bg-[#3a2e2e] text-gray-600 dark:text-gray-300" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-sm font-medium">5. Management</span>
+</a>
+</nav>
+</div>
+<div class="p-4 mt-auto">
+<div class="bg-gray-50 dark:bg-[#3a2e2e] p-3 rounded border border-gray-100 dark:border-[#4a3e3e]">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-gray-500 text-sm">info</span>
+<span class="text-xs font-bold text-gray-700 dark:text-gray-200">System Status</span>
+</div>
+<div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+<span>API Latency</span>
+<span class="text-green-600 font-bold">24ms</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Canvas Area -->
+<main class="flex-1 bg-background-light dark:bg-background-dark bg-dot-pattern dark:bg-dot-pattern-dark bg-[length:20px_20px] overflow-auto relative cursor-grab active:cursor-grabbing">
+<!-- Floating Toolbar -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 p-1.5 bg-surface-light dark:bg-surface-dark rounded-lg shadow-xl border border-gray-200 dark:border-gray-700">
+<button class="p-2 rounded hover:bg-gray-100 dark:hover:bg-[#3a2e2e] text-gray-700 dark:text-gray-200" title="Select">
+<span class="material-symbols-outlined text-[20px]">arrow_selector_tool</span>
+</button>
+<button class="p-2 rounded hover:bg-gray-100 dark:hover:bg-[#3a2e2e] text-gray-700 dark:text-gray-200" title="Pan">
+<span class="material-symbols-outlined text-[20px]">pan_tool</span>
+</button>
+<div class="w-px h-5 bg-gray-200 dark:bg-gray-600 mx-1"></div>
+<button class="p-2 rounded hover:bg-gray-100 dark:hover:bg-[#3a2e2e] text-gray-700 dark:text-gray-200" title="Connect">
+<span class="material-symbols-outlined text-[20px]">polyline</span>
+</button>
+<button class="p-2 rounded hover:bg-gray-100 dark:hover:bg-[#3a2e2e] text-gray-700 dark:text-gray-200" title="Add Node">
+<span class="material-symbols-outlined text-[20px]">add_box</span>
+</button>
+<div class="w-px h-5 bg-gray-200 dark:bg-gray-600 mx-1"></div>
+<button class="p-2 rounded hover:bg-gray-100 dark:hover:bg-[#3a2e2e] text-gray-700 dark:text-gray-200" title="Zoom Out">
+<span class="material-symbols-outlined text-[20px]">remove</span>
+</button>
+<span class="text-xs font-bold w-12 text-center text-gray-700 dark:text-gray-200">100%</span>
+<button class="p-2 rounded hover:bg-gray-100 dark:hover:bg-[#3a2e2e] text-gray-700 dark:text-gray-200" title="Zoom In">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<!-- Flow Diagram Container -->
+<div class="min-w-max min-h-full flex items-center justify-center p-20">
+<!-- NODE 1: ENTRY -->
+<div class="flex flex-col items-center group">
+<div class="w-[280px] bg-white dark:bg-[#2d2424] rounded-lg shadow-lg border-2 border-primary hover:shadow-xl transition-all relative z-10">
+<div class="absolute -top-3 left-4 bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Start</div>
+<div class="p-4 border-b border-gray-100 dark:border-[#3a2e2e] flex justify-between items-start">
+<div>
+<h3 class="text-[#171212] dark:text-white font-bold text-lg">1. Entry</h3>
+<p class="text-gray-500 dark:text-gray-400 text-sm">Segmentation</p>
+</div>
+<div class="text-primary bg-primary/10 p-1.5 rounded">
+<span class="material-symbols-outlined text-[20px]">group</span>
+</div>
+</div>
+<div class="h-32 bg-gray-50 dark:bg-[#201212] p-4 flex items-center justify-center overflow-hidden relative">
+<!-- Miniature UI Representation -->
+<div class="w-full h-full bg-white dark:bg-[#2d2424] border border-gray-200 dark:border-[#3a2e2e] rounded shadow-sm p-2 scale-95 origin-center opacity-80" data-alt="Abstract representation of user segmentation form">
+<div class="w-1/2 h-2 bg-gray-200 dark:bg-[#4a3e3e] mb-2 rounded-sm"></div>
+<div class="w-full h-8 bg-blue-50 dark:bg-[#3a2e2e] rounded-sm mb-2 border border-blue-100 dark:border-transparent"></div>
+<div class="flex gap-2">
+<div class="size-6 rounded-full bg-gray-200 dark:bg-[#4a3e3e]"></div>
+<div class="flex-1 h-2 bg-gray-200 dark:bg-[#4a3e3e] mt-2 rounded-sm"></div>
+</div>
+</div>
+</div>
+<div class="p-3 bg-white dark:bg-[#2d2424] rounded-b-lg flex justify-between items-center text-xs">
+<span class="font-mono text-gray-400">ID: #N-01</span>
+<span class="flex items-center gap-1 text-green-600 font-bold"><span class="block size-1.5 rounded-full bg-green-500"></span>Active</span>
+</div>
+</div>
+</div>
+<!-- CONNECTOR 1-2 -->
+<div class="w-24 h-px bg-primary relative flex items-center justify-center">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2">
+<div class="flex items-center gap-1.5 px-2 py-1 bg-white dark:bg-[#3a2e2e] border border-gray-200 dark:border-[#4a3e3e] rounded shadow-sm whitespace-nowrap z-20 hover:scale-105 transition-transform cursor-help">
+<span class="material-symbols-outlined text-[14px] text-orange-500">bolt</span>
+<span class="text-[10px] font-bold text-gray-700 dark:text-gray-200">Risk &gt; 80</span>
+</div>
+</div>
+<div class="absolute -right-1 size-2 rounded-full bg-primary"></div>
+</div>
+<!-- NODE 2: TRIAGE -->
+<div class="flex flex-col items-center group">
+<div class="w-[280px] bg-white dark:bg-[#2d2424] rounded-lg shadow-md border border-gray-200 dark:border-[#3a2e2e] hover:border-primary/50 transition-all relative z-10">
+<div class="p-4 border-b border-gray-100 dark:border-[#3a2e2e] flex justify-between items-start">
+<div>
+<h3 class="text-[#171212] dark:text-white font-bold text-lg">2. Triage</h3>
+<p class="text-gray-500 dark:text-gray-400 text-sm">Master Risk</p>
+</div>
+<div class="text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#3a2e2e] p-1.5 rounded">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+</div>
+<div class="h-32 bg-gray-50 dark:bg-[#201212] p-4 flex items-center justify-center relative">
+<div class="w-full h-full bg-white dark:bg-[#2d2424] border border-gray-200 dark:border-[#3a2e2e] rounded shadow-sm p-2 flex flex-col gap-2 opacity-80" data-alt="Abstract representation of a risk dashboard with charts">
+<div class="flex gap-2 h-1/2">
+<div class="flex-1 bg-red-50 dark:bg-red-900/20 rounded-sm border border-red-100 dark:border-red-900/30"></div>
+<div class="w-1/3 bg-gray-100 dark:bg-[#3a2e2e] rounded-sm"></div>
+</div>
+<div class="h-1/2 bg-gray-100 dark:bg-[#3a2e2e] rounded-sm"></div>
+</div>
+</div>
+<div class="p-3 bg-white dark:bg-[#2d2424] rounded-b-lg flex justify-between items-center text-xs">
+<span class="font-mono text-gray-400">ID: #N-02</span>
+</div>
+</div>
+</div>
+<!-- CONNECTOR 2-3 -->
+<div class="w-24 h-px bg-gray-300 dark:bg-gray-600 relative flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2">
+<div class="flex items-center gap-1.5 px-2 py-1 bg-white dark:bg-[#3a2e2e] border border-gray-200 dark:border-[#4a3e3e] rounded shadow-sm whitespace-nowrap z-20">
+<span class="material-symbols-outlined text-[14px] text-blue-500">flag</span>
+<span class="text-[10px] font-bold text-gray-700 dark:text-gray-200">Flag Triggered</span>
+</div>
+</div>
+<div class="absolute -right-1 size-2 rounded-full bg-gray-300 dark:bg-gray-600 group-hover:bg-primary transition-colors"></div>
+</div>
+<!-- NODE 3: EVIDENCE -->
+<div class="flex flex-col items-center group">
+<div class="w-[280px] bg-white dark:bg-[#2d2424] rounded-lg shadow-md border border-gray-200 dark:border-[#3a2e2e] hover:border-primary/50 transition-all relative z-10">
+<div class="p-4 border-b border-gray-100 dark:border-[#3a2e2e] flex justify-between items-start">
+<div>
+<h3 class="text-[#171212] dark:text-white font-bold text-lg">3. Evidence</h3>
+<p class="text-gray-500 dark:text-gray-400 text-sm">Forensic Scan</p>
+</div>
+<div class="text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#3a2e2e] p-1.5 rounded">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+</div>
+<div class="h-32 bg-gray-50 dark:bg-[#201212] p-4 flex items-center justify-center relative">
+<div class="w-full h-full bg-white dark:bg-[#2d2424] border border-gray-200 dark:border-[#3a2e2e] rounded shadow-sm p-2 opacity-80" data-alt="Abstract representation of a data scan log">
+<div class="flex flex-col gap-1.5">
+<div class="w-full h-1.5 bg-gray-200 dark:bg-[#4a3e3e] rounded-full"></div>
+<div class="w-3/4 h-1.5 bg-gray-200 dark:bg-[#4a3e3e] rounded-full"></div>
+<div class="w-5/6 h-1.5 bg-gray-200 dark:bg-[#4a3e3e] rounded-full"></div>
+<div class="w-full h-px bg-gray-100 dark:bg-[#4a3e3e] my-1"></div>
+<div class="w-1/2 h-4 bg-green-50 dark:bg-green-900/20 rounded border border-green-100 dark:border-green-900/30"></div>
+</div>
+</div>
+</div>
+<div class="p-3 bg-white dark:bg-[#2d2424] rounded-b-lg flex justify-between items-center text-xs">
+<span class="font-mono text-gray-400">ID: #N-03</span>
+</div>
+</div>
+</div>
+<!-- CONNECTOR 3-4 -->
+<div class="w-24 h-px bg-gray-300 dark:bg-gray-600 relative flex items-center justify-center">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2">
+<div class="flex items-center gap-1.5 px-2 py-1 bg-white dark:bg-[#3a2e2e] border border-gray-200 dark:border-[#4a3e3e] rounded shadow-sm whitespace-nowrap z-20">
+<span class="material-symbols-outlined text-[14px] text-purple-500">api</span>
+<span class="text-[10px] font-bold text-gray-700 dark:text-gray-200">API Validated</span>
+</div>
+</div>
+<div class="absolute -right-1 size-2 rounded-full bg-gray-300 dark:bg-gray-600"></div>
+</div>
+<!-- NODE 4: WEAPONIZATION -->
+<div class="flex flex-col items-center group">
+<div class="w-[280px] bg-white dark:bg-[#2d2424] rounded-lg shadow-md border border-gray-200 dark:border-[#3a2e2e] hover:border-primary/50 transition-all relative z-10">
+<div class="p-4 border-b border-gray-100 dark:border-[#3a2e2e] flex justify-between items-start">
+<div>
+<h3 class="text-[#171212] dark:text-white font-bold text-lg">4. Action</h3>
+<p class="text-gray-500 dark:text-gray-400 text-sm">Notice Builder</p>
+</div>
+<div class="text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#3a2e2e] p-1.5 rounded">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+</div>
+</div>
+<div class="h-32 bg-gray-50 dark:bg-[#201212] p-4 flex items-center justify-center relative">
+<div class="w-full h-full bg-white dark:bg-[#2d2424] border border-gray-200 dark:border-[#3a2e2e] rounded shadow-sm p-3 opacity-80 flex flex-col items-center justify-center gap-2" data-alt="Abstract legal document icon">
+<div class="size-10 rounded-full bg-gray-100 dark:bg-[#3a2e2e] flex items-center justify-center">
+<span class="material-symbols-outlined text-gray-400 text-xl">description</span>
+</div>
+<div class="w-20 h-2 bg-gray-200 dark:bg-[#4a3e3e] rounded-full"></div>
+</div>
+</div>
+<div class="p-3 bg-white dark:bg-[#2d2424] rounded-b-lg flex justify-between items-center text-xs">
+<span class="font-mono text-gray-400">ID: #N-04</span>
+</div>
+</div>
+</div>
+<!-- CONNECTOR 4-5 -->
+<div class="w-24 h-px bg-gray-300 dark:bg-gray-600 relative flex items-center justify-center">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2">
+<div class="flex items-center gap-1.5 px-2 py-1 bg-white dark:bg-[#3a2e2e] border border-gray-200 dark:border-[#4a3e3e] rounded shadow-sm whitespace-nowrap z-20">
+<span class="material-symbols-outlined text-[14px] text-green-500">check_circle</span>
+<span class="text-[10px] font-bold text-gray-700 dark:text-gray-200">Notice Generated</span>
+</div>
+</div>
+<div class="absolute -right-1 size-2 rounded-full bg-gray-300 dark:bg-gray-600"></div>
+</div>
+<!-- NODE 5: MANAGEMENT -->
+<div class="flex flex-col items-center group">
+<div class="w-[280px] bg-white dark:bg-[#2d2424] rounded-lg shadow-md border border-gray-200 dark:border-[#3a2e2e] hover:border-primary/50 transition-all relative z-10">
+<div class="absolute -top-3 -right-2 bg-gray-800 dark:bg-white text-white dark:text-gray-900 text-[10px] font-bold px-2 py-0.5 rounded shadow-sm uppercase tracking-wider">End</div>
+<div class="p-4 border-b border-gray-100 dark:border-[#3a2e2e] flex justify-between items-start">
+<div>
+<h3 class="text-[#171212] dark:text-white font-bold text-lg">5. Mgmt</h3>
+<p class="text-gray-500 dark:text-gray-400 text-sm">Seller Dashboard</p>
+</div>
+<div class="text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#3a2e2e] p-1.5 rounded">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+</div>
+</div>
+<div class="h-32 bg-gray-50 dark:bg-[#201212] p-4 flex items-center justify-center relative">
+<div class="w-full h-full bg-white dark:bg-[#2d2424] border border-gray-200 dark:border-[#3a2e2e] rounded shadow-sm p-2 grid grid-cols-2 gap-2 opacity-80" data-alt="Abstract seller dashboard grid">
+<div class="bg-gray-100 dark:bg-[#3a2e2e] rounded-sm"></div>
+<div class="bg-gray-100 dark:bg-[#3a2e2e] rounded-sm"></div>
+<div class="bg-gray-100 dark:bg-[#3a2e2e] rounded-sm col-span-2"></div>
+</div>
+</div>
+<div class="p-3 bg-white dark:bg-[#2d2424] rounded-b-lg flex justify-between items-center text-xs">
+<span class="font-mono text-gray-400">ID: #N-05</span>
+</div>
+</div>
+</div>
+<!-- Ghost Node (Future Step hint) -->
+<div class="w-24 h-px border-t border-dashed border-gray-300 dark:border-gray-600"></div>
+<div class="size-10 rounded-full border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center text-gray-300">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</div>
+</div>
+<!-- Floating Background Decoration for depth -->
+<div class="absolute top-20 right-20 pointer-events-none opacity-50">
+<div class="flex gap-4">
+<div class="bg-red-50 dark:bg-red-900/10 p-2 rounded-lg border border-red-100 dark:border-red-900/20 backdrop-blur-sm">
+<p class="text-[10px] text-red-600 dark:text-red-400 font-bold uppercase">System Alert</p>
+<p class="text-xs text-red-800 dark:text-red-200 mt-1">High volume of node connections detected in Triage.</p>
+</div>
+</div>
+</div>
+
+<!-- Additional Navigation Section -->
+<section class="py-12 bg-surface-light dark:bg-surface-dark border-t border-gray-200 dark:border-gray-700">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h3 class="text-2xl font-bold text-primary dark:text-white mb-8 text-center">Explore More Claimr Features</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Feature Card 1 -->
+<a href="../claimr_homepage_-_panic_interceptor_1/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">home</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Homepage</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Main landing page with live panic interceptor functionality</p>
+</div>
+</a>
+<!-- Feature Card 2 -->
+<a href="../claimr_home_-_command_center_variant_1/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">dashboard</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Command Center</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Live fraud intelligence dashboard with national fraud pulse</p>
+</div>
+</a>
+<!-- Feature Card 3 -->
+<a href="../how_it_works_&_about_claimr/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">info</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">How It Works</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Explanation of Claimr's mission and 4-step process</p>
+</div>
+</a>
+<!-- Feature Card 4 -->
+<a href="../claimr_home_-_escalation_engine_variant_1/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-red-100 text-red-600 flex items-center justify-center mb-4 group-hover:bg-red-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Escalation Engine</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Automated escalation workflow for dispute resolution</p>
+</div>
+</a>
+</div>
+</section>
+</main>
+<!-- Shared Footer Placeholder -->
+<footer data-shared="true"></footer>
+<!-- Load Shared Header & Footer -->
+<script src="../shared-nav-loader.js"></script>
+</div>
+</body></html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Interactive Recovery Journey</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: "#0B1C2D",
+                        "navy-light": "#162a40",
+                        "alert-red": "#C62828",
+                        "alert-red-light": "#FFEBEE",
+                        "recovery-green": "#2E7D32",
+                        "recovery-green-light": "#E8F5E9",
+                        "surface": "#F8FAFC",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%230B1C2D' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/svg%3E\")",
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'check-bounce': 'bounce 1s infinite',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }.interaction-card {
+            transition: all 0.3s ease;
+        }
+        .interaction-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-navy antialiased overflow-x-hidden selection:bg-navy/20 selection:text-navy">
+<header data-shared="true"></header>
+<main class="relative pt-28 pb-32 min-h-screen bg-grid-pattern">
+<div class="mx-auto max-w-4xl px-4 text-center mb-20">
+<h1 class="text-4xl md:text-5xl font-bold tracking-tight text-navy mb-4 font-display">
+            Interactive Escalation Journey
+        </h1>
+<p class="mx-auto max-w-2xl text-lg text-slate-600">
+            Navigate the recovery roadmap. Use the interactive tools at each station to build your case and recover lost revenue.
+        </p>
+</div>
+<div class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+<div class="absolute left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 rounded-full bg-slate-200 hidden md:block">
+<div class="h-full w-full bg-gradient-to-b from-alert-red via-navy to-recovery-green opacity-30"></div>
+</div>
+<div class="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-alert-red via-navy to-recovery-green opacity-30 md:hidden rounded-full"></div>
+<div class="relative mb-32 group/station1">
+<div class="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-0">
+<div class="w-full md:w-[45%] md:pr-16 pl-16 md:pl-0 order-2 md:order-1 relative">
+<div class="absolute top-1/2 -right-16 h-[1px] w-16 bg-alert-red hidden md:block opacity-30"></div>
+<div class="absolute top-10 -left-8 h-[1px] w-8 bg-alert-red md:hidden opacity-30"></div>
+<div class="interaction-card relative overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-slate-900/5">
+<div class="bg-alert-red-light px-6 py-4 border-b border-red-100 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-alert-red">search_check</span>
+<h3 class="font-bold text-navy">Evidence Inspector</h3>
+</div>
+<span class="text-xs font-bold text-alert-red bg-white px-2 py-1 rounded-md shadow-sm">LOGS FLAGGED</span>
+</div>
+<div class="p-6 bg-slate-50">
+<p class="text-sm text-slate-500 mb-4">Hover over logs to inspect anomalies.</p>
+<div class="space-y-3 font-mono text-sm">
+<div class="flex justify-between p-3 rounded bg-white border border-slate-100 text-slate-400">
+<span>[10:00 AM] Pickup</span> <span>Verified</span>
+</div>
+<div class="relative group/log flex justify-between p-3 rounded bg-white border-l-4 border-l-alert-red border-y border-r border-slate-100 text-navy cursor-help hover:shadow-md transition-all">
+<span class="font-semibold">Weight Check</span>
+<span class="text-alert-red font-bold">Mismatch (+2.5kg)</span>
+<div class="absolute inset-0 bg-alert-red/90 text-white flex items-center justify-center rounded opacity-0 group-hover/log:opacity-100 transition-opacity backdrop-blur-sm">
+<span class="material-symbols-outlined mr-2">visibility</span>
+                                        Inspect Evidence
+                                    </div>
+</div>
+<div class="flex justify-between p-3 rounded bg-white border border-slate-100 text-slate-400">
+<span>[02:30 PM] Transit</span> <span>Pending</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute left-8 md:left-1/2 top-10 md:top-1/2 flex size-14 md:size-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-xl ring-8 ring-white z-10">
+<div class="flex size-full items-center justify-center rounded-full bg-alert-red text-white shadow-inner">
+<span class="material-symbols-outlined text-3xl md:text-4xl">local_police</span>
+</div>
+</div>
+<div class="w-full md:w-[45%] md:pl-16 pl-16 md:pl-0 order-3 flex justify-center md:justify-start">
+<div class="relative w-full aspect-square max-w-[280px] rounded-3xl bg-gradient-to-br from-red-50 to-white border border-red-100 p-8 flex items-center justify-center shadow-inner">
+<div class="w-full h-full bg-contain bg-center bg-no-repeat drop-shadow-2xl transition-transform duration-700 group-hover/station1:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-xqh-lnqbobPfgUJ1CQqChBJCQwyTXqxCocvWvi4RZyvD0eHC2NaJhOLr_OCkcyNOr71wolZtiUyTkbz_TtTK38wJzTtkI68Sf0OYF9hM9MwXmY8HWcMRkHEN4goBgXzODQZvB872Fdj73u4Goh30vLAEwE-Sj7mOskr0UMVC2ck5NXz1Pot2vC3VaqMU3hXXV3GTRI723T9dNdm8zPLCtJyKFI36WP0fKUJX_FNnPyO7vqdbgl2piBpXDHBBYOzpQrDPlleWIpQ');"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative mb-32 group/station2">
+<div class="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-0">
+<div class="w-full md:w-[45%] md:pr-16 pl-16 md:pl-0 order-3 md:order-1 flex justify-center md:justify-end">
+<div class="relative w-full aspect-square max-w-[280px] rounded-3xl bg-gradient-to-br from-slate-50 to-white border border-slate-200 p-8 flex items-center justify-center shadow-inner">
+<div class="w-full h-full bg-contain bg-center bg-no-repeat drop-shadow-2xl transition-transform duration-700 group-hover/station2:-rotate-3" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_iLdCwxfmJEqCrhB0ZNH8zVcyoWK4enZQSq15CYeDbD0y7XbNDf7prjoK6NOU8mYK5XAw80_Pmb1qjY6HvS4k5Ym452TiN1frZ38Q6qrZXHLjYwI5xCwSDyd8rIm-U5xdpe7_MRn_-3kcMYGDloiAVVoDfwqiyjL62ScvqRrFnVOKm2qyk1s3FesKn87AX-GEGtyKS0GF4JsYcDwpW3Tw2WQ4YxPED62C-_PljvAKZbj-OlqAGFi6jLu3zRUlTso-0sRpoXKDexQ');"></div>
+</div>
+</div>
+<div class="absolute left-8 md:left-1/2 top-10 md:top-1/2 flex size-14 md:size-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-xl ring-8 ring-white z-10">
+<div class="flex size-full items-center justify-center rounded-full bg-navy text-white shadow-inner">
+<span class="material-symbols-outlined text-3xl md:text-4xl">terminal</span>
+</div>
+</div>
+<div class="w-full md:w-[45%] md:pl-16 pl-16 md:pl-0 order-2 flex flex-col items-start relative">
+<div class="absolute top-1/2 -left-16 h-[1px] w-16 bg-navy hidden md:block opacity-30"></div>
+<div class="absolute top-10 -left-8 h-[1px] w-8 bg-navy md:hidden opacity-30"></div>
+<div class="interaction-card w-full rounded-2xl bg-white shadow-xl ring-1 ring-slate-900/5 overflow-hidden">
+<div class="bg-navy px-6 py-4 flex justify-between items-center text-white">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">code</span>
+<h3 class="font-bold">Message Console</h3>
+</div>
+<div class="flex gap-1.5">
+<div class="size-3 rounded-full bg-red-500/50"></div>
+<div class="size-3 rounded-full bg-yellow-500/50"></div>
+<div class="size-3 rounded-full bg-green-500/50"></div>
+</div>
+</div>
+<div class="p-6 bg-slate-50">
+<div class="mb-4 rounded-lg bg-white border border-slate-200 p-4 shadow-sm relative group/email">
+<label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2 block">Preview</label>
+<p class="text-sm text-navy leading-relaxed font-body">
+<span class="text-slate-400">To:</span> nodal.officer@delhivery.com<br/>
+<span class="text-slate-400">Subject:</span> Fraud Report - ID #4029<br/><br/>
+                                    Formal complaint regarding package discrepancy...
+                                </p>
+<div class="absolute top-4 right-4 text-green-600 opacity-0 group-hover/email:opacity-100 transition-opacity flex items-center gap-1 text-xs font-bold">
+<span class="material-symbols-outlined text-sm">check_circle</span> Ready
+                                </div>
+</div>
+<button class="group/btn relative w-full overflow-hidden rounded-lg bg-navy py-3 text-sm font-bold text-white shadow-md transition-all hover:bg-navy-light active:scale-[0.98]">
+<div class="flex items-center justify-center gap-2 transition-transform group-hover/btn:-translate-y-10">
+<span class="material-symbols-outlined text-lg">content_copy</span>
+                                    Copy &amp; Send to Nodal Officer
+                                </div>
+<div class="absolute inset-0 flex items-center justify-center gap-2 translate-y-10 transition-transform group-hover/btn:translate-y-0 text-green-400">
+<span class="material-symbols-outlined text-lg">send</span>
+                                    Message Sent Visual
+                                </div>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative mb-32 group/station3">
+<div class="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-0">
+<div class="w-full md:w-[45%] md:pr-16 pl-16 md:pl-0 order-2 md:order-1 relative">
+<div class="absolute top-1/2 -right-16 h-[1px] w-16 bg-navy hidden md:block opacity-30"></div>
+<div class="absolute top-10 -left-8 h-[1px] w-8 bg-navy md:hidden opacity-30"></div>
+<div class="interaction-card relative overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-slate-900/5">
+<div class="bg-slate-100 px-6 py-4 border-b border-slate-200 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-navy">edit_document</span>
+<h3 class="font-bold text-navy">Live Paper Preview</h3>
+</div>
+</div>
+<div class="flex">
+<div class="w-1/2 p-5 border-r border-slate-100 space-y-4 bg-white">
+<div>
+<label class="block text-xs font-semibold text-slate-500 mb-1">Notice Type</label>
+<div class="h-8 w-full bg-slate-100 rounded border border-slate-200 flex items-center px-2 text-xs text-navy font-medium">Section 138</div>
+</div>
+<div>
+<label class="block text-xs font-semibold text-slate-500 mb-1">Accused Name</label>
+<div class="h-8 w-full bg-slate-50 rounded border border-slate-200 flex items-center px-2 text-xs text-navy">Arjun K.</div>
+</div>
+<div class="pt-2">
+<button class="w-full py-2 bg-navy text-white text-xs font-bold rounded shadow-sm hover:bg-navy-light transition-colors">Generate PDF</button>
+</div>
+</div>
+<div class="w-1/2 p-5 bg-slate-50 flex items-center justify-center relative">
+<div class="relative w-full h-32 bg-white shadow-md border border-slate-200 p-2 text-[6px] text-slate-400 overflow-hidden group-hover/station3:scale-105 transition-transform duration-500">
+<div class="h-1 w-1/3 bg-navy mb-2"></div>
+<div class="space-y-1">
+<div class="h-0.5 w-full bg-slate-200"></div>
+<div class="h-0.5 w-full bg-slate-200"></div>
+<div class="h-0.5 w-3/4 bg-slate-200"></div>
+</div>
+<div class="mt-2 text-[8px] font-bold text-navy">NOTICE</div>
+<div class="mt-1">To: <span class="bg-yellow-100 text-navy font-bold px-0.5">Arjun K.</span></div>
+<div class="absolute bottom-2 right-2 text-navy opacity-0 group-hover/station3:opacity-100 transition-opacity animate-bounce">
+<span class="material-symbols-outlined text-lg">edit</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute left-8 md:left-1/2 top-10 md:top-1/2 flex size-14 md:size-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-xl ring-8 ring-white z-10">
+<div class="flex size-full items-center justify-center rounded-full bg-navy text-white shadow-inner">
+<span class="material-symbols-outlined text-3xl md:text-4xl">gavel</span>
+</div>
+</div>
+<div class="w-full md:w-[45%] md:pl-16 pl-16 md:pl-0 order-3 flex justify-center md:justify-start">
+<div class="relative w-full aspect-square max-w-[280px] rounded-3xl bg-gradient-to-br from-blue-50 to-white border border-blue-100 p-8 flex items-center justify-center shadow-inner">
+<div class="w-full h-full bg-contain bg-center bg-no-repeat drop-shadow-2xl transition-transform duration-700 group-hover/station3:translate-x-2" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDMszol0fh62-t1FfZXAcJCY5Enl6JQYLaYNR0ilt_-ODqyZHu8Z_Nbbkmbzi77IrJRz5uXrGUlcpKoCFxfmVGxOzpjxdXBsFnn0soMIDt1fp8_aYe0c58NrFLO1NznmNz7aWI4ub-mb71yOEucjNh0XLzj84PfnDkFug2QCzZrQjI-DlwyU-N8KjVEX7Q7XYIwjF5Aw6SshLDu8v0xSa2ixo-bs8KuVOS-obDAwMGUxyzGH1OCtiF_Fd96aSdl_XrjekOt0bnaakc');"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-0">
+<div class="w-full md:w-[45%] md:pr-16 pl-16 md:pl-0 order-3 md:order-1 flex justify-center md:justify-end">
+<div class="relative w-full aspect-square max-w-[280px] rounded-3xl bg-gradient-to-br from-green-50 to-white border border-green-100 p-8 flex items-center justify-center shadow-inner">
+<div class="w-full h-full bg-contain bg-center bg-no-repeat drop-shadow-2xl" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDeWsDZMjV16VEBOIXtVXqdT4HnE9zJ995-pA0sXqXalJS4jcfk6R18GENCJtD1fXUjUN8TNJAclXRcgTaF24iUsbrhGQkFUfEer7uBkpuf_lh2o_snQLLCDCileOQvx4YaXnqeLS0B-p0IOtGOuH9-h-UEtbrkh2VRtH_9F0Fn5T9o-yExwRwCXkza-PPLxYIBgPrnezRP0Lrr2Vv9WC58vwC75aZdEBRJt2yljNtSlYMDbLc9Y91QL1UcRu52dBF5u50z_jQJ4Hw');"></div>
+</div>
+</div>
+<div class="absolute left-8 md:left-1/2 top-10 md:top-1/2 flex size-14 md:size-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-recovery-green shadow-xl ring-8 ring-green-100 z-10 animate-pulse-slow">
+<div class="flex size-full items-center justify-center rounded-full bg-recovery-green text-white shadow-inner">
+<span class="material-symbols-outlined text-3xl md:text-4xl">check_circle</span>
+</div>
+</div>
+<div class="w-full md:w-[45%] md:pl-16 pl-16 md:pl-0 order-2 flex flex-col items-start relative">
+<div class="absolute top-1/2 -left-16 h-[1px] w-16 bg-recovery-green hidden md:block opacity-30"></div>
+<div class="absolute top-10 -left-8 h-[1px] w-8 bg-recovery-green md:hidden opacity-30"></div>
+<div class="interaction-card w-full rounded-2xl bg-white shadow-xl ring-1 ring-slate-900/5 overflow-hidden">
+<div class="bg-recovery-green-light px-6 py-4 border-b border-green-100 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-recovery-green">checklist</span>
+<h3 class="font-bold text-navy">Filing Checklist</h3>
+</div>
+<span class="text-xs font-bold text-recovery-green">2/3 DONE</span>
+</div>
+<div class="p-6 bg-slate-50 space-y-3">
+<label class="group flex items-center justify-between rounded-xl border border-green-200 bg-green-50/50 p-4 cursor-pointer hover:bg-green-100 transition-colors">
+<div class="flex items-center gap-3">
+<div class="flex size-6 items-center justify-center rounded-full bg-recovery-green text-white shadow-sm">
+<span class="material-symbols-outlined text-sm animate-check-bounce">check</span>
+</div>
+<span class="text-sm font-bold text-navy">Proof of Delivery</span>
+</div>
+<span class="text-[10px] font-bold uppercase text-recovery-green">Verified</span>
+</label>
+<label class="group flex items-center justify-between rounded-xl border border-green-200 bg-green-50/50 p-4 cursor-pointer hover:bg-green-100 transition-colors">
+<div class="flex items-center gap-3">
+<div class="flex size-6 items-center justify-center rounded-full bg-recovery-green text-white shadow-sm">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<span class="text-sm font-bold text-navy">Invoice #9921</span>
+</div>
+<span class="text-[10px] font-bold uppercase text-recovery-green">Verified</span>
+</label>
+<label class="group flex items-center justify-between rounded-xl border border-dashed border-slate-300 bg-white p-4 cursor-pointer hover:border-recovery-green hover:bg-white transition-all">
+<div class="flex items-center gap-3">
+<div class="size-6 rounded-full border-2 border-slate-200 group-hover:border-recovery-green transition-colors"></div>
+<span class="text-sm font-medium text-slate-500 group-hover:text-navy transition-colors">Digital Signature</span>
+</div>
+<span class="text-[10px] font-bold uppercase text-slate-400 group-hover:text-recovery-green transition-colors">Click to Sign</span>
+</label>
+<button class="mt-4 w-full rounded-lg bg-recovery-green py-3 text-sm font-bold text-white shadow-lg shadow-green-600/20 hover:bg-green-700 transition-all hover:translate-y-[-2px]">
+                                Finalize E-Daakhil Filing
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="fixed bottom-8 right-8 z-40">
+<button class="group flex items-center justify-center gap-2 rounded-full bg-navy px-6 py-4 text-white shadow-2xl transition-all hover:bg-navy-light hover:scale-105 active:scale-95 border-2 border-white/10">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-semibold">AI Assistant</span>
+</button>
+</div>
+
+<script src="../shared-nav-loader.js"></script>
+</body></html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Jurisdiction Routing Console</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b0c2d",
+                        "background-light": "#f9fafb",
+                        "background-dark": "#000000",
+                        "rbi-blue": "#1C7ED6",
+                        "cpa-red": "#E03131",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "4px", // Matches 'rounded-sm' requested in prompt
+                        "sm": "2px",
+                        "md": "4px",
+                        "lg": "8px",
+                        "xl": "12px", 
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        
+        .tree-connector-v {
+            width: 2px;
+            background-color: #E0E0E0;
+        }
+        .tree-connector-h {
+            height: 2px;
+            background-color: #E0E0E0;
+        }
+    </style>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased overflow-hidden">
+<div class="flex h-screen w-full">
+<!-- SIDEBAR -->
+<aside class="w-64 bg-white border-r border-slate-200 flex-shrink-0 flex flex-col z-20 hidden md:flex">
+<div class="p-6 border-b border-slate-100 flex items-center gap-3">
+<div class="size-8 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">shield</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-primary text-base font-bold leading-none">Claimr Admin</h1>
+<span class="text-slate-500 text-xs mt-1">Verified Agent</span>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto p-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-primary rounded group transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:text-primary">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 bg-primary/5 text-primary rounded group transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px] text-primary fill-1">alt_route</span>
+<span class="text-sm font-bold">Jurisdiction Routing</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-primary rounded group transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:text-primary">description</span>
+<span class="text-sm font-medium">Risk Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-primary rounded group transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:text-primary">lock</span>
+<span class="text-sm font-medium">Evidence Locker</span>
+</a>
+<div class="pt-4 mt-4 border-t border-slate-100">
+<p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">System</p>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-primary rounded group transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:text-primary">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</nav>
+<div class="p-4 border-t border-slate-200">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 bg-cover bg-center" data-alt="Portrait of the active user" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5gahFErifhbr1ODYx2nI0IGSxjQSA9ZZIf6yTTpzlxQ8RUpfU2h-o4bE3ivHNe9rzE8vdfUvpGbkiIIUUQjqdjT2I0Zv8_pkCUXT1agU0xKscMoIq0TcWZLg4YrLiFcIhj14QnrXRJLD7ylEdABEqMGNLWG6Ni17TEjxOCG40V_WPpCtVrf2bylFhOF0gqLWcxH_JL0WU-bEXSAh-iSvmvgGGPYyIAuEUrSyoMxZJkYdtE0xGHeRVtwjR-nefHwe4pYDfq0FFUD0');"></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary">Arjun Mehta</span>
+<span class="text-xs text-slate-500">Level 3 Officer</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- MAIN CONTENT -->
+<main class="flex-1 flex flex-col h-full relative overflow-hidden bg-background-light">
+<!-- TOP HEADER -->
+<header data-shared="true"></header>
+<!-- SCROLLABLE CANVAS -->
+<div class="flex-1 overflow-y-auto p-6 md:p-10">
+<div class="max-w-[1024px] mx-auto space-y-8 pb-10">
+<!-- PAGE HEADER -->
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl font-black text-primary tracking-tight">Jurisdiction Routing Console</h1>
+<p class="text-slate-500 text-base max-w-2xl">Select the dispute nature to initiate the correct regulatory protocol (RBI vs. CPA). This determines legal evidence formatting.</p>
+</div>
+<!-- FLOWCHART CONTAINER -->
+<div class="bg-white rounded border border-slate-200 shadow-sm p-8 md:p-12 relative overflow-hidden">
+<!-- Decorative grid background -->
+<div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#0b0c2d 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="relative z-10 flex flex-col items-center">
+<!-- ROOT NODE -->
+<div class="flex flex-col items-center gap-4 w-full max-w-md">
+<div class="bg-primary text-white px-8 py-4 rounded shadow-lg flex flex-col items-center text-center gap-1 w-full border border-primary z-10">
+<span class="uppercase tracking-widest text-[10px] font-bold opacity-70">Step 1: Classification</span>
+<h3 class="text-lg font-bold">Select Issue Type</h3>
+<p class="text-sm text-white/80">What is the core nature of the dispute?</p>
+</div>
+</div>
+<!-- CONNECTORS (The Stick Figure) -->
+<div class="h-10 w-[2px] bg-slate-200"></div>
+<div class="w-[50%] h-[2px] bg-slate-200 relative">
+<!-- Corner Curves (Optional, kept straight for regulatory feel) -->
+<div class="absolute left-0 top-0 w-[2px] h-8 bg-slate-200 origin-top"></div>
+<div class="absolute right-0 top-0 w-[2px] h-8 bg-slate-200 origin-top"></div>
+</div>
+<div class="flex justify-between w-[50%] h-8 -mt-[2px]">
+<!-- Left Vertical Line -->
+<div class="w-[2px] h-full bg-slate-200"></div>
+<!-- Right Vertical Line -->
+<div class="w-[2px] h-full bg-slate-200"></div>
+</div>
+<!-- BRANCH NODES -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full mt-0">
+<!-- LEFT BRANCH: RBI -->
+<div class="group cursor-pointer">
+<div class="bg-white border border-slate-200 rounded p-6 h-full hover:border-rbi-blue hover:shadow-md transition-all duration-200 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-rbi-blue"></div>
+<div class="flex flex-col items-center text-center gap-4">
+<div class="size-14 rounded-full bg-rbi-blue/10 flex items-center justify-center text-rbi-blue group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px]">account_balance</span>
+</div>
+<div>
+<h4 class="text-lg font-bold text-slate-900 group-hover:text-rbi-blue">RBI Protocol</h4>
+<span class="text-xs font-semibold text-slate-400 uppercase tracking-wide">Financial Dispute</span>
+</div>
+<p class="text-sm text-slate-600 leading-relaxed">
+                                                Routing for unauthorized transactions, chargeback failures, KYC fraud, and refund delays.
+                                            </p>
+<div class="mt-auto pt-4">
+<span class="inline-flex items-center text-rbi-blue text-xs font-bold uppercase tracking-wider gap-1">
+                                                    Initiate Banking Ombudsman
+                                                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT BRANCH: CPA -->
+<div class="group cursor-pointer">
+<div class="bg-white border border-slate-200 rounded p-6 h-full hover:border-cpa-red hover:shadow-md transition-all duration-200 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-cpa-red"></div>
+<div class="flex flex-col items-center text-center gap-4">
+<div class="size-14 rounded-full bg-cpa-red/10 flex items-center justify-center text-cpa-red group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px]">balance</span>
+</div>
+<div>
+<h4 class="text-lg font-bold text-slate-900 group-hover:text-cpa-red">CPA Protocol</h4>
+<span class="text-xs font-semibold text-slate-400 uppercase tracking-wide">Service Defect</span>
+</div>
+<p class="text-sm text-slate-600 leading-relaxed">
+                                                Routing for damaged goods, delivery failure, service denial, and misleading advertisements.
+                                            </p>
+<div class="mt-auto pt-4">
+<span class="inline-flex items-center text-cpa-red text-xs font-bold uppercase tracking-wider gap-1">
+                                                    Initiate Consumer Court
+                                                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SCAM DETECTOR TOOL -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<div class="lg:col-span-8 bg-white border border-slate-200 rounded p-6 flex flex-col gap-6">
+<div class="flex items-center justify-between border-b border-slate-100 pb-4">
+<div>
+<h3 class="text-lg font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-cpa-red">policy</span>
+                                        Scam Detector &amp; Evidence Generation
+                                    </h3>
+<p class="text-slate-500 text-sm mt-1">Pre-litigation analysis tool. Generates PDF for legal filing.</p>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-3">
+<div class="flex-1 relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400">link</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 border border-slate-300 rounded text-sm placeholder-slate-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Enter Merchant URL or UPI Transaction ID" type="text"/>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded font-bold text-sm whitespace-nowrap flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]">travel_explore</span>
+                                    Analyze &amp; Generate PDF
+                                </button>
+</div>
+<div class="bg-slate-50 border border-slate-100 rounded p-4 flex items-start gap-3">
+<span class="material-symbols-outlined text-slate-400 mt-0.5">info</span>
+<p class="text-xs text-slate-600 leading-relaxed">
+<strong>Regulatory Note:</strong> Generated reports are watermarked with the timestamp and IP address of the query origin to serve as immutable evidence under Section 65B of the Indian Evidence Act.
+                                </p>
+</div>
+</div>
+<!-- QUICK STATS (Sidebar for the tool) -->
+<div class="lg:col-span-4 flex flex-col gap-4">
+<div class="bg-white border border-slate-200 rounded p-5 flex items-center justify-between">
+<div>
+<p class="text-xs font-semibold text-slate-400 uppercase">Recent Flagged URLs</p>
+<p class="text-2xl font-bold text-primary mt-1">1,204</p>
+</div>
+<div class="bg-cpa-red/10 text-cpa-red p-2 rounded">
+<span class="material-symbols-outlined">warning</span>
+</div>
+</div>
+<div class="bg-white border border-slate-200 rounded p-5 flex items-center justify-between">
+<div>
+<p class="text-xs font-semibold text-slate-400 uppercase">Successful Refunds</p>
+<p class="text-2xl font-bold text-primary mt-1">₹8.4Cr</p>
+</div>
+<div class="bg-rbi-blue/10 text-rbi-blue p-2 rounded">
+<span class="material-symbols-outlined">currency_rupee</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- COMPLIANCE FOOTER -->
+<footer data-shared="true"></footer>
+</div>
+</main>
+</div>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

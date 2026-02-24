@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Interactive Recovery Map</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#16869c",
+                        "background-light": "#f9fafa",
+                        "background-dark": "#16181d",
+                        "surface-dark": "#242A32",
+                        "grid-line": "#293538",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #242A32 1px, transparent 1px), linear-gradient(to bottom, #242A32 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111617; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #293538; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #16869c; 
+        }
+        
+        .glow-node {
+            box-shadow: 0 0 15px rgba(22, 134, 156, 0.4);
+        }
+        .glow-node-active {
+            box-shadow: 0 0 25px rgba(22, 134, 156, 0.8), inset 0 0 10px rgba(22, 134, 156, 0.5);
+        }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Animation for the connection lines */
+        .dash-draw {
+            stroke-dasharray: 10;
+            animation: dash 30s linear infinite;
+        }
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-white overflow-hidden h-screen flex flex-row">
+<!-- LEFT SIDEBAR -->
+<aside class="w-64 bg-[#111617] border-r border-[#293538] flex flex-col h-full z-20 shrink-0">
+<div class="p-6">
+<div class="flex flex-col">
+<h1 class="text-white text-xl font-bold tracking-wider uppercase leading-normal flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">shield_lock</span>
+                    Claimr
+                </h1>
+<p class="text-[#9eb3b7] text-xs font-normal leading-normal tracking-wide mt-1">RecoveryOS v2.4</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-2 px-4 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#9eb3b7] hover:bg-[#293538] hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-[#293538] text-white shadow-[inset_3px_0_0_0_#16869c]" href="#">
+<span class="material-symbols-outlined text-primary fill-1">map</span>
+<span class="text-sm font-medium">Escalation Map</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#9eb3b7] hover:bg-[#293538] hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">description</span>
+<span class="text-sm font-medium">My Claims</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#9eb3b7] hover:bg-[#293538] hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">analytics</span>
+<span class="text-sm font-medium">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#9eb3b7] hover:bg-[#293538] hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">gavel</span>
+<span class="text-sm font-medium">Legal Templates</span>
+</a>
+</nav>
+<div class="p-4 border-t border-[#293538]">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#9eb3b7] hover:bg-[#293538] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+<div class="mt-4 flex items-center gap-3 px-3">
+<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-primary to-blue-400" data-alt="User avatar gradient"></div>
+<div class="flex flex-col">
+<span class="text-sm text-white font-medium">Seller Inc.</span>
+<span class="text-xs text-[#9eb3b7]">Premium Plan</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- MAIN CONTENT AREA -->
+<main class="flex-1 flex flex-col relative h-full overflow-hidden">
+<!-- HUD HEADER -->
+<header data-shared="true"></header>
+<!-- MAP CANVAS -->
+<div class="flex-1 bg-background-dark bg-grid-pattern bg-[size:40px_40px] relative overflow-hidden group/map cursor-grab active:cursor-grabbing">
+<!-- Vignette Overlay -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,#16181d_100%)] pointer-events-none z-0"></div>
+<!-- Simulation Controls (Floating HUD) -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 bg-[#111617]/80 backdrop-blur-md border border-[#293538] rounded-xl p-4 flex flex-wrap items-center gap-6 shadow-2xl z-20 w-auto max-w-[90%]">
+<!-- Input: Courier -->
+<div class="flex flex-col gap-1.5 min-w-[200px]">
+<label class="text-[#9eb3b7] text-xs font-bold uppercase tracking-wider">Courier Service</label>
+<div class="relative">
+<select class="w-full bg-[#293538] border border-[#3d4f52] rounded-lg text-white text-sm px-3 py-2.5 focus:outline-none focus:border-primary appearance-none cursor-pointer">
+<option>Delhivery Express</option>
+<option>BlueDart Surface</option>
+<option>Ecom Express</option>
+<option>XpressBees</option>
+</select>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#9eb3b7]">
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Input: Amount Slider -->
+<div class="flex flex-col gap-1.5 min-w-[240px]">
+<div class="flex justify-between items-center">
+<label class="text-[#9eb3b7] text-xs font-bold uppercase tracking-wider">Claim Loss (₹)</label>
+<span class="text-primary text-sm font-mono font-bold">5,000</span>
+</div>
+<div class="relative h-6 flex items-center">
+<input class="w-full h-1 bg-[#3d4f52] rounded-lg appearance-none cursor-pointer [&amp;::-webkit-slider-thumb]:appearance-none [&amp;::-webkit-slider-thumb]:w-4 [&amp;::-webkit-slider-thumb]:h-4 [&amp;::-webkit-slider-thumb]:rounded-full [&amp;::-webkit-slider-thumb]:bg-primary" max="50000" min="1000" type="range" value="5000"/>
+</div>
+</div>
+<!-- Separator -->
+<div class="w-px h-10 bg-[#293538]"></div>
+<!-- Action Button -->
+<button class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-lg font-bold text-sm shadow-[0_0_15px_rgba(22,134,156,0.4)] transition-all transform hover:scale-105">
+<span class="material-symbols-outlined text-[20px]">play_circle</span>
+                    SIMULATE PATH
+                </button>
+</div>
+<!-- THE GRAPH (Visual Representation) -->
+<!-- Using absolute positioning percentages to create the graph structure -->
+<div class="absolute inset-0 z-10 scale-90 origin-center top-10">
+<!-- SVG Connections Layer -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
+<defs>
+<lineargradient id="lineGradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#3d4f52;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#16869c;stop-opacity:1"></stop>
+</lineargradient>
+<filter id="glow">
+<fegaussianblur result="coloredBlur" stddeviation="2.5"></fegaussianblur>
+<femerge>
+<femergenode in="coloredBlur"></femergenode>
+<femergenode in="SourceGraphic"></femergenode>
+</femerge>
+</filter>
+</defs>
+<!-- Path 1: Start to Ticket -->
+<path class="dash-draw" d="M100,350 C180,350 200,350 300,350" fill="none" filter="url(#glow)" stroke="#16869c" stroke-width="2"></path>
+<!-- Path 2: Ticket to Nodal (Active) -->
+<path class="dash-draw" d="M300,350 C400,350 420,350 550,350" fill="none" filter="url(#glow)" stroke="#16869c" stroke-width="2"></path>
+<!-- Path 3: Nodal to Legal (Future/Active) -->
+<path d="M550,350 C650,350 650,200 800,200" fill="none" stroke="#3d4f52" stroke-dasharray="4" stroke-width="2"></path>
+<!-- Path 4: Nodal to Consumer Forum (Future/High Value) -->
+<path d="M550,350 C650,350 650,500 800,500" fill="none" stroke="#3d4f52" stroke-dasharray="4" stroke-width="2"></path>
+</svg>
+<!-- NODE 1: Start -->
+<div class="absolute left-[100px] top-[350px] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-3">
+<div class="w-4 h-4 rounded-full bg-primary glow-node"></div>
+<span class="text-[#9eb3b7] text-xs font-medium uppercase tracking-wider text-center w-24">RTO Marked</span>
+</div>
+<!-- NODE 2: Ticket Raised -->
+<div class="absolute left-[300px] top-[350px] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-[#111617] border-2 border-primary flex items-center justify-center glow-node z-10 cursor-pointer hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-sm">confirmation_number</span>
+</div>
+<div class="bg-[#111617]/80 backdrop-blur px-2 py-1 rounded border border-[#293538]">
+<span class="text-white text-xs font-bold uppercase tracking-wider whitespace-nowrap">Ticket Raised</span>
+</div>
+</div>
+<!-- NODE 3: Nodal Officer (SELECTED) -->
+<div class="absolute left-[550px] top-[350px] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-3">
+<!-- Ripple Effect -->
+<div class="absolute w-24 h-24 rounded-full border border-primary/20 animate-ping"></div>
+<div class="absolute w-16 h-16 rounded-full bg-primary/20 blur-md"></div>
+<div class="w-14 h-14 rounded-full bg-[#111617] border-2 border-primary flex items-center justify-center glow-node-active z-10 cursor-pointer relative">
+<span class="material-symbols-outlined text-white text-xl">admin_panel_settings</span>
+<!-- Status Indicator -->
+<div class="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-[#111617] flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-[#111617] font-bold">check</span>
+</div>
+</div>
+<div class="bg-primary/10 backdrop-blur px-3 py-1.5 rounded border border-primary/50 shadow-lg">
+<span class="text-primary text-sm font-bold uppercase tracking-wider whitespace-nowrap glow-text">Nodal Officer Escalation</span>
+</div>
+</div>
+<!-- NODE 4: Legal Notice (Branch A) -->
+<div class="absolute left-[800px] top-[200px] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 rounded-full bg-[#111617] border border-[#3d4f52] flex items-center justify-center hover:border-primary z-10 cursor-pointer group">
+<span class="material-symbols-outlined text-[#9eb3b7] group-hover:text-primary">gavel</span>
+</div>
+<span class="text-[#9eb3b7] text-xs font-medium uppercase tracking-wider text-center w-32">Legal Notice</span>
+</div>
+<!-- NODE 5: Consumer Forum (Branch B) -->
+<div class="absolute left-[800px] top-[500px] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 rounded-full bg-[#111617] border border-[#3d4f52] flex items-center justify-center hover:border-primary z-10 cursor-pointer group">
+<span class="material-symbols-outlined text-[#9eb3b7] group-hover:text-primary">balance</span>
+</div>
+<span class="text-[#9eb3b7] text-xs font-medium uppercase tracking-wider text-center w-32">Consumer Forum</span>
+</div>
+</div>
+</div>
+</main>
+<!-- RIGHT CONTEXTUAL PANEL -->
+<aside class="w-[360px] bg-[#111617] border-l border-[#293538] flex flex-col h-full z-30 shadow-[-10px_0_20px_rgba(0,0,0,0.3)]">
+<!-- Node Header -->
+<div class="p-6 border-b border-[#293538] bg-[#16181d]">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary border border-primary/30">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+</div>
+<div>
+<h3 class="text-white font-bold text-lg leading-tight">Nodal Officer</h3>
+<p class="text-[#9eb3b7] text-xs">Stage 2 • Escalation</p>
+</div>
+</div>
+<div class="px-2 py-1 bg-green-500/20 rounded border border-green-500/30">
+<span class="text-green-400 text-[10px] font-bold uppercase tracking-wide">Recommended</span>
+</div>
+</div>
+<p class="text-[#9eb3b7] text-sm leading-relaxed">
+                Escalating to the Grievance Redressal Officer is mandatory under the IT Act 2000 before legal action.
+            </p>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-6 flex flex-col gap-6">
+<!-- Dynamic Metric: Response Time -->
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<h4 class="text-white text-sm font-bold uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">timer</span> Live Response Time
+                    </h4>
+</div>
+<!-- CSS Gauge Simulation -->
+<div class="bg-[#242A32] rounded-xl p-4 border border-[#293538] flex items-center gap-4">
+<div class="relative w-20 h-20 flex-shrink-0">
+<svg class="w-full h-full transform -rotate-90">
+<circle cx="40" cy="40" fill="none" r="32" stroke="#293538" stroke-width="8"></circle>
+<circle cx="40" cy="40" fill="none" r="32" stroke="#16869c" stroke-dasharray="200" stroke-dashoffset="60" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="text-white font-bold text-lg">7</span>
+<span class="text-[10px] text-[#9eb3b7] uppercase">Days</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-sm text-white">Expected reply by <span class="font-bold text-primary">Nov 14</span></span>
+<span class="text-xs text-[#9eb3b7]">Based on 1,240 recent claims with this courier.</span>
+</div>
+</div>
+</div>
+<!-- Dynamic Metric: Success Probability -->
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<h4 class="text-white text-sm font-bold uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">trending_up</span> Success Probability
+                    </h4>
+<span class="text-green-400 font-bold text-lg">85%</span>
+</div>
+<div class="bg-[#242A32] rounded-xl p-4 border border-[#293538]">
+<!-- Heatmap Grid Simulation -->
+<div class="grid grid-cols-10 gap-1 h-8 w-full mb-3">
+<div class="bg-green-500 h-full rounded-sm opacity-100"></div>
+<div class="bg-green-500 h-full rounded-sm opacity-100"></div>
+<div class="bg-green-500 h-full rounded-sm opacity-100"></div>
+<div class="bg-green-500 h-full rounded-sm opacity-100"></div>
+<div class="bg-green-500 h-full rounded-sm opacity-100"></div>
+<div class="bg-green-500 h-full rounded-sm opacity-100"></div>
+<div class="bg-green-500 h-full rounded-sm opacity-80"></div>
+<div class="bg-green-500 h-full rounded-sm opacity-60"></div>
+<div class="bg-[#293538] h-full rounded-sm"></div>
+<div class="bg-[#293538] h-full rounded-sm"></div>
+</div>
+<p class="text-xs text-[#9eb3b7]">
+                        High probability of resolution at this stage for claims under ₹10k.
+                    </p>
+</div>
+</div>
+<!-- Cost Estimates -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between p-3 rounded-lg bg-[#293538]/50 border border-[#293538]">
+<span class="text-[#9eb3b7] text-sm">Filing Cost</span>
+<span class="text-white font-mono text-sm">₹0.00</span>
+</div>
+<div class="flex justify-between p-3 rounded-lg bg-[#293538]/50 border border-[#293538]">
+<span class="text-[#9eb3b7] text-sm">Est. Compensation</span>
+<span class="text-green-400 font-mono text-sm">+ ₹500.00</span>
+</div>
+</div>
+</div>
+<!-- Sticky Action Footer -->
+<div class="p-6 border-t border-[#293538] bg-[#16181d]">
+<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white p-4 rounded-xl font-bold shadow-lg transition-all group">
+<span class="material-symbols-outlined group-hover:rotate-45 transition-transform">send</span>
+                ESCALATE TO NODAL OFFICER
+            </button>
+<p class="text-center text-[#9eb3b7] text-[10px] mt-3">
+                Automated email draft generated instantly.
+            </p>
+</div>
+</aside>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

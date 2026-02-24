@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr Recovery Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f4d5c",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#121d20",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2629",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 2px 10px rgba(0, 0, 0, 0.03)',
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .kanban-col {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
+        }
+        .kanban-col::-webkit-scrollbar {
+            width: 4px;
+        }
+        .kanban-col::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .kanban-col::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-100 h-screen w-full flex overflow-hidden selection:bg-primary/20">
+<!-- Sidebar -->
+<aside class="w-64 bg-surface-light dark:bg-surface-dark border-r border-slate-200 dark:border-slate-700 flex flex-col h-full z-20 flex-shrink-0 transition-colors duration-300">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary/10 rounded-lg p-2">
+<div class="bg-primary rounded-full w-6 h-6 flex items-center justify-center">
+<span class="text-white material-symbols-outlined text-sm font-bold">gavel</span>
+</div>
+</div>
+<div>
+<h1 class="text-slate-900 dark:text-white text-lg font-bold leading-tight">Claimr</h1>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium">Recovery Center</p>
+</div>
+</div>
+<nav class="flex-1 px-4 flex flex-col gap-2 overflow-y-auto mt-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary dark:text-teal-400 group transition-all" href="#">
+<span class="material-symbols-outlined filled" data-weight="fill">dashboard</span>
+<span class="text-sm font-semibold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary dark:group-hover:text-teal-400 transition-colors">assignment</span>
+<span class="text-sm font-medium">Claims</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary dark:group-hover:text-teal-400 transition-colors">bar_chart</span>
+<span class="text-sm font-medium">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary dark:group-hover:text-teal-400 transition-colors">integration_instructions</span>
+<span class="text-sm font-medium">Integrations</span>
+</a>
+<div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800">
+<p class="px-3 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">System</p>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary dark:group-hover:text-teal-400 transition-colors">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary dark:group-hover:text-teal-400 transition-colors">help</span>
+<span class="text-sm font-medium">Legal Support</span>
+</a>
+</div>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-700">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center border-2 border-white dark:border-slate-600" data-alt="User profile picture showing a professional man in a suit" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWEHurSfq6IaUZ3mgWG411SKmeb-37q7_0OfW4Bi6sFtitR9IS1KkIdyj4yuiGQt0xXPiFKQH95f9t6262rNek-sgSJ0qJjWCRJGv8K8HHJVosh6gIFHpn1dFtmWwA-Ijf1f6EcDNtOVn__-MRn71QswjIwpLspGbBqAKU06IFUozUUReK3HMtLlkRKbT6BExadO8iWILqtnB2Yw5Vsoy1pcRujqjrC6keEal6x2ssRDA2E6tHAG5cUHLQvweBU3Qf6fW6GaQ5soY');"></div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-slate-800"></div>
+</div>
+<div class="flex flex-col overflow-hidden">
+<p class="text-sm font-bold text-slate-900 dark:text-white truncate">Rajesh Kumar</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate">Seller ID: #8821</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Top Header & Metrics -->
+<header data-shared="true"></header>
+<!-- Kanban Board Area -->
+<div class="flex-1 overflow-x-auto overflow-y-hidden bg-background-light dark:bg-background-dark p-8 pt-6">
+<div class="flex h-full gap-6 min-w-[1200px]">
+<!-- Column 1: Investigation -->
+<div class="flex flex-col w-80 shrink-0 h-full">
+<div class="flex items-center justify-between mb-4 px-1">
+<h3 class="font-bold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-orange-400"></span>
+                            Investigation
+                        </h3>
+<span class="bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold px-2 py-1 rounded-full">12</span>
+</div>
+<div class="kanban-col flex-1 overflow-y-auto pr-2 pb-10 flex flex-col gap-4">
+<!-- Card 1 -->
+<div class="group bg-white dark:bg-slate-800 p-4 rounded-lg shadow-card border border-slate-100 dark:border-slate-700 cursor-grab active:cursor-grabbing hover:shadow-md transition-all hover:border-primary/50 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-orange-400"></div>
+<div class="flex justify-between items-start mb-3 pl-2">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center text-[10px] font-bold text-blue-800">B</div>
+<span class="text-xs font-bold text-slate-700 dark:text-slate-200">BlueDart</span>
+</div>
+<span class="text-[10px] font-medium text-slate-400">Oct 21</span>
+</div>
+<div class="flex gap-3 pl-2">
+<div class="w-16 h-16 rounded-md bg-slate-100 dark:bg-slate-700 bg-cover bg-center shrink-0 border border-slate-200 dark:border-slate-600" data-alt="Small cardboard shipping box with damaged tape" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA3ZHMGD-W3bPCQrbYxsjggZfPxFnFiLLQwdGU4kQvRqsqNDmwZROrPkjNMTX8EmhBk5BhG98GCHZBOAjUhB3gZxJ-qFbgqgF4Lhnjb0mptYCwikd-gYQiQY7MnTAT7d_9bocfblTo3xuOXhLtjQU9mWy2bmO-mBfB2wYD4rBebpDEEH0zW3Hh2_9zgBGilOz-YKOAnVz50Emtz9eXxv2RN8Nkuy9I1tTv3jYlSRck_aZw9-4hZDbQw11-2I14aFFBmqFB7DBR0MlA');"></div>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-mono">#ORD-9921</p>
+<p class="text-sm font-bold text-slate-800 dark:text-white leading-tight truncate">Weight Discrepancy</p>
+</div>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[10px] font-semibold text-red-600 bg-red-50 dark:bg-red-900/20 px-1.5 py-0.5 rounded border border-red-100 dark:border-red-900/30">Loss: ₹ 2,400</span>
+</div>
+</div>
+</div>
+<div class="mt-3 pl-2 flex items-center gap-2">
+<div class="h-1 flex-1 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-orange-400 w-1/4"></div>
+</div>
+<span class="text-[10px] text-slate-400 font-medium">2d active</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group bg-white dark:bg-slate-800 p-4 rounded-lg shadow-card border border-slate-100 dark:border-slate-700 cursor-grab active:cursor-grabbing hover:shadow-md transition-all hover:border-primary/50 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-orange-400"></div>
+<div class="flex justify-between items-start mb-3 pl-2">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-red-100 flex items-center justify-center text-[10px] font-bold text-red-800">D</div>
+<span class="text-xs font-bold text-slate-700 dark:text-slate-200">Delhivery</span>
+</div>
+<span class="text-[10px] font-medium text-slate-400">Oct 20</span>
+</div>
+<div class="flex gap-3 pl-2">
+<div class="w-16 h-16 rounded-md bg-slate-100 dark:bg-slate-700 bg-cover bg-center shrink-0 border border-slate-200 dark:border-slate-600" data-alt="Poly bag shipping package with torn corner" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBrISl0Gu5fDZLynZeQ0qWNz89RQrpAKUngJRu1GlpuhdzjAwvrdEsXeVuILEB1gP0_OcWfvse4WZxj1O-74UpQxcWg5SeOjU4Al8iO0m1BKWx0MQtBaOF1kEUnzdE7socysyWoLAD5TNEQcvj6XxqLPPB_0Tc4J0GKdf0ehZQrb1lR4qZrEalpHCJLXztazPcIlIe_SpdoY93rkrEbY9SgtLbjmSq2hQKfObVABWkndg29ZM17GZaWC0K6mQmoHJGvYUmho4f1dhs');"></div>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-mono">#ORD-9945</p>
+<p class="text-sm font-bold text-slate-800 dark:text-white leading-tight truncate">Wrong Product Return</p>
+</div>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[10px] font-semibold text-red-600 bg-red-50 dark:bg-red-900/20 px-1.5 py-0.5 rounded border border-red-100 dark:border-red-900/30">Loss: ₹ 8,500</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column 2: Notified -->
+<div class="flex flex-col w-80 shrink-0 h-full">
+<div class="flex items-center justify-between mb-4 px-1">
+<h3 class="font-bold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                            Notified
+                        </h3>
+<span class="bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold px-2 py-1 rounded-full">8</span>
+</div>
+<div class="kanban-col flex-1 overflow-y-auto pr-2 pb-10 flex flex-col gap-4">
+<!-- Card 1 -->
+<div class="group bg-white dark:bg-slate-800 p-4 rounded-lg shadow-card border border-slate-100 dark:border-slate-700 cursor-grab active:cursor-grabbing hover:shadow-md transition-all hover:border-primary/50 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500"></div>
+<div class="flex justify-between items-start mb-3 pl-2">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-yellow-100 flex items-center justify-center text-[10px] font-bold text-yellow-800">E</div>
+<span class="text-xs font-bold text-slate-700 dark:text-slate-200">Ecom Exp</span>
+</div>
+<span class="text-[10px] font-medium text-slate-400">Oct 18</span>
+</div>
+<div class="flex gap-3 pl-2">
+<div class="w-16 h-16 rounded-md bg-slate-100 dark:bg-slate-700 bg-cover bg-center shrink-0 border border-slate-200 dark:border-slate-600" data-alt="Brown corrugated box opened showing empty space" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC51F32IaN6cHvM8ITgjMVb8tpNGv5eNH_ZaNnvhpK6MH37_xP_XDEJ3hE-cTDHYC7J9vofzWaOs89yvL-EPOHxmc96ooUQ7kcE9LeVLHhFZsCGdYDsuCT1G4OR4rWhnQO9_DeaEJVZCnZscwQ8IGw2n0KLTIFGdV-iFCAKtyXy4Gi-EFqiHqrejBTVqIBxrmBINm0t88rWim91n9eDwvxmIAUPptcrAAZuxQIg5BfQOtA57j8qPYKPiDCBBQuF8iF2rREWedxFCLc');"></div>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-mono">#ORD-8822</p>
+<p class="text-sm font-bold text-slate-800 dark:text-white leading-tight truncate">Legal Notice Sent</p>
+</div>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[10px] font-semibold text-red-600 bg-red-50 dark:bg-red-900/20 px-1.5 py-0.5 rounded border border-red-100 dark:border-red-900/30">Loss: ₹ 5,000</span>
+</div>
+</div>
+</div>
+<div class="mt-3 pl-2">
+<div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 p-1.5 rounded text-[10px] text-slate-500 dark:text-slate-300">
+<span class="material-symbols-outlined text-[14px]">mail</span>
+                                    Sent via Regd. Post &amp; Email
+                                </div>
+</div>
+<div class="mt-2 pl-2 flex items-center gap-2">
+<div class="h-1 flex-1 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-blue-500 w-1/2"></div>
+</div>
+<span class="text-[10px] text-slate-400 font-medium">5d active</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Column 3: In-Court -->
+<div class="flex flex-col w-80 shrink-0 h-full">
+<div class="flex items-center justify-between mb-4 px-1">
+<h3 class="font-bold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                            In-Court
+                        </h3>
+<span class="bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold px-2 py-1 rounded-full">5</span>
+</div>
+<div class="kanban-col flex-1 overflow-y-auto pr-2 pb-10 flex flex-col gap-4">
+<!-- Card 1 -->
+<div class="group bg-white dark:bg-slate-800 p-4 rounded-lg shadow-card border border-slate-100 dark:border-slate-700 cursor-grab active:cursor-grabbing hover:shadow-md transition-all hover:border-primary/50 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex justify-between items-start mb-3 pl-2">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-purple-100 flex items-center justify-center text-[10px] font-bold text-purple-800">S</div>
+<span class="text-xs font-bold text-slate-700 dark:text-slate-200">Shadowfax</span>
+</div>
+<span class="text-[10px] font-medium text-slate-400">Sep 12</span>
+</div>
+<div class="flex gap-3 pl-2">
+<div class="w-16 h-16 rounded-md bg-slate-100 dark:bg-slate-700 bg-cover bg-center shrink-0 border border-slate-200 dark:border-slate-600" data-alt="Stack of paper documents representing legal case file" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBrljPH2J3lT2S9QaK-qoHVH4sYZLLsafbqDbrwwRnxbqYlibbecp6Gok3wvCL21RHV7PaYweiLWb0Kvcc3AG4TEnt2IpdaztD3i6ha7j2LbDnSQybS5LdTmf-yH85MI9cG02Sp5R9rDAqDlEnNm4R4by5FwQ87cTRM6jS5RDfAQYS9WgKbzBRo2q78TENCzs_OzacZN7qEFHYKs_o7bP3r2HCTYzuQKu0Bhsg_04oEHCYKrACdbPFtbzCxAHvWbptcDz9gKkAUzeA');"></div>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-mono">#CDR-2024</p>
+<p class="text-sm font-bold text-slate-800 dark:text-white leading-tight truncate">Hearing Scheduled</p>
+</div>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[10px] font-semibold text-red-600 bg-red-50 dark:bg-red-900/20 px-1.5 py-0.5 rounded border border-red-100 dark:border-red-900/30">Loss: ₹ 12,000</span>
+</div>
+</div>
+</div>
+<div class="mt-3 pl-2">
+<div class="flex items-center justify-between bg-primary/5 dark:bg-primary/20 p-2 rounded border border-primary/10">
+<div class="flex items-center gap-2 text-primary dark:text-teal-300">
+<span class="material-symbols-outlined text-[16px]">event</span>
+<span class="text-xs font-bold">24 Oct 2024</span>
+</div>
+<span class="text-[10px] font-medium text-slate-500 dark:text-slate-400">Bangalore Dist.</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group bg-white dark:bg-slate-800 p-4 rounded-lg shadow-card border border-slate-100 dark:border-slate-700 cursor-grab active:cursor-grabbing hover:shadow-md transition-all hover:border-primary/50 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex justify-between items-start mb-3 pl-2">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center text-[10px] font-bold text-blue-800">B</div>
+<span class="text-xs font-bold text-slate-700 dark:text-slate-200">BlueDart</span>
+</div>
+<span class="text-[10px] font-medium text-slate-400">Sep 01</span>
+</div>
+<div class="flex gap-3 pl-2">
+<div class="w-16 h-16 rounded-md bg-slate-100 dark:bg-slate-700 bg-cover bg-center shrink-0 border border-slate-200 dark:border-slate-600" data-alt="Laptop box appearing opened and resealed" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-51TLmxOCCEP8IEexteCnC7G5m_TPBnjKuMVVeVFVCeSqjk-_uoC_ykpLyne73-yMdXfvR2AXJ-8FdODQ26uNE5zUpvhOZpaoi_RkVSO_4KOm2L6xjRAhwaCEZJeOG2-BICz5Jj8jpTk_CcWnfeJGN1SA5L0mRuOz3OJT0wjv9FL_4kDLIu7wp2rzq544S7KC17S66e5m5rrGizeLWkkBQHJH8MgLAo57cYiolSfERu9fEwYPnE27eyJqVeEZWderL9H66tOhtL4');"></div>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-mono">#CDR-2023-99</p>
+<p class="text-sm font-bold text-slate-800 dark:text-white leading-tight truncate">Consumer Forum</p>
+</div>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[10px] font-semibold text-red-600 bg-red-50 dark:bg-red-900/20 px-1.5 py-0.5 rounded border border-red-100 dark:border-red-900/30">Loss: ₹ 45,000</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column 4: Settled -->
+<div class="flex flex-col w-80 shrink-0 h-full">
+<div class="flex items-center justify-between mb-4 px-1">
+<h3 class="font-bold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                            Settled
+                        </h3>
+<span class="bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold px-2 py-1 rounded-full">24</span>
+</div>
+<div class="kanban-col flex-1 overflow-y-auto pr-2 pb-10 flex flex-col gap-4">
+<!-- Card 1 -->
+<div class="group bg-white dark:bg-slate-800 p-4 rounded-lg shadow-card border border-slate-100 dark:border-slate-700 cursor-grab active:cursor-grabbing hover:shadow-md transition-all hover:border-green-500/50 relative overflow-hidden opacity-75 hover:opacity-100">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-green-500"></div>
+<div class="flex justify-between items-start mb-3 pl-2">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-orange-100 flex items-center justify-center text-[10px] font-bold text-orange-800">X</div>
+<span class="text-xs font-bold text-slate-700 dark:text-slate-200">XpressBees</span>
+</div>
+<span class="text-[10px] font-medium text-green-600 dark:text-green-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                    Closed
+                                </span>
+</div>
+<div class="flex gap-3 pl-2">
+<div class="w-16 h-16 rounded-md bg-slate-100 dark:bg-slate-700 bg-cover bg-center shrink-0 border border-slate-200 dark:border-slate-600 grayscale" data-alt="Small electronic item box" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAOebbBumuNidqIoEEjtA5AbbeHKMX78JqXLJsOFfRDoR6zqDmJVZPk47yGGM_rkBq24aWRdh95_hXwcYvZw0mjr1eSH54rPg9KrK1MBHtrj9EwRhxHs0QeUnELOAZWH2_UJrJ1YCaZfuvayY3I0iQcNH7U9di0OiRNNuGuhhpIGtjgf7oogR0e1Mk0IXG7YZT49E7xlcVB8jsUOueBbBZ5VB49K1IRCM275n-QR4Ilv9BJRk9M_l6WZW_jYdnp_6TKyoA0nX8Ypxg');"></div>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-mono">#ORD-1102</p>
+<p class="text-sm font-bold text-slate-800 dark:text-white leading-tight truncate">Refund Processed</p>
+</div>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[10px] font-bold text-green-700 bg-green-100 dark:bg-green-900/30 px-1.5 py-0.5 rounded border border-green-200 dark:border-green-800">Won: ₹ 3,200</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group bg-white dark:bg-slate-800 p-4 rounded-lg shadow-card border border-slate-100 dark:border-slate-700 cursor-grab active:cursor-grabbing hover:shadow-md transition-all hover:border-green-500/50 relative overflow-hidden opacity-75 hover:opacity-100">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-green-500"></div>
+<div class="flex justify-between items-start mb-3 pl-2">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center text-[10px] font-bold text-blue-800">B</div>
+<span class="text-xs font-bold text-slate-700 dark:text-slate-200">BlueDart</span>
+</div>
+<span class="text-[10px] font-medium text-green-600 dark:text-green-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                    Closed
+                                </span>
+</div>
+<div class="flex gap-3 pl-2">
+<div class="w-16 h-16 rounded-md bg-slate-100 dark:bg-slate-700 bg-cover bg-center shrink-0 border border-slate-200 dark:border-slate-600 grayscale" data-alt="Generic shipping parcel" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCaSNeyRKGkStMR5JXE_1lhDwTfQTr0R_rF-oDIpJ5yJWiLOkjlua_PIsrFyNYuWC-h_FiiyoQlFxZ6hS9lWddCbJwHBvmFuJJWBWGWIMyYyeGh587rtYkhwGvA88wz6SXgbkmEWKUrF7JqtJaVJGemmfyMm5Z6VUt1D_I68bT3YQsvcCt-GBU_rxoPfBkw8lXE3UhDmYp1PLpcmZagQko99etDJtzeaR78Y8TLIvCGt6YL5EL4jQ1vnEUz7Ni8LTtYbv_CT3KSJ6Y');"></div>
+<div class="flex flex-col justify-between flex-1 min-w-0">
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-mono">#ORD-1005</p>
+<p class="text-sm font-bold text-slate-800 dark:text-white leading-tight truncate">Settlement Agreed</p>
+</div>
+<div class="mt-2 flex items-center justify-between">
+<span class="text-[10px] font-bold text-green-700 bg-green-100 dark:bg-green-900/30 px-1.5 py-0.5 rounded border border-green-200 dark:border-green-800">Won: ₹ 1,500</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script src="../shared-nav-loader.js"></script>
+</body></html>

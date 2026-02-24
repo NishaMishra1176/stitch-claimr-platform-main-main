@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Claimr - Annual RTO Bleed Hub</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#cb2b25", // Alert Red
+            "background-light": "#fafafa",
+            "background-dark": "#1e2838",
+            "surface-light": "#ffffff",
+            "surface-dark": "#2d3748",
+            "text-main": "#171212",
+            "text-muted": "#64748b",
+            "border-color": "#e2e8f0",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"],
+            "body": ["Noto Sans", "sans-serif"],
+          },
+          borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+        },
+      },
+    }
+  </script>
+<style>
+    /* Custom range slider styling */
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      background: transparent;
+    }
+    
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background: #cb2b25;
+      cursor: pointer;
+      margin-top: -8px;
+      box-shadow: 0 0 0 4px rgba(203, 43, 37, 0.2);
+    }
+    
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 4px;
+      cursor: pointer;
+      background: #e5e7eb;
+      border-radius: 2px;
+    }
+    
+    .pulse-text {
+      animation: pulse-red 2s infinite;
+    }
+    
+    @keyframes pulse-red {
+      0% {
+        color: #cb2b25;
+        text-shadow: 0 0 0 rgba(203, 43, 37, 0);
+      }
+      50% {
+        color: #ef4444;
+        text-shadow: 0 0 10px rgba(203, 43, 37, 0.2);
+      }
+      100% {
+        color: #cb2b25;
+        text-shadow: 0 0 0 rgba(203, 43, 37, 0);
+      }
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-body text-text-main dark:text-white transition-colors duration-200">
+<!-- Main Container -->
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Shared Header Placeholder -->
+<header data-shared="true"></header>
+<main class="flex-1">
+<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+<!-- Hero Section -->
+<a href="../claimr_home_-_financial_triage_variant_1_1/code.html" class="block group">
+<div class="mb-12 text-center hover:bg-[#f8fafc] transition-colors p-4 rounded-lg">
+<h1 class="font-display text-4xl font-bold tracking-tight text-text-main dark:text-white sm:text-5xl lg:text-6xl">
+            Stop Your Annual <span class="text-primary decoration-4 underline-offset-4">RTO Bleed</span>.
+          </h1>
+<p class="mt-4 text-lg text-text-muted dark:text-gray-400">
+            Use the calculator to visualize exactly how much logistics fraud is costing your business right now.
+          </p>
+</div>
+</a>
+<!-- Calculator & Ticker Dashboard -->
+<div class="grid gap-8 lg:grid-cols-12">
+<!-- Input Column -->
+<a href="../capital-at-risk_global_report_variant_4/code.html" class="block group lg:col-span-5">
+<div class="rounded-xl border border-border-color bg-surface-light p-6 shadow-sm dark:border-gray-700 dark:bg-surface-dark hover:shadow-md transition-shadow">
+<div class="mb-6 flex items-center justify-between border-b border-border-color pb-4 dark:border-gray-700">
+<h3 class="font-display text-lg font-bold">Input Parameters</h3>
+<span class="material-symbols-outlined text-text-muted">tune</span>
+</div>
+<div class="space-y-8">
+<!-- Slider 1 -->
+<div class="group">
+<div class="mb-2 flex items-center justify-between">
+<label class="font-display text-sm font-medium text-text-muted">Monthly Order Volume</label>
+<a href="../annual_rto_bleed_hub_variant_1/code.html" class="rounded bg-gray-100 px-2 py-1 font-mono text-sm font-bold text-text-main dark:bg-gray-800 dark:text-white hover:bg-gray-200 transition-colors">25,000</a>
+</div>
+<input class="accent-primary" max="100000" min="0" step="1000" type="range" value="25000"/>
+<div class="mt-1 flex justify-between text-xs text-text-muted">
+<span>0</span>
+<span>100k</span>
+</div>
+</div>
+<!-- Slider 2 -->
+<div class="group">
+<div class="mb-2 flex items-center justify-between">
+<label class="font-display text-sm font-medium text-text-muted">Current RTO Rate</label>
+<a href="../pending_case_danger_visualizer_variant_1/code.html" class="rounded bg-gray-100 px-2 py-1 font-mono text-sm font-bold text-text-main dark:bg-gray-800 dark:text-white hover:bg-gray-200 transition-colors">15%</a>
+</div>
+<input class="accent-primary" max="40" min="0" step="1" type="range" value="15"/>
+<div class="mt-1 flex justify-between text-xs text-text-muted">
+<span>0%</span>
+<span>40%</span>
+</div>
+</div>
+<!-- Slider 3 (Average Order Value) -->
+<div class="group">
+<div class="mb-2 flex items-center justify-between">
+<label class="font-display text-sm font-medium text-text-muted">Avg. Order Value (AOV)</label>
+<a href="../loss_mirror_calculator_variant_2/code.html" class="rounded bg-gray-100 px-2 py-1 font-mono text-sm font-bold text-text-main dark:bg-gray-800 dark:text-white hover:bg-gray-200 transition-colors">₹1,200</a>
+</div>
+<input class="accent-primary" max="10000" min="100" step="100" type="range" value="1200"/>
+<div class="mt-1 flex justify-between text-xs text-text-muted">
+<span>₹100</span>
+<span>₹10k</span>
+</div>
+</div>
+</div>
+<div class="mt-8 rounded bg-yellow-50 p-4 text-xs text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-200">
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-sm">info</span>
+<p>Calculations based on industry standard CAC of ₹400 and reverse logistics cost of ₹120 per order.</p>
+</div>
+</div>
+</div>
+</a>
+<!-- Result Column -->
+<a href="../payment_recovery_action_hub/code.html" class="block group lg:col-span-7">
+<div class="flex flex-col justify-between rounded-xl border border-primary/20 bg-surface-light shadow-xl shadow-primary/5 dark:border-primary/20 dark:bg-surface-dark hover:shadow-2xl transition-shadow">
+<div class="flex flex-1 flex-col items-center justify-center p-8 text-center">
+<p class="mb-2 font-display text-sm font-bold uppercase tracking-widest text-text-muted">Projected Annual Loss</p>
+<h2 class="pulse-text font-display text-6xl font-black tracking-tight sm:text-7xl lg:text-8xl">
+                ₹4,50,000
+              </h2>
+<div class="mt-4 flex items-center gap-2 rounded-full bg-red-100 px-3 py-1 text-sm font-bold text-red-700 dark:bg-red-900/30 dark:text-red-300">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+<span>Critical Financial Leakage</span>
+</div>
+</div>
+<div class="border-t border-border-color bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-800/50">
+<div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+<div class="text-center sm:text-left">
+<p class="text-sm text-text-muted">Claimr can recover up to <strong class="text-text-main dark:text-white">80%</strong> of this loss.</p>
+</div>
+<div class="group flex items-center gap-2 rounded bg-primary px-8 py-4 font-display text-lg font-bold text-white shadow-lg shadow-primary/30 transition-all hover:bg-red-700 hover:shadow-primary/50">
+<span>Recover Your ₹4.5L Now</span>
+<span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<!-- Breakdown Section -->
+<div class="mt-12">
+<div class="mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<h3 class="font-display text-xl font-bold text-text-main dark:text-white">Hidden Cost Breakdown</h3>
+</div>
+<div class="grid gap-6 md:grid-cols-3">
+<!-- Card 1 -->
+<a href="../capital-at-risk_global_report_variant_4/code.html" class="block group">
+<div class="relative overflow-hidden rounded-lg border border-border-color bg-surface-light p-5 transition-all hover:border-gray-300 dark:border-gray-700 dark:bg-surface-dark hover:shadow-md">
+<div class="absolute -right-4 -top-4 h-16 w-16 rounded-full bg-blue-50 dark:bg-blue-900/20"></div>
+<div class="relative z-10">
+<p class="text-sm font-medium text-text-muted">Marketing Waste (CAC)</p>
+<div class="mt-2 flex items-baseline gap-2">
+<h4 class="font-display text-2xl font-bold text-text-main dark:text-white">₹1,50,000</h4>
+<span class="text-xs text-red-500">33%</span>
+</div>
+<div class="mt-4 h-2 w-full rounded-full bg-gray-100 dark:bg-gray-700">
+<div class="h-2 w-1/3 rounded-full bg-blue-500"></div>
+</div>
+<p class="mt-2 text-xs text-text-muted">Ad spend burned on customers who never accepted the order.</p>
+</div>
+</div>
+</a>
+<!-- Card 2 -->
+<a href="../annual_rto_bleed_hub_variant_1/code.html" class="block group">
+<div class="relative overflow-hidden rounded-lg border border-border-color bg-surface-light p-5 transition-all hover:border-gray-300 dark:border-gray-700 dark:bg-surface-dark hover:shadow-md">
+<div class="absolute -right-4 -top-4 h-16 w-16 rounded-full bg-orange-50 dark:bg-orange-900/20"></div>
+<div class="relative z-10">
+<p class="text-sm font-medium text-text-muted">Logistics (Fwd + Rev)</p>
+<div class="mt-2 flex items-baseline gap-2">
+<h4 class="font-display text-2xl font-bold text-text-main dark:text-white">₹2,25,000</h4>
+<span class="text-xs text-red-500">50%</span>
+</div>
+<div class="mt-4 h-2 w-full rounded-full bg-gray-100 dark:bg-gray-700">
+<div class="h-2 w-1/2 rounded-full bg-orange-500"></div>
+</div>
+<p class="mt-2 text-xs text-text-muted">Double shipping fees paid to 3PL partners for failed deliveries.</p>
+</div>
+</div>
+</a>
+<!-- Card 3 -->
+<a href="../loss_mirror_calculator_variant_2/code.html" class="block group">
+<div class="relative overflow-hidden rounded-lg border border-border-color bg-surface-light p-5 transition-all hover:border-gray-300 dark:border-gray-700 dark:bg-surface-dark hover:shadow-md">
+<div class="absolute -right-4 -top-4 h-16 w-16 rounded-full bg-purple-50 dark:bg-purple-900/20"></div>
+<div class="relative z-10">
+<p class="text-sm font-medium text-text-muted">Ops &amp; Packaging</p>
+<div class="mt-2 flex items-baseline gap-2">
+<h4 class="font-display text-2xl font-bold text-text-main dark:text-white">₹75,000</h4>
+<span class="text-xs text-red-500">17%</span>
+</div>
+<div class="mt-4 h-2 w-full rounded-full bg-gray-100 dark:bg-gray-700">
+<div class="h-2 w-[17%] rounded-full bg-purple-500"></div>
+</div>
+<p class="mt-2 text-xs text-text-muted">Cost of boxes, tape, labor, and inventory damage.</p>
+</div>
+</div>
+</a>
+</div>
+</div>
+<!-- Trust Section -->
+<div class="mt-16 border-t border-border-color pt-8 text-center dark:border-gray-700">
+<p class="mb-6 font-display text-xs font-bold uppercase tracking-widest text-text-muted">Data Verified By</p>
+<div class="flex flex-wrap justify-center gap-8 opacity-60 grayscale transition-all duration-500 hover:opacity-100 hover:grayscale-0">
+<!-- Placeholder logos using text for simplicity in this demo, but structured for SVGs -->
+<div class="flex items-center gap-2 text-xl font-bold text-text-main dark:text-white">
+<span class="material-symbols-outlined">local_shipping</span> ShipRocket
+             </div>
+<div class="flex items-center gap-2 text-xl font-bold text-text-main dark:text-white">
+<span class="material-symbols-outlined">flight_takeoff</span> BlueDart
+             </div>
+<div class="flex items-center gap-2 text-xl font-bold text-text-main dark:text-white">
+<span class="material-symbols-outlined">inventory_2</span> Delhivery
+             </div>
+<div class="flex items-center gap-2 text-xl font-bold text-text-main dark:text-white">
+<span class="material-symbols-outlined">package_2</span> EcomExpress
+             </div>
+</div>
+</div>
+</div>
+</main>
+<!-- Shared Footer Placeholder -->
+<footer data-shared="true"></footer>
+<!-- Load Shared Header & Footer -->
+<script src="../shared-nav-loader.js"></script>
+</body></html>
