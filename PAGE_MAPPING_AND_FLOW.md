@@ -1,7 +1,7 @@
-# Claimr Platform: Complete Page-to-Page Mapping & Conversion Flow
+# AmazonReconciliation Platform: Complete Page-to-Page Mapping & Conversion Flow
 
 ## Overview
-This document maps all 86+ pages in the Claimr platform to the end-to-end recovery flow, showing how each page connects to others and contributes to the conversion goal.
+This document maps all 86+ pages in the AmazonReconciliation platform to the end-to-end recovery flow, showing how each page connects to others and contributes to the conversion goal.
 
 ## The 6-Stage Recovery Flow (Customer Journey)
 
@@ -10,23 +10,23 @@ This document maps all 86+ pages in the Claimr platform to the end-to-end recove
 
 **Pages in this stage:**
 - `index.html` (Merged homepage - primary entry)
-- `claimr_homepage_-_panic_interceptor_1/code.html` (Main panic interceptor)
-- `claimr_homepage_-_panic_interceptor_2/code.html` (Alternative panic interceptor)
-- `claimr_homepage_-_panic_interceptor_3/code.html` (Alternative panic interceptor)
-- `claimr_homepage_-_panic_interceptor_4/code.html` (Alternative panic interceptor)
-- `claimr_home_-_panic-to-proof_variant_1/code.html` (Panic-to-proof flow)
-- `claimr_home_-_authoritative_entry_variant_1/code.html` (Authoritative entry)
+- `amazonreconciliation_homepage_-_panic_interceptor_1/code.html` (Main panic interceptor)
+- `amazonreconciliation_homepage_-_panic_interceptor_2/code.html` (Alternative panic interceptor)
+- `amazonreconciliation_homepage_-_panic_interceptor_3/code.html` (Alternative panic interceptor)
+- `amazonreconciliation_homepage_-_panic_interceptor_4/code.html` (Alternative panic interceptor)
+- `amazonreconciliation_home_-_panic-to-proof_variant_1/code.html` (Panic-to-proof flow)
+- `amazonreconciliation_home_-_authoritative_entry_variant_1/code.html` (Authoritative entry)
 
 **Primary Navigation Links:**
-- From Stage 0 → Stage 1: All pages link to `claimr_home_-_financial_triage_variant_1_1/code.html`
-- From Stage 0 → Stage 2: All pages link to `claimr_home_-_forensic_engine_variant_2/code.html`
+- From Stage 0 → Stage 1: All pages link to `amazonreconciliation_home_-_financial_triage_variant_1_1/code.html`
+- From Stage 0 → Stage 2: All pages link to `amazonreconciliation_home_-_forensic_engine_variant_2/code.html`
 
 ### Stage 1: Situation Classification (Auto-routing)
 **Goal**: Convert emotional panic into specific diagnosis
 
 **Pages in this stage:**
-- `claimr_home_-_financial_triage_variant_1_1/code.html` (Financial triage)
-- `claimr_home_-_financial_triage_variant_1_2/code.html` (Financial triage variant)
+- `amazonreconciliation_home_-_financial_triage_variant_1_1/code.html` (Financial triage)
+- `amazonreconciliation_home_-_financial_triage_variant_1_2/code.html` (Financial triage variant)
 - `pending_case_shock_dashboard_variant_1/code.html` (Pending case dashboard)
 - `pending_case_danger_visualizer_variant_1/code.html` (Pending case visualizer)
 - `crisis_lifecycle_master_index/code.html` (Crisis lifecycle)
@@ -43,7 +43,7 @@ This document maps all 86+ pages in the Claimr platform to the end-to-end recove
 **Goal**: Prove reality ≠ courier story with irrefutable evidence
 
 **Pages in this stage:**
-- `claimr_home_-_forensic_engine_variant_2/code.html` (Main forensic engine)
+- `amazonreconciliation_home_-_forensic_engine_variant_2/code.html` (Main forensic engine)
 - `fake_rto_forensic_checker_1/code.html` (Fake RTO checker)
 - `fake_rto_forensic_checker_2/code.html` (Fake RTO checker variant)
 - `fake_rto_forensic_checker_3/code.html` (Fake RTO checker variant)
@@ -85,7 +85,7 @@ This document maps all 86+ pages in the Claimr platform to the end-to-end recove
 **Goal**: Force written response and legal action through nodal officers
 
 **Pages in this stage:**
-- `claimr_home_-_escalation_engine_variant_1/code.html` (Main escalation engine)
+- `amazonreconciliation_home_-_escalation_engine_variant_1/code.html` (Main escalation engine)
 - `interactive_escalation_reply_tool_variant_2/code.html` (Escalation reply tool)
 - `legal_notice_generator_1/code.html` (Legal notice generator)
 - `legal_notice_generator_2/code.html` (Legal notice generator variant)
@@ -107,7 +107,7 @@ This document maps all 86+ pages in the Claimr platform to the end-to-end recove
 
 **Pages in this stage:**
 - `seller_recovery_management_dashboard/code.html` (Main recovery dashboard)
-- `claimr_recovery_dashboard_ui/code.html` (Recovery dashboard UI)
+- `amazonreconciliation_recovery_dashboard_ui/code.html` (Recovery dashboard UI)
 - `payment_recovery_action_hub/code.html` (Payment recovery hub)
 - `asset_recovery_hub_variant_3/code.html` (Asset recovery hub)
 - `wallet_blocked_legal_fix/code.html` (Wallet legal fix)
@@ -140,9 +140,9 @@ Every page includes the same header with these navigation options:
 - **Home** → `index.html`
 - **My Risk** → `seller_recovery_management_dashboard/code.html`
 - **Evidence** → `sla_evidence_engine_variant_2/code.html`
-- **Legal** → `claimr_home_-_escalation_engine_variant_1/code.html`
+- **Legal** → `amazonreconciliation_home_-_escalation_engine_variant_1/code.html`
 - **Recovery** → `payment_recovery_action_hub/code.html`
-- **Primary CTA** → `claimr_home_-_financial_triage_variant_1_1/code.html` (Escalate Now)
+- **Primary CTA** → `amazonreconciliation_home_-_financial_triage_variant_1_1/code.html` (Escalate Now)
 
 ### Footer Navigation Structure
 Every page includes the same footer organized by:

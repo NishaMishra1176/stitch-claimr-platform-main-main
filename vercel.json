@@ -37,22 +37,22 @@
     },
     {
       "source": "/panic-interceptor",
-      "destination": "/claimr_homepage_-_panic_interceptor_1/code.html",
+      "destination": "/amazonreconciliation_homepage_-_panic_interceptor_1/code.html",
       "permanent": true
     },
     {
       "source": "/command-center",
-      "destination": "/claimr_home_-_command_center_variant_1/code.html",
+      "destination": "/amazonreconciliation_home_-_command_center_variant_1/code.html",
       "permanent": true
     },
     {
       "source": "/escalation-engine",
-      "destination": "/claimr_home_-_escalation_engine_variant_1/code.html",
+      "destination": "/amazonreconciliation_home_-_escalation_engine_variant_1/code.html",
       "permanent": true
     },
     {
       "source": "/forensic-engine",
-      "destination": "/claimr_home_-_forensic_engine_variant_2/code.html",
+      "destination": "/amazonreconciliation_home_-_forensic_engine_variant_2/code.html",
       "permanent": true
     },
     {
@@ -107,12 +107,12 @@
     },
     {
       "source": "/how-it-works",
-      "destination": "/how_it_works_&_about_claimr/code.html",
+      "destination": "/how_it_works_&_about_amazonreconciliation/code.html",
       "permanent": true
     },
     {
       "source": "/financial-triage",
-      "destination": "/claimr_home_-_financial_triage_variant_1_1/code.html",
+      "destination": "/amazonreconciliation_home_-_financial_triage_variant_1_1/code.html",
       "permanent": true
     },
     {
@@ -132,7 +132,7 @@
     },
     {
       "source": "/legal",
-      "destination": "/claimr_home_-_escalation_engine_variant_1/code.html",
+      "destination": "/amazonreconciliation_home_-_escalation_engine_variant_1/code.html",
       "permanent": true
     },
     {
@@ -142,17 +142,17 @@
     },
     {
       "source": "/triage",
-      "destination": "/claimr_home_-_financial_triage_variant_1_1/code.html",
+      "destination": "/amazonreconciliation_home_-_financial_triage_variant_1_1/code.html",
       "permanent": true
     },
     {
       "source": "/forensics",
-      "destination": "/claimr_home_-_forensic_engine_variant_2/code.html",
+      "destination": "/amazonreconciliation_home_-_forensic_engine_variant_2/code.html",
       "permanent": true
     },
     {
       "source": "/escalation",
-      "destination": "/claimr_home_-_escalation_engine_variant_1/code.html",
+      "destination": "/amazonreconciliation_home_-_escalation_engine_variant_1/code.html",
       "permanent": true
     },
     {

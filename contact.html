@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Contact Us - AmazonReconciliation</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b1c2d",
+                        "primary-light": "#1a3a5a",
+                        "background-light": "#f7f9fb",
+                        "background-dark": "#101418",
+                        "text-main": "#0b1c2d",
+                        "text-body": "#3A4654",
+                        "success": "#10b981",
+                        "alert": "#C62828",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "md": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Modern Header Styles */
+        .header {
+            height: 72px;
+            transition: all 0.3s ease;
+        }
+        
+        .header.scrolled {
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+        
+        .nav-link {
+            color: #374151;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .nav-link:hover {
+            color: #0b1c2d;
+        }
+        
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.2s ease;
+            min-width: 260px;
+            border-radius: 12px;
+        }
+        
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .dropdown-header h4 {
+            font-weight: 600;
+            font-size: 13px;
+            color: #0b1c2d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .dropdown-header p {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+        
+        .dropdown-item {
+            padding: 10px 16px;
+            color: #374151;
+            font-size: 14px;
+            transition: all 0.15s ease;
+            display: block;
+        }
+        
+        .dropdown-item:hover {
+            background: #f9fafb;
+            color: #0b1c2d;
+            padding-left: 20px;
+        }
+        
+        .dropdown-item.with-icon {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dropdown-dot {
+            width: 6px;
+            height: 6px;
+            background: #0b1c2d;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .btn-login {
+            color: #0b1c2d;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-login:hover {
+            color: #1a3a5a;
+            background: #f3f4f6;
+            border-radius: 6px;
+        }
+        
+        .btn-signup {
+            background: #0b1c2d;
+            color: white;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-signup:hover {
+            background: #1a3a5a;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-escalate {
+            background: #C62828;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-escalate:hover {
+            background: #b71c1c;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(198, 40, 40, 0.3);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            max-height: 100vh;
+        }
+        
+        .mobile-nav-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .mobile-dropdown-content.open {
+            max-height: 500px;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.5rem;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-icon .material-symbols-outlined {
+            color: white;
+            font-size: 32px;
+        }
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0b1c2d;
+            margin-bottom: 1rem;
+        }
+        .modal-message {
+            color: #3A4654;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .modal-button {
+            background: #0b1c2d;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .modal-button:hover {
+            background: #1a3a5a;
+        }
+    </style>
+    
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script>
+        (function() {
+            // Supabase Configuration
+            const SUPABASE_URL = "https://blxlvcllpkspwnmojxnb.supabase.co";
+            const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJseGx2Y2xscGtzcHdubW9qeG5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxOTI5ODAsImV4cCI6MjA4Nzc2ODk4MH0.eNUYHOh2YRAHEijq9jM8yki1V4wW5jdUYSx7BifxJNw";
+            
+            const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+
+                if (mobileMenuBtn && mobileMenu) {
+                    mobileMenuBtn.addEventListener('click', function() {
+                        mobileMenu.classList.toggle('hidden');
+                        const icon = mobileMenuBtn.querySelector('span');
+                        if (mobileMenu.classList.contains('hidden')) {
+                            icon.textContent = 'menu';
+                        } else {
+                            icon.textContent = 'close';
+                        }
+                    });
+                }
+
+                // Contact Form Submission Handler
+                const contactForm = document.getElementById('contactForm');
+                const modalOverlay = document.getElementById('confirmationModal');
+                const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+                if (contactForm && modalOverlay) {
+                    contactForm.addEventListener('submit', async function(e) {
+                        e.preventDefault();
+
+                        // Get form values
+                        const fullName = document.getElementById('full_name').value;
+                        const email = document.getElementById('email').value;
+                        const subject = document.getElementById('subject').value;
+                        const message = document.getElementById('message').value;
+
+                        // Validate form
+                        if (!fullName || !email || !subject || !message) {
+                            alert('Please fill in all fields');
+                            return;
+                        }
+
+                        try {
+                            // Insert data into Supabase contact_messages table
+                            const { data, error } = await supabase
+                                .from('contact_messages')
+                                .insert([
+                                    {
+                                        full_name: fullName,
+                                        email: email,
+                                        subject: subject,
+                                        message: message
+                                    }
+                                ]);
+
+                            if (error) {
+                                throw error;
+                            }
+
+                            // Show success modal
+                            modalOverlay.classList.add('active');
+
+                            // Clear the form
+                            contactForm.reset();
+                        } catch (error) {
+                            console.error('Error submitting contact form:', error);
+                            alert('Error: ' + error.message + '\n\nPlease try again later.');
+                        }
+                    });
+                }
+
+                // Close modal when clicking the close button
+                if (modalCloseBtn) {
+                    modalCloseBtn.addEventListener('click', function() {
+                        modalOverlay.classList.remove('active');
+                    });
+                }
+
+                // Close modal when clicking outside the modal content
+                modalOverlay.addEventListener('click', function(e) {
+                    if (e.target === modalOverlay) {
+                        modalOverlay.classList.remove('active');
+                    }
+                });
+            });
+        })();
+    </script>
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuIcon = mobileMenuBtn?.querySelector('span');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('open');
+                    mobileMenu.classList.toggle('hidden');
+                    if (mobileMenuIcon) {
+                        mobileMenuIcon.textContent = mobileMenu.classList.contains('open') ? 'close' : 'menu';
+                    }
+                });
+            }
+
+            // Mobile dropdown toggles
+            const dropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            dropdownToggles.forEach(function(toggle) {
+                toggle.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('.material-symbols-outlined:last-child');
+                    if (content) {
+                        content.classList.toggle('open');
+                        if (icon) {
+                            icon.textContent = content.classList.contains('open') ? 'expand_less' : 'expand_more';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body class="bg-background-light text-text-body font-display selection:bg-primary/20 selection:text-primary overflow-x-hidden antialiased flex flex-col min-h-screen">
+<!-- Modern Header -->
+<header class="header sticky top-0 z-50 bg-white/95 backdrop-blur-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-full">
+<!-- Logo Section -->
+<div class="flex items-center gap-3 flex-shrink-0">
+<div class="w-9 h-9 bg-primary rounded-lg flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[22px]">shield_lock</span>
+</div>
+<a href="./index.html" class="text-xl font-bold tracking-tight text-primary">AmazonReconciliation</a>
+</div>
+
+<!-- Desktop Navigation -->
+<nav class="hidden lg:flex items-center gap-8">
+<!-- Start Dropdown -->
+<div class="relative group">
+<a class="nav-link" href="./index.html">
+<span class="material-symbols-outlined text-sm">home</span>
+Start
+<span class="material-symbols-outlined text-xs">expand_more</span>
+</a>
+<div class="dropdown-menu absolute top-full left-0 mt-2 bg-white shadow-xl border border-gray-100 py-2">
+<div class="dropdown-header">
+<h4>Entry Points</h4>
+<p>Choose your starting point</p>
+</div>
+<a class="dropdown-item with-icon" href="./index.html">
+<span class="dropdown-dot"></span>
+Merged Homepage
+</a>
+<a class="dropdown-item with-icon" href="./AmazonReconciliation_homepage_-_panic_interceptor_1/code.html">
+<span class="dropdown-dot"></span>
+Panic Interceptor
+</a>
+<a class="dropdown-item with-icon" href="./AmazonReconciliation_home_-_panic-to-proof_variant_1/code.html">
+<span class="dropdown-dot"></span>
+Panic-to-Proof
+</a>
+<a class="dropdown-item with-icon" href="./AmazonReconciliation_home_-_financial_triage_variant_1_1/code.html">
+<span class="dropdown-dot"></span>
+Financial Triage
+</a>
+</div>
+</div>
+
+<!-- What Happened Dropdown -->
+<div class="relative group">
+<a class="nav-link" href="./AmazonReconciliation_homepage_-_panic_interceptor_1/code.html">
+<span class="material-symbols-outlined text-sm">help_outline</span>
+What Happened?
+<span class="material-symbols-outlined text-xs">expand_more</span>
+</a>
+<div class="dropdown-menu absolute top-full left-0 mt-2 bg-white shadow-xl border border-gray-100 py-2">
+<div class="dropdown-header">
+<h4>Describe Your Problem</h4>
+<p>Select your issue</p>
+</div>
+<a class="dropdown-item" href="./fake_delivery_evidence_page_variant_2/code.html">Package marked delivered but not received</a>
+<a class="dropdown-item" href="./fake_rto_forensic_checker_1/code.html">Courier says "Customer Not Available"</a>
+<a class="dropdown-item" href="./pending_case_danger_visualizer_variant_1/code.html">Order stuck as "Pending" too long</a>
+<a class="dropdown-item" href="./claim_reversal_visualizer_variant_3/code.html">Refund was approved, then reversed</a>
+<a class="dropdown-item" href="./wallet_blocked_legal_fix/code.html">Wallet / payout blocked</a>
+<a class="dropdown-item" href="./capital-at-risk_global_report_variant_4/code.html">Amazon settlement mismatch</a>
+<a class="dropdown-item" href="./courier_grievance_hub_variant_2/code.html">Courier not responding</a>
+</div>
+</div>
+
+<!-- Risk Dropdown -->
+<div class="relative group">
+<a class="nav-link" href="./seller_recovery_management_dashboard/code.html">
+<span class="material-symbols-outlined text-sm">visibility</span>
+Risk
+<span class="material-symbols-outlined text-xs">expand_more</span>
+</a>
+<div class="dropdown-menu absolute top-full left-0 mt-2 bg-white shadow-xl border border-gray-100 py-2">
+<div class="dropdown-header">
+<h4>Risk Assessment</h4>
+<p>Evaluate your losses</p>
+</div>
+<a class="dropdown-item" href="./seller_recovery_management_dashboard/code.html">Recovery Dashboard</a>
+<a class="dropdown-item" href="./loss_mirror_calculator_variant_2/code.html">Loss Calculator</a>
+<a class="dropdown-item" href="./capital-at-risk_global_report_variant_4/code.html">Capital Risk Report</a>
+<a class="dropdown-item" href="./annual_rto_bleed_hub_variant_1/code.html">RTO Bleed Hub</a>
+</div>
+</div>
+
+<!-- Proof Dropdown -->
+<div class="relative group">
+<a class="nav-link" href="./sla_evidence_engine_variant_2/code.html">
+<span class="material-symbols-outlined text-sm">lock</span>
+Proof
+<span class="material-symbols-outlined text-xs">expand_more</span>
+</a>
+<div class="dropdown-menu absolute top-full left-0 mt-2 bg-white shadow-xl border border-gray-100 py-2">
+<div class="dropdown-header">
+<h4>Evidence Tools</h4>
+<p>Build your case</p>
+</div>
+<a class="dropdown-item" href="./sla_evidence_engine_variant_2/code.html">SLA Evidence Engine</a>
+<a class="dropdown-item" href="./AmazonReconciliation_home_-_forensic_engine_variant_2/code.html">Forensic Engine</a>
+<a class="dropdown-item" href="./fake_rto_forensic_checker_1/code.html">Forensic Checker</a>
+<a class="dropdown-item" href="./forensic_rto_diagnostic_ui_1/code.html">RTO Diagnostic</a>
+</div>
+</div>
+
+<!-- Action Dropdown -->
+<div class="relative group">
+<a class="nav-link" href="./AmazonReconciliation_home_-_escalation_engine_variant_1/code.html">
+<span class="material-symbols-outlined text-sm">gavel</span>
+Action
+<span class="material-symbols-outlined text-xs">expand_more</span>
+</a>
+<div class="dropdown-menu absolute top-full left-0 mt-2 bg-white shadow-xl border border-gray-100 py-2">
+<div class="dropdown-header">
+<h4>Legal Tools</h4>
+<p>Take legal action</p>
+</div>
+<a class="dropdown-item" href="./AmazonReconciliation_home_-_escalation_engine_variant_1/code.html">Escalation Engine</a>
+<a class="dropdown-item" href="./legal_notice_generator_1/code.html">Legal Notice Generator</a>
+<a class="dropdown-item" href="./nodal_officer_email_directory/code.html">Nodal Directory</a>
+<a class="dropdown-item" href="./consumer_court_filing_guide/code.html">Court Filing Guide</a>
+</div>
+</div>
+
+<!-- Money Back Dropdown -->
+<div class="relative group">
+<a class="nav-link" href="./payment_recovery_action_hub/code.html">
+<span class="material-symbols-outlined text-sm">account_balance_wallet</span>
+Money Back
+<span class="material-symbols-outlined text-xs">expand_more</span>
+</a>
+<div class="dropdown-menu absolute top-full left-0 mt-2 bg-white shadow-xl border border-gray-100 py-2">
+<div class="dropdown-header">
+<h4>Recovery Tools</h4>
+<p>Get your money back</p>
+</div>
+<a class="dropdown-item" href="./payment_recovery_action_hub/code.html">Payment Recovery Hub</a>
+<a class="dropdown-item" href="./seller_recovery_management_dashboard/code.html">Recovery Dashboard</a>
+<a class="dropdown-item" href="./asset_recovery_hub_variant_3/code.html">Asset Recovery Hub</a>
+<a class="dropdown-item" href="./AmazonReconciliation_recovery_dashboard_ui/code.html">Recovery Dashboard</a>
+</div>
+</div>
+
+<!-- Platform Flow -->
+<a class="nav-link" href="./SITEMAP.md" style="gap: 0;">Platform Flow</a>
+
+<!-- Contact Us -->
+<a class="nav-link" href="./contact.html" style="gap: 0;">Contact Us</a>
+</nav>
+
+<!-- Right Side CTA Section -->
+<div class="hidden lg:flex items-center gap-3">
+<a href="./login.html" class="btn-login">Login</a>
+<a href="./login.html" class="btn-signup">Sign Up</a>
+<a href="./AmazonReconciliation_home_-_financial_triage_variant_1_1/code.html" class="btn-escalate">
+Escalate Now
+</a>
+</div>
+
+<!-- Mobile Menu Button -->
+<button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Toggle menu">
+<span class="material-symbols-outlined text-2xl text-primary">menu</span>
+</button>
+</div>
+</div>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu hidden lg:hidden bg-white border-t border-gray-100">
+<div class="px-4 py-4 space-y-2 max-h-[80vh] overflow-y-auto">
+<!-- Start Dropdown -->
+<div class="mobile-nav-item">
+<button class="mobile-dropdown-toggle w-full flex items-center justify-between text-sm font-medium text-gray-700 py-3">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">home</span>
+Start
+</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="mobile-dropdown-content pl-8 space-y-2">
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./index.html">Merged Homepage</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./AmazonReconciliation_homepage_-_panic_interceptor_1/code.html">Panic Interceptor</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./AmazonReconciliation_home_-_panic-to-proof_variant_1/code.html">Panic-to-Proof</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./AmazonReconciliation_home_-_financial_triage_variant_1_1/code.html">Financial Triage</a>
+</div>
+</div>
+
+<!-- What Happened Dropdown -->
+<div class="mobile-nav-item">
+<button class="mobile-dropdown-toggle w-full flex items-center justify-between text-sm font-medium text-gray-700 py-3">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">help_outline</span>
+What Happened?
+</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="mobile-dropdown-content pl-8 space-y-2">
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./fake_delivery_evidence_page_variant_2/code.html">Package marked delivered but not received</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./fake_rto_forensic_checker_1/code.html">Courier says "Customer Not Available"</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./pending_case_danger_visualizer_variant_1/code.html">Order stuck as "Pending" too long</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./claim_reversal_visualizer_variant_3/code.html">Refund was approved, then reversed</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./wallet_blocked_legal_fix/code.html">Wallet / payout blocked</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./capital-at-risk_global_report_variant_4/code.html">Amazon settlement mismatch</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./courier_grievance_hub_variant_2/code.html">Courier not responding</a>
+</div>
+</div>
+
+<!-- Risk Dropdown -->
+<div class="mobile-nav-item">
+<button class="mobile-dropdown-toggle w-full flex items-center justify-between text-sm font-medium text-gray-700 py-3">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">visibility</span>
+Risk
+</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="mobile-dropdown-content pl-8 space-y-2">
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./seller_recovery_management_dashboard/code.html">Recovery Dashboard</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./loss_mirror_calculator_variant_2/code.html">Loss Calculator</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./capital-at-risk_global_report_variant_4/code.html">Capital Risk Report</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./annual_rto_bleed_hub_variant_1/code.html">RTO Bleed Hub</a>
+</div>
+</div>
+
+<!-- Proof Dropdown -->
+<div class="mobile-nav-item">
+<button class="mobile-dropdown-toggle w-full flex items-center justify-between text-sm font-medium text-gray-700 py-3">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">lock</span>
+Proof
+</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="mobile-dropdown-content pl-8 space-y-2">
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./sla_evidence_engine_variant_2/code.html">SLA Evidence Engine</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./AmazonReconciliation_home_-_forensic_engine_variant_2/code.html">Forensic Engine</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./fake_rto_forensic_checker_1/code.html">Forensic Checker</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./forensic_rto_diagnostic_ui_1/code.html">RTO Diagnostic</a>
+</div>
+</div>
+
+<!-- Action Dropdown -->
+<div class="mobile-nav-item">
+<button class="mobile-dropdown-toggle w-full flex items-center justify-between text-sm font-medium text-gray-700 py-3">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">gavel</span>
+Action
+</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="mobile-dropdown-content pl-8 space-y-2">
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./AmazonReconciliation_home_-_escalation_engine_variant_1/code.html">Escalation Engine</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./legal_notice_generator_1/code.html">Legal Notice Generator</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./nodal_officer_email_directory/code.html">Nodal Directory</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./consumer_court_filing_guide/code.html">Court Filing Guide</a>
+</div>
+</div>
+
+<!-- Money Back Dropdown -->
+<div class="mobile-nav-item">
+<button class="mobile-dropdown-toggle w-full flex items-center justify-between text-sm font-medium text-gray-700 py-3">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">account_balance_wallet</span>
+Money Back
+</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="mobile-dropdown-content pl-8 space-y-2">
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./payment_recovery_action_hub/code.html">Payment Recovery Hub</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./seller_recovery_management_dashboard/code.html">Recovery Dashboard</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./asset_recovery_hub_variant_3/code.html">Asset Recovery Hub</a>
+<a class="block text-sm text-gray-600 py-2 hover:text-primary" href="./AmazonReconciliation_recovery_dashboard_ui/code.html">Recovery Dashboard</a>
+</div>
+</div>
+
+<!-- Mobile Links -->
+<div class="pt-4 space-y-3">
+<a class="block text-sm font-medium text-gray-700 py-2" href="./SITEMAP.md">Platform Flow</a>
+<a class="block text-sm font-medium text-gray-700 py-2" href="./contact.html">Contact Us</a>
+<div class="flex items-center gap-2 pt-2">
+<a href="./login.html" class="flex-1 text-center text-sm font-medium text-primary py-2.5 border border-primary rounded-lg">Login</a>
+<a href="./login.html" class="flex-1 text-center text-sm font-medium text-white py-2.5 bg-primary rounded-lg">Sign Up</a>
+</div>
+<a href="./AmazonReconciliation_home_-_financial_triage_variant_1_1/code.html" class="block w-full text-center bg-[#C62828] hover:bg-red-700 text-white font-semibold py-3 rounded-lg transition-colors">
+Escalate Now
+</a>
+</div>
+</div>
+</div>
+</header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative bg-primary py-20 sm:py-32 overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+                <div class="absolute bottom-0 right-0 w-96 h-96 bg-red-600 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6 tracking-tight">
+                    Get in <span class="text-red-500">Touch</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                    Have questions about recovery? We're here to help you fight courier fraud and recover your stuck revenue.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Cards Section -->
+        <section class="py-16 sm:py-24 -mt-12 sm:-mt-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Office -->
+                    <div class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:border-red-500/20 transition-all group">
+                        <div class="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center text-red-600 mb-6 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">location_on</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-4">Our Office</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Signimus Technologies Pvt Ltd<br/>
+                            23, PU4, Scheme 54 PU4,<br/>
+                            Indore, Madhya Pradesh 452011
+                        </p>
+                    </div>
+
+                    <!-- Phone & WhatsApp -->
+                    <div class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:border-red-500/20 transition-all group">
+                        <div class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center text-green-600 mb-6 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">call</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-4">Call & WhatsApp</h3>
+                        <div class="space-y-2">
+                            <p class="text-gray-600 flex items-center gap-2">
+                                <span class="font-semibold">Phone:</span> <a href="tel:+918225998112" class="hover:text-red-600 transition-colors">+91 8225998112</a>
+                            </p>
+                            <p class="text-gray-600 flex items-center gap-2">
+                                <span class="font-semibold">WhatsApp:</span> <a href="https://wa.me/918225998112" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 transition-colors">+91 8225998112</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:border-red-500/20 transition-all group">
+                        <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">mail</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-4">Email Us</h3>
+                        <div class="space-y-2">
+                            <p class="text-gray-600">
+                                <a href="mailto:support@amazonreconciliation.in" class="hover:text-red-600 transition-colors">support@amazonreconciliation.in</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="py-12 sm:py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">Send us a message</h2>
+                <p class="text-gray-600">Fill out the form below and our team will get back to you within 24 hours.</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+                <form id="contactForm" action="javascript:void(0)" method="post" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-primary" for="full_name">Full Name</label>
+                        <input type="text" id="full_name" name="full_name" placeholder="John Doe" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all outline-none"/>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-primary" for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all outline-none"/>
+                    </div>
+                    <div class="sm:col-span-2 space-y-2">
+                        <label class="text-sm font-semibold text-primary" for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="How can we help?" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all outline-none"/>
+                    </div>
+                    <div class="sm:col-span-2 space-y-2">
+                        <label class="text-sm font-semibold text-primary" for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Your message here..." required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all outline-none resize-none"></textarea>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 rounded-lg shadow-lg shadow-red-600/20 transition-all transform hover:-translate-y-1">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (Consistent with index.html but updated) -->
+    <footer class="bg-background-dark text-gray-400 py-8 sm:py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
+                <div class="col-span-1 sm:col-span-2 lg:col-span-1">
+                    <div class="flex items-center gap-2 mb-3 sm:mb-4">
+                        <span class="material-symbols-outlined text-white text-xl sm:text-2xl">shield_lock</span>
+                        <span class="text-lg font-bold text-white">AmazonReconciliation</span>
+                    </div>
+                    <p class="text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
+                        Fighting courier fraud with legal precision. Based in Indore, India
+                    </p>
+                    <div class="mt-6 mb-6">
+                        <h4 class="text-white font-semibold mb-3 text-sm">Get in Touch</h4>
+                        <div class="space-y-3 text-xs sm:text-sm">
+                            <p class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-red-500 text-base">location_on</span>
+                                <span>Signimus Technologies Pvt Ltd 23, PU4, Scheme 54 PU4, Indore, Madhya Pradesh 452011</span>
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-red-500 text-base">call</span>
+                                <a href="tel:+918225998112" class="hover:text-white transition-colors">+91 8225998112</a>
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-green-500 text-base">chat</span>
+                                <a href="https://wa.me/918225998112" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">WhatsApp: +91 8225998112</a>
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-red-500 text-base">mail</span>
+                                <a href="mailto:support@amazonreconciliation.in" class="hover:text-white transition-colors">support@amazonreconciliation.in</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 sm:gap-4">
+                        <a class="hover:text-white transition-colors text-xs" href="./how_it_works_&_about_AmazonReconciliation/code.html">Privacy Policy</a>
+                        <a class="hover:text-white transition-colors text-xs" href="./scope_&_fees_-_pricing_legitimacy/code.html">Terms of Service</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Entry Points</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm">
+                        <li><a class="hover:text-white transition-colors" href="./index.html">Merged Homepage</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./AmazonReconciliation_homepage_-_panic_interceptor_1/code.html">Panic Interceptor 1</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./AmazonReconciliation_homepage_-_panic_interceptor_2/code.html">Panic Interceptor 2</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./AmazonReconciliation_homepage_-_panic_interceptor_3/code.html">Panic Interceptor 3</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./AmazonReconciliation_homepage_-_panic_interceptor_4/code.html">Panic Interceptor 4</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Diagnosis</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm">
+                        <li><a class="hover:text-white transition-colors" href="./AmazonReconciliation_home_-_financial_triage_variant_1_1/code.html">Financial Triage</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./crisis_lifecycle_master_index/code.html">Crisis Lifecycle</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./who_this_is_for_-_client_filtering_page/code.html">Client Filter</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./audience_segmentation_entry_ui_variant_1/code.html">Audience Segmentation</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./pending_case_danger_visualizer_variant_1/code.html">Danger Visualizer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Problems We Handle</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm">
+                        <li><a class="hover:text-white transition-colors" href="./fake_delivery_evidence_page_variant_2/code.html">Fake Delivery Attempts</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./fake_rto_forensic_checker_1/code.html">Fake RTO Cases</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./pending_case_danger_visualizer_variant_1/code.html">Pending Too Long</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./wallet_blocked_legal_fix/code.html">Wallet Blocks</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./claim_reversal_visualizer_variant_3/code.html">Claim Reversals</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 border-t border-gray-800 pt-8 sm:pt-12 mb-8 sm:mb-12">
+                <div>
+                    <h4 class="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Stage 1: Identify</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm">
+                        <li><a class="hover:text-white transition-colors" href="./index.html">Merged Homepage</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./AmazonReconciliation_homepage_-_panic_interceptor_1/code.html">Panic Interceptor</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./AmazonReconciliation_home_-_financial_triage_variant_1_1/code.html">Financial Triage</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./crisis_lifecycle_master_index/code.html">Crisis Lifecycle</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./who_this_is_for_-_client_filtering_page/code.html">Client Filter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Stage 2: Risk</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm">
+                        <li><a class="hover:text-white transition-colors" href="./seller_recovery_management_dashboard/code.html">Recovery Dashboard</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./loss_mirror_calculator_variant_2/code.html">Loss Calculator</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./capital-at-risk_global_report_variant_4/code.html">Capital Risk Report</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./pending_case_danger_visualizer_variant_1/code.html">Danger Visualizer</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./deadline_lockout_timer_variant_4/code.html">Timer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Stage 3: Evidence</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm">
+                        <li><a class="hover:text-white transition-colors" href="./AmazonReconciliation_home_-_forensic_engine_variant_2/code.html">Forensic Engine</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./fake_rto_forensic_checker_1/code.html">Forensic Checker</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./sla_evidence_engine_variant_2/code.html">Evidence Engine</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./forensic_rto_diagnostic_ui_1/code.html">RTO Diagnostic</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./fake_attempt_geo-validator_variant_2_1/code.html">Geo Validator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Stage 4: Legal Action</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm">
+                        <li><a class="hover:text-white transition-colors" href="./AmazonReconciliation_home_-_escalation_engine_variant_1/code.html">Escalation Engine</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./legal_notice_generator_1/code.html">Legal Notice Generator</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./nodal_officer_email_directory/code.html">Nodal Directory</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./consumer_court_filing_guide/code.html">Court Filing Guide</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./interactive_notice_constructor_ui/code.html">Notice Constructor</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Stage 5: Recovery</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm">
+                        <li><a class="hover:text-white transition-colors" href="./payment_recovery_action_hub/code.html">Payment Recovery Hub</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./seller_recovery_management_dashboard/code.html">Recovery Dashboard</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./asset_recovery_hub_variant_3/code.html">Asset Recovery Hub</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./wallet_blocked_legal_fix/code.html">Wallet Legal Fix</a></li>
+                        <li><a class="hover:text-white transition-colors" href="./AmazonReconciliation_recovery_dashboard_ui/code.html">Recovery Dashboard UI</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 sm:pt-8 text-center text-xs">
+                <p>We are not affiliated with Amazon; we are a third-party service. | Powered by Signimus</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <span class="material-symbols-outlined">check</span>
+            </div>
+            <h3 class="modal-title">Thank You!</h3>
+            <p class="modal-message">Thank you for contacting us. Our team will reach out to you soon.</p>
+            <button id="modalCloseBtn" class="modal-button">OK</button>
+        </div>
+    </div>
+</body>
+</html>

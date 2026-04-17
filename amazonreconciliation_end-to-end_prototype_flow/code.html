@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AmazonReconciliation Prototype Flow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b1c2d",
+                        "primary-light": "#1a3a5a",
+                        "background-light": "#f7f9fb",
+                        "background-dark": "#101418",
+                        "text-main": "#0b1c2d",
+                        "text-body": "#3A4654",
+                        "success": "#10b981",
+                        "alert": "#C62828",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "md": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    const icon = mobileMenuBtn.querySelector('span');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        icon.textContent = 'menu';
+                    } else {
+                        icon.textContent = 'close';
+                    }
+                });
+            }
+            
+            // Mobile dropdown toggles
+            const dropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            dropdownToggles.forEach(function(toggle) {
+                toggle.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('.material-symbols-outlined:last-child');
+                    if (content.classList.contains('hidden')) {
+                        content.classList.remove('hidden');
+                        icon.textContent = 'expand_less';
+                    } else {
+                        content.classList.add('hidden');
+                        icon.textContent = 'expand_more';
+                    }
+                });
+            });
+        });
+    </script>
+
+</head>
+<body class="bg-background-light text-text-body font-display selection:bg-primary/20 selection:text-primary overflow-x-hidden antialiased flex flex-col min-h-screen">
+<!-- Navigation -->
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#e5e7eb]">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<!-- Logo -->
+<div class="flex items-center gap-2 flex-shrink-0">
+<div class="w-8 h-8 bg-primary rounded-md flex items-center justify-center text-white flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">shield_lock</span>
+</div>
+<a href="../index.html" class="text-xl font-bold tracking-tight text-primary whitespace-nowrap">AmazonReconciliation</a>
+</div>
+<!-- Desktop Nav - Action-Oriented Navigation -->
+<nav class="hidden md:flex gap-6">
+<!-- Start Dropdown -->
+<div class="relative group">
+<a class="text-sm font-medium text-text-body hover:text-primary transition-colors flex items-center gap-1" href="../index.html">
+<span class="material-symbols-outlined text-xs">home</span> Start <span class="material-symbols-outlined text-xs">expand_more</span></a>
+<!-- Dropdown Menu -->
+<div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+<div class="px-4 py-2 border-b border-gray-100">
+<h4 class="font-bold text-primary text-sm">Entry Points</h4>
+</div>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../index.html">Merged Homepage</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../AmazonReconciliation_homepage_-_panic_interceptor_1/code.html">Panic Interceptor</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../AmazonReconciliation_home_-_panic-to-proof_variant_1/code.html">Panic-to-Proof</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../AmazonReconciliation_home_-_financial_triage_variant_1_1/code.html">Financial Triage</a>
+</div>
+</div>
+<!-- What Happened Dropdown -->
+<div class="relative group">
+<a class="text-sm font-medium text-text-body hover:text-primary transition-colors flex items-center gap-1" href="../AmazonReconciliation_homepage_-_panic_interceptor_1/code.html">
+<span class="material-symbols-outlined text-xs">help_outline</span> What Happened? <span class="material-symbols-outlined text-xs">expand_more</span></a>
+<!-- Dropdown Menu -->
+<div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+<div class="px-4 py-2 border-b border-gray-100">
+<h4 class="font-bold text-primary text-sm">Describe Your Problem</h4>
+</div>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../fake_delivery_evidence_page_variant_2/code.html">Package marked delivered but not received</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../fake_rto_forensic_checker_1/code.html">Courier says "Customer Not Available"</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../pending_case_danger_visualizer_variant_1/code.html">Order stuck as "Pending" too long</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../claim_reversal_visualizer_variant_3/code.html">Refund was approved, then reversed</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../wallet_blocked_legal_fix/code.html">Wallet / payout blocked</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../capital-at-risk_global_report_variant_4/code.html">Amazon settlement mismatch</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../courier_grievance_hub_variant_2/code.html">Courier not responding</a>
+</div>
+</div>
+<!-- Risk Dropdown -->
+<div class="relative group">
+<a class="text-sm font-medium text-text-body hover:text-primary transition-colors flex items-center gap-1" href="../seller_recovery_management_dashboard/code.html">
+<span class="material-symbols-outlined text-xs">visibility</span> Risk <span class="material-symbols-outlined text-xs">expand_more</span></a>
+<!-- Dropdown Menu -->
+<div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+<div class="px-4 py-2 border-b border-gray-100">
+<h4 class="font-bold text-primary text-sm">Risk Assessment</h4>
+</div>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../seller_recovery_management_dashboard/code.html">Recovery Dashboard</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../loss_mirror_calculator_variant_2/code.html">Loss Calculator</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../capital-at-risk_global_report_variant_4/code.html">Capital Risk Report</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../annual_rto_bleed_hub_variant_1/code.html">RTO Bleed Hub</a>
+</div>
+</div>
+<!-- Proof Dropdown -->
+<div class="relative group">
+<a class="text-sm font-medium text-text-body hover:text-primary transition-colors flex items-center gap-1" href="../sla_evidence_engine_variant_2/code.html">
+<span class="material-symbols-outlined text-xs">lock</span> Proof <span class="material-symbols-outlined text-xs">expand_more</span></a>
+<!-- Dropdown Menu -->
+<div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+<div class="px-4 py-2 border-b border-gray-100">
+<h4 class="font-bold text-primary text-sm">Evidence Tools</h4>
+</div>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../sla_evidence_engine_variant_2/code.html">SLA Evidence Engine</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../AmazonReconciliation_home_-_forensic_engine_variant_2/code.html">Forensic Engine</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../fake_rto_forensic_checker_1/code.html">Forensic Checker</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../forensic_rto_diagnostic_ui_1/code.html">RTO Diagnostic</a>
+</div>
+</div>
+<!-- Action Dropdown -->
+<div class="relative group">
+<a class="text-sm font-medium text-text-body hover:text-primary transition-colors flex items-center gap-1" href="../AmazonReconciliation_home_-_escalation_engine_variant_1/code.html">
+<span class="material-symbols-outlined text-xs">gavel</span> Action <span class="material-symbols-outlined text-xs">expand_more</span></a>
+<!-- Dropdown Menu -->
+<div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+<div class="px-4 py-2 border-b border-gray-100">
+<h4 class="font-bold text-primary text-sm">Legal Tools</h4>
+</div>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../AmazonReconciliation_home_-_escalation_engine_variant_1/code.html">Escalation Engine</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../legal_notice_generator_1/code.html">Legal Notice Generator</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../nodal_officer_email_directory/code.html">Nodal Directory</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../consumer_court_filing_guide/code.html">Court Filing Guide</a>
+</div>
+</div>
+<!-- Money Back Dropdown -->
+<div class="relative group">
+<a class="text-sm font-medium text-text-body hover:text-primary transition-colors flex items-center gap-1" href="../payment_recovery_action_hub/code.html">
+<span class="material-symbols-outlined text-xs">account_balance_wallet</span> Money Back <span class="material-symbols-outlined text-xs">expand_more</span></a>
+<!-- Dropdown Menu -->
+<div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+<div class="px-4 py-2 border-b border-gray-100">
+<h4 class="font-bold text-primary text-sm">Recovery Tools</h4>
+</div>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../payment_recovery_action_hub/code.html">Payment Recovery Hub</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../seller_recovery_management_dashboard/code.html">Recovery Dashboard</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../asset_recovery_hub_variant_3/code.html">Asset Recovery Hub</a>
+<a class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors" href="../AmazonReconciliation_recovery_dashboard_ui/code.html">Recovery Dashboard</a>
+</div>
+</div>
+</nav>
+<!-- Actions -->
+<div class="hidden md:flex items-center gap-3">
+<a class="hidden lg:block text-sm font-medium text-primary hover:text-primary-light transition-colors" href="../SITEMAP.md">Platform Flow</a>
+<a class="hidden lg:block text-sm font-medium text-primary hover:text-primary-light transition-colors" href="../contact.html">Contact Us</a>
+<a class="hidden lg:block text-sm font-medium text-primary hover:text-primary-light transition-colors" href="../login.html">Login</a>
+<a href="../AmazonReconciliation_home_-_financial_triage_variant_1_1/code.html" class="bg-[#C62828] hover:bg-red-800 text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors shadow-sm whitespace-nowrap">
+                        Escalate Now
+                    </a>
+</div>
+<!-- Mobile Menu Button -->
+<button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors flex-shrink-0 ml-auto" aria-label="Toggle menu">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden border-t border-[#e5e7eb] bg-white">
+<div class="px-4 py-4 space-y-4">
+<!-- Start Dropdown -->
+<div class="mobile-dropdown">
+<button class="mobile-dropdown-toggle w-full flex items-center justify-between text-sm font-medium text-primary py-2">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">home</span> Start</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="mobile-dropdown-content hidden pl-6 mt-2 space-y-2">
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../index.html">Merged Homepage</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../AmazonReconciliation_homepage_-_panic_interceptor_1/code.html">Panic Interceptor</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../AmazonReconciliation_home_-_panic-to-proof_variant_1/code.html">Panic-to-Proof</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../AmazonReconciliation_home_-_financial_triage_variant_1_1/code.html">Financial Triage</a>
+</div>
+</div>
+<!-- What Happened Dropdown -->
+<div class="mobile-dropdown">
+<button class="mobile-dropdown-toggle w-full flex items-center justify-between text-sm font-medium text-primary py-2">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">help_outline</span> What Happened?</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="mobile-dropdown-content hidden pl-6 mt-2 space-y-2">
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../fake_delivery_evidence_page_variant_2/code.html">Package marked delivered but not received</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../fake_rto_forensic_checker_1/code.html">Courier says "Customer Not Available"</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../pending_case_danger_visualizer_variant_1/code.html">Order stuck as "Pending" too long</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../claim_reversal_visualizer_variant_3/code.html">Refund was approved, then reversed</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../wallet_blocked_legal_fix/code.html">Wallet / payout blocked</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../capital-at-risk_global_report_variant_4/code.html">Amazon settlement mismatch</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../courier_grievance_hub_variant_2/code.html">Courier not responding</a>
+</div>
+</div>
+<!-- Risk Dropdown -->
+<div class="mobile-dropdown">
+<button class="mobile-dropdown-toggle w-full flex items-center justify-between text-sm font-medium text-primary py-2">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">visibility</span> Risk</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="mobile-dropdown-content hidden pl-6 mt-2 space-y-2">
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../seller_recovery_management_dashboard/code.html">Recovery Dashboard</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../loss_mirror_calculator_variant_2/code.html">Loss Calculator</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../capital-at-risk_global_report_variant_4/code.html">Capital Risk Report</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../annual_rto_bleed_hub_variant_1/code.html">RTO Bleed Hub</a>
+</div>
+</div>
+<!-- Proof Dropdown -->
+<div class="mobile-dropdown">
+<button class="mobile-dropdown-toggle w-full flex items-center justify-between text-sm font-medium text-primary py-2">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">lock</span> Proof</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="mobile-dropdown-content hidden pl-6 mt-2 space-y-2">
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../sla_evidence_engine_variant_2/code.html">SLA Evidence Engine</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../AmazonReconciliation_home_-_forensic_engine_variant_2/code.html">Forensic Engine</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../fake_rto_forensic_checker_1/code.html">Forensic Checker</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../forensic_rto_diagnostic_ui_1/code.html">RTO Diagnostic</a>
+</div>
+</div>
+<!-- Action Dropdown -->
+<div class="mobile-dropdown">
+<button class="mobile-dropdown-toggle w-full flex items-center justify-between text-sm font-medium text-primary py-2">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">gavel</span> Action</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="mobile-dropdown-content hidden pl-6 mt-2 space-y-2">
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../AmazonReconciliation_home_-_escalation_engine_variant_1/code.html">Escalation Engine</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../legal_notice_generator_1/code.html">Legal Notice Generator</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../nodal_officer_email_directory/code.html">Nodal Directory</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../consumer_court_filing_guide/code.html">Court Filing Guide</a>
+</div>
+</div>
+<!-- Money Back Dropdown -->
+<div class="mobile-dropdown">
+<button class="mobile-dropdown-toggle w-full flex items-center justify-between text-sm font-medium text-primary py-2">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">account_balance_wallet</span> Money Back</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="mobile-dropdown-content hidden pl-6 mt-2 space-y-2">
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../payment_recovery_action_hub/code.html">Payment Recovery Hub</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../seller_recovery_management_dashboard/code.html">Recovery Dashboard</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../asset_recovery_hub_variant_3/code.html">Asset Recovery Hub</a>
+<a class="block text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors py-1 px-2 rounded" href="../AmazonReconciliation_recovery_dashboard_ui/code.html">Recovery Dashboard</a>
+</div>
+</div>
+<div class="pt-4 border-t border-gray-100 flex flex-col gap-3">
+<a class="text-sm font-medium text-primary hover:text-primary-light transition-colors" href="../SITEMAP.md">Platform Flow</a>
+<a class="text-sm font-medium text-primary hover:text-primary-light transition-colors" href="../contact.html">Contact Us</a>
+<a class="text-sm font-medium text-primary hover:text-primary-light transition-colors" href="../login.html">Login</a>
+<a href="../AmazonReconciliation_home_-_financial_triage_variant_1_1/code.html" class="bg-[#C62828] hover:bg-red-800 text-white px-4 py-3 rounded-lg text-sm font-bold transition-colors shadow-sm text-center">
+Escalate Now
+</a>
+</div>
+</div>
+</div>
+</header>
+
+<main class="flex flex-col items-center w-full flex-grow">
+
+<!-- Floating Toolbar -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 p-1.5 bg-surface-light dark:bg-surface-dark rounded-lg shadow-xl border border-gray-200 dark:border-gray-700">
+<button class="p-2 rounded hover:bg-gray-100 dark:hover:bg-[#3a2e2e] text-gray-700 dark:text-gray-200" title="Select">
+<span class="material-symbols-outlined text-[20px]">arrow_selector_tool</span>
+</button>
+<button class="p-2 rounded hover:bg-gray-100 dark:hover:bg-[#3a2e2e] text-gray-700 dark:text-gray-200" title="Pan">
+<span class="material-symbols-outlined text-[20px]">pan_tool</span>
+</button>
+<div class="w-px h-5 bg-gray-200 dark:bg-gray-600 mx-1"></div>
+<button class="p-2 rounded hover:bg-gray-100 dark:hover:bg-[#3a2e2e] text-gray-700 dark:text-gray-200" title="Connect">
+<span class="material-symbols-outlined text-[20px]">polyline</span>
+</button>
+<button class="p-2 rounded hover:bg-gray-100 dark:hover:bg-[#3a2e2e] text-gray-700 dark:text-gray-200" title="Add Node">
+<span class="material-symbols-outlined text-[20px]">add_box</span>
+</button>
+<div class="w-px h-5 bg-gray-200 dark:bg-gray-600 mx-1"></div>
+<button class="p-2 rounded hover:bg-gray-100 dark:hover:bg-[#3a2e2e] text-gray-700 dark:text-gray-200" title="Zoom Out">
+<span class="material-symbols-outlined text-[20px]">remove</span>
+</button>
+<span class="text-xs font-bold w-12 text-center text-gray-700 dark:text-gray-200">100%</span>
+<button class="p-2 rounded hover:bg-gray-100 dark:hover:bg-[#3a2e2e] text-gray-700 dark:text-gray-200" title="Zoom In">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<!-- Flow Diagram Container -->
+<div class="min-w-max min-h-full flex items-center justify-center p-20">
+<!-- NODE 1: ENTRY -->
+<div class="flex flex-col items-center group">
+<div class="w-[280px] bg-white dark:bg-[#2d2424] rounded-lg shadow-lg border-2 border-primary hover:shadow-xl transition-all relative z-10">
+<div class="absolute -top-3 left-4 bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Start</div>
+<div class="p-4 border-b border-gray-100 dark:border-[#3a2e2e] flex justify-between items-start">
+<div>
+<h3 class="text-[#171212] dark:text-white font-bold text-lg">1. Entry</h3>
+<p class="text-gray-500 dark:text-gray-400 text-sm">Segmentation</p>
+</div>
+<div class="text-primary bg-primary/10 p-1.5 rounded">
+<span class="material-symbols-outlined text-[20px]">group</span>
+</div>
+</div>
+<div class="h-32 bg-gray-50 dark:bg-[#201212] p-4 flex items-center justify-center overflow-hidden relative">
+<!-- Miniature UI Representation -->
+<div class="w-full h-full bg-white dark:bg-[#2d2424] border border-gray-200 dark:border-[#3a2e2e] rounded shadow-sm p-2 scale-95 origin-center opacity-80" data-alt="Abstract representation of user segmentation form">
+<div class="w-1/2 h-2 bg-gray-200 dark:bg-[#4a3e3e] mb-2 rounded-sm"></div>
+<div class="w-full h-8 bg-blue-50 dark:bg-[#3a2e2e] rounded-sm mb-2 border border-blue-100 dark:border-transparent"></div>
+<div class="flex gap-2">
+<div class="size-6 rounded-full bg-gray-200 dark:bg-[#4a3e3e]"></div>
+<div class="flex-1 h-2 bg-gray-200 dark:bg-[#4a3e3e] mt-2 rounded-sm"></div>
+</div>
+</div>
+</div>
+<div class="p-3 bg-white dark:bg-[#2d2424] rounded-b-lg flex justify-between items-center text-xs">
+<span class="font-mono text-gray-400">ID: #N-01</span>
+<span class="flex items-center gap-1 text-green-600 font-bold"><span class="block size-1.5 rounded-full bg-green-500"></span>Active</span>
+</div>
+</div>
+</div>
+<!-- CONNECTOR 1-2 -->
+<div class="w-24 h-px bg-primary relative flex items-center justify-center">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2">
+<div class="flex items-center gap-1.5 px-2 py-1 bg-white dark:bg-[#3a2e2e] border border-gray-200 dark:border-[#4a3e3e] rounded shadow-sm whitespace-nowrap z-20 hover:scale-105 transition-transform cursor-help">
+<span class="material-symbols-outlined text-[14px] text-orange-500">bolt</span>
+<span class="text-[10px] font-bold text-gray-700 dark:text-gray-200">Risk &gt; 80</span>
+</div>
+</div>
+<div class="absolute -right-1 size-2 rounded-full bg-primary"></div>
+</div>
+<!-- NODE 2: TRIAGE -->
+<div class="flex flex-col items-center group">
+<div class="w-[280px] bg-white dark:bg-[#2d2424] rounded-lg shadow-md border border-gray-200 dark:border-[#3a2e2e] hover:border-primary/50 transition-all relative z-10">
+<div class="p-4 border-b border-gray-100 dark:border-[#3a2e2e] flex justify-between items-start">
+<div>
+<h3 class="text-[#171212] dark:text-white font-bold text-lg">2. Triage</h3>
+<p class="text-gray-500 dark:text-gray-400 text-sm">Master Risk</p>
+</div>
+<div class="text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#3a2e2e] p-1.5 rounded">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+</div>
+<div class="h-32 bg-gray-50 dark:bg-[#201212] p-4 flex items-center justify-center relative">
+<div class="w-full h-full bg-white dark:bg-[#2d2424] border border-gray-200 dark:border-[#3a2e2e] rounded shadow-sm p-2 flex flex-col gap-2 opacity-80" data-alt="Abstract representation of a risk dashboard with charts">
+<div class="flex gap-2 h-1/2">
+<div class="flex-1 bg-red-50 dark:bg-red-900/20 rounded-sm border border-red-100 dark:border-red-900/30"></div>
+<div class="w-1/3 bg-gray-100 dark:bg-[#3a2e2e] rounded-sm"></div>
+</div>
+<div class="h-1/2 bg-gray-100 dark:bg-[#3a2e2e] rounded-sm"></div>
+</div>
+</div>
+<div class="p-3 bg-white dark:bg-[#2d2424] rounded-b-lg flex justify-between items-center text-xs">
+<span class="font-mono text-gray-400">ID: #N-02</span>
+</div>
+</div>
+</div>
+<!-- CONNECTOR 2-3 -->
+<div class="w-24 h-px bg-gray-300 dark:bg-gray-600 relative flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2">
+<div class="flex items-center gap-1.5 px-2 py-1 bg-white dark:bg-[#3a2e2e] border border-gray-200 dark:border-[#4a3e3e] rounded shadow-sm whitespace-nowrap z-20">
+<span class="material-symbols-outlined text-[14px] text-blue-500">flag</span>
+<span class="text-[10px] font-bold text-gray-700 dark:text-gray-200">Flag Triggered</span>
+</div>
+</div>
+<div class="absolute -right-1 size-2 rounded-full bg-gray-300 dark:bg-gray-600 group-hover:bg-primary transition-colors"></div>
+</div>
+<!-- NODE 3: EVIDENCE -->
+<div class="flex flex-col items-center group">
+<div class="w-[280px] bg-white dark:bg-[#2d2424] rounded-lg shadow-md border border-gray-200 dark:border-[#3a2e2e] hover:border-primary/50 transition-all relative z-10">
+<div class="p-4 border-b border-gray-100 dark:border-[#3a2e2e] flex justify-between items-start">
+<div>
+<h3 class="text-[#171212] dark:text-white font-bold text-lg">3. Evidence</h3>
+<p class="text-gray-500 dark:text-gray-400 text-sm">Forensic Scan</p>
+</div>
+<div class="text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#3a2e2e] p-1.5 rounded">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+</div>
+<div class="h-32 bg-gray-50 dark:bg-[#201212] p-4 flex items-center justify-center relative">
+<div class="w-full h-full bg-white dark:bg-[#2d2424] border border-gray-200 dark:border-[#3a2e2e] rounded shadow-sm p-2 opacity-80" data-alt="Abstract representation of a data scan log">
+<div class="flex flex-col gap-1.5">
+<div class="w-full h-1.5 bg-gray-200 dark:bg-[#4a3e3e] rounded-full"></div>
+<div class="w-3/4 h-1.5 bg-gray-200 dark:bg-[#4a3e3e] rounded-full"></div>
+<div class="w-5/6 h-1.5 bg-gray-200 dark:bg-[#4a3e3e] rounded-full"></div>
+<div class="w-full h-px bg-gray-100 dark:bg-[#4a3e3e] my-1"></div>
+<div class="w-1/2 h-4 bg-green-50 dark:bg-green-900/20 rounded border border-green-100 dark:border-green-900/30"></div>
+</div>
+</div>
+</div>
+<div class="p-3 bg-white dark:bg-[#2d2424] rounded-b-lg flex justify-between items-center text-xs">
+<span class="font-mono text-gray-400">ID: #N-03</span>
+</div>
+</div>
+</div>
+<!-- CONNECTOR 3-4 -->
+<div class="w-24 h-px bg-gray-300 dark:bg-gray-600 relative flex items-center justify-center">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2">
+<div class="flex items-center gap-1.5 px-2 py-1 bg-white dark:bg-[#3a2e2e] border border-gray-200 dark:border-[#4a3e3e] rounded shadow-sm whitespace-nowrap z-20">
+<span class="material-symbols-outlined text-[14px] text-purple-500">api</span>
+<span class="text-[10px] font-bold text-gray-700 dark:text-gray-200">API Validated</span>
+</div>
+</div>
+<div class="absolute -right-1 size-2 rounded-full bg-gray-300 dark:bg-gray-600"></div>
+</div>
+<!-- NODE 4: WEAPONIZATION -->
+<div class="flex flex-col items-center group">
+<div class="w-[280px] bg-white dark:bg-[#2d2424] rounded-lg shadow-md border border-gray-200 dark:border-[#3a2e2e] hover:border-primary/50 transition-all relative z-10">
+<div class="p-4 border-b border-gray-100 dark:border-[#3a2e2e] flex justify-between items-start">
+<div>
+<h3 class="text-[#171212] dark:text-white font-bold text-lg">4. Action</h3>
+<p class="text-gray-500 dark:text-gray-400 text-sm">Notice Builder</p>
+</div>
+<div class="text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#3a2e2e] p-1.5 rounded">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+</div>
+</div>
+<div class="h-32 bg-gray-50 dark:bg-[#201212] p-4 flex items-center justify-center relative">
+<div class="w-full h-full bg-white dark:bg-[#2d2424] border border-gray-200 dark:border-[#3a2e2e] rounded shadow-sm p-3 opacity-80 flex flex-col items-center justify-center gap-2" data-alt="Abstract legal document icon">
+<div class="size-10 rounded-full bg-gray-100 dark:bg-[#3a2e2e] flex items-center justify-center">
+<span class="material-symbols-outlined text-gray-400 text-xl">description</span>
+</div>
+<div class="w-20 h-2 bg-gray-200 dark:bg-[#4a3e3e] rounded-full"></div>
+</div>
+</div>
+<div class="p-3 bg-white dark:bg-[#2d2424] rounded-b-lg flex justify-between items-center text-xs">
+<span class="font-mono text-gray-400">ID: #N-04</span>
+</div>
+</div>
+</div>
+<!-- CONNECTOR 4-5 -->
+<div class="w-24 h-px bg-gray-300 dark:bg-gray-600 relative flex items-center justify-center">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2">
+<div class="flex items-center gap-1.5 px-2 py-1 bg-white dark:bg-[#3a2e2e] border border-gray-200 dark:border-[#4a3e3e] rounded shadow-sm whitespace-nowrap z-20">
+<span class="material-symbols-outlined text-[14px] text-green-500">check_circle</span>
+<span class="text-[10px] font-bold text-gray-700 dark:text-gray-200">Notice Generated</span>
+</div>
+</div>
+<div class="absolute -right-1 size-2 rounded-full bg-gray-300 dark:bg-gray-600"></div>
+</div>
+<!-- NODE 5: MANAGEMENT -->
+<div class="flex flex-col items-center group">
+<div class="w-[280px] bg-white dark:bg-[#2d2424] rounded-lg shadow-md border border-gray-200 dark:border-[#3a2e2e] hover:border-primary/50 transition-all relative z-10">
+<div class="absolute -top-3 -right-2 bg-gray-800 dark:bg-white text-white dark:text-gray-900 text-[10px] font-bold px-2 py-0.5 rounded shadow-sm uppercase tracking-wider">End</div>
+<div class="p-4 border-b border-gray-100 dark:border-[#3a2e2e] flex justify-between items-start">
+<div>
+<h3 class="text-[#171212] dark:text-white font-bold text-lg">5. Mgmt</h3>
+<p class="text-gray-500 dark:text-gray-400 text-sm">Seller Dashboard</p>
+</div>
+<div class="text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-[#3a2e2e] p-1.5 rounded">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+</div>
+</div>
+<div class="h-32 bg-gray-50 dark:bg-[#201212] p-4 flex items-center justify-center relative">
+<div class="w-full h-full bg-white dark:bg-[#2d2424] border border-gray-200 dark:border-[#3a2e2e] rounded shadow-sm p-2 grid grid-cols-2 gap-2 opacity-80" data-alt="Abstract seller dashboard grid">
+<div class="bg-gray-100 dark:bg-[#3a2e2e] rounded-sm"></div>
+<div class="bg-gray-100 dark:bg-[#3a2e2e] rounded-sm"></div>
+<div class="bg-gray-100 dark:bg-[#3a2e2e] rounded-sm col-span-2"></div>
+</div>
+</div>
+<div class="p-3 bg-white dark:bg-[#2d2424] rounded-b-lg flex justify-between items-center text-xs">
+<span class="font-mono text-gray-400">ID: #N-05</span>
+</div>
+</div>
+</div>
+<!-- Ghost Node (Future Step hint) -->
+<div class="w-24 h-px border-t border-dashed border-gray-300 dark:border-gray-600"></div>
+<div class="size-10 rounded-full border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center text-gray-300">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</div>
+</div>
+<!-- Floating Background Decoration for depth -->
+<div class="absolute top-20 right-20 pointer-events-none opacity-50">
+<div class="flex gap-4">
+<div class="bg-red-50 dark:bg-red-900/10 p-2 rounded-lg border border-red-100 dark:border-red-900/20 backdrop-blur-sm">
+<p class="text-[10px] text-red-600 dark:text-red-400 font-bold uppercase">System Alert</p>
+<p class="text-xs text-red-800 dark:text-red-200 mt-1">High volume of node connections detected in Triage.</p>
+</div>
+</div>
+</div>
+
+<!-- Additional Navigation Section -->
+<section class="py-12 bg-surface-light dark:bg-surface-dark border-t border-gray-200 dark:border-gray-700">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h3 class="text-2xl font-bold text-primary dark:text-white mb-8 text-center">Explore More AmazonReconciliation Features</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Feature Card 1 -->
+<a href="../AmazonReconciliation_homepage_-_panic_interceptor_1/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">home</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Homepage</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Main landing page with live panic interceptor functionality</p>
+</div>
+</a>
+<!-- Feature Card 2 -->
+<a href="../AmazonReconciliation_home_-_command_center_variant_1/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">dashboard</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Command Center</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Live fraud intelligence dashboard with national fraud pulse</p>
+</div>
+</a>
+<!-- Feature Card 3 -->
+<a href="../how_it_works_&_about_AmazonReconciliation/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">info</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">How It Works</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Explanation of AmazonReconciliation's mission and 4-step process</p>
+</div>
+</a>
+<!-- Feature Card 4 -->
+<a href="../AmazonReconciliation_home_-_escalation_engine_variant_1/code.html" class="block group">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700 hover:border-primary hover:shadow-xl transition-all h-full">
+<div class="w-12 h-12 rounded-lg bg-red-100 text-red-600 flex items-center justify-center mb-4 group-hover:bg-red-600 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<h4 class="text-lg font-bold text-primary dark:text-white mb-2">Escalation Engine</h4>
+<p class="text-sm text-gray-500 dark:text-slate-400">Automated escalation workflow for dispute resolution</p>
+</div>
+</a>
+</div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-background-dark text-gray-400 py-8 sm:py-12 border-t border-gray-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
+<div class="col-span-1 sm:col-span-2 lg:col-span-1">
+<div class="flex items-center gap-2 mb-3 sm:mb-4">
+<span class="material-symbols-outlined text-white text-xl sm:text-2xl">shield_lock</span>
+<span class="text-lg font-bold text-white">AmazonReconciliation</span>
+</div>
+<p class="text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
+                            Fighting courier fraud with legal precision. Based in Indore, India
+                        </p>
+<div class="mt-6 mb-6">
+    <h4 class="text-white font-semibold mb-3 text-sm">Get in Touch</h4>
+    <div class="space-y-3 text-xs sm:text-sm">
+        <p class="flex items-start gap-2">
+            <span class="material-symbols-outlined text-red-500 text-base">location_on</span>
+            <span>Signimus Technologies Pvt Ltd 23, PU4, Scheme 54 PU4, Indore, Madhya Pradesh 452011</span>
+        </p>
+        <p class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-red-500 text-base">call</span>
+            <a href="tel:+918225998112" class="hover:text-white transition-colors">+91 8225998112</a>
+        </p>
+        <p class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-green-500 text-base">chat</span>
+            <a href="https://wa.me/918225998112" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">WhatsApp: +91 8225998112</a>
+        </p>
+        <p class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-red-500 text-base">mail</span>
+            <a href="mailto:support@amazonreconciliation.in" class="hover:text-white transition-colors">support@amazonreconciliation.in</a>
+        </p>
+    </div>
+</div>
+<div class="flex gap-3 sm:gap-4">
+<a class="hover:text-white transition-colors text-xs" href="../how_it_works_&_about_AmazonReconciliation/code.html">Privacy Policy</a>
+<a class="hover:text-white transition-colors text-xs" href="../scope_&_fees_-_pricing_legitimacy/code.html">Terms of Service</a>
+</div>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Entry Points</h4>
+<ul class="space-y-2 text-xs sm:text-sm">
+<li><a class="hover:text-white transition-colors" href="../index.html">Merged Homepage</a></li>
+<li><a class="hover:text-white transition-colors" href="../AmazonReconciliation_homepage_-_panic_interceptor_1/code.html">Panic Interceptor 1</a></li>
+<li><a class="hover:text-white transition-colors" href="../AmazonReconciliation_homepage_-_panic_interceptor_2/code.html">Panic Interceptor 2</a></li>
+<li><a class="hover:text-white transition-colors" href="../AmazonReconciliation_homepage_-_panic_interceptor_3/code.html">Panic Interceptor 3</a></li>
+<li><a class="hover:text-white transition-colors" href="../AmazonReconciliation_homepage_-_panic_interceptor_4/code.html">Panic Interceptor 4</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Diagnosis</h4>
+<ul class="space-y-2 text-xs sm:text-sm">
+<li><a class="hover:text-white transition-colors" href="../AmazonReconciliation_home_-_financial_triage_variant_1_1/code.html">Financial Triage</a></li>
+<li><a class="hover:text-white transition-colors" href="../crisis_lifecycle_master_index/code.html">Crisis Lifecycle</a></li>
+<li><a class="hover:text-white transition-colors" href="../who_this_is_for_-_client_filtering_page/code.html">Client Filter</a></li>
+<li><a class="hover:text-white transition-colors" href="../audience_segmentation_entry_ui_variant_1/code.html">Audience Segmentation</a></li>
+<li><a class="hover:text-white transition-colors" href="../pending_case_danger_visualizer_variant_1/code.html">Danger Visualizer</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Problems We Handle</h4>
+<ul class="space-y-2 text-xs sm:text-sm">
+<li><a class="hover:text-white transition-colors" href="../fake_delivery_evidence_page_variant_2/code.html">Fake Delivery Attempts</a></li>
+<li><a class="hover:text-white transition-colors" href="../fake_rto_forensic_checker_1/code.html">Fake RTO Cases</a></li>
+<li><a class="hover:text-white transition-colors" href="../pending_case_danger_visualizer_variant_1/code.html">Pending Too Long</a></li>
+<li><a class="hover:text-white transition-colors" href="../wallet_blocked_legal_fix/code.html">Wallet Blocks</a></li>
+<li><a class="hover:text-white transition-colors" href="../claim_reversal_visualizer_variant_3/code.html">Claim Reversals</a></li>
+</ul>
+</div>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 border-t border-gray-800 pt-8 sm:pt-12 mb-8 sm:mb-12">
+<div>
+<h4 class="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Stage 1: Identify</h4>
+<ul class="space-y-2 text-xs sm:text-sm">
+<li><a class="hover:text-white transition-colors" href="../index.html">Merged Homepage</a></li>
+<li><a class="hover:text-white transition-colors" href="../AmazonReconciliation_homepage_-_panic_interceptor_1/code.html">Panic Interceptor</a></li>
+<li><a class="hover:text-white transition-colors" href="../AmazonReconciliation_home_-_financial_triage_variant_1_1/code.html">Financial Triage</a></li>
+<li><a class="hover:text-white transition-colors" href="../crisis_lifecycle_master_index/code.html">Crisis Lifecycle</a></li>
+<li><a class="hover:text-white transition-colors" href="../who_this_is_for_-_client_filtering_page/code.html">Client Filter</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Stage 2: Risk</h4>
+<ul class="space-y-2 text-xs sm:text-sm">
+<li><a class="hover:text-white transition-colors" href="../seller_recovery_management_dashboard/code.html">Recovery Dashboard</a></li>
+<li><a class="hover:text-white transition-colors" href="../loss_mirror_calculator_variant_2/code.html">Loss Calculator</a></li>
+<li><a class="hover:text-white transition-colors" href="../capital-at-risk_global_report_variant_4/code.html">Capital Risk Report</a></li>
+<li><a class="hover:text-white transition-colors" href="../pending_case_danger_visualizer_variant_1/code.html">Danger Visualizer</a></li>
+<li><a class="hover:text-white transition-colors" href="../deadline_lockout_timer_variant_4/code.html">Timer</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Stage 3: Evidence</h4>
+<ul class="space-y-2 text-xs sm:text-sm">
+<li><a class="hover:text-white transition-colors" href="../AmazonReconciliation_home_-_forensic_engine_variant_2/code.html">Forensic Engine</a></li>
+<li><a class="hover:text-white transition-colors" href="../fake_rto_forensic_checker_1/code.html">Forensic Checker</a></li>
+<li><a class="hover:text-white transition-colors" href="../sla_evidence_engine_variant_2/code.html">Evidence Engine</a></li>
+<li><a class="hover:text-white transition-colors" href="../forensic_rto_diagnostic_ui_1/code.html">RTO Diagnostic</a></li>
+<li><a class="hover:text-white transition-colors" href="../fake_attempt_geo-validator_variant_2_1/code.html">Geo Validator</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Stage 4: Legal Action</h4>
+<ul class="space-y-2 text-xs sm:text-sm">
+<li><a class="hover:text-white transition-colors" href="../AmazonReconciliation_home_-_escalation_engine_variant_1/code.html">Escalation Engine</a></li>
+<li><a class="hover:text-white transition-colors" href="../legal_notice_generator_1/code.html">Legal Notice Generator</a></li>
+<li><a class="hover:text-white transition-colors" href="../nodal_officer_email_directory/code.html">Nodal Directory</a></li>
+<li><a class="hover:text-white transition-colors" href="../consumer_court_filing_guide/code.html">Court Filing Guide</a></li>
+<li><a class="hover:text-white transition-colors" href="../interactive_notice_constructor_ui/code.html">Notice Constructor</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Stage 5: Recovery</h4>
+<ul class="space-y-2 text-xs sm:text-sm">
+<li><a class="hover:text-white transition-colors" href="../payment_recovery_action_hub/code.html">Payment Recovery Hub</a></li>
+<li><a class="hover:text-white transition-colors" href="../seller_recovery_management_dashboard/code.html">Recovery Dashboard</a></li>
+<li><a class="hover:text-white transition-colors" href="../asset_recovery_hub_variant_3/code.html">Asset Recovery Hub</a></li>
+<li><a class="hover:text-white transition-colors" href="../wallet_blocked_legal_fix/code.html">Wallet Legal Fix</a></li>
+<li><a class="hover:text-white transition-colors" href="../AmazonReconciliation_recovery_dashboard_ui/code.html">Recovery Dashboard UI</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-6 sm:pt-8 text-center text-xs">
+<p>We are not affiliated with Amazon; we are a third-party service. | Powered by Signimus</p>
+</div>
+</div>
+</footer>
+</body>
+</html>

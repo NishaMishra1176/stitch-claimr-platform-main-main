@@ -1,5 +1,5 @@
 /**
- * Claimr Shared Header & Footer Loader
+ * AmazonReconciliation Shared Header & Footer Loader
  * Include this script in any code.html page to load universal navigation
  * 
  * Usage: Add this script tag before </body> in your HTML:

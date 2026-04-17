@@ -1,4 +1,4 @@
-# Claimr Platform: Complete Page Mapping & Navigation Flow
+# AmazonReconciliation Platform: Complete Page Mapping & Navigation Flow
 
 ## SEO-Friendly URL Structure (Problem-Based)
 
@@ -6,14 +6,14 @@
 | Old Filename | New SEO URL | Page Type | Description |
 |--------------|-------------|-----------|-------------|
 | `index.html` | `/` | Entry | Merged homepage with panic interception |
-| `claimr_homepage_-_panic_interceptor_1/code.html` | `/panic-interceptor` | Entry | Main panic interceptor page |
-| `claimr_homepage_-_panic_interceptor_2/code.html` | `/panic-interceptor-2` | Entry | Alternative panic interceptor |
-| `claimr_homepage_-_panic_interceptor_3/code.html` | `/panic-interceptor-3` | Entry | Alternative panic interceptor |
-| `claimr_homepage_-_panic_interceptor_4/code.html` | `/panic-interceptor-4` | Entry | Alternative panic interceptor |
-| `claimr_home_-_panic-to-proof_variant_1/code.html` | `/panic-to-proof` | Entry | Problem identification flow |
-| `claimr_home_-_authoritative_entry_variant_1/code.html` | `/authoritative-entry` | Entry | Authoritative entry point |
-| `claimr_home_-_financial_triage_variant_1_1/code.html` | `/financial-triage` | Entry | Financial triage page |
-| `claimr_home_-_financial_triage_variant_1_2/code.html` | `/financial-triage-2` | Entry | Financial triage page |
+| `amazonreconciliation_homepage_-_panic_interceptor_1/code.html` | `/panic-interceptor` | Entry | Main panic interceptor page |
+| `amazonreconciliation_homepage_-_panic_interceptor_2/code.html` | `/panic-interceptor-2` | Entry | Alternative panic interceptor |
+| `amazonreconciliation_homepage_-_panic_interceptor_3/code.html` | `/panic-interceptor-3` | Entry | Alternative panic interceptor |
+| `amazonreconciliation_homepage_-_panic_interceptor_4/code.html` | `/panic-interceptor-4` | Entry | Alternative panic interceptor |
+| `amazonreconciliation_home_-_panic-to-proof_variant_1/code.html` | `/panic-to-proof` | Entry | Problem identification flow |
+| `amazonreconciliation_home_-_authoritative_entry_variant_1/code.html` | `/authoritative-entry` | Entry | Authoritative entry point |
+| `amazonreconciliation_home_-_financial_triage_variant_1_1/code.html` | `/financial-triage` | Entry | Financial triage page |
+| `amazonreconciliation_home_-_financial_triage_variant_1_2/code.html` | `/financial-triage-2` | Entry | Financial triage page |
 
 ### PROBLEM-SPECIFIC PAGES
 | Old Filename | New SEO URL | Page Type | Description |
@@ -37,7 +37,7 @@
 ### FORENSIC & EVIDENCE PAGES
 | Old Filename | New SEO URL | Page Type | Description |
 |--------------|-------------|-----------|-------------|
-| `claimr_home_-_forensic_engine_variant_2/code.html` | `/forensic-engine` | Evidence | Forensic analysis engine |
+| `amazonreconciliation_home_-_forensic_engine_variant_2/code.html` | `/forensic-engine` | Evidence | Forensic analysis engine |
 | `forensic_rto_diagnostic_ui_1/code.html` | `/rto-diagnostic` | Evidence | RTO diagnostic UI |
 | `forensic_rto_diagnostic_ui_2/code.html` | `/rto-diagnostic-2` | Evidence | RTO diagnostic UI |
 | `fake_attempt_geo-validator_variant_2_1/code.html` | `/geo-validator` | Evidence | Fake attempt geo validator |
@@ -50,7 +50,7 @@
 ### ESCALATION & LEGAL PAGES
 | Old Filename | New SEO URL | Page Type | Description |
 |--------------|-------------|-----------|-------------|
-| `claimr_home_-_escalation_engine_variant_1/code.html` | `/escalation-engine` | Legal | Escalation engine |
+| `amazonreconciliation_home_-_escalation_engine_variant_1/code.html` | `/escalation-engine` | Legal | Escalation engine |
 | `legal_notice_generator_1/code.html` | `/legal-notice` | Legal | Legal notice generator |
 | `legal_notice_generator_2/code.html` | `/legal-notice-2` | Legal | Legal notice generator |
 | `legal_notice_generator_3/code.html` | `/legal-notice-3` | Legal | Legal notice generator |
@@ -67,7 +67,7 @@
 | `seller_recovery_management_dashboard/code.html` | `/recovery-dashboard` | Recovery | Seller recovery management dashboard |
 | `payment_recovery_action_hub/code.html` | `/payment-recovery` | Recovery | Payment recovery action hub |
 | `asset_recovery_hub_variant_3/code.html` | `/asset-recovery` | Recovery | Asset recovery hub |
-| `claimr_recovery_dashboard_ui/code.html` | `/recovery-ui` | Recovery | Recovery dashboard UI |
+| `amazonreconciliation_recovery_dashboard_ui/code.html` | `/recovery-ui` | Recovery | Recovery dashboard UI |
 | `master_risk_dashboard_variant_1_1/code.html` | `/risk-dashboard` | Recovery | Master risk dashboard |
 | `master_risk_dashboard_variant_1_2/code.html` | `/risk-dashboard-2` | Recovery | Master risk dashboard |
 
@@ -85,7 +85,7 @@
 | Old Filename | New SEO URL | Page Type | Description |
 |--------------|-------------|-----------|-------------|
 | `claim_reversal_visualizer_variant_3/code.html` | `/claim-visualizer` | Tool | Claim reversal visualizer |
-| `claimr_end-to-end_prototype_flow/code.html` | `/prototype-flow` | Tool | End-to-end prototype flow |
+| `amazonreconciliation_end-to-end_prototype_flow/code.html` | `/prototype-flow` | Tool | End-to-end prototype flow |
 | `risk_control_dashboard_variant_1/code.html` | `/risk-control` | Tool | Risk control dashboard |
 | `seller_escalation_&_recovery_dashboard/code.html` | `/seller-escalation` | Tool | Seller escalation and recovery dashboard |
 | `sla_evidence_engine_variant_2/code.html` | `/sla-evidence` | Tool | SLA evidence engine |
@@ -95,7 +95,7 @@
 ### EDUCATIONAL & INFORMATION PAGES
 | Old Filename | New SEO URL | Page Type | Description |
 |--------------|-------------|-----------|-------------|
-| `how_it_works_&_about_claimr/code.html` | `/how-it-works` | Info | How it works and about page |
+| `how_it_works_&_about_amazonreconciliation/code.html` | `/how-it-works` | Info | How it works and about page |
 | `who_this_is_for_-_client_filtering_page/code.html` | `/who-this-is-for` | Info | Client filtering page |
 | `who_we_are_-_trust_anchor_page/code.html` | `/who-we-are` | Info | Trust anchor page |
 | `scope_&_fees_-_pricing_legitimacy/code.html` | `/pricing` | Info | Pricing legitimacy page |
@@ -191,7 +191,7 @@
 ## Footer Navigation Structure
 ```
 [ Logo & Tagline ] [ How It Works ] [ Problem Tools ] [ Legal Tools ] [ Recovery Tools ]
-   Claimr                Pages           Pages           Pages           Pages
+   AmazonReconciliation                Pages           Pages           Pages           Pages
    Fighting fraud      • How It Works   • Fake Delivery  • Legal Notice   • Recovery
    with precision      • Who This Is For • Pending Case  • Escalation     • Payment Recovery
                       • Pricing        • Wallet Blocked • Nodal Directory • Asset Recovery

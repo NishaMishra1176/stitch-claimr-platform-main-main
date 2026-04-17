@@ -1,4 +1,4 @@
-# Claimr Platform Deployment Summary
+# AmazonReconciliation Platform Deployment Summary
 
 ## Release Information
 - **Version**: v1.0.0

@@ -1,4 +1,4 @@
-# Claimr Platform: Complete Page-to-Page Mapping
+# AmazonReconciliation Platform: Complete Page-to-Page Mapping
 
 ## Stage-Based Organization & Navigation Flow
 
@@ -6,18 +6,18 @@
 | Page Filename | Primary Purpose | Entry Links | Exit Links |
 |---------------|----------------|-------------|------------|
 | `index.html` | Merged homepage - main entry point | Direct traffic, SEO | All other stages |
-| `claimr_homepage_-_panic_interceptor_1/code.html` | Panic interception | Direct traffic, referral | Financial Triage, Command Center |
-| `claimr_homepage_-_panic_interceptor_2/code.html` | Alternative panic entry | Direct traffic | Financial Triage |
-| `claimr_homepage_-_panic_interceptor_3/code.html` | Alternative panic entry | Direct traffic | Financial Triage |
-| `claimr_homepage_-_panic_interceptor_4/code.html` | Alternative panic entry | Direct traffic | Financial Triage |
-| `claimr_home_-_panic-to-proof_variant_1/code.html` | Problem identification flow | Direct traffic | Forensic Engine |
-| `claimr_home_-_authoritative_entry_variant_1/code.html` | Authoritative entry point | Direct traffic | Escalation Engine |
+| `amazonreconciliation_homepage_-_panic_interceptor_1/code.html` | Panic interception | Direct traffic, referral | Financial Triage, Command Center |
+| `amazonreconciliation_homepage_-_panic_interceptor_2/code.html` | Alternative panic entry | Direct traffic | Financial Triage |
+| `amazonreconciliation_homepage_-_panic_interceptor_3/code.html` | Alternative panic entry | Direct traffic | Financial Triage |
+| `amazonreconciliation_homepage_-_panic_interceptor_4/code.html` | Alternative panic entry | Direct traffic | Financial Triage |
+| `amazonreconciliation_home_-_panic-to-proof_variant_1/code.html` | Problem identification flow | Direct traffic | Forensic Engine |
+| `amazonreconciliation_home_-_authoritative_entry_variant_1/code.html` | Authoritative entry point | Direct traffic | Escalation Engine |
 
 ### STAGE B: SITUATION CLASSIFICATION (Auto-routing)
 | Page Filename | Primary Purpose | Entry Links | Exit Links |
 |---------------|----------------|-------------|------------|
-| `claimr_home_-_financial_triage_variant_1_1/code.html` | Financial triage | All entry points | Forensic Engine, Evidence Tools |
-| `claimr_home_-_financial_triage_variant_1_2/code.html` | Financial triage | All entry points | Forensic Engine, Evidence Tools |
+| `amazonreconciliation_home_-_financial_triage_variant_1_1/code.html` | Financial triage | All entry points | Forensic Engine, Evidence Tools |
+| `amazonreconciliation_home_-_financial_triage_variant_1_2/code.html` | Financial triage | All entry points | Forensic Engine, Evidence Tools |
 | `crisis_lifecycle_master_index/code.html` | Crisis lifecycle mapping | Financial Triage | Command Center |
 | `audience_segmentation_entry_ui_variant_1/code.html` | Audience segmentation | Financial Triage | Command Center |
 | `who_this_is_for_-_client_filtering_page/code.html` | Client qualification | Financial Triage | Command Center |
@@ -29,7 +29,7 @@
 ### STAGE C: FORENSIC PROOF (Truth Engine)
 | Page Filename | Primary Purpose | Entry Links | Exit Links |
 |---------------|----------------|-------------|------------|
-| `claimr_home_-_forensic_engine_variant_2/code.html` | Forensic analysis engine | Financial Triage, Classification | Evidence Engine, Escalation |
+| `amazonreconciliation_home_-_forensic_engine_variant_2/code.html` | Forensic analysis engine | Financial Triage, Classification | Evidence Engine, Escalation |
 | `fake_rto_forensic_checker_1/code.html` | Fake RTO checker | Financial Triage, Classification | Escalation Engine |
 | `fake_rto_forensic_checker_2/code.html` | Fake RTO checker | Financial Triage, Classification | Escalation Engine |
 | `fake_rto_forensic_checker_3/code.html` | Fake RTO checker | Financial Triage, Classification | Escalation Engine |
@@ -59,7 +59,7 @@
 ### STAGE E: ESCALATION & LEGAL FORCE (Forced Response)
 | Page Filename | Primary Purpose | Entry Links | Exit Links |
 |---------------|----------------|-------------|------------|
-| `claimr_home_-_escalation_engine_variant_1/code.html` | Escalation engine | Evidence Engine, Forensic | Legal Tools, Recovery |
+| `amazonreconciliation_home_-_escalation_engine_variant_1/code.html` | Escalation engine | Evidence Engine, Forensic | Legal Tools, Recovery |
 | `interactive_escalation_reply_tool_variant_2/code.html` | Escalation reply tool | Escalation Engine | Legal Tools |
 | `legal_notice_generator_1/code.html` | Legal notice generator | Escalation Engine | Recovery Dashboard |
 | `legal_notice_generator_2/code.html` | Legal notice generator | Escalation Engine | Recovery Dashboard |
@@ -77,9 +77,9 @@
 | `seller_recovery_management_dashboard/code.html` | Seller recovery dashboard | All stages | Recovery Dashboard |
 | `payment_recovery_action_hub/code.html` | Payment recovery hub | Escalation Engine | Recovery Dashboard |
 | `asset_recovery_hub_variant_3/code.html` | Asset recovery hub | Escalation Engine | Recovery Dashboard |
-| `claimr_recovery_dashboard_ui/code.html` | Recovery dashboard UI | All stages | Recovery Dashboard |
+| `amazonreconciliation_recovery_dashboard_ui/code.html` | Recovery dashboard UI | All stages | Recovery Dashboard |
 | `wallet_blocked_legal_fix/code.html` | Wallet legal fix | Financial Triage | Recovery Dashboard |
-| `claimr_end-to-end_prototype_flow/code.html` | End-to-end prototype flow | All stages | All other stages |
+| `amazonreconciliation_end-to-end_prototype_flow/code.html` | End-to-end prototype flow | All stages | All other stages |
 
 ### STAGE G: INTELLIGENCE & PATTERN RECOGNITION (Long-term Moat)
 | Page Filename | Primary Purpose | Entry Links | Exit Links |
@@ -94,7 +94,7 @@
 ### SUPPORTING TOOLS & DASHBOARDS
 | Page Filename | Primary Purpose | Entry Links | Exit Links |
 |---------------|----------------|-------------|------------|
-| `claimr_home_-_command_center_variant_1/code.html` | Command center dashboard | All stages | All other stages |
+| `amazonreconciliation_home_-_command_center_variant_1/code.html` | Command center dashboard | All stages | All other stages |
 | `master_risk_dashboard_variant_1_1/code.html` | Master risk dashboard | All stages | All other stages |
 | `master_risk_dashboard_variant_1_2/code.html` | Master risk dashboard | All stages | All other stages |
 | `master_risk_diagnostic_page/code.html` | Master risk diagnostic | All stages | All other stages |

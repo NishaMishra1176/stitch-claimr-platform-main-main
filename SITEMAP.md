@@ -1,4 +1,4 @@
-# Claimr End-to-End Closure Sitemap
+# AmazonReconciliation End-to-End Closure Sitemap
 ## Single Flow, Multiple Entry Points, One Outcome: MONEY RELEASE
 
 ### 🔴 LEVEL 0 — ENTRY: PANIC → CONTROL
@@ -9,12 +9,12 @@ All of these must route into ONE CORE FLOW, not parallel universes.
 
 **Public / SEO / Panic Pages**
 - `index.html` (Merged Master Entry)
-- `claimr_homepage_-_panic_interceptor_1/code.html`
-- `claimr_homepage_-_panic_interceptor_2/code.html`
-- `claimr_homepage_-_panic_interceptor_3/code.html`
-- `claimr_homepage_-_panic_interceptor_4/code.html`
-- `claimr_home_-_panic-to-proof_variant_1/code.html`
-- `claimr_home_-_authoritative_entry_variant_1/code.html`
+- `amazonreconciliation_homepage_-_panic_interceptor_1/code.html`
+- `amazonreconciliation_homepage_-_panic_interceptor_2/code.html`
+- `amazonreconciliation_homepage_-_panic_interceptor_3/code.html`
+- `amazonreconciliation_homepage_-_panic_interceptor_4/code.html`
+- `amazonreconciliation_home_-_panic-to-proof_variant_1/code.html`
+- `amazonreconciliation_home_-_authoritative_entry_variant_1/code.html`
 
 **⬇️ ALL OF THEM REDIRECT TO**
 
@@ -24,8 +24,8 @@ All of these must route into ONE CORE FLOW, not parallel universes.
 
 #### Crisis Selector (must feel unavoidable)
 **Powered by:**
-- `claimr_home_-_financial_triage_variant_1_1/code.html`
-- `claimr_home_-_financial_triage_variant_1_2/code.html`
+- `amazonreconciliation_home_-_financial_triage_variant_1_1/code.html`
+- `amazonreconciliation_home_-_financial_triage_variant_1_2/code.html`
 - `pending_case_shock_dashboard_variant_1/code.html`
 - `pending_case_danger_visualizer_variant_1/code.html`
 
@@ -40,7 +40,7 @@ All of these must route into ONE CORE FLOW, not parallel universes.
 **⬇️ routes into**
 
 ### 🧭 LEVEL 2 — CASE CLASSIFICATION (NO ESCAPE)
-**This is where Claimr becomes different**
+**This is where AmazonReconciliation becomes different**
 No "support ticket", only classification.
 
 #### Classifier Engine
@@ -104,11 +104,11 @@ User is tagged as one of:
 **⬇️ creates urgency → escalation**
 
 ### ⚖️ LEVEL 5 — ESCALATION ENGINE (FORCED RESPONSE)
-**This is where Claimr wins**
+**This is where AmazonReconciliation wins**
 No waiting. No "we've raised a ticket".
 
 #### Escalation Stack
-- `claimr_home_-_escalation_engine_variant_1/code.html`
+- `amazonreconciliation_home_-_escalation_engine_variant_1/code.html`
 - `interactive_notice_constructor_ui/code.html`
 - `legal_notice_generator_1/code.html`
 - `legal_notice_generator_2/code.html`
@@ -139,7 +139,7 @@ This is threat leverage, not default.
 
 ### ✅ LEVEL 7 — CLOSURE & RECOVERY
 #### Outcome Pages
-- `claimr_recovery_dashboard_ui/code.html`
+- `amazonreconciliation_recovery_dashboard_ui/code.html`
 - `asset_recovery_hub_variant_3/code.html`
 - `payment_recovery_action_hub/code.html`
 - `wallet_blocked_legal_fix/code.html`
@@ -153,7 +153,7 @@ This is threat leverage, not default.
 **⬇️ feeds analytics**
 
 ### 📊 LEVEL 8 — PATTERN MEMORY (LONG-TERM MOAT)
-**This is how Claimr becomes unavoidable**
+**This is how AmazonReconciliation becomes unavoidable**
 
 #### Intelligence Loop
 - `case_patterns_-_pattern_recognition_page/code.html`
@@ -194,7 +194,7 @@ Not:
 
 ---
 
-# Claimr End-to-End Closure Sitemap
+# AmazonReconciliation End-to-End Closure Sitemap
 ## Single Flow, Multiple Entry Points, One Outcome: MONEY RELEASE
 
 ## DUAL-TRACK RECOVERY SYSTEM (MAXIMUM CONVERSION DESIGN)
@@ -218,7 +218,7 @@ What's broken RIGHT NOW?
 - [Fake Delivery Attempt] → fake_rto_forensic_checker_1
 - [Wallet Blocked] → wallet_blocked_legal_fix
 - [Claim Reversed] → claim_reversal_visualizer_variant_3
-- [Amazon Reconciliation Issue] → claimr_home_-_financial_triage_variant_1_1
+- [Amazon Reconciliation Issue] → amazonreconciliation_home_-_financial_triage_variant_1_1
 - [Pending Too Long] → pending_case_danger_visualizer_variant_1
 - [No Response] → nodal_officer_email_directory
 
@@ -231,18 +231,18 @@ Goal: Stop scrolling. Trigger fear + clarity.
 
 Entry Points (All lead to immediate action)
 - `index.html` (Merged Master Entry with fast-track selector)
-- `claimr_homepage_-_panic_interceptor_1/2/3/4` (Panic detection)
-- `claimr_home_-_panic-to-proof_variant_1` (Pattern recognition)
+- `amazonreconciliation_homepage_-_panic_interceptor_1/2/3/4` (Panic detection)
+- `amazonreconciliation_home_-_panic-to-proof_variant_1` (Pattern recognition)
 
 Primary CTA on all entry pages:
-"Identify My Case & Stop the Loss" → `claimr_home_-_financial_triage_variant_1_1`
+"Identify My Case & Stop the Loss" → `amazonreconciliation_home_-_financial_triage_variant_1_1`
 
 🎯 STAGE 1 — FORCED SITUATION IDENTIFICATION
 Goal: Convert emotion → diagnosis in < 10 seconds.
 
 Crisis Selector (must feel unavoidable)
-- `claimr_home_-_financial_triage_variant_1_1` (Primary)
-- `claimr_home_-_financial_triage_variant_1_2` (Alternative)
+- `amazonreconciliation_home_-_financial_triage_variant_1_1` (Primary)
+- `amazonreconciliation_home_-_financial_triage_variant_1_2` (Alternative)
 
 User selects ONE:
 - Fake RTO / Delivery Attempt
@@ -258,7 +258,7 @@ User selects ONE:
 Goal: Prove reality ≠ courier story.
 
 Forensic Engines (contextual, not all shown)
-- `claimr_home_-_forensic_engine_variant_2` (General forensic engine)
+- `amazonreconciliation_home_-_forensic_engine_variant_2` (General forensic engine)
 - `forensic_rto_diagnostic_ui_1/2` (RTO-specific forensics)
 - `fake_attempt_geo-validator_variant_2_1/2_2` (Geolocation validation)
 - `fake_delivery_evidence_page_variant_2` (Delivery proof)
@@ -295,7 +295,7 @@ User now sees:
 Goal: Force written closure.
 
 Escalation Stack
-- `claimr_home_-_escalation_engine_variant_1` (Primary escalation engine)
+- `amazonreconciliation_home_-_escalation_engine_variant_1` (Primary escalation engine)
 - `interactive_notice_constructor_ui` (Notice builder)
 - `legal_notice_generator_1-4` (Legal notice templates)
 - `legal_shield_notice_generator_variant_2` (Shield notices)
@@ -313,7 +313,7 @@ Goal: Track money coming back.
 
 Recovery Dashboards
 - `seller_recovery_management_dashboard` (Seller dashboard)
-- `claimr_recovery_dashboard_ui` (Master dashboard)
+- `amazonreconciliation_recovery_dashboard_ui` (Master dashboard)
 - `payment_recovery_action_hub` (Payment hub)
 - `asset_recovery_hub_variant_3` (Asset hub)
 - `wallet_blocked_legal_fix` (Wallet fix)

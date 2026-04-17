@@ -1,9 +1,9 @@
-# Claimr - End-to-End Connected Flow Platform
+# AmazonReconciliation - End-to-End Connected Flow Platform
 
 ## Overview
-Claimr is a comprehensive legal recovery platform designed for Indian e-commerce sellers to automatically fight courier fraud, escalate disputes to nodal officers, and reclaim lost profits. This repository contains a fully interconnected platform with 99+ HTML pages that form a single, cohesive customer journey designed for maximum conversion.
+AmazonReconciliation is a comprehensive legal recovery platform designed for Indian e-commerce sellers to automatically fight courier fraud, escalate disputes to nodal officers, and reclaim lost profits. This repository contains a fully interconnected platform with 99+ HTML pages that form a single, cohesive customer journey designed for maximum conversion.
 
-## The Claimr Flow Architecture
+## The AmazonReconciliation Flow Architecture
 The platform follows a strict 6-stage flow that moves users from panic to recovery:
 
 ### Stage 0: Entry & Panic Interception
@@ -78,8 +78,8 @@ Amazon reconciliation issues are handled within the same flow structure:
 
 ## File Structure
 The repository contains 99+ HTML files organized by function:
-- `claimr_homepage_*` - Entry points and panic interception
-- `claimr_home_*` - Core platform engines (command center, escalation, forensic)
+- `amazonreconciliation_homepage_*` - Entry points and panic interception
+- `amazonreconciliation_home_*` - Core platform engines (command center, escalation, forensic)
 - `fake_*` - Fraud detection and verification tools
 - `payment_*` - Recovery and payment tools
 - `legal_*` - Legal notice generators and court filing guides

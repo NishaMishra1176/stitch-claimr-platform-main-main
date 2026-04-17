@@ -1,4 +1,4 @@
-# Claimr Click-Map ASCII Diagram
+# AmazonReconciliation Click-Map ASCII Diagram
 ## From Homepage to Closure (≤ 2 clicks away)
 
 ```

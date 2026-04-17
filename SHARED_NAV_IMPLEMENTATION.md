@@ -1,13 +1,13 @@
 # Shared Header & Footer Implementation
 
 ## Overview
-All code.html pages in the Claimr platform now use shared header and footer components for consistent navigation across the entire site.
+All code.html pages in the AmazonReconciliation platform now use shared header and footer components for consistent navigation across the entire site.
 
 ## Files Created
 
 ### 1. `SHARED_HEADER.html`
 The universal header component containing:
-- Claimr logo with link to homepage
+- AmazonReconciliation logo with link to homepage
 - Action-oriented navigation dropdowns:
   - **Start** - Entry points and homepage variants
   - **What Happened?** - Problem description pages
@@ -20,7 +20,7 @@ The universal header component containing:
 
 ### 2. `SHARED_FOOTER.html`
 The universal footer component containing:
-- Claimr branding and description
+- AmazonReconciliation branding and description
 - Problem categories links
 - Educational content links
 - Recovery process links
